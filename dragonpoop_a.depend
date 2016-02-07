@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1454873574 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dp.cpp
+
+1454880012 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutex.cpp
+	"dpmutex.h"
+
+1454873686 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutexmaster.cpp
+
+1454873954 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpspinlock.cpp
+	"dpspinlock.h"
+	<thread>
+
+1454873810 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpspinlock.h
+	<atomic>
+
+1454873354 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
+	<iostream>
+
+1454882333 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutex.h
+	"dpmutexdefines.h"
+
+1454882396 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutexdefines.h
+	"../dpdefines.h"
+
+1454879697 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpdefines.h
+
