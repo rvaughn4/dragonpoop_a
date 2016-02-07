@@ -3,6 +3,7 @@
 #define dpmutex_h
 
 #include "dpmutexdefines.h"
+#include <atomic>
 
 namespace dp
 {
@@ -19,17 +20,28 @@ namespace dp
 
         dpmutexmaster *mm;
         dpspinlock *slk;
+        std::atomic<int> rlock_ctr, wlock_ctr;
 
     protected:
 
         //unlock
         void unlock(
+                    dpmutex_readlock *l
 #ifdef dpmutex_debug
+                    ,
                     const char *cfile_macro,
                     unsigned int line_macro,
                     const char *cfunc_macro
-#else
-                    void
+#endif
+                    );
+        //unlock
+        void unlock(
+                    dpmutex_writelock *l
+#ifdef dpmutex_debug
+                    ,
+                    const char *cfile_macro,
+                    unsigned int line_macro,
+                    const char *cfunc_macro
 #endif
                     );
 
@@ -100,6 +112,9 @@ namespace dp
                                         void
 #endif
                                     );
+
+        friend class dpmutex_readlock;
+        friend class dpmutex_writelock;
 
     };
 

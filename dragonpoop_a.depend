@@ -1,8 +1,13 @@
 # depslib dependency file v1.0
 1454873574 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dp.cpp
 
-1454880012 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutex.cpp
+1454887585 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutex.cpp
 	"dpmutex.h"
+	"dpspinlock.h"
+	"dpmutex_readlock.h"
+	"dpmutex_writelock.h"
+	<chrono>
+	<iostream>
 
 1454873686 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutexmaster.cpp
 
@@ -13,14 +18,31 @@
 1454873810 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpspinlock.h
 	<atomic>
 
-1454873354 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
-	<iostream>
+1454887478 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
+	"dp/dpmutex/dpmutex.h"
+	"dp/dpmutex/dpmutex_readlock.h"
+	"dp/dpmutex/dpmutex_writelock.h"
 
-1454882333 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutex.h
+1454884089 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutex.h
 	"dpmutexdefines.h"
+	<atomic>
 
-1454882396 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutexdefines.h
+1454887443 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutexdefines.h
 	"../dpdefines.h"
 
 1454879697 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpdefines.h
+
+1454887660 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutex_readlock.cpp
+	"dpmutex_readlock.h"
+	"dpmutex.h"
+
+1454883227 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutex_readlock.h
+	"dpmutexdefines.h"
+
+1454887672 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutex_writelock.cpp
+	"dpmutex_writelock.h"
+	"dpmutex.h"
+
+1454883482 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutex_writelock.h
+	"dpmutexdefines.h"
 
