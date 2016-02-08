@@ -1,4 +1,10 @@
 
+/*
+
+dpspinlock class header
+generic spinlock used to implement mutex
+*/
+
 #ifndef dpspinlock_h
 #define dpspinlock_h
 
@@ -12,6 +18,7 @@ namespace dp
 
     private:
 
+        //lock boolean with forced atomic access
         std::atomic_flag f = ATOMIC_FLAG_INIT;
 
     protected:
@@ -22,8 +29,6 @@ namespace dp
         dpspinlock( void );
         //dtor
         virtual ~dpspinlock( void );
-        //returns true if locked
-        bool isLocked( void );
         //lock blocking
         void lock( void );
         //unlocks

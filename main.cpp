@@ -1,8 +1,8 @@
 
 
-#include "dp/dpmutex/dpmutex.h"
-#include "dp/dpmutex/dpmutex_readlock.h"
-#include "dp/dpmutex/dpmutex_writelock.h"
+#include "dp/dpcore/dpmutex/dpmutex.h"
+#include "dp/dpcore/dpmutex/dpmutex_readlock.h"
+#include "dp/dpcore/dpmutex/dpmutex_writelock.h"
 
 
 int main()

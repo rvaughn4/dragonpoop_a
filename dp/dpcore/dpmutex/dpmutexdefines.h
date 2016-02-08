@@ -2,7 +2,7 @@
 #ifndef dpmutexdefines_h
 #define dpmutexdefines_h
 
-#include "../dpdefines.h"
+#include "../../dpdefines.h"
 
 #if defined dpmutex_debugout_all || defined dpmutex_debug_lock_fails
     #ifndef dpmutex_debug

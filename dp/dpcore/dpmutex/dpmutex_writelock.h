@@ -1,3 +1,8 @@
+/*
+represents the lifecycle of a writelock on a mutex
+this object is returned from a mutex when writelocked
+deleting this object releases the writelock on the mutex
+*/
 
 #ifndef dpmutex_writelock_h
 #define dpmutex_writelock_h

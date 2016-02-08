@@ -1,4 +1,10 @@
 
+/*
+
+dpspinlock class
+generic spinlock used to implement mutex
+*/
+
 #include "dpspinlock.h"
 #include <thread>
 
@@ -16,23 +22,15 @@ namespace dp
     {
     }
 
-    //locks
+    //locks blocking
     void dpspinlock::lock( void )
     {
-        unsigned int t;
         volatile bool b;
 
-        t = 0;
         b = 1;
         while( b )
         {
             __asm volatile ("pause" ::: "memory");
-            t++;
-            if( t > 200 )
-            {
-                std::this_thread::sleep_for( std::chrono::milliseconds( 3 ) );
-                t = 0;
-            }
             b = this->f.test_and_set( std::memory_order_acquire );
         }
     }

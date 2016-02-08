@@ -1,3 +1,8 @@
+/*
+represents the lifecycle of a readlock on a mutex
+this object is returned from a mutex when readlocked
+deleting this object releases the readlock on the mutex
+*/
 
 #include "dpmutex_readlock.h"
 #include "dpmutex.h"

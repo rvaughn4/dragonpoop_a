@@ -1,4 +1,10 @@
 
+/*
+mutex implementation, uses read write locking
+returns a readlock or writelock object that handles the lifecycle of the lock
+deleting the readlock or writelock object unlocks the mutex
+*/
+
 #include "dpmutex.h"
 #include "dpspinlock.h"
 #include "dpmutex_readlock.h"
@@ -137,8 +143,6 @@ namespace dp
 #endif
                                     )
         {
-            std::chrono::time_point<std::chrono::steady_clock> tp_now;
-            std::chrono::steady_clock::duration d_s;
             uint64_t t_start, t_now, t_stop;
             dpmutex_readlock *l;
 
@@ -150,9 +154,7 @@ namespace dp
             if( l )
                 return l;
 
-            tp_now = std::chrono::steady_clock::now();
-            d_s = tp_now.time_since_epoch();
-            t_start = d_s.count() * 1000 * std::chrono::steady_clock::period::num / std::chrono::steady_clock::period::den;
+            t_start = this->getTicks();
             t_stop = t_start + (uint64_t)timeout_ms;
 
             do
@@ -165,9 +167,7 @@ namespace dp
                 if( l )
                     return l;
 
-                tp_now = std::chrono::steady_clock::now();
-                d_s = tp_now.time_since_epoch();
-                t_now = d_s.count() * 1000 * std::chrono::steady_clock::period::num / std::chrono::steady_clock::period::den;
+                t_now = this->getTicks();
             }
             while( !l && t_now < t_stop );
 
@@ -187,8 +187,6 @@ namespace dp
 #endif
                                     )
         {
-            std::chrono::time_point<std::chrono::steady_clock> tp_now;
-            std::chrono::steady_clock::duration d_s;
             uint64_t t_start, t_now, t_stop;
             dpmutex_writelock *l;
 
@@ -200,11 +198,8 @@ namespace dp
             if( l )
                 return l;
 
-            tp_now = std::chrono::steady_clock::now();
-            d_s = tp_now.time_since_epoch();
-            t_start = d_s.count() * 1000 * std::chrono::steady_clock::period::num / std::chrono::steady_clock::period::den;
+            t_start = this->getTicks();
             t_stop = t_start + (uint64_t)timeout_ms;
-
             do
             {
 #ifdef dpmutex_debug
@@ -215,9 +210,7 @@ namespace dp
                 if( l )
                     return l;
 
-                tp_now = std::chrono::steady_clock::now();
-                d_s = tp_now.time_since_epoch();
-                t_now = d_s.count() * 1000 * std::chrono::steady_clock::period::num / std::chrono::steady_clock::period::den;
+                t_now = this->getTicks();
             }
             while( !l && t_now < t_stop );
 
@@ -319,6 +312,30 @@ namespace dp
             this->slk->lock();
             this->wlock_ctr--;
             this->slk->unlock();
+        }
+
+        //returns current epoch time in seconds
+        uint64_t dpmutex::getEpoch( void )
+        {
+            std::chrono::time_point<std::chrono::steady_clock> tp_now;
+            std::chrono::steady_clock::duration d_s;
+
+            tp_now = std::chrono::steady_clock::now();
+            d_s = tp_now.time_since_epoch();
+
+            return d_s.count() * std::chrono::steady_clock::period::num / std::chrono::steady_clock::period::den;
+        }
+
+        //returns tickcount in ms
+        uint64_t dpmutex::getTicks( void )
+        {
+            std::chrono::time_point<std::chrono::steady_clock> tp_now;
+            std::chrono::steady_clock::duration d_s;
+
+            tp_now = std::chrono::steady_clock::now();
+            d_s = tp_now.time_since_epoch();
+
+            return d_s.count() * 1000 * std::chrono::steady_clock::period::num / std::chrono::steady_clock::period::den;
         }
 
 }

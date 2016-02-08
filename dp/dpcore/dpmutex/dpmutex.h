@@ -1,4 +1,10 @@
 
+/*
+mutex implementation, uses read write locking
+returns a readlock or writelock object that handles the lifecycle of the lock
+deleting the readlock or writelock object unlocks the mutex
+*/
+
 #ifndef dpmutex_h
 #define dpmutex_h
 
@@ -112,6 +118,11 @@ namespace dp
                                         void
 #endif
                                     );
+
+        //returns current epoch time in seconds
+        uint64_t getEpoch( void );
+        //returns tickcount in ms
+        uint64_t getTicks( void );
 
         friend class dpmutex_readlock;
         friend class dpmutex_writelock;

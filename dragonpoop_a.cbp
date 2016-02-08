@@ -29,9 +29,35 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++11" />
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="dp/dp.cpp" />
+		<Unit filename="dp/dp.h" />
+		<Unit filename="dp/dpcore/dpmutex/dpmutex.cpp" />
+		<Unit filename="dp/dpcore/dpmutex/dpmutex.h" />
+		<Unit filename="dp/dpcore/dpmutex/dpmutex_readlock.cpp" />
+		<Unit filename="dp/dpcore/dpmutex/dpmutex_readlock.h" />
+		<Unit filename="dp/dpcore/dpmutex/dpmutex_writelock.cpp" />
+		<Unit filename="dp/dpcore/dpmutex/dpmutex_writelock.h" />
+		<Unit filename="dp/dpcore/dpmutex/dpmutexdefines.h" />
+		<Unit filename="dp/dpcore/dpmutex/dpmutexmaster.cpp" />
+		<Unit filename="dp/dpcore/dpmutex/dpmutexmaster.h" />
+		<Unit filename="dp/dpcore/dpmutex/dpspinlock.cpp" />
+		<Unit filename="dp/dpcore/dpmutex/dpspinlock.h" />
+		<Unit filename="dp/dpcore/dpshared/dpshared.cpp" />
+		<Unit filename="dp/dpcore/dpshared/dpshared.h" />
+		<Unit filename="dp/dpcore/dpshared/dpshared_guard.cpp" />
+		<Unit filename="dp/dpcore/dpshared/dpshared_guard.h" />
+		<Unit filename="dp/dpcore/dpshared/dpshared_readlock.cpp" />
+		<Unit filename="dp/dpcore/dpshared/dpshared_readlock.h" />
+		<Unit filename="dp/dpcore/dpshared/dpshared_ref.cpp" />
+		<Unit filename="dp/dpcore/dpshared/dpshared_ref.h" />
+		<Unit filename="dp/dpcore/dpshared/dpshared_writelock.cpp" />
+		<Unit filename="dp/dpcore/dpshared/dpshared_writelock.h" />
+		<Unit filename="dp/dpcore/dpshared/dpshareddefines.h" />
+		<Unit filename="dp/dpdefines.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
