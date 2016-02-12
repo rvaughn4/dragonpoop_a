@@ -18,6 +18,8 @@ namespace dp
     class dpshared_readlock;
     class dpshared_writelock;
     class dpmutex;
+    class dpmutex_readlock;
+    class dpmutex_writelock;
 
     class dpshared
     {
@@ -27,6 +29,11 @@ namespace dp
         dpmutex *m;
 
     protected:
+
+        //generate readlock
+        virtual dpshared_readlock *genReadLock( dpmutex_readlock *ml );
+        //generate writelock
+        virtual dpshared_writelock *genWriteLock( dpmutex_writelock *ml );
 
     public:
 

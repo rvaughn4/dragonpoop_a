@@ -18,10 +18,10 @@
 1454887924 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpspinlock.h
 	<atomic>
 
-1454889133 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
-	"dp/dpcore/dpmutex/dpmutex.h"
-	"dp/dpcore/dpmutex/dpmutex_readlock.h"
-	"dp/dpcore/dpmutex/dpmutex_writelock.h"
+1455236629 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
+	"dp/dpcore/dpshared/dpshared.h"
+	"dp/dpcore/dpshared/dpshared_readlock.h"
+	"dp/dpcore/dpshared/dpshared_writelock.h"
 
 1454888242 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutex.h
 	"dpmutexdefines.h"
@@ -83,4 +83,43 @@
 1454887915 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpmutex/dpspinlock.cpp
 	"dpspinlock.h"
 	<thread>
+
+1455236510 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared.cpp
+	"dpshared.h"
+	"../dpmutex/dpmutex.h"
+	"../dpmutex/dpmutex_readlock.h"
+	"../dpmutex/dpmutex_writelock.h"
+	"dpshared_readlock.h"
+	"dpshared_writelock.h"
+	"dpshared_ref.h"
+	<iostream>
+
+1455235918 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared.h
+	"dpshareddefines.h"
+	<atomic>
+
+1454889427 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshareddefines.h
+	"../../dpdefines.h"
+
+1455236422 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_readlock.h
+	"dpshareddefines.h"
+
+1455236541 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_writelock.h
+	"dpshareddefines.h"
+
+1454889195 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_ref.h
+
+1454889195 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_guard.cpp
+
+1455236408 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_readlock.cpp
+	"dpshared_readlock.h"
+	"dpshared.h"
+	"../dpmutex/dpmutex_readlock.h"
+
+1454889195 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_ref.cpp
+
+1455236581 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_writelock.cpp
+	"dpshared_writelock.h"
+	"dpshared.h"
+	"../dpmutex/dpmutex_writelock.h"
 
