@@ -7,6 +7,9 @@ deleting this object releases the readlock on the dpshared
 #include "dpshared_readlock.h"
 #include "dpshared.h"
 #include "../dpmutex/dpmutex_readlock.h"
+#ifdef dpshared_debug
+#include <iostream>
+#endif
 
 namespace dp
 {
@@ -30,6 +33,7 @@ namespace dp
         //set debug stuff
         void dpshared_readlock::setDebug(
 #ifdef dpshared_debug
+        const char *cname,
         const char *cfile_macro,
         unsigned int line_macro,
         const char *cfunc_macro
@@ -39,6 +43,7 @@ namespace dp
                     )
         {
 #ifdef dpshared_debug
+            this->cname = cname;
             this->cfile_macro = cfile_macro;
             this->line_macro = line_macro;
             this->cfunc_macro = cfunc_macro;

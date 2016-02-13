@@ -24,6 +24,7 @@ namespace dp
         dpshared::dpshared( void )
         {
             this->m = new dpmutex();
+            this->setName( "Shared Object" );
         }
 
         //dtor
@@ -58,11 +59,15 @@ namespace dp
             dpmutex_readlock *ml;
             dpshared_readlock *l;
 
+#if defined dpmutex_debug && defined dpshared_debug
+            ml = this->m->_usemacro_tryReadLock( cfile_macro, line_macro, cfunc_macro );
+#else
             ml = dpmutex_tryReadLock( this->m );
+#endif
             if( !ml )
             {
 #ifdef dpshared_debug_lock_fails
-                std::cout << "dpshared lock(read) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " lock(read) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
 #endif
                 return 0;
             }
@@ -71,17 +76,17 @@ namespace dp
             if( !l )
             {
 #ifdef dpshared_debug_lock_fails
-                std::cout << "dpshared lock(read) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " lock(read) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
 #endif
                 delete ml;
                 return 0;
             }
 
 #ifdef dpshared_debugout_all
-                std::cout << "dpshared lock(read) " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " lock(read) " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
 #endif
 #ifdef dpshared_debug
-            l->setDebug( cfile_macro, line_macro, cfunc_macro );
+            l->setDebug( this->cname, cfile_macro, line_macro, cfunc_macro );
 #endif
             return l;
         }
@@ -100,11 +105,15 @@ namespace dp
             dpmutex_writelock *ml;
             dpshared_writelock *l;
 
+#if defined dpmutex_debug && defined dpshared_debug
+            ml = this->m->_usemacro_tryWriteLock( cfile_macro, line_macro, cfunc_macro );
+#else
             ml = dpmutex_tryWriteLock( this->m );
+#endif
             if( !ml )
             {
 #ifdef dpshared_debug_lock_fails
-                std::cout << "dpshared lock(write) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " lock(write) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
 #endif
                 return 0;
             }
@@ -113,14 +122,17 @@ namespace dp
             if( !l )
             {
 #ifdef dpshared_debug_lock_fails
-                std::cout << "dpshared lock(write) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " lock(write) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
 #endif
                 delete ml;
                 return 0;
             }
 
 #ifdef dpshared_debugout_all
-                std::cout << "dpshared lock(write) " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " lock(write) " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+#endif
+#ifdef dpshared_debug
+            l->setDebug( this->cname, cfile_macro, line_macro, cfunc_macro );
 #endif
             return l;
         }
@@ -138,11 +150,15 @@ namespace dp
             dpmutex_readlock *ml;
             dpshared_readlock *l;
 
+#if defined dpmutex_debug && defined dpshared_debug
+            ml = this->m->_usemacro_tryReadLock( timeout_ms, cfile_macro, line_macro, cfunc_macro );
+#else
             ml = dpmutex_tryReadLock_timeout( this->m, timeout_ms );
+#endif
             if( !ml )
             {
 #ifdef dpshared_debug_lock_fails
-                std::cout << "dpshared lock(read) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " lock(read) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
 #endif
                 return 0;
             }
@@ -151,17 +167,17 @@ namespace dp
             if( !l )
             {
 #ifdef dpshared_debug_lock_fails
-                std::cout << "dpshared lock(read) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " lock(read) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
 #endif
                 delete ml;
                 return 0;
             }
 
 #ifdef dpshared_debugout_all
-                std::cout << "dpshared lock(read) " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " lock(read) " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
 #endif
 #ifdef dpshared_debug
-            l->setDebug( cfile_macro, line_macro, cfunc_macro );
+            l->setDebug( this->cname, cfile_macro, line_macro, cfunc_macro );
 #endif
             return l;
         }
@@ -179,11 +195,15 @@ namespace dp
             dpmutex_writelock *ml;
             dpshared_writelock *l;
 
+#if defined dpmutex_debug && defined dpshared_debug
+            ml = this->m->_usemacro_tryWriteLock( timeout_ms, cfile_macro, line_macro, cfunc_macro );
+#else
             ml = dpmutex_tryWriteLock_timeout( this->m, timeout_ms );
+#endif
             if( !ml )
             {
 #ifdef dpshared_debug_lock_fails
-                std::cout << "dpshared lock(write) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " lock(write) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
 #endif
                 return 0;
             }
@@ -192,14 +212,17 @@ namespace dp
             if( !l )
             {
 #ifdef dpshared_debug_lock_fails
-                std::cout << "dpshared lock(write) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " lock(write) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
 #endif
                 delete ml;
                 return 0;
             }
 
 #ifdef dpshared_debugout_all
-                std::cout << "dpshared lock(write) " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " lock(write) " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+#endif
+#ifdef dpshared_debug
+            l->setDebug( this->cname, cfile_macro, line_macro, cfunc_macro );
 #endif
             return l;
         }
@@ -218,11 +241,16 @@ namespace dp
             dpmutex_readlock *ml;
             dpshared_readlock *l;
 
+
+#if defined dpmutex_debug && defined dpshared_debug
+            ml = this->m->_usemacro_readLock( cfile_macro, line_macro, cfunc_macro );
+#else
             ml = dpmutex_readLock_block( this->m );
+#endif
             if( !ml )
             {
 #ifdef dpshared_debug_lock_fails
-                std::cout << "dpshared lock(read) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " lock(read) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
 #endif
                 return 0;
             }
@@ -231,17 +259,17 @@ namespace dp
             if( !l )
             {
 #ifdef dpshared_debug_lock_fails
-                std::cout << "dpshared lock(read) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " lock(read) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
 #endif
                 delete ml;
                 return 0;
             }
 
 #ifdef dpshared_debugout_all
-                std::cout << "dpshared lock(read) " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " lock(read) " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
 #endif
 #ifdef dpshared_debug
-            l->setDebug( cfile_macro, line_macro, cfunc_macro );
+            l->setDebug( this->cname, cfile_macro, line_macro, cfunc_macro );
 #endif
             return l;
         }
@@ -260,11 +288,15 @@ namespace dp
             dpmutex_writelock *ml;
             dpshared_writelock *l;
 
+#if defined dpmutex_debug && defined dpshared_debug
+            ml = this->m->_usemacro_writeLock( cfile_macro, line_macro, cfunc_macro );
+#else
             ml = dpmutex_writeLock_block( this->m );
+#endif
             if( !ml )
             {
 #ifdef dpshared_debug_lock_fails
-                std::cout << "dpshared lock(write) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " lock(write) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
 #endif
                 return 0;
             }
@@ -273,16 +305,27 @@ namespace dp
             if( !l )
             {
 #ifdef dpshared_debug_lock_fails
-                std::cout << "dpshared lock(write) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " lock(write) !!!FAIL!!! " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
 #endif
                 delete ml;
                 return 0;
             }
 
 #ifdef dpshared_debugout_all
-                std::cout << "dpshared lock(write) " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " lock(write) " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+#endif
+#ifdef dpshared_debug
+            l->setDebug( this->cname, cfile_macro, line_macro, cfunc_macro );
 #endif
             return l;
+        }
+
+        //set object name for debug output
+        void dpshared::setName( const char *cname )
+        {
+#ifdef dpshared_debug
+            this->cname = cname;
+#endif
         }
 
 }

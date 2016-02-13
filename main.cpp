@@ -4,7 +4,7 @@
 #include "dp/dpcore/dpshared/dpshared_readlock.h"
 #include "dp/dpcore/dpshared/dpshared_writelock.h"
 
-
+#include <iostream>
 int main()
 {
 
@@ -28,7 +28,10 @@ int main()
     delete mr1;
     delete mr2;
 
+std::cout << "\r\n\r\n\r\n";
+
     delete m;
+
 
 
     return 0;

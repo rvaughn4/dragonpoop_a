@@ -3,6 +3,7 @@
 #define dpshareddefines_h
 
 #include "../../dpdefines.h"
+#include "../dpmutex/dpmutexdefines.h"
 
 #if defined dpshared_debugout_all || defined dpshared_debug_lock_fails
     #ifndef dpshared_debug

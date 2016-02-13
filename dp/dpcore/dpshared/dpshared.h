@@ -27,6 +27,11 @@ namespace dp
     private:
 
         dpmutex *m;
+#ifdef dpshared_debug
+        const char *cname;
+#endif
+        //set object name for debug output
+        void setName( const char *cname );
 
     protected:
 

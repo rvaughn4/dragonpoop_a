@@ -23,6 +23,7 @@ namespace dp
         dpmutex_writelock *ml;
         dpshared *p;
 #ifdef dpshared_debug
+        const char *cname;
         const char *cfile_macro;
         unsigned int line_macro;
         const char *cfunc_macro;
@@ -39,6 +40,7 @@ namespace dp
         //set debug stuff
         void setDebug(
 #ifdef dpshared_debug
+        const char *cname,
         const char *cfile_macro,
         unsigned int line_macro,
         const char *cfunc_macro

@@ -4,9 +4,13 @@ this object is returned from a dpshared when writelocked
 deleting this object releases the writelock on the dpshared
 */
 
+#include "dpshareddefines.h"
 #include "dpshared_writelock.h"
 #include "dpshared.h"
 #include "../dpmutex/dpmutex_writelock.h"
+#ifdef dpshared_debug
+#include <iostream>
+#endif
 
 namespace dp
 {
@@ -23,13 +27,14 @@ namespace dp
         {
             delete this->ml;
 #ifdef dpshared_debugout_all
-                std::cout << "dpshared unlock(write) " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
+                std::cout << this->cname << " unlock(write) " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
 #endif
         }
 
         //set debug stuff
         void dpshared_writelock::setDebug(
 #ifdef dpshared_debug
+        const char *cname,
         const char *cfile_macro,
         unsigned int line_macro,
         const char *cfunc_macro
@@ -39,6 +44,7 @@ namespace dp
                     )
         {
 #ifdef dpshared_debug
+            this->cname = cname;
             this->cfile_macro = cfile_macro;
             this->line_macro = line_macro;
             this->cfunc_macro = cfunc_macro;
