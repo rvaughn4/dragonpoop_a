@@ -50,6 +50,12 @@ namespace dp
 #endif
         }
 
+        //get reference
+        dpshared_ref *dpshared_readlock::getRef( void )
+        {
+            return this->p->getRef();
+        }
+
 }
 
 

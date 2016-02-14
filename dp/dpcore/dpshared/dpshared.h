@@ -9,7 +9,9 @@ deleting the readlock or writelock object unlocks the shared
 #define dpshared_h
 
 #include "dpshareddefines.h"
+#include "dpshared_ref_kernel.h"
 #include <atomic>
+#include <memory>
 
 namespace dp
 {
@@ -27,6 +29,7 @@ namespace dp
     private:
 
         dpmutex *m;
+        std::shared_ptr<dpshared_ref_kernel> k;
 #ifdef dpshared_debug
         const char *cname;
 #endif
@@ -39,6 +42,8 @@ namespace dp
         virtual dpshared_readlock *genReadLock( dpmutex_readlock *ml );
         //generate writelock
         virtual dpshared_writelock *genWriteLock( dpmutex_writelock *ml );
+        //generate ref
+        virtual dpshared_ref *genRef( std::shared_ptr<dpshared_ref_kernel> *k );
 
     public:
 
@@ -105,6 +110,8 @@ namespace dp
                                         void
 #endif
                                     );
+        //get reference
+        dpshared_ref *getRef( void );
 
 
     };

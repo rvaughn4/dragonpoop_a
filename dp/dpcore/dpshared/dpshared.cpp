@@ -31,6 +31,7 @@ namespace dp
         dpshared::~dpshared( void )
         {
             delete this->m;
+            ( *this->k ).unlink();
         }
 
         //generate readlock
@@ -43,6 +44,18 @@ namespace dp
         dpshared_writelock *dpshared::genWriteLock( dpmutex_writelock *ml )
         {
             return new dpshared_writelock( this, ml );
+        }
+
+        //generate ref
+        dpshared_ref *dpshared::genRef( std::shared_ptr<dpshared_ref_kernel> *k )
+        {
+            return new dpshared_ref( this, k );
+        }
+
+        //get reference
+        dpshared_ref *dpshared::getRef( void )
+        {
+            return this->genRef( &this->k );
         }
 
         //attempt readlock

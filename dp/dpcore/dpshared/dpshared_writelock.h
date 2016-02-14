@@ -14,6 +14,7 @@ namespace dp
 
     class dpshared;
     class dpmutex_writelock;
+    class dpshared_ref;
 
     class dpshared_writelock
     {
@@ -48,6 +49,8 @@ namespace dp
         void
 #endif
                     );
+        //get reference
+        dpshared_ref *getRef( void );
 
     };
 

@@ -51,6 +51,12 @@ namespace dp
 #endif
         }
 
+        //get reference
+        dpshared_ref *dpshared_writelock::getRef( void )
+        {
+            return this->p->getRef();
+        }
+
 }
 
 
