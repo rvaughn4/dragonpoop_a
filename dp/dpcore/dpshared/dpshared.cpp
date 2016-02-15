@@ -25,7 +25,7 @@ namespace dp
         {
             this->m = new dpmutex();
             this->rsync = 0;
-            this->t_sync = 0;
+            *( this->t_sync.get() ) = 0;
             this->setName( "Shared Object" );
         }
 
