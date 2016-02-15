@@ -54,6 +54,8 @@
 		<Unit filename="dp/dpcore/dpshared/dpshared_readlock.h" />
 		<Unit filename="dp/dpcore/dpshared/dpshared_ref.cpp" />
 		<Unit filename="dp/dpcore/dpshared/dpshared_ref.h" />
+		<Unit filename="dp/dpcore/dpshared/dpshared_ref_kernel.cpp" />
+		<Unit filename="dp/dpcore/dpshared/dpshared_ref_kernel.h" />
 		<Unit filename="dp/dpcore/dpshared/dpshared_writelock.cpp" />
 		<Unit filename="dp/dpcore/dpshared/dpshared_writelock.h" />
 		<Unit filename="dp/dpcore/dpshared/dpshareddefines.h" />

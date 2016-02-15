@@ -24,6 +24,8 @@ namespace dp
         dpshared::dpshared( void )
         {
             this->m = new dpmutex();
+            this->rsync = 0;
+            this->t_sync = 0;
             this->setName( "Shared Object" );
         }
 
@@ -32,6 +34,8 @@ namespace dp
         {
             delete this->m;
             ( *this->k ).unlink();
+            if( this->rsync )
+                delete this->rsync;
         }
 
         //generate readlock
@@ -47,15 +51,15 @@ namespace dp
         }
 
         //generate ref
-        dpshared_ref *dpshared::genRef( std::shared_ptr<dpshared_ref_kernel> *k )
+        dpshared_ref *dpshared::genRef( std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync )
         {
-            return new dpshared_ref( this, k );
+            return new dpshared_ref( this, k, t_sync );
         }
 
         //get reference
         dpshared_ref *dpshared::getRef( void )
         {
-            return this->genRef( &this->k );
+            return this->genRef( &this->k, &this->t_sync );
         }
 
         //attempt readlock
@@ -339,6 +343,94 @@ namespace dp
 #ifdef dpshared_debug
             this->cname = cname;
 #endif
+        }
+
+        //set shared object to sync by
+        void dpshared::setSync( dpshared *psync )
+        {
+            dpshared_readlock *l;
+
+            l = dpshared_tryReadLock_timeout( psync, 3000 );
+            if( !l )
+                return;
+
+            this->setSync( l );
+
+            delete l;
+        }
+
+        //set shared object to sync by
+        void dpshared::setSync( dpshared_ref *psync )
+        {
+            dpshared_readlock *l;
+
+            l = dpshared_tryReadLock_timeout( psync, 3000 );
+            if( !l )
+                return;
+
+            this->setSync( l );
+
+            delete l;
+        }
+
+        //set shared object to sync by
+        void dpshared::setSync( dpshared_readlock *psync )
+        {
+            if( this->rsync )
+                delete this->rsync;
+
+            this->rsync = psync->getRef();
+        }
+
+        //set shared object to sync by
+        void dpshared::setSync( dpshared_writelock *psync )
+        {
+            if( this->rsync )
+                delete this->rsync;
+
+            this->rsync = psync->getRef();
+        }
+
+        //sync with shared object stored inside if internal time mismatched
+        void dpshared::sync( void )
+        {
+            dpshared_readlock *l;
+            uint64_t tr, tt;
+
+            if( !this->rsync )
+                return;
+
+            tt = *( this->t_sync.get() );
+            tr = *( this->t_sync.get() );
+            if( tt == tr )
+                return;
+
+            l = dpshared_tryReadLock_timeout( this->rsync, 30 );
+            if( !l )
+                return;
+
+            this->onSync( l );
+
+            delete l;
+        }
+
+        //update internal time to cause objects to sync
+        void dpshared::update( void )
+        {
+            *( this->t_sync.get() ) = this->m->getTicks();
+        }
+
+        //override to handle sync copy, be sure to call base class first!
+        void dpshared::onSync( dpshared_readlock *psync )
+        {
+
+        }
+
+        //override to test type for safe syncing, be sure to call base class first!
+        bool dpshared::isSyncType( const char *ctypename )
+        {
+            std::string s( ctypename );
+            return s.compare( "dpshared" ) == 0;
         }
 
 }

@@ -25,6 +25,7 @@ namespace dp
 
         dpshared *p;
         std::shared_ptr<dpshared_ref_kernel> k;
+        std::shared_ptr< std::atomic<uint64_t> > t_sync;
 
     protected:
 
@@ -32,7 +33,7 @@ namespace dp
 
 
         //ctor
-        dpshared_ref( dpshared *p, std::shared_ptr<dpshared_ref_kernel> *k );
+        dpshared_ref( dpshared *p, std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync );
         //dtor
         virtual ~dpshared_ref( void );
         //attempt readlock
