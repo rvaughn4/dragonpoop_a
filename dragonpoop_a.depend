@@ -18,13 +18,9 @@
 1454887924 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpspinlock.h
 	<atomic>
 
-1456091570 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
+1456094090 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
 	"dp/dpcore/dpthread/dpthread.h"
 	"dp/dpcore/dpshared/dpshared_guard.h"
-	"dp/dpcore/dpshared/dpshared.h"
-	"dp/dpcore/dpshared/dpshared_ref.h"
-	"dp/dpcore/dpshared/dpshared_readlock.h"
-	"dp/dpcore/dpshared/dpshared_writelock.h"
 	<iostream>
 	<thread>
 
@@ -153,7 +149,7 @@
 1455448121 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_ref_kernel.cpp
 	"dpshared_ref_kernel.h"
 
-1456092955 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpthread/dpthread.cpp
+1456093112 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpthread/dpthread.cpp
 	"dpthread.h"
 	"../dpshared/dpshared_guard.h"
 	"dpthread_ref.h"
