@@ -57,6 +57,12 @@ namespace dp
             return this->p->getRef();
         }
 
+        //called to run
+        void dpshared_writelock::run( void )
+        {
+            this->p->run( this );
+        }
+
 }
 
 

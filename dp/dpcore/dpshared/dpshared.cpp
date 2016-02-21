@@ -25,7 +25,14 @@ namespace dp
         {
             this->m = new dpmutex();
             this->rsync = 0;
+
+            std::shared_ptr<std::atomic<uint64_t>> tt( new std::atomic<uint64_t>() );
+            this->t_sync = tt;
             *( this->t_sync.get() ) = 0;
+
+            std::shared_ptr<dpshared_ref_kernel> kk( new dpshared_ref_kernel() );
+            this->k = kk;
+
             this->setName( "Shared Object" );
         }
 
@@ -431,6 +438,20 @@ namespace dp
         {
             std::string s( ctypename );
             return s.compare( "dpshared" ) == 0;
+        }
+
+        //called to run
+        void dpshared::run( dpshared_writelock *wl )
+        {
+            if( this->rsync )
+                this->sync();
+            this->onRun( wl );
+        }
+
+        //override to handle processing
+        void dpshared::onRun( dpshared_writelock *wl )
+        {
+
         }
 
 }

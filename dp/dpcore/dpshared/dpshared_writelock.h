@@ -51,6 +51,8 @@ namespace dp
                     );
         //get reference
         dpshared_ref *getRef( void );
+        //called to run
+        void run( void );
 
     };
 

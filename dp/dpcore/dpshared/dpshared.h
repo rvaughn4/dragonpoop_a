@@ -62,6 +62,10 @@ namespace dp
         virtual void onSync( dpshared_readlock *psync );
         //override to test type for safe syncing, be sure to call base class first!
         virtual bool isSyncType( const char *ctypename );
+        //called to run
+        void run( dpshared_writelock *wl );
+        //override to handle processing
+        virtual void onRun( dpshared_writelock *wl );
 
     public:
 
@@ -132,6 +136,7 @@ namespace dp
         dpshared_ref *getRef( void );
 
 
+        friend class dpshared_writelock;
     };
 
 }
