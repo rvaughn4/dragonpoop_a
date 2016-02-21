@@ -66,14 +66,6 @@ namespace dp
         void run( dpshared_writelock *wl );
         //override to handle processing
         virtual void onRun( dpshared_writelock *wl );
-
-    public:
-
-
-        //ctor
-        dpshared( void );
-        //dtor
-        virtual ~dpshared( void );
         //attempt readlock
         dpshared_readlock *_usemacro_tryReadLock(
 #ifdef dpshared_debug
@@ -135,8 +127,19 @@ namespace dp
         //get reference
         dpshared_ref *getRef( void );
 
+    public:
+
+
+        //ctor
+        dpshared( void );
+        //dtor
+        virtual ~dpshared( void );
+
 
         friend class dpshared_writelock;
+        friend class dpshared_readlock;
+        friend class dpshared_ref;
+        friend class dpshared_guard;
     };
 
 }

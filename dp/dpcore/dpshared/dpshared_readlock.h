@@ -32,12 +32,13 @@ namespace dp
 
     protected:
 
+        //dtor
+        virtual ~dpshared_readlock( void );
+
     public:
 
         //ctor
         dpshared_readlock( dpshared *p, dpmutex_readlock *ml );
-        //dtor
-        virtual ~dpshared_readlock( void );
         //set debug stuff
         void setDebug(
 #ifdef dpshared_debug
@@ -52,6 +53,9 @@ namespace dp
         //get reference
         dpshared_ref *getRef( void );
 
+
+        friend class dpshared_guard;
+        friend class dpshared;
     };
 
 }

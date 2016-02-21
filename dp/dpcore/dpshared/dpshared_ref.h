@@ -29,11 +29,6 @@ namespace dp
 
     protected:
 
-    public:
-
-
-        //ctor
-        dpshared_ref( dpshared *p, std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync );
         //dtor
         virtual ~dpshared_ref( void );
         //attempt readlock
@@ -94,14 +89,21 @@ namespace dp
                                         void
 #endif
                                     );
+        //get reference
+        dpshared_ref *getRef( void );
 
+    public:
+
+
+        //ctor
+        dpshared_ref( dpshared *p, std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync );
         //returns true if linked
         bool isLinked( void );
         //unlink ref
         void unlink( void );
-        //get reference
-        dpshared_ref *getRef( void );
 
+        friend class dpshared_guard;
+        friend class dpshared;
     };
 
 }

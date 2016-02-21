@@ -26,12 +26,13 @@ namespace dp
 
     protected:
 
+        //dtor
+        virtual ~dpthread_writelock( void );
+
     public:
 
         //ctor
         dpthread_writelock( dpthread *p, dpmutex_writelock *ml );
-        //dtor
-        virtual ~dpthread_writelock( void );
         //returns true if should run
         bool doRun( void );
         //returns true if running

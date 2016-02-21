@@ -6,6 +6,7 @@ deleting the readlock or writelock object unlocks the shared
 */
 
 #include "dpthread.h"
+#include "../dpshared/dpshared_guard.h"
 #include "dpthread_ref.h"
 #include "dpthread_readlock.h"
 #include "dpthread_writelock.h"
@@ -77,7 +78,7 @@ namespace dp
 
         this->bIsRun = this->bDoRun & 1;
 
-        std::cout << "thread is running.\r\n";
+        std::cout << ".";
 
     }
 
@@ -85,10 +86,11 @@ namespace dp
     {
         dpthread_ref *tr;
         dpthread_writelock *tl;
+        dpshared_guard g;
         bool d;
         unsigned int tms = 30;
 
-        tr = (dpthread_ref *)t->getRef();
+        tr = (dpthread_ref *)g.getRef( t );
         if( !tr )
             return;
 
@@ -98,7 +100,7 @@ namespace dp
             if( !tr->isLinked() )
                 return;
 
-            tl = (dpthread_writelock *)dpshared_tryWriteLock_timeout( tr, 10 );
+            tl = (dpthread_writelock *)dpshared_guard_tryWriteLock_timeout( g, tr, 10 );
             if( !tl )
             {
                 std::this_thread::sleep_for( std::chrono::milliseconds( tms ) );
@@ -107,7 +109,7 @@ namespace dp
 
             tl->run();
             d = tl->isRunning();
-            delete tl;
+            g.release( tl );
 
             std::this_thread::sleep_for( std::chrono::milliseconds( tms ) );
         }

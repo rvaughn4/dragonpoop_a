@@ -26,12 +26,13 @@ namespace dp
 
     protected:
 
+        //dtor
+        virtual ~dpthread_readlock( void );
+
     public:
 
         //ctor
         dpthread_readlock( dpthread *p, dpmutex_readlock *ml );
-        //dtor
-        virtual ~dpthread_readlock( void );
 
     };
 

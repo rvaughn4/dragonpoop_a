@@ -2,7 +2,7 @@
 
 #include "dp/dpcore/dpthread/dpthread.h"
 
-
+#include "dp/dpcore/dpshared/dpshared_guard.h"
 #include "dp/dpcore/dpshared/dpshared.h"
 #include "dp/dpcore/dpshared/dpshared_ref.h"
 #include "dp/dpcore/dpshared/dpshared_readlock.h"
@@ -14,6 +14,7 @@
 int main()
 {
 
+    dp::dpshared_guard g;
     dp::dpthread *tr;
     dp::dpshared *m;
     dp::dpshared_ref *mr;
@@ -26,23 +27,23 @@ int main()
 
     m = new dp::dpshared();
 
-    mw1 = dpshared_tryWriteLock_timeout( m, 1000 );
-    mw2 = dpshared_tryWriteLock_timeout( m, 1000 );
-    mr1 = dpshared_tryReadLock_timeout( m, 1000 );
-    mr2 = dpshared_tryReadLock_timeout( m, 1000 );
+    mw1 = dpshared_guard_tryWriteLock_timeout( g, m, 1000 );
+    mw2 = dpshared_guard_tryWriteLock_timeout( g, m, 1000 );
+    mr1 = dpshared_guard_tryReadLock_timeout( g, m, 1000 );
+    mr2 = dpshared_guard_tryReadLock_timeout( g, m, 1000 );
 
-    mr = mw1->getRef();
-    delete mw1;
+    mr = g.getRef( m );
+    g.release( mw1 );
 
-    std::this_thread::sleep_for( std::chrono::milliseconds( 200 ) );
+    std::this_thread::sleep_for( std::chrono::milliseconds( 2000 ) );
 
 
-    mr1 = dpshared_tryReadLock_timeout( mr, 1000 );
-    mr2 = dpshared_tryReadLock_timeout( mr, 1000 );
-    mw1 = dpshared_tryWriteLock_timeout( mr, 1000 );
-    mw2 = dpshared_tryWriteLock_timeout( mr, 1000 );
-    delete mr1;
-    delete mr2;
+    mr1 = dpshared_guard_tryReadLock_timeout( g, mr, 1000 );
+    mr2 = dpshared_guard_tryReadLock_timeout( g, mr, 1000 );
+    mw1 = dpshared_guard_tryWriteLock_timeout( g, mr, 1000 );
+    mw2 = dpshared_guard_tryWriteLock_timeout( g, mr, 1000 );
+    g.release( mr1 );
+    g.release( mr2 );
 
 std::cout << "\r\n\r\n\r\n";
 
@@ -53,7 +54,7 @@ std::cout.flush();
     delete tr;
 
     delete m;
-    delete mr;
+    g.release( mr );
 
 
 
