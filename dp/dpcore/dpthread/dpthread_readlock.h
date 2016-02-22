@@ -33,6 +33,12 @@ namespace dp
 
         //ctor
         dpthread_readlock( dpthread *p, dpmutex_readlock *ml );
+        //returns true if should run
+        bool doRun( void );
+        //returns true if running
+        bool isRunning( void );
+        //return thread delay time
+        unsigned int getDelay( void );
 
     };
 

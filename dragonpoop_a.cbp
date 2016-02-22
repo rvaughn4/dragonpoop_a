@@ -33,6 +33,9 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Linker>
+			<Add library="pthread" />
+		</Linker>
 		<Unit filename="dp/dp.cpp" />
 		<Unit filename="dp/dp.h" />
 		<Unit filename="dp/dpcore/dpmutex/dpmutex.cpp" />
@@ -59,6 +62,24 @@
 		<Unit filename="dp/dpcore/dpshared/dpshared_writelock.cpp" />
 		<Unit filename="dp/dpcore/dpshared/dpshared_writelock.h" />
 		<Unit filename="dp/dpcore/dpshared/dpshareddefines.h" />
+		<Unit filename="dp/dpcore/dptask/dptask.cpp" />
+		<Unit filename="dp/dpcore/dptask/dptask.h" />
+		<Unit filename="dp/dpcore/dptask/dptask_defines.h" />
+		<Unit filename="dp/dpcore/dptask/dptask_readlock.cpp" />
+		<Unit filename="dp/dpcore/dptask/dptask_readlock.h" />
+		<Unit filename="dp/dpcore/dptask/dptask_ref.cpp" />
+		<Unit filename="dp/dpcore/dptask/dptask_ref.h" />
+		<Unit filename="dp/dpcore/dptask/dptask_writelock.cpp" />
+		<Unit filename="dp/dpcore/dptask/dptask_writelock.h" />
+		<Unit filename="dp/dpcore/dpthread/dpthread.cpp" />
+		<Unit filename="dp/dpcore/dpthread/dpthread.h" />
+		<Unit filename="dp/dpcore/dpthread/dpthread_defines.h" />
+		<Unit filename="dp/dpcore/dpthread/dpthread_readlock.cpp" />
+		<Unit filename="dp/dpcore/dpthread/dpthread_readlock.h" />
+		<Unit filename="dp/dpcore/dpthread/dpthread_ref.cpp" />
+		<Unit filename="dp/dpcore/dpthread/dpthread_ref.h" />
+		<Unit filename="dp/dpcore/dpthread/dpthread_writelock.cpp" />
+		<Unit filename="dp/dpcore/dpthread/dpthread_writelock.h" />
 		<Unit filename="dp/dpdefines.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>

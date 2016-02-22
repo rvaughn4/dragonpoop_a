@@ -19,6 +19,7 @@ namespace dp
     //ctor
     dptask::dptask( void ) : dpshared()
     {
+        this->setName( "Task" );
     }
 
     //dtor
@@ -64,6 +65,7 @@ namespace dp
     //override to handle processing
     void dptask::onRun( dpshared_writelock *wl )
     {
+        std::cout << " " << this->getTicks() << "\r\n";
     }
 
 }

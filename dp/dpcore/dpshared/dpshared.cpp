@@ -454,5 +454,17 @@ namespace dp
 
         }
 
+        //returns current epoch time in seconds
+        uint64_t dpshared::getEpoch( void )
+        {
+            return this->m->getEpoch();
+        }
+
+        //returns tickcount in ms
+        uint64_t dpshared::getTicks( void )
+        {
+            return this->m->getTicks();
+        }
+
 }
 

@@ -35,11 +35,11 @@ namespace dp
 #ifdef dpshared_debug
         const char *cname;
 #endif
-        //set object name for debug output
-        void setName( const char *cname );
 
     protected:
 
+        //set object name for debug output
+        void setName( const char *cname );
         //generate readlock
         virtual dpshared_readlock *genReadLock( dpmutex_readlock *ml );
         //generate writelock
@@ -126,6 +126,10 @@ namespace dp
                                     );
         //get reference
         dpshared_ref *getRef( void );
+        //returns current epoch time in seconds
+        uint64_t getEpoch( void );
+        //returns tickcount in ms
+        uint64_t getTicks( void );
 
     public:
 

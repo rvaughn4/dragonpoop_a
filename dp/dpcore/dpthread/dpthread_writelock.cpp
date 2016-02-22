@@ -34,6 +34,60 @@ namespace dp
         return this->p->isRunning();
     }
 
+    //return thread delay time
+    unsigned int dpthread_writelock::getDelay( void )
+    {
+        return this->p->getDelay();
+    }
+
+    //add a static task to task list
+    bool dpthread_writelock::addStaticTask( dptask *t, unsigned int weight )
+    {
+        return this->p->addStaticTask( t, weight );
+    }
+
+    //add a static task to task list
+    bool dpthread_writelock::addStaticTask( dptask_ref *t, unsigned int weight )
+    {
+        return this->p->addStaticTask( t, weight );
+    }
+
+    //add a static task to task list
+    bool dpthread_writelock::addStaticTask( dptask_readlock *t, unsigned int weight )
+    {
+        return this->p->addStaticTask( t, weight );
+    }
+
+    //add a static task to task list
+    bool dpthread_writelock::addStaticTask( dptask_writelock *t, unsigned int weight )
+    {
+        return this->p->addStaticTask( t, weight );
+    }
+
+    //add a dynamic task to task list
+    bool dpthread_writelock::addDynamicTask( dptask *t )
+    {
+        return this->p->addDynamicTask( t );
+    }
+
+    //add a dynamic task to task list
+    bool dpthread_writelock::addDynamicTask( dptask_ref *t )
+    {
+        return this->p->addDynamicTask( t );
+    }
+
+    //add a dynamic task to task list
+    bool dpthread_writelock::addDynamicTask( dptask_readlock *t )
+    {
+        return this->p->addDynamicTask( t );
+    }
+
+    //add a dynamic task to task list
+    bool dpthread_writelock::addDynamicTask( dptask_writelock *t )
+    {
+        return this->p->addDynamicTask( t );
+    }
+
 }
 
 

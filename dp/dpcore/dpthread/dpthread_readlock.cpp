@@ -22,6 +22,24 @@ namespace dp
 
     }
 
+    //returns true if should run
+    bool dpthread_readlock::doRun( void )
+    {
+        return this->p->doRun();
+    }
+
+    //returns true if running
+    bool dpthread_readlock::isRunning( void )
+    {
+        return this->p->isRunning();
+    }
+
+    //return thread delay time
+    unsigned int dpthread_readlock::getDelay( void )
+    {
+        return this->p->getDelay();
+    }
+
 }
 
 
