@@ -16,6 +16,7 @@ namespace dp
     class dptask;
     class dpmutex_writelock;
     class dptask_ref;
+    class dpthread_writelock;
 
     class dptask_writelock : public dpshared_writelock
     {
@@ -33,6 +34,8 @@ namespace dp
 
         //ctor
         dptask_writelock( dptask *p, dpmutex_writelock *ml );
+        //run task
+        void run( dpthread_writelock *thdl );
 
     };
 

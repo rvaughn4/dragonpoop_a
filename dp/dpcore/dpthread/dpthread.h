@@ -24,6 +24,7 @@ namespace dp
     class dptask_ref;
     class dptask_readlock;
     class dptask_writelock;
+    class dpthread_writelock;
 
     void dpthread_threadproc( dpthread *t );
 
@@ -56,11 +57,11 @@ namespace dp
         //zero out tasks
         void zeroTasks( dpthread_tasklist *tlist );
         //runs both tasklists
-        bool runTasks( void );
+        bool runTasks( dpthread_writelock *thdl );
         //runs through tasklist running all tasks that need ran
-        bool runTasks( dpthread_tasklist *tlist );
+        bool runTasks( dpthread_writelock *thdl, dpthread_tasklist *tlist );
         //runs task
-        bool runTask( dpthread_tasklist *tlist, dpthread_dptask *t );
+        bool runTask( dpthread_writelock *thdl, dpthread_tasklist *tlist, dpthread_dptask *t );
         //add task to tasklist
         bool addTask( dpthread_tasklist *tlist, dptask_ref *t, unsigned int weight );
         //fetches lowest time next ran of all tasks or returns false

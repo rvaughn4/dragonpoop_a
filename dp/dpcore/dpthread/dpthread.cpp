@@ -83,7 +83,7 @@ namespace dp
         uint64_t rt, ct;
 
         this->t_delay = 0;
-        if( this->runTasks() )
+        if( this->runTasks( (dpthread_writelock *)wl ) )
             return;
 
         if( !this->getClosestRunTime( &rt ) )
@@ -199,18 +199,18 @@ namespace dp
     }
 
     //runs both tasklists
-    bool dpthread::runTasks( void )
+    bool dpthread::runTasks( dpthread_writelock *thdl )
     {
         bool r;
 
-        r = this->runTasks( &this->static_tasks );
-        r |= this->runTasks( &this->dynamic_tasks );
+        r = this->runTasks( thdl, &this->static_tasks );
+        r |= this->runTasks( thdl, &this->dynamic_tasks );
 
         return r;
     }
 
     //runs through tasklist running all tasks that need ran
-    bool dpthread::runTasks( dpthread_tasklist *tlist )
+    bool dpthread::runTasks( dpthread_writelock *thdl, dpthread_tasklist *tlist )
     {
         dpthread_dptask *p;
         unsigned int i;
@@ -220,14 +220,14 @@ namespace dp
         for( i = 0; i < dpthread_max_tasks; i++ )
         {
             p = &tlist->tasks[ i ];
-            r |= this->runTask( tlist, p );
+            r |= this->runTask( thdl, tlist, p );
         }
 
         return r;
     }
 
     //runs task
-    bool dpthread::runTask( dpthread_tasklist *tlist, dpthread_dptask *t )
+    bool dpthread::runTask( dpthread_writelock *thdl, dpthread_tasklist *tlist, dpthread_dptask *t )
     {
         dpshared_guard g;
         dptask_writelock *tl;
@@ -244,7 +244,7 @@ namespace dp
         if( !tl )
             return 0;
 
-        tl->run();
+        tl->run( thdl );
 
         tdone = this->getTicks();
         t->t_delay = 300;

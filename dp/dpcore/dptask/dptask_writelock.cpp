@@ -22,6 +22,12 @@ namespace dp
 
     }
 
+    //run task
+    void dptask_writelock::run( dpthread_writelock *thdl )
+    {
+        this->p->run( thdl, this );
+    }
+
 }
 
 
