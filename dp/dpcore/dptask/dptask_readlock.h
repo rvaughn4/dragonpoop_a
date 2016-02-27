@@ -33,6 +33,8 @@ namespace dp
 
         //ctor
         dptask_readlock( dptask *p, dpmutex_readlock *ml );
+        //returns true if running
+        bool isRun( void );
 
     };
 

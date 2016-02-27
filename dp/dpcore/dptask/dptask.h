@@ -63,6 +63,10 @@ namespace dp
         virtual void onTaskStart( dpthread_writelock *thd, dptask_writelock *tl );
         //override to do task shutdown
         virtual void onTaskStop( dpthread_writelock *thd, dptask_writelock *tl );
+        //returns true if running
+        bool isRun( void );
+        //stops task
+        void stop( void );
 
     public:
 
@@ -72,6 +76,7 @@ namespace dp
         virtual ~dptask( void );
 
         friend class dptask_writelock;
+        friend class dptask_readlock;
     };
 
 }

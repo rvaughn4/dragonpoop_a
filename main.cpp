@@ -23,15 +23,15 @@ int main()
     trl = (dp::dpthread_writelock *)dpshared_guard_writeLock_block( g, tr );
     trl->addStaticTask( tsk, 1 );
     g.release( trl );
-
+//while( 1 )
     std::this_thread::sleep_for( std::chrono::milliseconds( 200 ) );
 
-    std::this_thread::sleep_for( std::chrono::milliseconds( 2000 ) );
+  //  std::this_thread::sleep_for( std::chrono::milliseconds( 2000 ) );
 
 std::cout.flush();
 
-    delete tsk;
     delete tr;
+    delete tsk;
 
     return 0;
 }

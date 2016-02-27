@@ -22,6 +22,12 @@ namespace dp
 
     }
 
+    //returns true if running
+    bool dptask_readlock::isRun( void )
+    {
+        return this->p->isRun();
+    }
+
 }
 
 

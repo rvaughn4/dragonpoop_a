@@ -28,6 +28,18 @@ namespace dp
         this->p->run( thdl, this );
     }
 
+    //returns true if running
+    bool dptask_writelock::isRun( void )
+    {
+        return this->p->isRun();
+    }
+
+    //stops task
+    void dptask_writelock::stop( void )
+    {
+        this->p->stop();
+    }
+
 }
 
 

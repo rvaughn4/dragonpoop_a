@@ -15,6 +15,8 @@ deleting the readlock or writelock object unlocks the shared
 #include "../dptask/dptask_readlock.h"
 #include "../dptask/dptask_writelock.h"
 
+#include <iostream>
+
 namespace dp
 {
 
@@ -147,6 +149,10 @@ namespace dp
     //returns true if running
     bool dpthread::isRunning( void )
     {
+        if( this->dynamic_tasks.cnt )
+            return 1;
+        if( this->static_tasks.cnt )
+            return 1;
         return this->bIsRun;
     }
 
@@ -233,6 +239,8 @@ namespace dp
         dptask_writelock *tl;
         uint64_t tstart, tdone, telasped;
 
+std::cout.flush();
+
         if( !t->tsk )
             return 0;
 
@@ -245,6 +253,18 @@ namespace dp
             return 0;
 
         tl->run( thdl );
+
+        if( !this->bDoRun )
+            tl->stop();
+
+        if( !tl->isRun() )
+        {
+            g.release( tl );
+            this->tg.release( t->tsk );
+            t->tsk = 0;
+            tlist->cnt--;
+            return 1;
+        }
 
         tdone = this->getTicks();
         t->t_delay = 300;

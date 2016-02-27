@@ -36,6 +36,10 @@ namespace dp
         dptask_writelock( dptask *p, dpmutex_writelock *ml );
         //run task
         void run( dpthread_writelock *thdl );
+        //returns true if running
+        bool isRun( void );
+        //stops task
+        void stop( void );
 
     };
 

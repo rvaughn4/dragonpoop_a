@@ -13,8 +13,6 @@ deleting the readlock or writelock object unlocks the shared
 
 #include <iostream>
 
-#define CALL_MEMBER_FN(object,ptrToMember)  ((object).*(ptrToMember))
-
 namespace dp
 {
 
@@ -23,11 +21,14 @@ namespace dp
     {
         this->setName( "Task" );
         this->state = &dptask::startstate;
+        this->bDoRun = 1;
+        this->bIsRun = 0;
     }
 
     //dtor
     dptask::~dptask( void )
     {
+
     }
 
     //generate readlock
@@ -68,7 +69,7 @@ namespace dp
     //override to handle processing
     void dptask::onRun( dpshared_writelock *wl )
     {
-        CALL_MEMBER_FN( this, this->state )( (dptask_writelock *)wl, this->thdrun );
+        ( ( this )->*( this->state ) )( (dptask_writelock *)wl, this->thdrun );
     }
 
     //called to run task
@@ -126,6 +127,18 @@ namespace dp
     void dptask::nullstate( dptask_writelock *tl, dpthread_writelock *thd )
     {
 
+    }
+
+    //returns true if running
+    bool dptask::isRun( void )
+    {
+        return this->bIsRun;
+    }
+
+    //stops task
+    void dptask::stop( void )
+    {
+        this->bDoRun = 0;
     }
 
 }
