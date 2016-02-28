@@ -247,8 +247,9 @@
 	"dptaskmgr_readlock.h"
 	"dptaskmgr_writelock.h"
 
-1456623154 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr.h
+1456625719 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr.h
 	"../dptask/dptask.h"
+	"../dpshared/dpshared_guard.h"
 
 1456615119 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr_ref.h
 	"../dptask/dptask_ref.h"
@@ -256,7 +257,7 @@
 1456615101 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr_readlock.h
 	"../dptask/dptask_readlock.h"
 
-1456615133 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr_writelock.h
+1456623157 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr_writelock.h
 	"../dptask/dptask_writelock.h"
 
 1456614420 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr_readlock.cpp
@@ -265,5 +266,9 @@
 
 1456614243 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr_ref.cpp
 	"dptaskmgr_ref.h"
+	"dptaskmgr.h"
+
+1456623271 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr_writelock.cpp
+	"dptaskmgr_writelock.h"
 	"dptaskmgr.h"
 

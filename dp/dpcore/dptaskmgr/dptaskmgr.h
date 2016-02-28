@@ -8,6 +8,7 @@ manages threads and tasks
 #define dptaskmgr_h
 
 #include "../dptask/dptask.h"
+#include "../dpshared/dpshared_guard.h"
 
 namespace dp
 {
@@ -21,10 +22,30 @@ namespace dp
     class dptask_readlock;
     class dptask_writelock;
 
+    struct dptaskmgr_dptask
+    {
+        dptask_ref *tsk;
+        unsigned int weight;
+    };
+    #define dptaskmgr_max_tasks 64
+    struct dptaskmgr_tasklist
+    {
+        dptaskmgr_dptask tasks[ dptaskmgr_max_tasks ];
+        unsigned int cnt;
+    };
+
     class dptaskmgr : public dptask
     {
 
     private:
+
+        dpshared_guard tskg;
+        dptaskmgr_tasklist dynamic_tasks, static_tasks;
+
+        //fetch and remove task from list
+        dptask_ref *_nextTask( dptaskmgr_tasklist *tl, unsigned int *weight );
+        //add task to list
+        bool _addTask( dptaskmgr_tasklist *tl, dptask_ref *t, unsigned int weight );
 
     protected:
 
