@@ -8,6 +8,11 @@ manages threads and tasks
 #include "dptaskmgr_ref.h"
 #include "dptaskmgr_readlock.h"
 #include "dptaskmgr_writelock.h"
+#include "../dpthread/dpthread.h"
+#include "../dpthread/dpthread_writelock.h"
+#include "../dpthread/dpthread_readlock.h"
+
+#include <iostream>
 
 namespace dp
 {
@@ -15,13 +20,32 @@ namespace dp
     //ctor
     dptaskmgr::dptaskmgr( unsigned int thread_cnt ) : dptask()
     {
+        dpthread_writelock *tl;
+        dpshared_guard g;
 
+        this->_zeroTasks( &this->static_tasks );
+        this->_zeroTasks( &this->dynamic_tasks );
+        this->_zeroThreads( &this->threads );
+
+        if( !thread_cnt )
+            thread_cnt = 4;
+
+        while( thread_cnt )
+        {
+            this->_makeThread( &this->threads );
+            thread_cnt--;
+        }
+
+        this->setDelay( 1000 );
+        tl = this->_fetchLowestWeightThread( &this->threads, &g, 0 );
+        if( tl )
+            tl->addStaticTask( this, 1 );
     }
 
     //dtor
     dptaskmgr::~dptaskmgr( void )
     {
-
+        this->_deleteThreads( &this->threads );
     }
 
     //generate readlock
@@ -43,9 +67,42 @@ namespace dp
     }
 
     //override to do task execution
-    void dptaskmgr::onTaskRun( dpthread_writelock *thd, dptask_writelock *tl )
+    void dptaskmgr::onTaskRun( dpthread_writelock *thd, dptask_writelock *ptl )
     {
+        dptask_ref *tr;
+        unsigned int w;
+        dpthread_writelock *tl;
+        dpshared_guard g;
 
+        std::cout << " " << this->getTicks() << " \r\n";
+
+        tr = this->_nextTask( &this->static_tasks, &w );
+        while( tr )
+        {
+            tl = this->_fetchLowestWeightThread( &this->threads, &g, 0 );
+
+            if( !tl || !tl->addStaticTask( tr, w ) )
+                this->_addTask( &this->static_tasks, tr, w );
+            else
+                this->tskg.release( tr );
+
+            tr = this->_nextTask( &this->static_tasks, &w );
+        }
+
+        tr = this->_nextTask( &this->dynamic_tasks, &w );
+        while( tr )
+        {
+            tl = this->_fetchLowestWeightThread( &this->threads, &g, 0 );
+
+            if( !tl || !tl->addStaticTask( tr, w ) )
+                this->_addTask( &this->static_tasks, tr, w );
+            else
+                this->tskg.release( tr );
+
+            tr = this->_nextTask( &this->dynamic_tasks, &w );
+        }
+
+        this->_runThreads( &this->threads );
     }
 
     //override to do task startup
@@ -148,6 +205,174 @@ namespace dp
 
         this->tskg.release( t );
         return 0;
+    }
+
+    //zero tasks
+    void dptaskmgr::_zeroTasks( dptaskmgr_tasklist *tl )
+    {
+        unsigned int i;
+        dptaskmgr_dptask *p;
+
+        for( i = 0; i < dptaskmgr_max_tasks; i++ )
+        {
+            p = &tl->tasks[ i ];
+            p->tsk = 0;
+            p->weight = 0;
+        }
+    }
+
+    //make thread
+    bool dptaskmgr::_makeThread( dptaskmgr_threadlist *tl )
+    {
+        unsigned int i;
+        dptaskmgr_dpthread *p;
+
+        for( i = 0; i < dptaskmgr_max_threads; i++ )
+        {
+            p = &tl->threads[ i ];
+            if( p->thd )
+                continue;
+            p->weight = 0;
+            p->percent_used = 0;
+            p->thd = new dpthread();
+            tl->cnt++;
+            return 1;
+        }
+
+        return 0;
+    }
+
+    //fetch thread with lowest weight
+    dpthread_writelock *dptaskmgr::_fetchLowestWeightThread( dptaskmgr_threadlist *tl, dpshared_guard *g, dpthread_writelock *not_this_thread )
+    {
+        unsigned int i, lw;
+        dptaskmgr_dpthread *p, *r;
+        dpthread_writelock *rl;
+
+        r = 0;
+        lw = dptaskmgr_max_threads * 99999;
+        for( i = 0; i < dptaskmgr_max_threads; i++ )
+        {
+            p = &tl->threads[ i ];
+            if( !p->thd )
+                continue;
+            if( p->weight >= lw )
+                continue;
+            lw = p->weight;
+            r = p;
+        }
+
+        if( !r )
+            return 0;
+
+        rl = (dpthread_writelock *)dpshared_guard_tryWriteLock_timeout( (*g), r->thd, 100 );
+        return rl;
+    }
+
+    //fetch thread with lowest usage
+    dpthread_writelock *dptaskmgr::_fetchLowestUsageThread( dptaskmgr_threadlist *tl, dpshared_guard *g, dpthread_writelock *not_this_thread )
+    {
+        unsigned int i, lw;
+        dptaskmgr_dpthread *p, *r;
+        dpthread_writelock *rl;
+
+        r = 0;
+        lw = 101;
+        for( i = 0; i < dptaskmgr_max_threads; i++ )
+        {
+            p = &tl->threads[ i ];
+            if( !p->thd )
+                continue;
+            if( p->percent_used < lw )
+                continue;
+            lw = p->percent_used;
+            r = p;
+        }
+
+        if( !r )
+            return 0;
+
+        rl = (dpthread_writelock *)dpshared_guard_tryWriteLock_timeout( (*g), r->thd, 100 );
+        return rl;
+    }
+
+    //fetch thread with highest usage
+    dpthread_writelock *dptaskmgr::_fetchHighestUsageThread( dptaskmgr_threadlist *tl, dpshared_guard *g, dpthread_writelock *not_this_thread )
+    {
+        unsigned int i, lw;
+        dptaskmgr_dpthread *p, *r;
+        dpthread_writelock *rl;
+
+        r = 0;
+        lw = 0;
+        for( i = 0; i < dptaskmgr_max_threads; i++ )
+        {
+            p = &tl->threads[ i ];
+            if( !p->thd )
+                continue;
+            if( p->percent_used >= lw )
+                continue;
+            lw = p->percent_used;
+            r = p;
+        }
+
+        if( !r )
+            return 0;
+
+        rl = (dpthread_writelock *)dpshared_guard_tryWriteLock_timeout( (*g), r->thd, 100 );
+        return rl;
+    }
+
+    //process all threads
+    void dptaskmgr::_runThreads( dptaskmgr_threadlist *tl )
+    {
+        unsigned int i;
+        dptaskmgr_dpthread *p;
+        dpthread_readlock *thdl;
+        dpshared_guard g;
+
+        for( i = 0; i < dptaskmgr_max_threads; i++ )
+        {
+            p = &tl->threads[ i ];
+            if( !p->thd )
+                continue;
+            thdl = (dpthread_readlock *)dpshared_guard_tryReadLock_timeout( g, p->thd, 30 );
+            if( !thdl )
+                continue;
+            p->percent_used = 50;//thdl->getPercentUsed();
+        }
+    }
+
+    //delete all threads
+    void dptaskmgr::_deleteThreads( dptaskmgr_threadlist *tl )
+    {
+        unsigned int i;
+        dptaskmgr_dpthread *p;
+
+        for( i = 0; i < dptaskmgr_max_threads; i++ )
+        {
+            p = &tl->threads[ i ];
+            if( !p->thd )
+                continue;
+            delete p->thd;
+        }
+
+        this->_zeroThreads( tl );
+    }
+
+    //zero all threads
+    void dptaskmgr::_zeroThreads( dptaskmgr_threadlist *tl )
+    {
+        unsigned int i;
+        dptaskmgr_dpthread *p;
+
+        for( i = 0; i < dptaskmgr_max_threads; i++ )
+        {
+            p = &tl->threads[ i ];
+            p->thd = 0;
+            p->percent_used = 0;
+            p->weight = 0;
+        }
     }
 
 }

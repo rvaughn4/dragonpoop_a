@@ -23,6 +23,7 @@ namespace dp
         this->state = &dptask::startstate;
         this->bDoRun = 1;
         this->bIsRun = 0;
+        this->ms_delay = 200;
     }
 
     //dtor
@@ -139,6 +140,18 @@ namespace dp
     void dptask::stop( void )
     {
         this->bDoRun = 0;
+    }
+
+    //return ms delay
+    unsigned int dptask::getDelay( void )
+    {
+        return this->ms_delay;
+    }
+
+    //set delay
+    void dptask::setDelay( unsigned int ms )
+    {
+        this->ms_delay = ms;
     }
 
 }

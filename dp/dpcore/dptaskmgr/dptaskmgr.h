@@ -21,16 +21,33 @@ namespace dp
     class dptask_ref;
     class dptask_readlock;
     class dptask_writelock;
+    class dpthread;
+    class dpthread_writelock;
 
     struct dptaskmgr_dptask
     {
         dptask_ref *tsk;
         unsigned int weight;
     };
+
     #define dptaskmgr_max_tasks 64
     struct dptaskmgr_tasklist
     {
         dptaskmgr_dptask tasks[ dptaskmgr_max_tasks ];
+        unsigned int cnt;
+    };
+
+    struct dptaskmgr_dpthread
+    {
+        dpthread *thd;
+        unsigned int weight;
+        unsigned int percent_used;
+    };
+
+    #define dptaskmgr_max_threads 12
+    struct dptaskmgr_threadlist
+    {
+        dptaskmgr_dpthread threads[ dptaskmgr_max_threads ];
         unsigned int cnt;
     };
 
@@ -41,11 +58,28 @@ namespace dp
 
         dpshared_guard tskg;
         dptaskmgr_tasklist dynamic_tasks, static_tasks;
+        dptaskmgr_threadlist threads;
 
         //fetch and remove task from list
         dptask_ref *_nextTask( dptaskmgr_tasklist *tl, unsigned int *weight );
         //add task to list
         bool _addTask( dptaskmgr_tasklist *tl, dptask_ref *t, unsigned int weight );
+        //zero tasks
+        void _zeroTasks( dptaskmgr_tasklist *tl );
+        //make thread
+        bool _makeThread( dptaskmgr_threadlist *tl );
+        //fetch thread with lowest weight
+        dpthread_writelock *_fetchLowestWeightThread( dptaskmgr_threadlist *tl, dpshared_guard *g, dpthread_writelock *not_this_thread );
+        //fetch thread with lowest usage
+        dpthread_writelock *_fetchLowestUsageThread( dptaskmgr_threadlist *tl, dpshared_guard *g, dpthread_writelock *not_this_thread );
+        //fetch thread with highest usage
+        dpthread_writelock *_fetchHighestUsageThread( dptaskmgr_threadlist *tl, dpshared_guard *g, dpthread_writelock *not_this_thread );
+        //process all threads
+        void _runThreads( dptaskmgr_threadlist *tl );
+        //delete all threads
+        void _deleteThreads( dptaskmgr_threadlist *tl );
+        //zero all threads
+        void _zeroThreads( dptaskmgr_threadlist *tl );
 
     protected:
 

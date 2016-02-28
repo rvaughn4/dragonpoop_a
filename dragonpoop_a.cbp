@@ -71,6 +71,14 @@
 		<Unit filename="dp/dpcore/dptask/dptask_ref.h" />
 		<Unit filename="dp/dpcore/dptask/dptask_writelock.cpp" />
 		<Unit filename="dp/dpcore/dptask/dptask_writelock.h" />
+		<Unit filename="dp/dpcore/dptaskmgr/dptaskmgr.cpp" />
+		<Unit filename="dp/dpcore/dptaskmgr/dptaskmgr.h" />
+		<Unit filename="dp/dpcore/dptaskmgr/dptaskmgr_readlock.cpp" />
+		<Unit filename="dp/dpcore/dptaskmgr/dptaskmgr_readlock.h" />
+		<Unit filename="dp/dpcore/dptaskmgr/dptaskmgr_ref.cpp" />
+		<Unit filename="dp/dpcore/dptaskmgr/dptaskmgr_ref.h" />
+		<Unit filename="dp/dpcore/dptaskmgr/dptaskmgr_writelock.cpp" />
+		<Unit filename="dp/dpcore/dptaskmgr/dptaskmgr_writelock.h" />
 		<Unit filename="dp/dpcore/dpthread/dpthread.cpp" />
 		<Unit filename="dp/dpcore/dpthread/dpthread.h" />
 		<Unit filename="dp/dpcore/dpthread/dpthread_defines.h" />

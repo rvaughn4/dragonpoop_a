@@ -18,11 +18,8 @@
 1454887924 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpspinlock.h
 	<atomic>
 
-1456611599 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
-	"dp/dpcore/dpthread/dpthread.h"
-	"dp/dpcore/dpthread/dpthread_writelock.h"
-	"dp/dpcore/dptask/dptask.h"
-	"dp/dpcore/dpshared/dpshared_guard.h"
+1456659573 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
+	"dp/dpcore/dptaskmgr/dptaskmgr.h"
 	<iostream>
 	<thread>
 
@@ -33,7 +30,7 @@
 1454887443 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutexdefines.h
 	"../dpdefines.h"
 
-1456611337 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpdefines.h
+1456660492 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpdefines.h
 
 1454888119 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutex_readlock.cpp
 	"dpmutex_readlock.h"
@@ -151,7 +148,7 @@
 1455448121 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_ref_kernel.cpp
 	"dpshared_ref_kernel.h"
 
-1456612116 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpthread/dpthread.cpp
+1456660443 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpthread/dpthread.cpp
 	"dpthread.h"
 	"../dpshared/dpshared_guard.h"
 	"dpthread_ref.h"
@@ -201,11 +198,11 @@
 	"dpshareddefines.h"
 	<list>
 
-1456609617 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask_readlock.cpp
+1456660339 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask_readlock.cpp
 	"dptask_readlock.h"
 	"dptask.h"
 
-1456609558 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask_readlock.h
+1456660325 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask_readlock.h
 	"dptask_defines.h"
 	"../dpshared/dpshared_readlock.h"
 
@@ -213,7 +210,7 @@
 	"../../dpdefines.h"
 	"../dpshared/dpshareddefines.h"
 
-1456609635 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask.h
+1456660163 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask.h
 	"dptask_defines.h"
 	"../dpshared/dpshared.h"
 
@@ -225,15 +222,15 @@
 	"dptask_defines.h"
 	"../dpshared/dpshared_ref.h"
 
-1456609601 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask_writelock.cpp
+1456660308 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask_writelock.cpp
 	"dptask_writelock.h"
 	"dptask.h"
 
-1456609562 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask_writelock.h
+1456660263 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask_writelock.h
 	"dptask_defines.h"
 	"../dpshared/dpshared_writelock.h"
 
-1456611561 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask.cpp
+1456660245 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask.cpp
 	"dptask.h"
 	"../dpshared/dpshared_guard.h"
 	"dptask_ref.h"
@@ -241,13 +238,17 @@
 	"dptask_writelock.h"
 	<iostream>
 
-1456615077 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr.cpp
+1456660554 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr.cpp
 	"dptaskmgr.h"
 	"dptaskmgr_ref.h"
 	"dptaskmgr_readlock.h"
 	"dptaskmgr_writelock.h"
+	"../dpthread/dpthread.h"
+	"../dpthread/dpthread_writelock.h"
+	"../dpthread/dpthread_readlock.h"
+	<iostream>
 
-1456625719 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr.h
+1456657457 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr.h
 	"../dptask/dptask.h"
 	"../dpshared/dpshared_guard.h"
 
@@ -271,4 +272,26 @@
 1456623271 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr_writelock.cpp
 	"dptaskmgr_writelock.h"
 	"dptaskmgr.h"
+
+1456665051 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx.cpp
+	"dpgfx.h"
+	"dpgfx_ref.h"
+	"dpgfx_readlock.h"
+	"dpgfx_writelock.h"
+
+1456665084 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx.h
+	"../../dpcore/dptask/dptask.h"
+
+1456665091 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx_ref.h
+	"../../dpcore/dptask/dptask_ref.h"
+
+1456665110 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx_readlock.h
+	"../../dpcore/dptask/dptask_readlock.h"
+
+1456665102 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx_writelock.h
+	"../../dpcore/dptask/dptask_writelock.h"
+
+1456665129 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx_readlock.cpp
+	"dpgfx_readlock.h"
+	"dpgfx.h"
 

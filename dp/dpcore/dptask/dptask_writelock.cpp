@@ -40,6 +40,18 @@ namespace dp
         this->p->stop();
     }
 
+    //return ms delay
+    unsigned int dptask_writelock::getDelay( void )
+    {
+        return this->p->getDelay();
+    }
+
+    //set delay
+    void dptask_writelock::setDelay( unsigned int ms )
+    {
+        this->p->setDelay( ms );
+    }
+
 }
 
 

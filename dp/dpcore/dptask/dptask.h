@@ -31,6 +31,7 @@ namespace dp
         dpthread_writelock *thdrun;
         std::atomic<bool> bStarted, bStopped, bDoRun, bIsRun;
         dptask_state_method state;
+        unsigned int ms_delay;
 
         //startup state
         void startstate( dptask_writelock *tl, dpthread_writelock *thd );
@@ -67,6 +68,10 @@ namespace dp
         bool isRun( void );
         //stops task
         void stop( void );
+        //return ms delay
+        unsigned int getDelay( void );
+        //set delay
+        void setDelay( unsigned int ms );
 
     public:
 

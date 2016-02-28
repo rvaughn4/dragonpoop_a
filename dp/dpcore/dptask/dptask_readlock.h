@@ -35,6 +35,8 @@ namespace dp
         dptask_readlock( dptask *p, dpmutex_readlock *ml );
         //returns true if running
         bool isRun( void );
+        //return ms delay
+        unsigned int getDelay( void );
 
     };
 

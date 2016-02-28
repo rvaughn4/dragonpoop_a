@@ -40,6 +40,10 @@ namespace dp
         bool isRun( void );
         //stops task
         void stop( void );
+        //return ms delay
+        unsigned int getDelay( void );
+        //set delay
+        void setDelay( unsigned int ms );
 
     };
 

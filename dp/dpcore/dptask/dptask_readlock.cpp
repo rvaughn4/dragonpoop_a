@@ -28,6 +28,11 @@ namespace dp
         return this->p->isRun();
     }
 
+    //return ms delay
+    unsigned int dptask_readlock::getDelay( void )
+    {
+        return this->p->getDelay();
+    }
 }
 
 

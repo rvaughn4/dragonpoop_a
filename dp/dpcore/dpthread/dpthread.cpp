@@ -263,7 +263,7 @@ namespace dp
         }
 
         tdone = this->getTicks();
-        t->t_delay = 300;
+        t->t_delay = tl->getDelay();
         t->t_last_ran = tdone;
         telasped = tdone - tstart;
         if( telasped > t->t_delay )
