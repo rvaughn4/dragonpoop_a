@@ -18,7 +18,7 @@ namespace dp
 {
 
     //ctor
-    dptaskmgr::dptaskmgr( unsigned int thread_cnt ) : dptask()
+    dptaskmgr::dptaskmgr( unsigned int thread_cnt ) : dptask( "Task Manager", 1000 )
     {
         dpthread_writelock *tl;
         dpshared_guard g;
@@ -36,7 +36,6 @@ namespace dp
             thread_cnt--;
         }
 
-        this->setDelay( 1000 );
         tl = this->_fetchLowestWeightThread( &this->threads, &g, 0 );
         if( tl )
             tl->addStaticTask( this, 1 );
@@ -45,6 +44,7 @@ namespace dp
     //dtor
     dptaskmgr::~dptaskmgr( void )
     {
+        this->waitForStop();
         this->_deleteThreads( &this->threads );
     }
 

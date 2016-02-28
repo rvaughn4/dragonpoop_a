@@ -11,25 +11,26 @@ deleting the readlock or writelock object unlocks the shared
 #include "dptask_readlock.h"
 #include "dptask_writelock.h"
 
-#include <iostream>
+#include <thread>
+#include <string>
 
 namespace dp
 {
 
     //ctor
-    dptask::dptask( void ) : dpshared()
+    dptask::dptask( const char *cname, unsigned int ms_delay ) : dpshared()
     {
-        this->setName( "Task" );
+        this->setName( cname );
         this->state = &dptask::startstate;
         this->bDoRun = 1;
         this->bIsRun = 0;
-        this->ms_delay = 200;
+        this->ms_delay = ms_delay;
     }
 
     //dtor
     dptask::~dptask( void )
     {
-
+        this->waitForStop();
     }
 
     //generate readlock
@@ -152,6 +153,23 @@ namespace dp
     void dptask::setDelay( unsigned int ms )
     {
         this->ms_delay = ms;
+    }
+
+    //wait for task to finish execution
+    void dptask::waitForStop( void )
+    {
+        this->stop();
+        while( this->bIsRun )
+            std::this_thread::sleep_for( std::chrono::milliseconds( 1 ) );
+    }
+
+    //set name
+    void dptask::setName( const char *cname )
+    {
+        std::string s( cname );
+
+        this->dpshared::setName( cname );
+        s.copy( this->cname, sizeof( this->cname ) );
     }
 
 }

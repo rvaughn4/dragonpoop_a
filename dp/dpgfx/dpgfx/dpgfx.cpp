@@ -12,7 +12,7 @@ namespace dp
 {
 
    //ctor
-    dpgfx::dpgfx( void )
+    dpgfx::dpgfx( void ) : dptask( "Graphics", 100 )
     {
 
     }
@@ -20,7 +20,7 @@ namespace dp
     //dtor
     dpgfx::~dpgfx( void )
     {
-
+        this->waitForStop();
     }
 
     //generate readlock

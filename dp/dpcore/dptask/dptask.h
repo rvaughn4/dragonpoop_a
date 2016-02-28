@@ -32,6 +32,7 @@ namespace dp
         std::atomic<bool> bStarted, bStopped, bDoRun, bIsRun;
         dptask_state_method state;
         unsigned int ms_delay;
+        char cname[ 256 ];
 
         //startup state
         void startstate( dptask_writelock *tl, dpthread_writelock *thd );
@@ -72,11 +73,15 @@ namespace dp
         unsigned int getDelay( void );
         //set delay
         void setDelay( unsigned int ms );
+        //wait for task to finish execution
+        void waitForStop( void );
+        //set name
+        void setName( const char *cname );
 
     public:
 
         //ctor
-        dptask( void );
+        dptask( const char *cname, unsigned int ms_delay );
         //dtor
         virtual ~dptask( void );
 
