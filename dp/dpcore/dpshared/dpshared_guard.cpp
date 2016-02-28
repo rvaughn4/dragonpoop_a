@@ -176,24 +176,32 @@ namespace dp
     //get ref
     dpshared_ref *dpshared_guard::getRef( dpshared *p )
     {
+        if( !p )
+            return 0;
         return this->_getRef( p->getRef() );
     }
 
     //get ref
     dpshared_ref *dpshared_guard::getRef( dpshared_ref *p )
     {
+        if( !p )
+            return 0;
         return this->_getRef( p->getRef() );
     }
 
     //get ref
     dpshared_ref *dpshared_guard::getRef( dpshared_readlock *p )
     {
+        if( !p )
+            return 0;
         return this->_getRef( p->getRef() );
     }
 
     //get ref
     dpshared_ref *dpshared_guard::getRef( dpshared_writelock *p )
     {
+        if( !p )
+            return 0;
         return this->_getRef( p->getRef() );
     }
 
@@ -208,6 +216,9 @@ namespace dp
                                 )
     {
         dpshared_readlock *r;
+
+        if( !p )
+            return 0;
 
         r = p->_usemacro_tryReadLock(
 #ifdef dpshared_debug
@@ -235,6 +246,9 @@ namespace dp
     {
         dpshared_readlock *r;
 
+        if( !p )
+            return 0;
+
         r = p->_usemacro_tryReadLock(
 #ifdef dpshared_debug
                                     cfile_macro,
@@ -260,6 +274,9 @@ namespace dp
                                 )
     {
         dpshared_readlock *r;
+
+        if( !p )
+            return 0;
 
         r = p->_usemacro_tryReadLock( timeout_ms
 #ifdef dpshared_debug
@@ -288,6 +305,9 @@ namespace dp
     {
         dpshared_readlock *r;
 
+        if( !p )
+            return 0;
+
         r = p->_usemacro_tryReadLock( timeout_ms
 #ifdef dpshared_debug
                                     ,
@@ -315,6 +335,9 @@ namespace dp
     {
         dpshared_readlock *r;
 
+        if( !p )
+            return 0;
+
         r = p->_usemacro_readLock(
 #ifdef dpshared_debug
                                     cfile_macro,
@@ -340,6 +363,9 @@ namespace dp
                                 )
     {
         dpshared_readlock *r;
+
+        if( !p )
+            return 0;
 
         r = p->_usemacro_readLock(
 #ifdef dpshared_debug
@@ -367,6 +393,9 @@ namespace dp
     {
         dpshared_writelock *r;
 
+        if( !p )
+            return 0;
+
         r = p->_usemacro_tryWriteLock(
 #ifdef dpshared_debug
                                     cfile_macro,
@@ -393,6 +422,9 @@ namespace dp
     {
         dpshared_writelock *r;
 
+        if( !p )
+            return 0;
+
         r = p->_usemacro_tryWriteLock(
 #ifdef dpshared_debug
                                     cfile_macro,
@@ -418,6 +450,9 @@ namespace dp
                                 )
     {
         dpshared_writelock *r;
+
+        if( !p )
+            return 0;
 
         r = p->_usemacro_tryWriteLock( timeout_ms
 #ifdef dpshared_debug
@@ -446,6 +481,9 @@ namespace dp
     {
         dpshared_writelock *r;
 
+        if( !p )
+            return 0;
+
         r = p->_usemacro_tryWriteLock( timeout_ms
 #ifdef dpshared_debug
                                     ,
@@ -473,6 +511,9 @@ namespace dp
     {
         dpshared_writelock *r;
 
+        if( !p )
+            return 0;
+
         r = p->_usemacro_writeLock(
 #ifdef dpshared_debug
                                     cfile_macro,
@@ -498,6 +539,9 @@ namespace dp
                                 )
     {
         dpshared_writelock *r;
+
+        if( !p )
+            return 0;
 
         r = p->_usemacro_writeLock(
 #ifdef dpshared_debug

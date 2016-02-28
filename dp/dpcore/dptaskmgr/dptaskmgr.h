@@ -64,6 +64,8 @@ namespace dp
         dptask_ref *_nextTask( dptaskmgr_tasklist *tl, unsigned int *weight );
         //add task to list
         bool _addTask( dptaskmgr_tasklist *tl, dptask_ref *t, unsigned int weight );
+        //delete tasks
+        void _deleteTasks( dptaskmgr_tasklist *tl );
         //zero tasks
         void _zeroTasks( dptaskmgr_tasklist *tl );
         //make thread

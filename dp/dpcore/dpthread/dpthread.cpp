@@ -122,7 +122,7 @@ namespace dp
             if( !tr->isLinked() )
                 return;
 
-            tl = (dpthread_writelock *)dpshared_guard_tryWriteLock_timeout( g, tr, 10 + tms );
+            tl = (dpthread_writelock *)dpshared_guard_tryWriteLock_timeout( g, tr, 100 + tms );
             if( !tl )
             {
                 std::this_thread::sleep_for( std::chrono::milliseconds( tms ) );

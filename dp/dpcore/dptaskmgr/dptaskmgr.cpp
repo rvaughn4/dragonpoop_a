@@ -39,13 +39,16 @@ namespace dp
         tl = this->_fetchLowestWeightThread( &this->threads, &g, 0 );
         if( tl )
             tl->addStaticTask( this, 1 );
+        g.release( tl );
     }
 
     //dtor
     dptaskmgr::~dptaskmgr( void )
     {
-        this->waitForStop();
+        this->_deleteTasks( &this->static_tasks );
+        this->_deleteTasks( &this->dynamic_tasks );
         this->_deleteThreads( &this->threads );
+        this->waitForStop();
     }
 
     //generate readlock
@@ -70,39 +73,20 @@ namespace dp
     void dptaskmgr::onTaskRun( dpthread_writelock *thd, dptask_writelock *ptl )
     {
         dptask_ref *tr;
-        unsigned int w;
+        unsigned int w, tries;
         dpthread_writelock *tl;
         dpshared_guard g;
 
         std::cout << " " << this->getTicks() << " \r\n";
 
-        tr = this->_nextTask( &this->static_tasks, &w );
-        while( tr )
+        tl = this->_fetchLowestWeightThread( &this->threads, &g, 0 );
+        if( tl )
         {
-            tl = this->_fetchLowestWeightThread( &this->threads, &g, 0 );
-
-            if( !tl || !tl->addStaticTask( tr, w ) )
-                this->_addTask( &this->static_tasks, tr, w );
-            else
-                this->tskg.release( tr );
-
             tr = this->_nextTask( &this->static_tasks, &w );
+            tl->addStaticTask( tr, w );
         }
 
-        tr = this->_nextTask( &this->dynamic_tasks, &w );
-        while( tr )
-        {
-            tl = this->_fetchLowestWeightThread( &this->threads, &g, 0 );
-
-            if( !tl || !tl->addStaticTask( tr, w ) )
-                this->_addTask( &this->static_tasks, tr, w );
-            else
-                this->tskg.release( tr );
-
-            tr = this->_nextTask( &this->dynamic_tasks, &w );
-        }
-
-        this->_runThreads( &this->threads );
+//        this->_runThreads( &this->threads );
     }
 
     //override to do task startup
@@ -221,6 +205,33 @@ namespace dp
         }
     }
 
+    //delete tasks
+    void dptaskmgr::_deleteTasks( dptaskmgr_tasklist *tl )
+    {
+        unsigned int i;
+        dptaskmgr_dptask *p;
+        dptask_writelock *l;
+        dpshared_guard g;
+
+        for( i = 0; i < dptaskmgr_max_tasks; i++ )
+        {
+            p = &tl->tasks[ i ];
+            if( !p->tsk )
+                continue;
+
+            l = (dptask_writelock *)dpshared_guard_tryWriteLock_timeout( g, p->tsk, 1000 );
+            if( l )
+            {
+                l->stop();
+                g.release( l );
+            }
+
+            this->tskg.release( p->tsk );
+        }
+
+        this->_zeroTasks( tl );
+    }
+
     //make thread
     bool dptaskmgr::_makeThread( dptaskmgr_threadlist *tl )
     {
@@ -256,11 +267,17 @@ namespace dp
             p = &tl->threads[ i ];
             if( !p->thd )
                 continue;
-            if( p->weight >= lw )
+                r = p;
+        //rl = (dpthread_writelock *)dpshared_guard_tryWriteLock_timeout( (*g), r->thd, 1000 );
+        rl = (dpthread_writelock *)dpshared_guard_writeLock_block( (*g), r->thd );
+        return rl;
+/*
+
+            if( p->weight > lw )
                 continue;
             lw = p->weight;
             r = p;
-        }
+*/        }
 
         if( !r )
             return 0;

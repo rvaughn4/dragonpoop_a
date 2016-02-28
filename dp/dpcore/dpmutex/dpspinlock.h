@@ -31,8 +31,14 @@ namespace dp
         virtual ~dpspinlock( void );
         //lock blocking
         void lock( void );
+        //lock with timeout
+        bool lock( unsigned int ms );
         //unlocks
         void unlock( void );
+        //returns current epoch time in seconds
+        uint64_t getEpoch( void );
+        //returns tickcount in ms
+        uint64_t getTicks( void );
 
     };
 

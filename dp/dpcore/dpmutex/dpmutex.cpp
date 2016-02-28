@@ -9,7 +9,6 @@ deleting the readlock or writelock object unlocks the mutex
 #include "dpspinlock.h"
 #include "dpmutex_readlock.h"
 #include "dpmutex_writelock.h"
-#include <chrono>
 
 #if defined dpmutex_debugout_all || defined dpmutex_debug_lock_fails
 #include <iostream>
@@ -23,6 +22,7 @@ namespace dp
         {
             this->mm = 0;
             this->slk = new dpspinlock();
+            this->wlock_tid = (std::thread::id)0;
         }
 
         //ctor
@@ -54,7 +54,8 @@ namespace dp
             if( this->wlock_ctr > 0 )
                 return 0;
 
-            this->slk->lock();
+            if( !this->slk->lock( 1000 ) )
+                return 0;
             if( this->wlock_ctr > 0 )
             {
                 this->slk->unlock();
@@ -94,19 +95,23 @@ namespace dp
                                     )
         {
             dpmutex_writelock *l;
+            std::thread::id tid;
 
-            if( this->wlock_ctr > 0 )
-                return 0;
+            tid = std::this_thread::get_id();
+
             if( this->rlock_ctr > 0 )
                 return 0;
+            if( this->wlock_ctr > 0 && tid != this->wlock_tid )
+                return 0;
 
-            this->slk->lock();
-            if( this->wlock_ctr > 0 )
+            if( !this->slk->lock( 1000 ) )
+                return 0;
+            if( this->rlock_ctr > 0 )
             {
                 this->slk->unlock();
                 return 0;
             }
-            if( this->rlock_ctr > 0 )
+            if( this->wlock_ctr > 0 && tid != this->wlock_tid )
             {
                 this->slk->unlock();
                 return 0;
@@ -123,6 +128,7 @@ namespace dp
                 return 0;
             }
 
+            this->wlock_tid = tid;
             this->wlock_ctr++;
             this->slk->unlock();
 
@@ -311,31 +317,21 @@ namespace dp
 
             this->slk->lock();
             this->wlock_ctr--;
+            if( !this->wlock_ctr )
+                this->wlock_tid = (std::thread::id)0;
             this->slk->unlock();
         }
 
         //returns current epoch time in seconds
         uint64_t dpmutex::getEpoch( void )
         {
-            std::chrono::time_point<std::chrono::steady_clock> tp_now;
-            std::chrono::steady_clock::duration d_s;
-
-            tp_now = std::chrono::steady_clock::now();
-            d_s = tp_now.time_since_epoch();
-
-            return d_s.count() * std::chrono::steady_clock::period::num / std::chrono::steady_clock::period::den;
+            return this->slk->getEpoch();
         }
 
         //returns tickcount in ms
         uint64_t dpmutex::getTicks( void )
         {
-            std::chrono::time_point<std::chrono::steady_clock> tp_now;
-            std::chrono::steady_clock::duration d_s;
-
-            tp_now = std::chrono::steady_clock::now();
-            d_s = tp_now.time_since_epoch();
-
-            return d_s.count() * 1000 * std::chrono::steady_clock::period::num / std::chrono::steady_clock::period::den;
+            return this->slk->getTicks();
         }
 
 }

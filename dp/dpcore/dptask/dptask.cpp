@@ -13,6 +13,7 @@ deleting the readlock or writelock object unlocks the shared
 
 #include <thread>
 #include <string>
+#include <iostream>
 
 namespace dp
 {
@@ -106,6 +107,8 @@ namespace dp
         this->bIsRun = 1;
         this->state = &dptask::runstate;
         this->onTaskStart( thd, tl );
+
+        std::cout << "Task " << this->cname << " has started.\r\n";
     }
 
     //run state
@@ -114,6 +117,7 @@ namespace dp
         this->onTaskRun( thd, tl );
         if( !this->bDoRun )
             this->state = &dptask::stopstate;
+        std::cout << "Task " << this->cname << " has ran.\r\n";
     }
 
     //shutdown state
@@ -121,8 +125,9 @@ namespace dp
     {
         this->bStopped = 1;
         this->onTaskStop( thd, tl );
-        this->bIsRun = 0;
         this->state = &dptask::nullstate;
+        std::cout << "Task " << this->cname << " has stopped.\r\n";
+        this->bIsRun = 0;
     }
 
     //null state
@@ -158,9 +163,16 @@ namespace dp
     //wait for task to finish execution
     void dptask::waitForStop( void )
     {
+        bool b;
+
         this->stop();
-        while( this->bIsRun )
+
+        b = this->bIsRun;
+        while( b )
+        {
             std::this_thread::sleep_for( std::chrono::milliseconds( 1 ) );
+            b = this->bIsRun;
+        }
     }
 
     //set name

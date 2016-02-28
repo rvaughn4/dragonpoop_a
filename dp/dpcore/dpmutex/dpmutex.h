@@ -10,6 +10,7 @@ deleting the readlock or writelock object unlocks the mutex
 
 #include "dpmutexdefines.h"
 #include <atomic>
+#include <thread>
 
 namespace dp
 {
@@ -27,6 +28,7 @@ namespace dp
         dpmutexmaster *mm;
         dpspinlock *slk;
         std::atomic<int> rlock_ctr, wlock_ctr;
+        std::thread::id wlock_tid;
 
     protected:
 
