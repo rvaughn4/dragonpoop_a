@@ -30,8 +30,8 @@ namespace dp
 
     struct dpthread_dptask
     {
-        dptask_ref *tsk;
-        uint64_t t_last_ran, t_delay, t_next_ran, t_used;
+        std::atomic<dptask_ref *> tsk;
+        std::atomic<uint64_t> t_last_ran, t_delay, t_next_ran, t_used;
         unsigned int weight;
     };
     #define dpthread_max_tasks 64

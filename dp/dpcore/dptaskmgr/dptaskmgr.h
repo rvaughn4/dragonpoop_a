@@ -10,6 +10,9 @@ manages threads and tasks
 #include "../dptask/dptask.h"
 #include "../dpshared/dpshared_guard.h"
 
+#include "../../dprender/dpwindow/dpwindow/dpwindow_factory.h"
+#include "../../dprender/dpwindow/dpwindow_task/dpwindow_task.h"
+
 namespace dp
 {
 
@@ -23,19 +26,6 @@ namespace dp
     class dptask_writelock;
     class dpthread;
     class dpthread_writelock;
-
-    struct dptaskmgr_dptask
-    {
-        dptask_ref *tsk;
-        unsigned int weight;
-    };
-
-    #define dptaskmgr_max_tasks 64
-    struct dptaskmgr_tasklist
-    {
-        dptaskmgr_dptask tasks[ dptaskmgr_max_tasks ];
-        unsigned int cnt;
-    };
 
     struct dptaskmgr_dpthread
     {
@@ -60,22 +50,11 @@ namespace dp
         dptaskmgr_tasklist dynamic_tasks, static_tasks;
         dptaskmgr_threadlist threads;
 
-        //fetch and remove task from list
-        dptask_ref *_nextTask( dptaskmgr_tasklist *tl, unsigned int *weight );
-        //add task to list
-        bool _addTask( dptaskmgr_tasklist *tl, dptask_ref *t, unsigned int weight );
-        //delete tasks
-        void _deleteTasks( dptaskmgr_tasklist *tl );
-        //zero tasks
-        void _zeroTasks( dptaskmgr_tasklist *tl );
+        dpwindow_task *wtsk;
         //make thread
         bool _makeThread( dptaskmgr_threadlist *tl );
-        //fetch thread with lowest weight
-        dpthread_writelock *_fetchLowestWeightThread( dptaskmgr_threadlist *tl, dpshared_guard *g, dpthread_writelock *not_this_thread );
-        //fetch thread with lowest usage
-        dpthread_writelock *_fetchLowestUsageThread( dptaskmgr_threadlist *tl, dpshared_guard *g, dpthread_writelock *not_this_thread );
-        //fetch thread with highest usage
-        dpthread_writelock *_fetchHighestUsageThread( dptaskmgr_threadlist *tl, dpshared_guard *g, dpthread_writelock *not_this_thread );
+        //add task to thread with least static tasks
+
         //process all threads
         void _runThreads( dptaskmgr_threadlist *tl );
         //delete all threads

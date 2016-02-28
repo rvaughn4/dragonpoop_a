@@ -18,7 +18,7 @@
 1454887924 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpspinlock.h
 	<atomic>
 
-1456678347 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
+1456692060 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
 	"dp/dpcore/dptaskmgr/dptaskmgr.h"
 	"dp/dpcore/dptaskmgr/dptaskmgr_writelock.h"
 	"dp/dprender/dpwindow/dpwindow/dpwindow_factory.h"
@@ -183,7 +183,7 @@
 	"../../dpdefines.h"
 	"../dpshared/dpshareddefines.h"
 
-1456218027 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpthread/dpthread.h
+1456690014 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpthread/dpthread.h
 	"dpthread_defines.h"
 	"../dpshared/dpshared.h"
 	"../dpshared/dpshared_guard.h"
@@ -234,7 +234,7 @@
 	"dptask_defines.h"
 	"../dpshared/dpshared_writelock.h"
 
-1456675753 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask.cpp
+1456690904 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask.cpp
 	"dptask.h"
 	"../dpshared/dpshared_guard.h"
 	"dptask_ref.h"
@@ -244,7 +244,7 @@
 	<string>
 	<iostream>
 
-1456684579 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr.cpp
+1456692201 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr.cpp
 	"dptaskmgr.h"
 	"dptaskmgr_ref.h"
 	"dptaskmgr_readlock.h"
@@ -254,9 +254,11 @@
 	"../dpthread/dpthread_readlock.h"
 	<iostream>
 
-1456674900 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr.h
+1456692133 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr.h
 	"../dptask/dptask.h"
 	"../dpshared/dpshared_guard.h"
+	"../../dprender/dpwindow/dpwindow/dpwindow_factory.h"
+	"../../dprender/dpwindow/dpwindow_task/dpwindow_task.h"
 
 1456615119 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr_ref.h
 	"../dptask/dptask_ref.h"

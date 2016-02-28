@@ -49,6 +49,9 @@ namespace dp
     //generate ref
     dpshared_ref *dptask::genRef( std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync )
     {
+        std::cout << "Task " << this->cname << " .\r\n";
+
+
         return new dptask_ref( this, k, t_sync );
     }
 

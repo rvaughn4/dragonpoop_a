@@ -36,9 +36,14 @@ namespace dp
             thread_cnt--;
         }
 
+        this->wtsk = new dpwindow_task( new dpwindow_factory() );
+
         tl = this->_fetchLowestWeightThread( &this->threads, &g, 0 );
         if( tl )
             tl->addStaticTask( this, 1 );
+       // if( tl )
+         //   tl->addStaticTask( this->wtsk, 1 );
+
         g.release( tl );
     }
 
@@ -49,6 +54,7 @@ namespace dp
         this->_deleteTasks( &this->dynamic_tasks );
         this->_deleteThreads( &this->threads );
         this->waitForStop();
+        delete this->wtsk;
     }
 
     //generate readlock
@@ -79,12 +85,15 @@ namespace dp
 
         std::cout << " " << this->getTicks() << " \r\n";
 
-        tl = this->_fetchLowestWeightThread( &this->threads, &g, 0 );
-        if( tl )
+        tr = this->_nextTask( &this->static_tasks, &w );
+        if( tr )
         {
-            tr = this->_nextTask( &this->static_tasks, &w );
-            tl->addStaticTask( tr, w );
-        }
+            tl = this->_fetchLowestWeightThread( &this->threads, &g, 0 );
+/*            if( !tl || !tl->addStaticTask( tr, w ) )
+                this->_addTask( &this->static_tasks, tr, w );
+            else
+                this->tskg.release( tr );
+  */      }
 
 //        this->_runThreads( &this->threads );
     }
