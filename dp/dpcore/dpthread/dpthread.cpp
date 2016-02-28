@@ -15,8 +15,6 @@ deleting the readlock or writelock object unlocks the shared
 #include "../dptask/dptask_readlock.h"
 #include "../dptask/dptask_writelock.h"
 
-#include <iostream>
-
 namespace dp
 {
 
@@ -238,8 +236,6 @@ namespace dp
         dpshared_guard g;
         dptask_writelock *tl;
         uint64_t tstart, tdone, telasped;
-
-std::cout.flush();
 
         if( !t->tsk )
             return 0;
