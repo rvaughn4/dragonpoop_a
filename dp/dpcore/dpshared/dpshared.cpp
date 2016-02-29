@@ -222,7 +222,8 @@ namespace dp
 #if defined dpmutex_debug && defined dpshared_debug
             ml = this->m->_usemacro_tryWriteLock( timeout_ms, cfile_macro, line_macro, cfunc_macro );
 #else
-            ml = dpmutex_tryWriteLock_timeout( this->m, timeout_ms );
+            ml = this->m->_usemacro_tryWriteLock( timeout_ms );//, cfile_macro, line_macro, cfunc_macro );
+//            ml = dpmutex_tryWriteLock_timeout( this->m, timeout_ms );
 #endif
             if( !ml )
             {

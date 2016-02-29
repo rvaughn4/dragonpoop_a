@@ -22,12 +22,6 @@ namespace dp
 
     }
 
-    //run task
-    void dptask_writelock::run( dpthread_writelock *thdl )
-    {
-        this->p->run( thdl, this );
-    }
-
     //returns true if running
     bool dptask_writelock::isRun( void )
     {

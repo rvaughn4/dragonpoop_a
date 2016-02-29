@@ -21,7 +21,7 @@ int main()
     wt = new dp::dpwindow_task( new dp::dpwindow_factory() );
 
     tmgrl = (dp::dptaskmgr_writelock *)dpshared_guard_writeLock_block( g, tmgr );
-   // tmgrl->addStaticTask( wt, 1 );
+    tmgrl->addStaticTask( wt, 1 );
     g.release( tmgrl );
 
     std::this_thread::sleep_for( std::chrono::milliseconds( 15000 ) );

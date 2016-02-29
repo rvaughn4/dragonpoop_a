@@ -75,66 +75,59 @@ namespace dp
     //override to handle processing
     void dptask::onRun( dpshared_writelock *wl )
     {
-        ( ( this )->*( this->state ) )( (dptask_writelock *)wl, this->thdrun );
-    }
-
-    //called to run task
-    void dptask::run( dpthread_writelock *thd, dptask_writelock *tl )
-    {
-        this->thdrun = thd;
-        this->dpshared::run( tl );
+        ( ( this )->*( this->state ) )( (dptask_writelock *)wl );
     }
 
     //override to do task execution
-    void dptask::onTaskRun( dpthread_writelock *thd, dptask_writelock *tl )
+    void dptask::onTaskRun( dptask_writelock *tl )
     {
 
     }
 
     //override to do task startup
-    void dptask::onTaskStart( dpthread_writelock *thd, dptask_writelock *tl )
+    void dptask::onTaskStart( dptask_writelock *tl )
     {
 
     }
 
     //override to do task shutdown
-    void dptask::onTaskStop( dpthread_writelock *thd, dptask_writelock *tl )
+    void dptask::onTaskStop( dptask_writelock *tl )
     {
 
     }
 
     //startup state
-    void dptask::startstate( dptask_writelock *tl, dpthread_writelock *thd )
+    void dptask::startstate( dptask_writelock *tl )
     {
         this->bStarted = 1;
         this->bIsRun = 1;
         this->state = &dptask::runstate;
-        this->onTaskStart( thd, tl );
+        this->onTaskStart( tl );
 
         std::cout << "Task " << this->cname << " has started.\r\n";
     }
 
     //run state
-    void dptask::runstate( dptask_writelock *tl, dpthread_writelock *thd )
+    void dptask::runstate( dptask_writelock *tl )
     {
-        this->onTaskRun( thd, tl );
+        this->onTaskRun( tl );
         if( !this->bDoRun )
             this->state = &dptask::stopstate;
         std::cout << "Task " << this->cname << " has ran.\r\n";
     }
 
     //shutdown state
-    void dptask::stopstate( dptask_writelock *tl, dpthread_writelock *thd )
+    void dptask::stopstate( dptask_writelock *tl )
     {
         this->bStopped = 1;
-        this->onTaskStop( thd, tl );
+        this->onTaskStop( tl );
         this->state = &dptask::nullstate;
         std::cout << "Task " << this->cname << " has stopped.\r\n";
         this->bIsRun = 0;
     }
 
     //null state
-    void dptask::nullstate( dptask_writelock *tl, dpthread_writelock *thd )
+    void dptask::nullstate( dptask_writelock *tl )
     {
 
     }

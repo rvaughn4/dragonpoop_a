@@ -21,7 +21,7 @@ namespace dp
     class dptask_writelock;
     class dptask;
 
-    typedef void ( dptask::*dptask_state_method )( dptask_writelock *tl, dpthread_writelock *thd );
+    typedef void ( dptask::*dptask_state_method )( dptask_writelock *tl );
 
     class dptask : public dpshared
     {
@@ -35,13 +35,13 @@ namespace dp
         char cname[ 256 ];
 
         //startup state
-        void startstate( dptask_writelock *tl, dpthread_writelock *thd );
+        void startstate( dptask_writelock *tl );
         //run state
-        void runstate( dptask_writelock *tl, dpthread_writelock *thd );
+        void runstate( dptask_writelock *tl );
         //shutdown state
-        void stopstate( dptask_writelock *tl, dpthread_writelock *thd );
+        void stopstate( dptask_writelock *tl );
         //null state
-        void nullstate( dptask_writelock *tl, dpthread_writelock *thd );
+        void nullstate( dptask_writelock *tl );
 
     protected:
 
@@ -57,14 +57,12 @@ namespace dp
         virtual bool isSyncType( const char *ctypename );
         //override to handle processing
         virtual void onRun( dpshared_writelock *wl );
-        //called to run task
-        void run( dpthread_writelock *thd, dptask_writelock *tl );
         //override to do task execution
-        virtual void onTaskRun( dpthread_writelock *thd, dptask_writelock *tl );
+        virtual void onTaskRun( dptask_writelock *tl );
         //override to do task startup
-        virtual void onTaskStart( dpthread_writelock *thd, dptask_writelock *tl );
+        virtual void onTaskStart( dptask_writelock *tl );
         //override to do task shutdown
-        virtual void onTaskStop( dpthread_writelock *thd, dptask_writelock *tl );
+        virtual void onTaskStop( dptask_writelock *tl );
         //returns true if running
         bool isRun( void );
         //stops task

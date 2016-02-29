@@ -248,7 +248,7 @@ namespace dp
         if( !tl )
             return 0;
 
-        tl->run( thdl );
+        tl->run();
 
         if( !this->bDoRun )
             tl->stop();

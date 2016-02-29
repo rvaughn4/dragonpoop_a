@@ -10,6 +10,8 @@ deleting the readlock or writelock object unlocks the mutex
 #include "dpmutex_readlock.h"
 #include "dpmutex_writelock.h"
 
+#include <thread>
+
 #if defined dpmutex_debugout_all || defined dpmutex_debug_lock_fails
 #include <iostream>
 #endif
@@ -54,7 +56,7 @@ namespace dp
             if( this->wlock_ctr > 0 )
                 return 0;
 
-            if( !this->slk->lock( 1000 ) )
+            if( !this->slk->lock( 100 ) )
                 return 0;
             if( this->wlock_ctr > 0 )
             {
@@ -104,7 +106,7 @@ namespace dp
             if( this->wlock_ctr > 0 && tid != this->wlock_tid )
                 return 0;
 
-            if( !this->slk->lock( 1000 ) )
+            if( !this->slk->lock( 100 ) )
                 return 0;
             if( this->rlock_ctr > 0 )
             {
@@ -132,7 +134,7 @@ namespace dp
             this->wlock_ctr++;
             this->slk->unlock();
 
-#ifdef dpmutex_debugout_all
+#if defined dpmutex_debugout_all || defined dpmutex_debug_lock_fails
             std::cout << "Mutex locked(write) at " << cfile_macro << " " << line_macro << " " << cfunc_macro << "\r\n";
 #endif
 
@@ -195,6 +197,7 @@ namespace dp
         {
             uint64_t t_start, t_now, t_stop;
             dpmutex_writelock *l;
+            unsigned int t;
 
 #ifdef dpmutex_debug
             l = this->_usemacro_tryWriteLock( cfile_macro, line_macro, cfunc_macro );
@@ -215,6 +218,13 @@ namespace dp
 #endif
                 if( l )
                     return l;
+
+                t++;
+                if( t > 10 )
+                {
+                    t = 0;
+                    std::this_thread::sleep_for( std::chrono::milliseconds( 3 ) );
+                }
 
                 t_now = this->getTicks();
             }

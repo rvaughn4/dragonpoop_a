@@ -47,14 +47,13 @@ namespace dp
     private:
 
         dpshared_guard tskg;
-        dptaskmgr_tasklist dynamic_tasks, static_tasks;
         dptaskmgr_threadlist threads;
 
         dpwindow_task *wtsk;
         //make thread
         bool _makeThread( dptaskmgr_threadlist *tl );
         //add task to thread with least static tasks
-
+        bool _addTask( dptaskmgr_threadlist *tl, dptask *t, unsigned int weight );
         //process all threads
         void _runThreads( dptaskmgr_threadlist *tl );
         //delete all threads

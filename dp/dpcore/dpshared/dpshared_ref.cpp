@@ -8,6 +8,7 @@ object can be deleted while refs are still held
 #include "dpshared.h"
 #include "dpshared_readlock.h"
 #include "dpshared_writelock.h"
+#include "dpshared_guard.h"
 
 namespace dp
 {
@@ -163,9 +164,17 @@ namespace dp
         //get reference
         dpshared_ref *dpshared_ref::getRef( void )
         {
+            dpshared_guard g;
+            dpshared_writelock *l;
+
             if( !this->isLinked() )
                 return 0;
-            return this->p->getRef();
+
+            l = dpshared_guard_tryWriteLock_timeout( g, this->p, 5000 );
+            if( !l )
+                return 0;
+
+            return l->getRef();
         }
 
 }
