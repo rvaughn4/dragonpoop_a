@@ -28,7 +28,7 @@ namespace dp
     }
 
     //override to do task execution
-    void dpwindow_task::onTaskRun( dpthread_writelock *thd, dptask_writelock *tl )
+    void dpwindow_task::onTaskRun( dptask_writelock *tl )
     {
         dpwindow_writelock *l;
         dpshared_guard g;
@@ -38,16 +38,19 @@ namespace dp
             return;
 
         l->run();
+
+        if( !l->isOpen() )
+            this->stop();
     }
 
     //override to do task startup
-    void dpwindow_task::onTaskStart( dpthread_writelock *thd, dptask_writelock *tl )
+    void dpwindow_task::onTaskStart( dptask_writelock *tl )
     {
         this->w = this->wf->makeWindow();
     }
 
     //override to do task shutdown
-    void dpwindow_task::onTaskStop( dpthread_writelock *thd, dptask_writelock *tl )
+    void dpwindow_task::onTaskStop( dptask_writelock *tl )
     {
         delete this->w;
     }

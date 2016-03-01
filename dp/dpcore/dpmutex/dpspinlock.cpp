@@ -27,19 +27,12 @@ namespace dp
     void dpspinlock::lock( void )
     {
         volatile bool b;
-        unsigned int t;
 
         b = 1;
         while( b )
         {
             __asm volatile ("pause" ::: "memory");
             b = this->f.test_and_set( std::memory_order_acquire );
-            t++;
-            if( t > 10 )
-            {
-                std::this_thread::sleep_for( std::chrono::milliseconds( 3 ) );
-                t = 0;
-            }
         }
     }
 
@@ -48,7 +41,6 @@ namespace dp
     {
         volatile bool b;
         uint64_t t_start, t_stop, t_now;
-        unsigned int t;
 
         t_start = t_now = this->getTicks();
 
@@ -59,12 +51,6 @@ namespace dp
             __asm volatile( "pause" ::: "memory" );
 
             b = this->f.test_and_set( std::memory_order_acquire );
-            t++;
-            if( t > 10 )
-            {
-                std::this_thread::sleep_for( std::chrono::milliseconds( 3 ) );
-                t = 0;
-            }
             t_now = this->getTicks();
         }
 

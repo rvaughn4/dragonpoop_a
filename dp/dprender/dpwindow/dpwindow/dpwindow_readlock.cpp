@@ -22,6 +22,11 @@ namespace dp
 
     }
 
+    //returns true if open
+    bool dpwindow_readlock::isOpen( void )
+    {
+        return this->p->isOpen();
+    }
 }
 
 

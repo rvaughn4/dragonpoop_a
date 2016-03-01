@@ -25,11 +25,11 @@ namespace dp
     protected:
 
         //override to do task execution
-        virtual void onTaskRun( dpthread_writelock *thd, dptask_writelock *tl );
+        virtual void onTaskRun( dptask_writelock *tl );
         //override to do task startup
-        virtual void onTaskStart( dpthread_writelock *thd, dptask_writelock *tl );
+        virtual void onTaskStart( dptask_writelock *tl );
         //override to do task shutdown
-        virtual void onTaskStop( dpthread_writelock *thd, dptask_writelock *tl );
+        virtual void onTaskStop( dptask_writelock *tl );
 
     public:
 

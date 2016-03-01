@@ -66,6 +66,12 @@ namespace dp
 
     }
 
+    //returns true if open
+    bool dpwindow::isOpen( void )
+    {
+        return 1;
+    }
+
 }
 
 

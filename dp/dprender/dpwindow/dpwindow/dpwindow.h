@@ -34,6 +34,8 @@ namespace dp
         virtual bool isSyncType( const char *ctypename );
         //override to handle processing
         virtual void onRun( dpshared_writelock *wl );
+        //returns true if open
+        virtual bool isOpen( void );
 
     public:
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="dp/dpcore/dpthread/dpthread_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpcore/dptaskmgr/dptaskmgr.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="866" topLine="3" />
+			<Cursor1 position="1191" topLine="37" />
 		</Cursor>
 	</File>
 	<File name="dp/dpcore/dptask/dptask_defines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -11,169 +11,9 @@
 			<Cursor1 position="129" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dpcore/dpshared/dpshared_ref.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpcore/dpmutex/dpspinlock.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1900" topLine="44" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptask/dptask_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="472" topLine="7" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshareddefines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2377" topLine="10" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshared.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4848" topLine="110" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpthread/dpthread_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="785" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="main.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="718" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptask/dptask_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="281" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptask/dptask.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="605" topLine="19" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshared_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1562" topLine="29" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptask/dptask_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="315" topLine="7" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshared_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1143" topLine="29" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptaskmgr/dptaskmgr_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="296" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshared_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="638" topLine="24" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptaskmgr/dptaskmgr.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1192" topLine="46" />
-		</Cursor>
-	</File>
-	<File name="dp/dpdefines.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="181" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpthread/dpthread_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="458" topLine="4" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpmutex/dpmutexdefines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="224" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpmutex/dpmutex_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpmutex/dpmutex.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3765" topLine="90" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptaskmgr/dptaskmgr_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="265" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshared_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="620" topLine="136" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpmutex/dpmutex.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="426" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptaskmgr/dptaskmgr_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="237" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpthread/dpthread_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="504" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpthread/dpthread.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="8874" topLine="164" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshared_guard.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2744" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpmutex/dpmutex_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="264" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshared.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="18" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpthread/dpthread_defines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="137" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshared_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1352" topLine="24" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshared_ref_kernel.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="468" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpthread/dpthread_writelock.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2242" topLine="55" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptaskmgr/dptaskmgr_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="279" topLine="0" />
+			<Cursor1 position="559" topLine="12" />
 		</Cursor>
 	</File>
 	<File name="dp/dpcore/dptaskmgr/dptaskmgr_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -181,29 +21,24 @@
 			<Cursor1 position="1745" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dpcore/dptaskmgr/dptaskmgr.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2195" topLine="66" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshared_ref_kernel.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="262" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptask/dptask_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="426" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptaskmgr/dptaskmgr_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1244" topLine="22" />
-		</Cursor>
-	</File>
 	<File name="dp/dpcore/dptask/dptask_writelock.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="583" topLine="3" />
+			<Cursor1 position="462" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4848" topLine="110" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1562" topLine="29" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared_guard.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2744" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="dp/dpcore/dpthread/dpthread.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -211,9 +46,109 @@
 			<Cursor1 position="533" topLine="16" />
 		</Cursor>
 	</File>
+	<File name="dp/dpcore/dpthread/dpthread_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="504" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpmutex/dpmutex_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpmutex/dpmutex.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3411" topLine="102" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpthread/dpthread_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="785" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptask/dptask_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="472" topLine="7" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5632" topLine="143" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptaskmgr/dptaskmgr_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="279" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpthread/dpthread.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6649" topLine="233" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptask/dptask.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1963" topLine="16" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared_ref.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1900" topLine="44" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptaskmgr/dptaskmgr_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="296" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="573" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptaskmgr/dptaskmgr_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1244" topLine="22" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptaskmgr/dptaskmgr.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6317" topLine="221" />
+		</Cursor>
+	</File>
 	<File name="dp/dpcore/dptask/dptask.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2443" topLine="44" />
+			<Cursor1 position="1808" topLine="44" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptask/dptask_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="568" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshareddefines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2377" topLine="10" />
+		</Cursor>
+	</File>
+	<File name="dp/dpdefines.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="117" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="638" topLine="24" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptaskmgr/dptaskmgr_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="265" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpmutex/dpmutexdefines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="224" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="dp/dpcore/dpthread/dpthread_writelock.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -221,14 +156,84 @@
 			<Cursor1 position="933" topLine="25" />
 		</Cursor>
 	</File>
+	<File name="dp/dpcore/dptaskmgr/dptaskmgr_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="237" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpthread/dpthread_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="866" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpmutex/dpmutex_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="264" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpthread/dpthread_writelock.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2242" topLine="55" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared_ref_kernel.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="468" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptask/dptask_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="677" topLine="7" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared_ref_kernel.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="262" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpthread/dpthread_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="458" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpmutex/dpmutex.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3765" topLine="90" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1143" topLine="29" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1352" topLine="24" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpthread/dpthread_defines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="137" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptask/dptask_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="281" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared.cpp" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7398" topLine="216" />
+		</Cursor>
+	</File>
 	<File name="dp/dpcore/dpshared/dpshared_guard.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1694" topLine="46" />
 		</Cursor>
 	</File>
-	<File name="dp/dpcore/dptask/dptask_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpcore/dptask/dptask_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="568" topLine="0" />
+			<Cursor1 position="426" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

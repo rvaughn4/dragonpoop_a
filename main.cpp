@@ -2,7 +2,7 @@
 
 #include "dp/dpcore/dptaskmgr/dptaskmgr.h"
 #include "dp/dpcore/dptaskmgr/dptaskmgr_writelock.h"
-#include "dp/dprender/dpwindow/dpwindow/dpwindow_factory.h"
+#include "dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_factory.h"
 #include "dp/dprender/dpwindow/dpwindow_task/dpwindow_task.h"
 
 #include <iostream>
@@ -18,7 +18,7 @@ int main()
 
     tmgr = new dp::dptaskmgr( 4 );
 
-    wt = new dp::dpwindow_task( new dp::dpwindow_factory() );
+    wt = new dp::dpwindow_task( new dp::dpwindow_x11_factory( 1000, 1000, "hello!" ) );
 
     tmgrl = (dp::dptaskmgr_writelock *)dpshared_guard_writeLock_block( g, tmgr );
     tmgrl->addStaticTask( wt, 1 );

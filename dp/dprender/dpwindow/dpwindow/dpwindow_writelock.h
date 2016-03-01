@@ -32,6 +32,8 @@ namespace dp
 
         //ctor
         dpwindow_writelock( dpwindow *p, dpmutex_writelock *ml );
+        //returns true if open
+        bool isOpen( void );
 
     };
 
