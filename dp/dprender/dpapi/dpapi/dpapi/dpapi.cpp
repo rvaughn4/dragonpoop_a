@@ -11,6 +11,7 @@
 #include "../../../dpwindow/dpwindow/dpwindow.h"
 #include "../../../dpwindow/dpwindow/dpwindow_writelock.h"
 #include "../../../../dpcore/dpshared/dpshared_guard.h"
+#include "../dpapi_context/dpapi_context.h"
 
 namespace dp
 {
@@ -113,7 +114,7 @@ namespace dp
     //override to generate rendering context
     dpapi_context *dpapi::makeContext( dpapi_writelock *al )
     {
-        return 0;
+        return new dpapi_context( al );
     }
 
 }

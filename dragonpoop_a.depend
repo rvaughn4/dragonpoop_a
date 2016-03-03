@@ -314,13 +314,28 @@
 	"dpgfx_writelock.h"
 	"dpgfx.h"
 
-1456668113 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi.cpp
+1457008776 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi.cpp
+	"dpapi.h"
+	"dpapi_ref.h"
+	"dpapi_readlock.h"
+	"dpapi_writelock.h"
+	"../../../dpwindow/dpwindow/dpwindow_factory.h"
+	"../../../dpwindow/dpwindow/dpwindow.h"
+	"../../../dpwindow/dpwindow/dpwindow_writelock.h"
+	"../../../../dpcore/dpshared/dpshared_guard.h"
+	"../dpapi_context/dpapi_context.h"
 
-1456668113 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi_readlock.cpp
+1457004663 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi_readlock.cpp
+	"dpapi_readlock.h"
+	"dpapi.h"
 
-1456668113 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi_ref.cpp
+1457004688 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi_ref.cpp
+	"dpapi_ref.h"
+	"dpapi.h"
 
-1456668113 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi_writelock.cpp
+1457004401 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi_writelock.cpp
+	"dpapi_writelock.h"
+	"dpapi.h"
 
 1456666950 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender.cpp
 
@@ -420,4 +435,46 @@
 
 1456831589 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_writelock.h
 	"../dpwindow/dpwindow_writelock.h"
+
+1457005700 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi.h
+	"../../../../dpcore/dpshared/dpshared.h"
+
+1457005660 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi_ref.h
+	"../../../../dpcore/dpshared/dpshared_ref.h"
+
+1457005667 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi_readlock.h
+	"../../../../dpcore/dpshared/dpshared_readlock.h"
+
+1457005673 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi_writelock.h
+	"../../../../dpcore/dpshared/dpshared_writelock.h"
+
+1457007722 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context.cpp
+	"dpapi_context.h"
+	"dpapi_context_ref.h"
+	"dpapi_context_readlock.h"
+	"dpapi_context_writelock.h"
+
+1457006817 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context.h
+	"../../../../dpcore/dpshared/dpshared.h"
+
+1457007010 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_ref.h
+	"../../../../dpcore/dpshared/dpshared_ref.h"
+
+1457006958 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_readlock.h
+	"../../../../dpcore/dpshared/dpshared_readlock.h"
+
+1457007119 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_writelock.h
+	"../../../../dpcore/dpshared/dpshared_writelock.h"
+
+1457007451 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_readlock.cpp
+	"dpapi_context_readlock.h"
+	"dpapi_context.h"
+
+1457007370 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_ref.cpp
+	"dpapi_context_ref.h"
+	"dpapi_context.h"
+
+1457007282 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_writelock.cpp
+	"dpapi_context_writelock.h"
+	"dpapi_context.h"
 
