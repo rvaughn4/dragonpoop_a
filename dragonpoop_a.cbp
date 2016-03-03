@@ -29,12 +29,17 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-Wnon-virtual-dtor" />
+			<Add option="-Winit-self" />
+			<Add option="-Wredundant-decls" />
+			<Add option="-Wunreachable-code" />
 			<Add option="-std=c++11" />
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Linker>
 			<Add library="pthread" />
+			<Add library="dl" />
 		</Linker>
 		<Unit filename="dp/dp.cpp" />
 		<Unit filename="dp/dp.h" />
@@ -127,6 +132,8 @@
 		<Unit filename="dp/dprender/dpwindow/dpwindow_task/dpwindow_task.h" />
 		<Unit filename="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11.cpp" />
 		<Unit filename="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11.h" />
+		<Unit filename="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_factory.cpp" />
+		<Unit filename="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_factory.h" />
 		<Unit filename="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_readlock.cpp" />
 		<Unit filename="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_readlock.h" />
 		<Unit filename="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_ref.cpp" />
