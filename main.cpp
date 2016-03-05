@@ -2,7 +2,7 @@
 
 #include "dp/dpcore/dptaskmgr/dptaskmgr.h"
 #include "dp/dpcore/dptaskmgr/dptaskmgr_writelock.h"
-#include "dp/dprender/dpapi/dpapi/dpapi/dpapi_factory.h"
+#include "dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h"
 #include "dp/dprender/dpapi/dpapi_task/dpapi_task.h"
 
 #include <iostream>
@@ -18,7 +18,7 @@ int main()
 
     tmgr = new dp::dptaskmgr( 4 );
 
-    wt = new dp::dpapi_task( new dp::dpapi_factory( ) );
+    wt = new dp::dpapi_task( new dp::dpapi_x11_opengl1o5_factory( 1000, 1000, "hello there!" ) );
 
     tmgrl = (dp::dptaskmgr_writelock *)dpshared_guard_writeLock_block( g, tmgr );
     tmgrl->addStaticTask( wt, 1 );
