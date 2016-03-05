@@ -104,6 +104,8 @@
 		<Unit filename="dp/dpgfx/dpgfx/dpgfx_writelock.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi/dpapi.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi/dpapi.h" />
+		<Unit filename="dp/dprender/dpapi/dpapi/dpapi/dpapi_factory.cpp" />
+		<Unit filename="dp/dprender/dpapi/dpapi/dpapi/dpapi_factory.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi/dpapi_readlock.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi/dpapi_readlock.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi/dpapi_ref.cpp" />
@@ -118,6 +120,8 @@
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_ref.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_writelock.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_writelock.h" />
+		<Unit filename="dp/dprender/dpapi/dpapi_task/dpapi_task.cpp" />
+		<Unit filename="dp/dprender/dpapi/dpapi_task/dpapi_task.h" />
 		<Unit filename="dp/dprender/dprender/dprender.cpp" />
 		<Unit filename="dp/dprender/dprender/dprender.h" />
 		<Unit filename="dp/dprender/dprender/dprender_readlock.cpp" />
