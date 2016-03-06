@@ -7,6 +7,7 @@
 #include "dpapi_context_ref.h"
 #include "dpapi_context_readlock.h"
 #include "dpapi_context_writelock.h"
+#include "../dpapi_renderpass/dpapi_renderpass.h"
 
 namespace dp
 {
@@ -41,25 +42,10 @@ namespace dp
         return new dpapi_context_ref( this, k, t_sync );
     }
 
-    //override to handle sync copy, be sure to call base class first!
-    void dpapi_context::onSync( dpshared_readlock *psync )
+    //generate renderpass
+    dpapi_renderpass *dpapi_context::makeRenderpass( dpapi_context_writelock *l )
     {
-        this->dpshared::onSync( psync );
-    }
-
-    //override to test type for safe syncing, be sure to call base class first!
-    bool dpapi_context::isSyncType( const char *ctypename )
-    {
-        if( this->dpshared::isSyncType( ctypename ) )
-            return 1;
-
-        return 0;
-    }
-
-    //override to handle processing
-    void dpapi_context::onRun( dpshared_writelock *wl )
-    {
-
+        return new dpapi_renderpass( l );
     }
 
 }

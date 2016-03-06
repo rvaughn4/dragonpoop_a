@@ -26,6 +26,13 @@ namespace dp
     bool dpapi_x11_opengl1o5::loadGL( dpwindow_writelock *wl, dpapi_opengl1o5_writelock *al )
     {
         bool r;
+        dpwindow_x11_writelock *xwl;
+        int i;
+
+        xwl = (dpwindow_x11_writelock *)wl;
+        this->dpy = xwl->getDisplay();
+        this->vi = xwl->getVisual();
+        this->win = xwl->getWindow();
 
         this->dlGl = dlopen( "libGL.so", RTLD_LAZY | RTLD_LOCAL );
         if( !this->dlGl )
@@ -40,7 +47,19 @@ namespace dp
         r &= ( this->gl.glXCreateContext = (opengl1o5_lib_functions_glXCreateContext)this->loadFunction( wl, al, "glXCreateContext" ) ) != 0;
         r &= ( this->gl.glXDestroyContext = (opengl1o5_lib_functions_glXDestroyContext)this->loadFunction( wl, al, "glXDestroyContext" ) ) != 0;
 
-        return r;
+        if( !r )
+            return 0;
+
+        this->last_ctx = 0;
+        this->main_ctx = this->gl.glXCreateContext( this->dpy, this->vi, 0, GL_TRUE );
+        if( !this->main_ctx )
+            return 0;
+        for( i = 0; i < dpapi_x11_opengl1o5_MAX_CTX; i++ )
+            this->shared_ctx[ i ] = this->gl.glXCreateContext( this->dpy, this->vi, this->main_ctx, GL_TRUE );
+
+        this->gl.glXMakeCurrent( this->dpy, *this->win, this->main_ctx );
+
+        return 1;
     }
 
     //override to handle loading of function pointers
@@ -66,6 +85,12 @@ namespace dp
     opengl1o5_lib_functions *dpapi_x11_opengl1o5::getGL( void )
     {
         return (opengl1o5_lib_functions *)&this->gl;
+    }
+
+    //override to handle end of frame
+    void dpapi_x11_opengl1o5::onFrameEnd( void )
+    {
+        this->gl.glXSwapBuffers( this->dpy, *this->win );
     }
 
 }

@@ -143,6 +143,12 @@ namespace dp
         virtual void onRun( dpshared_writelock *wl );
         //returns true if open
         virtual bool isOpen( void );
+        //return display
+        x11_window_Display *getDisplay( void );
+        //return window
+        x11_window_Window *getWindow( void );
+        //return visual
+        x11_window_XVisualInfo *getVisual( void );
 
     public:
 

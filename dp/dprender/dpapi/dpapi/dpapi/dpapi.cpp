@@ -108,13 +108,27 @@ namespace dp
     //override to run api
     void dpapi::runApi( dpapi_writelock *al )
     {
+        this->onFrameStart();
 
+        this->onFrameEnd();
     }
 
     //override to generate rendering context
     dpapi_context *dpapi::makeContext( dpapi_writelock *al )
     {
         return new dpapi_context( al );
+    }
+
+    //override to handle end of frame
+    void dpapi::onFrameEnd( void )
+    {
+
+    }
+
+    //override to handle start of frame
+    void dpapi::onFrameStart( void )
+    {
+
     }
 
 }

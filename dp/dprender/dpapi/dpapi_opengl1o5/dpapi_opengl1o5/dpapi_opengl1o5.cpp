@@ -7,6 +7,7 @@
 #include "dpapi_opengl1o5_ref.h"
 #include "dpapi_opengl1o5_readlock.h"
 #include "dpapi_opengl1o5_writelock.h"
+#include <sstream>
 
 namespace dp
 {
@@ -47,6 +48,9 @@ namespace dp
         opengl1o5_lib_functions *pgl;
         dpapi_opengl1o5_writelock *al = (dpapi_opengl1o5_writelock *)aal;
         bool r;
+        const char *c;
+        std::size_t p0, p1;
+        std::string s;
 
         al = (dpapi_opengl1o5_writelock *)aal;
         if( !this->loadGL( wl, al ) )
@@ -88,6 +92,38 @@ namespace dp
         if( !r )
             return 0;
 
+
+        //get version and extensions
+        c = (const char *)this->gl.glGetString( opengl1o5_lib_VERSION );
+        if( c )
+            this->sver.assign( c );
+        c = (const char *)this->gl.glGetString( opengl1o5_lib_EXTENSIONS );
+        if( c )
+            this->sext.assign( c );
+
+        //extract version number
+        p1 = this->sver.size();
+        p0 = this->sver.find( "." );
+        if( p0 + 1 < p1 )
+            p1 = this->sver.find( ".", p0 + 1 );
+        if( p0 < this->sver.size() )
+        {
+            std::stringstream ss;
+            s = this->sver.substr( 0, p0 );
+            ss << s;
+            ss >> this->gl.version.major;
+        }
+        if( p1 >= this->sver.size() )
+            p1 = this->sver.size();
+        if( p0 + 1 < this->sver.size() && p1 > p0 )
+        {
+            std::stringstream ss;
+            s = this->sver.substr( p0 + 1, p1 - p0 - 1 );
+            ss << s;
+            ss >> this->gl.version.minor;
+        }
+
+        //get vbo extension
         this->gl.glGenBuffers = (opengl1o5_lib_functions_glGenBuffers)this->loadFunction( wl, al, "glGenBuffers" );
         if( !this->gl.glGenBuffers )
             this->gl.glGenBuffers = (opengl1o5_lib_functions_glGenBuffers)this->loadFunction( wl, al, "glGenBuffersARB" );
@@ -102,17 +138,17 @@ namespace dp
             this->gl.glDeleteBuffers = (opengl1o5_lib_functions_glDeleteBuffers)this->loadFunction( wl, al, "glDeleteBuffersARB" );
         this->gl.bUseVB = this->gl.glGenBuffers != 0 && this->gl.glDeleteBuffers != 0 && this->gl.glBindBuffer != 0 && this->gl.glBufferData != 0;
 
+        p0 = this->sext.find( "GL_ARB_vertex_buffer_object" );
+        if( p0 < this->sext.size() )
+            this->gl.bUseVB &= 1;
+        else
+            this->gl.bUseVB = 0;
+
         pgl = this->getGL();
         if( pgl )
             *pgl = this->gl;
 
         return 1;
-    }
-
-    //override to run api
-    void dpapi_opengl1o5::runApi( dpapi_writelock *al )
-    {
-
     }
 
     //override to generate rendering context
@@ -139,6 +175,19 @@ namespace dp
         return 0;
     }
 
+    //override to handle end of frame
+    void dpapi_opengl1o5::onFrameEnd( void )
+    {
+
+    }
+
+    //override to handle start of frame
+    void dpapi_opengl1o5::onFrameStart( void )
+    {
+        this->gl.glClearDepth( 1.0 );
+        this->gl.glClearColor( 1, 1, 1, 1 );
+        this->gl.glClear( opengl1o5_lib_COLOR_BUFFER_BIT | opengl1o5_lib_DEPTH_BUFFER_BIT );
+    }
 
 }
 

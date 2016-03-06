@@ -145,6 +145,7 @@
 		<Unit filename="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h" />
+		<Unit filename="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_functions.h" />
 		<Unit filename="dp/dprender/dprender/dprender.cpp" />
 		<Unit filename="dp/dprender/dprender/dprender.h" />
 		<Unit filename="dp/dprender/dprender/dprender_readlock.cpp" />

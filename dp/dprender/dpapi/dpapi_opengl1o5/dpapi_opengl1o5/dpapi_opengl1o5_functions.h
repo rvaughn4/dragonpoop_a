@@ -15,7 +15,12 @@ namespace dp
     typedef double opengl1o5_lib_GLdouble;
     typedef unsigned int opengl1o5_lib_GLbitfield;
 
+    #define opengl1o5_lib_VENDOR				0x1F00
+    #define opengl1o5_lib_RENDERER				0x1F01
+    #define opengl1o5_lib_VERSION				0x1F02
+    #define opengl1o5_lib_EXTENSIONS				0x1F03
     typedef const opengl1o5_lib_GLubyte * (* opengl1o5_lib_functions_glGetString )( opengl1o5_lib_GLenum name );
+
     typedef void (* opengl1o5_lib_functions_glEnableClientState )( opengl1o5_lib_GLint state );
     typedef void (* opengl1o5_lib_functions_glTexCoordPointer )( opengl1o5_lib_GLint size, opengl1o5_lib_GLenum type, opengl1o5_lib_GLsizei stride, const opengl1o5_lib_GLvoid *ptr );
     typedef void (* opengl1o5_lib_functions_glNormalPointer )( opengl1o5_lib_GLenum type, opengl1o5_lib_GLsizei stride, const opengl1o5_lib_GLvoid *ptr );
@@ -28,7 +33,11 @@ namespace dp
     typedef void (* opengl1o5_lib_functions_glTexParameteri )( opengl1o5_lib_GLenum target, opengl1o5_lib_GLenum pname, opengl1o5_lib_GLint param );
     typedef void (* opengl1o5_lib_functions_glClearColor )( opengl1o5_lib_GLfloat r, opengl1o5_lib_GLfloat g, opengl1o5_lib_GLfloat b, opengl1o5_lib_GLfloat a );
     typedef void (* opengl1o5_lib_functions_glClearDepth )( opengl1o5_lib_GLdouble depth );
+
+    #define opengl1o5_lib_COLOR_BUFFER_BIT			0x00004000
+    #define opengl1o5_lib_DEPTH_BUFFER_BIT			0x00000100
     typedef void (* opengl1o5_lib_functions_glClear )( opengl1o5_lib_GLbitfield mask );
+
     typedef void (* opengl1o5_lib_functions_glViewport )( opengl1o5_lib_GLint x, opengl1o5_lib_GLint y, opengl1o5_lib_GLsizei w, opengl1o5_lib_GLsizei h );
     typedef void (* opengl1o5_lib_functions_glDisable )( opengl1o5_lib_GLenum cap );
     typedef void (* opengl1o5_lib_functions_glEnable )( opengl1o5_lib_GLenum cap );

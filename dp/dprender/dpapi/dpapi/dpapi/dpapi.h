@@ -50,6 +50,10 @@ namespace dp
         virtual void runApi( dpapi_writelock *al );
         //override to generate rendering context
         virtual dpapi_context *makeContext( dpapi_writelock *al );
+        //override to handle end of frame
+        virtual void onFrameEnd( void );
+        //override to handle start of frame
+        virtual void onFrameStart( void );
 
     public:
 

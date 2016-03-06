@@ -8,6 +8,7 @@ deleting this object releases the writelock on the dpwindow
 #define dpwindow_x11_writelock_h
 
 #include "../dpwindow/dpwindow_writelock.h"
+#include "dpwindow_x11.h"
 
 namespace dp
 {
@@ -30,6 +31,12 @@ namespace dp
 
         //ctor
         dpwindow_x11_writelock( dpwindow_x11 *p, dpmutex_writelock *ml );
+        //return display
+        x11_window_Display *getDisplay( void );
+        //return window
+        x11_window_Window *getWindow( void );
+        //return visual
+        x11_window_XVisualInfo *getVisual( void );
 
     };
 

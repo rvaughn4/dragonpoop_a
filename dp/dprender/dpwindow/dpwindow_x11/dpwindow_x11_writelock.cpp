@@ -22,6 +22,24 @@ namespace dp
 
     }
 
+    //return display
+    x11_window_Display *dpwindow_x11_writelock::getDisplay( void )
+    {
+        return this->p->getDisplay();
+    }
+
+    //return window
+    x11_window_Window *dpwindow_x11_writelock::getWindow( void )
+    {
+        return this->p->getWindow();
+    }
+
+    //return visual
+    x11_window_XVisualInfo *dpwindow_x11_writelock::getVisual( void )
+    {
+        return this->p->getVisual();
+    }
+
 }
 
 

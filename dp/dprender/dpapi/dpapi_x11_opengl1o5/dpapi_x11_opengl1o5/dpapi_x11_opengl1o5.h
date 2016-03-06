@@ -8,9 +8,12 @@
 
 #include "../../dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5.h"
 #include "dpapi_x11_opengl1o5_functions.h"
+#include "../../../dpwindow/dpwindow_x11/dpwindow_x11_writelock.h"
 
 namespace dp
 {
+
+    #define dpapi_x11_opengl1o5_MAX_CTX 16
 
     class dpapi_x11_opengl1o5 : public dpapi_opengl1o5
     {
@@ -19,6 +22,13 @@ namespace dp
 
         opengl1o5_x11_lib_functions gl;
         void *dlGl;
+        x11_window_Display *dpy;
+        x11_window_Window *win;
+        x11_window_XVisualInfo *vi;
+
+        opengl1o5_lib_GLXContext main_ctx;
+        unsigned int last_ctx;
+        opengl1o5_lib_GLXContext shared_ctx[ dpapi_x11_opengl1o5_MAX_CTX ];
 
     protected:
 
@@ -28,6 +38,8 @@ namespace dp
         virtual void *loadFunction( dpwindow_writelock *wl, dpapi_opengl1o5_writelock *al, const char *cname );
         //override to provide pointer to gl function pointers
         virtual opengl1o5_lib_functions *getGL( void );
+        //override to handle end of frame
+        virtual void onFrameEnd( void );
 
     public:
 

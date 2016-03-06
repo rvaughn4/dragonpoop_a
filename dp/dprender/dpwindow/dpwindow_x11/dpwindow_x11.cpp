@@ -544,6 +544,24 @@ namespace dp
         return this->bIsOpen;
     }
 
+    //return display
+    x11_window_Display *dpwindow_x11::getDisplay( void )
+    {
+        return this->dpy;
+    }
+
+    //return window
+    x11_window_Window *dpwindow_x11::getWindow( void )
+    {
+        return &this->win;
+    }
+
+    //return visual
+    x11_window_XVisualInfo *dpwindow_x11::getVisual( void )
+    {
+        return this->vi;
+    }
+
 }
 
 

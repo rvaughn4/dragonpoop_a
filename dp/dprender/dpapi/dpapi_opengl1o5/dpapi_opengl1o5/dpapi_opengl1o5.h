@@ -8,6 +8,7 @@
 
 #include "../../dpapi/dpapi/dpapi.h"
 #include "dpapi_opengl1o5_functions.h"
+#include <string>
 
 namespace dp
 {
@@ -20,6 +21,7 @@ namespace dp
     private:
 
         opengl1o5_lib_functions gl;
+        std::string sver, sext;
 
     protected:
 
@@ -31,8 +33,6 @@ namespace dp
         virtual dpshared_ref *genRef( std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync );
         //override to init api
         virtual bool initApi( dpwindow_writelock *wl, dpapi_writelock *al );
-        //override to run api
-        virtual void runApi( dpapi_writelock *al );
         //override to generate rendering context
         virtual dpapi_context *makeContext( dpapi_writelock *al );
         //override to load opengl library
@@ -41,6 +41,11 @@ namespace dp
         virtual void *loadFunction( dpwindow_writelock *wl, dpapi_opengl1o5_writelock *al, const char *cname );
         //override to provide pointer to gl function pointers
         virtual opengl1o5_lib_functions *getGL( void );
+        //override to handle end of frame
+        virtual void onFrameEnd( void );
+        //override to handle start of frame
+        virtual void onFrameStart( void );
+
 
     public:
 
