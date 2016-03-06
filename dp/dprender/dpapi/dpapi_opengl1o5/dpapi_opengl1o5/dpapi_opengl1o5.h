@@ -7,6 +7,7 @@
 #define dpapi_opengl1o5_h
 
 #include "../../dpapi/dpapi/dpapi.h"
+#include "dpapi_opengl1o5_functions.h"
 
 namespace dp
 {
@@ -18,9 +19,7 @@ namespace dp
 
     private:
 
-        dpwindow *w;
-        dpwindow_factory *wf;
-        bool bIsStarted, bIsOpen;
+        opengl1o5_lib_functions gl;
 
     protected:
 
@@ -36,6 +35,12 @@ namespace dp
         virtual void runApi( dpapi_writelock *al );
         //override to generate rendering context
         virtual dpapi_context *makeContext( dpapi_writelock *al );
+        //override to load opengl library
+        virtual bool loadGL( dpwindow_writelock *wl, dpapi_opengl1o5_writelock *al );
+        //override to handle loading of function pointers
+        virtual void *loadFunction( dpwindow_writelock *wl, dpapi_opengl1o5_writelock *al, const char *cname );
+        //override to provide pointer to gl function pointers
+        virtual opengl1o5_lib_functions *getGL( void );
 
     public:
 
