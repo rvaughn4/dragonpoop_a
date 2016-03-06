@@ -548,9 +548,13 @@
 	"dpapi_opengl1o5_context_readlock.h"
 	"dpapi_opengl1o5_context.h"
 
-1457171830 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_ref.cpp
+1457285572 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_ref.cpp
+	"dpapi_opengl1o5_context_ref.h"
+	"dpapi_opengl1o5_context.h"
 
-1457171830 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_writelock.cpp
+1457285432 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_writelock.cpp
+	"dpapi_opengl1o5_context_writelock.h"
+	"dpapi_opengl1o5_context.h"
 
 1457280441 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5.cpp
 	"dpapi_x11_opengl1o5.h"
