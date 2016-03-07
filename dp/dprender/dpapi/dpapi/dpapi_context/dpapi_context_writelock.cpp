@@ -22,6 +22,24 @@ namespace dp
 
     }
 
+    //generate renderpass
+    dpapi_renderpass *dpapi_context_writelock::makeRenderpass( void )
+    {
+        return this->p->makeRenderpass( this );
+    }
+
+    //generate primary commandlist
+    dpapi_primary_commandlist *dpapi_context_writelock::makePrimaryCommandList( void )
+    {
+        return this->p->makePrimaryCommandList( this );
+    }
+
+    //generate secondary commandlist
+    dpapi_commandlist *dpapi_context_writelock::makeCommandList( void )
+    {
+        return this->p->makeCommandList( this );
+    }
+
 }
 
 

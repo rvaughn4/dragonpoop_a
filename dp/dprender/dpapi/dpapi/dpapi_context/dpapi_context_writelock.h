@@ -15,6 +15,9 @@ namespace dp
     class dpapi_context;
     class dpmutex_writelock;
     class dpapi_context_ref;
+    class dpapi_renderpass;
+    class dpapi_commandlist;
+    class dpapi_primary_commandlist;
 
     class dpapi_context_writelock : public dpshared_writelock
     {
@@ -32,6 +35,12 @@ namespace dp
 
         //ctor
         dpapi_context_writelock( dpapi_context *p, dpmutex_writelock *ml );
+        //generate renderpass
+        virtual dpapi_renderpass *makeRenderpass( void );
+        //generate primary commandlist
+        virtual dpapi_primary_commandlist *makePrimaryCommandList( void );
+        //generate secondary commandlist
+        virtual dpapi_commandlist *makeCommandList( void );
 
     };
 

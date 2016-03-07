@@ -16,6 +16,8 @@ namespace dp
     class dpapi_context_writelock;
     class dpapi_writelock;
     class dpapi_renderpass;
+    class dpapi_commandlist;
+    class dpapi_primary_commandlist;
 
     class dpapi_context : public dpshared
     {
@@ -33,6 +35,10 @@ namespace dp
         virtual dpshared_ref *genRef( std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync );
         //generate renderpass
         virtual dpapi_renderpass *makeRenderpass( dpapi_context_writelock *l );
+        //generate primary commandlist
+        virtual dpapi_primary_commandlist *makePrimaryCommandList( dpapi_context_writelock *l );
+        //generate secondary commandlist
+        virtual dpapi_commandlist *makeCommandList( dpapi_context_writelock *l );
 
     public:
 

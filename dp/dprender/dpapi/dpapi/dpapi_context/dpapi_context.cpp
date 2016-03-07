@@ -8,6 +8,8 @@
 #include "dpapi_context_readlock.h"
 #include "dpapi_context_writelock.h"
 #include "../dpapi_renderpass/dpapi_renderpass.h"
+#include "../dpapi_commandlist/dpapi_commandlist.h"
+#include "../dpapi_primary_commandlist/dpapi_primary_commandlist.h"
 
 namespace dp
 {
@@ -46,6 +48,18 @@ namespace dp
     dpapi_renderpass *dpapi_context::makeRenderpass( dpapi_context_writelock *l )
     {
         return new dpapi_renderpass( l );
+    }
+
+    //generate primary commandlist
+    dpapi_primary_commandlist *dpapi_context::makePrimaryCommandList( dpapi_context_writelock *l )
+    {
+        return new dpapi_primary_commandlist( l );
+    }
+
+    //generate secondary commandlist
+    dpapi_commandlist *dpapi_context::makeCommandList( dpapi_context_writelock *l )
+    {
+        return new dpapi_commandlist( l );
     }
 
 }
