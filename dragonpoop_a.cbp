@@ -136,6 +136,8 @@
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_ref.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_writelock.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_writelock.h" />
+		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command.cpp" />
+		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass_readlock.cpp" />
