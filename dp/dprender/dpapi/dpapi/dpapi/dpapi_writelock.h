@@ -15,6 +15,7 @@ namespace dp
     class dpapi;
     class dpmutex_writelock;
     class dpapi_ref;
+    class dpapi_context;
 
     class dpapi_writelock : public dpshared_writelock
     {
@@ -34,6 +35,8 @@ namespace dp
         dpapi_writelock( dpapi *p, dpmutex_writelock *ml );
         //returns true if open
         bool isOpen( void );
+        //override to generate rendering context
+        dpapi_context *makeContext( void );
 
     };
 

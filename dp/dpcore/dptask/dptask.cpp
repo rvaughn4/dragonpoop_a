@@ -119,7 +119,8 @@ namespace dp
     //run state
     void dptask::runstate( dptask_writelock *tl )
     {
-        this->onTaskRun( tl );
+        if( this->bDoRun )
+            this->onTaskRun( tl );
         if( !this->bDoRun )
             this->state = &dptask::stopstate;
         std::cout << "Task " << this->cname << " has ran.\r\n";

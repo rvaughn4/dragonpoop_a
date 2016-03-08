@@ -28,6 +28,12 @@ namespace dp
         return this->p->isOpen();
     }
 
+    //override to generate rendering context
+    dpapi_context *dpapi_writelock::makeContext( void )
+    {
+        return this->p->makeContext( this );
+    }
+
 }
 
 

@@ -3,8 +3,8 @@
 
 */
 
-#ifndef dprender_h
-#define dprender_h
+#ifndef dprender_frame_thread_h
+#define dprender_frame_thread_h
 
 #include "../../../dpcore/dptask/dptask.h"
 #include <atomic>
@@ -12,24 +12,18 @@
 namespace dp
 {
 
-    class dprender_writelock;
-    class dpapi_factory;
-    class dpapi;
-    class dpapi_context;
+    class dprender_frame_thread_writelock;
     class dpapi_primary_commandlist;
-    class dprender_frame_thread;
+    class dpapi_context;
 
-    class dprender : public dptask
+    class dprender_frame_thread : public dptask
     {
 
     private:
 
-        dpapi_factory *apifactory;
-        dpapi *api;
-        dpapi_context *main_ctx, *frame_ctx;
+        dpapi_context *ctx;
         dpapi_primary_commandlist *cl_a, *cl_b, *cl_next, *cl_prev;
-        std::atomic<bool> flag_a, flag_b, *flag_next, *flag_prev;
-        dprender_frame_thread *frametask;
+        std::atomic<bool> *flag_a, *flag_b, *flag_next, *flag_prev;
 
     protected:
 
@@ -49,12 +43,12 @@ namespace dp
     public:
 
         //ctor
-        dprender( dpapi_factory *wf );
+        dprender_frame_thread( dpapi_context *ctx, dpapi_primary_commandlist *cl_a, dpapi_primary_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b );
         //dtor
-        virtual ~dprender( void );
+        virtual ~dprender_frame_thread( void );
 
-        friend class dprender_writelock;
-        friend class dprender_readlock;
+        friend class dprender_frame_thread_writelock;
+        friend class dprender_frame_thread_readlock;
     };
 
 }

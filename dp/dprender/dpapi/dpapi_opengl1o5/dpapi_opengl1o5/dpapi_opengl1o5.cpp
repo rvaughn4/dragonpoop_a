@@ -154,7 +154,7 @@ namespace dp
     //override to generate rendering context
     dpapi_context *dpapi_opengl1o5::makeContext( dpapi_writelock *al )
     {
-        return 0;
+        return this->dpapi::makeContext( al );
     }
 
     //override to load opengl library

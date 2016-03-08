@@ -18,11 +18,11 @@
 1454887924 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpspinlock.h
 	<atomic>
 
-1457179679 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
+1457437829 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
 	"dp/dpcore/dptaskmgr/dptaskmgr.h"
 	"dp/dpcore/dptaskmgr/dptaskmgr_writelock.h"
 	"dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h"
-	"dp/dprender/dpapi/dpapi_task/dpapi_task.h"
+	"dp/dprender/dprender/dprender/dprender.h"
 	<iostream>
 	<thread>
 
@@ -237,7 +237,7 @@
 	"dptask_defines.h"
 	"../dpshared/dpshared_writelock.h"
 
-1457429710 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask.cpp
+1457438092 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask.cpp
 	"dptask.h"
 	"dptask_ref.h"
 	"dptask_readlock.h"
@@ -339,7 +339,7 @@
 	"dpapi_ref.h"
 	"dpapi.h"
 
-1457004401 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi_writelock.cpp
+1457435441 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi_writelock.cpp
 	"dpapi_writelock.h"
 	"dpapi.h"
 
@@ -452,7 +452,7 @@
 1457005667 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi_readlock.h
 	"../../../../dpcore/dpshared/dpshared_readlock.h"
 
-1457005673 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi_writelock.h
+1457435459 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi_writelock.h
 	"../../../../dpcore/dpshared/dpshared_writelock.h"
 
 1457344121 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context.cpp
@@ -705,13 +705,20 @@
 
 1457346334 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command.h
 
-1457428721 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender.cpp
+1457437874 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender.cpp
 	"dprender.h"
 	"dprender_ref.h"
 	"dprender_readlock.h"
 	"dprender_writelock.h"
+	"../../../dpcore/dpshared/dpshared_guard.h"
 	"../../dpapi/dpapi/dpapi/dpapi_factory.h"
 	"../../dpapi/dpapi/dpapi/dpapi.h"
+	"../../dpapi/dpapi/dpapi/dpapi_writelock.h"
+	"../../dpapi/dpapi/dpapi_context/dpapi_context.h"
+	"../../dpapi/dpapi/dpapi_context/dpapi_context_writelock.h"
+	"../../dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist.h"
+	"../../dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_writelock.h"
+	"../dprender_frame_thread/dprender_frame_thread.h"
 
 1457428078 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_readlock.cpp
 	"dprender_readlock.h"
@@ -720,8 +727,9 @@
 1457428278 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_readlock.h
 	"../../../dpcore/dptask/dptask_readlock.h"
 
-1457428344 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender.h
+1457437039 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender.h
 	"../../../dpcore/dptask/dptask.h"
+	<atomic>
 
 1457428241 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_ref.cpp
 	"dprender_ref.h"
@@ -736,4 +744,43 @@
 
 1457428291 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_writelock.h
 	"../../../dpcore/dptask/dptask_writelock.h"
+
+1457437658 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.cpp
+	"dprender_frame_thread.h"
+	"dprender_frame_thread_ref.h"
+	"dprender_frame_thread_readlock.h"
+	"dprender_frame_thread_writelock.h"
+	"../../../dpcore/dpshared/dpshared_guard.h"
+	"../../dpapi/dpapi/dpapi/dpapi_factory.h"
+	"../../dpapi/dpapi/dpapi/dpapi.h"
+	"../../dpapi/dpapi/dpapi/dpapi_writelock.h"
+	"../../dpapi/dpapi/dpapi_context/dpapi_context.h"
+	"../../dpapi/dpapi/dpapi_context/dpapi_context_writelock.h"
+	"../../dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist.h"
+	"../../dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_writelock.h"
+
+1457437314 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.h
+	"../../../dpcore/dptask/dptask.h"
+	<atomic>
+
+1457433798 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_ref.h
+	"../../../dpcore/dptask/dptask_ref.h"
+
+1457433749 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_readlock.h
+	"../../../dpcore/dptask/dptask_readlock.h"
+
+1457433837 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_writelock.h
+	"../../../dpcore/dptask/dptask_writelock.h"
+
+1457433779 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_readlock.cpp
+	"dprender_frame_thread_readlock.h"
+	"dprender_frame_thread.h"
+
+1457433818 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_ref.cpp
+	"dprender_frame_thread_ref.h"
+	"dprender_frame_thread.h"
+
+1457433857 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_writelock.cpp
+	"dprender_frame_thread_writelock.h"
+	"dprender_frame_thread.h"
 
