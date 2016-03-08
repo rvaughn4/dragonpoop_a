@@ -280,6 +280,13 @@ namespace dp
     {
         dpthread_dptask *p;
         unsigned int i;
+        dptask_writelock *tskl;
+        dpshared_guard g;
+
+        tskl = (dptask_writelock *)dpshared_guard_tryWriteLock_timeout( g, t, 1000 );
+        if( tskl )
+            tskl->setOwnerThread( this );
+        g.release( tskl );
 
         for( i = 0; i < dpthread_max_tasks; i++ )
         {

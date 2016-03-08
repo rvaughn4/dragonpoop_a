@@ -17,6 +17,12 @@ namespace dp
     class dpmutex_writelock;
     class dptask_ref;
     class dpthread_writelock;
+    class dpthread;
+    class dptaskmgr;
+    class dpthread_ref;
+    class dptaskmgr_ref;
+    class dpthread_writelock;
+    class dptaskmgr_writelock;
 
     class dptask_writelock : public dpshared_writelock
     {
@@ -42,6 +48,18 @@ namespace dp
         unsigned int getDelay( void );
         //set delay
         void setDelay( unsigned int ms );
+        //set thread that owns task
+        void setOwnerThread( dpthread *t );
+        //set thread that owns task
+        void setOwnerThread( dpthread_writelock *t );
+        //set thread that owns task
+        void setOwnerThread( dpthread_ref *t );
+        //set task manager that owns task
+        void setOwnerTaskManager( dptaskmgr *t );
+        //set task manager that owns task
+        void setOwnerTaskManager( dptaskmgr_writelock *t );
+        //set task manager that owns task
+        void setOwnerTaskManager( dptaskmgr_ref *t );
 
     };
 

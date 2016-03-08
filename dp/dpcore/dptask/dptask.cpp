@@ -6,10 +6,15 @@ deleting the readlock or writelock object unlocks the shared
 */
 
 #include "dptask.h"
-#include "../dpshared/dpshared_guard.h"
 #include "dptask_ref.h"
 #include "dptask_readlock.h"
 #include "dptask_writelock.h"
+#include "../dptaskmgr/dptaskmgr.h"
+#include "../dptaskmgr/dptaskmgr_ref.h"
+#include "../dptaskmgr/dptaskmgr_writelock.h"
+#include "../dpthread/dpthread.h"
+#include "../dpthread/dpthread_ref.h"
+#include "../dpthread/dpthread_writelock.h"
 
 #include <thread>
 #include <string>
@@ -26,12 +31,16 @@ namespace dp
         this->bDoRun = 1;
         this->bIsRun = 0;
         this->ms_delay = ms_delay;
+        this->runthread = 0;
+        this->runmgr = 0;
     }
 
     //dtor
     dptask::~dptask( void )
     {
         this->waitForStop();
+        this->_setTaskMgr( 0 );
+        this->_setThread( 0 );
     }
 
     //generate readlock
@@ -178,6 +187,159 @@ namespace dp
 
         this->dpshared::setName( cname );
         s.copy( this->cname, sizeof( this->cname ) );
+    }
+
+    //set owner thread
+    void dptask::_setThread( dpthread_ref *t )
+    {
+        if( this->runthread )
+            this->gt.release( this->runthread );
+        this->runthread = t;
+    }
+
+    //set owner taskmgr
+    void dptask::_setTaskMgr( dptaskmgr_ref *t )
+    {
+        if( this->runmgr )
+            this->gt.release( this->runmgr );
+        this->runmgr = t;
+    }
+
+    //set thread that owns task
+    void dptask::setOwnerThread( dpthread *t )
+    {
+        this->_setThread( (dpthread_ref *)this->gt.getRef( t ) );
+    }
+
+    //set thread that owns task
+    void dptask::setOwnerThread( dpthread_writelock *t )
+    {
+        this->_setThread( (dpthread_ref *)this->gt.getRef( t ) );
+    }
+
+    //set thread that owns task
+    void dptask::setOwnerThread( dpthread_ref *t )
+    {
+        this->_setThread( (dpthread_ref *)this->gt.getRef( t ) );
+    }
+
+    //set task manager that owns task
+    void dptask::setOwnerTaskManager( dptaskmgr *t )
+    {
+        this->_setTaskMgr( (dptaskmgr_ref *)this->gt.getRef( t ) );
+    }
+
+    //set task manager that owns task
+    void dptask::setOwnerTaskManager( dptaskmgr_writelock *t )
+    {
+        this->_setTaskMgr( (dptaskmgr_ref *)this->gt.getRef( t ) );
+    }
+
+    //set task manager that owns task
+    void dptask::setOwnerTaskManager( dptaskmgr_ref *t )
+    {
+        this->_setTaskMgr( (dptaskmgr_ref *)this->gt.getRef( t ) );
+    }
+
+    //add task
+    bool dptask::_addTask( dptask_ref *t, unsigned int weight )
+    {
+        dpshared_guard g;
+        dpthread_writelock *thdl;
+        dptaskmgr_writelock *mgrl;
+        bool r;
+
+        if( !t )
+            return 0;
+        if( !this->runmgr && !this->runthread )
+            return 0;
+
+        if( this->runmgr )
+        {
+            mgrl = (dptaskmgr_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->runmgr, 1000 );
+            if( mgrl )
+            {
+                if( !weight )
+                    r = mgrl->addDynamicTask( t );
+                else
+                    r = mgrl->addStaticTask( t, weight );
+                if( r )
+                {
+                    this->gt.release( t );
+                    return 1;
+                }
+            }
+            g.release( mgrl );
+        }
+
+        if( this->runthread )
+        {
+            thdl = (dpthread_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->runthread, 1000 );
+            if( thdl )
+            {
+                if( !weight )
+                    r = thdl->addDynamicTask( t );
+                else
+                    r = thdl->addStaticTask( t, weight );
+                if( r )
+                {
+                    this->gt.release( t );
+                    return 1;
+                }
+            }
+            g.release( thdl );
+        }
+
+        this->gt.release( t );
+        return 0;
+    }
+
+    //add a static task to task list
+    bool dptask::addStaticTask( dptask *t, unsigned int weight )
+    {
+        return this->_addTask( (dptask_ref *)this->gt.getRef( t ), weight );
+    }
+
+    //add a static task to task list
+    bool dptask::addStaticTask( dptask_ref *t, unsigned int weight )
+    {
+        return this->_addTask( (dptask_ref *)this->gt.getRef( t ), weight );
+    }
+
+    //add a static task to task list
+    bool dptask::addStaticTask( dptask_readlock *t, unsigned int weight )
+    {
+        return this->_addTask( (dptask_ref *)this->gt.getRef( t ), weight );
+    }
+
+    //add a static task to task list
+    bool dptask::addStaticTask( dptask_writelock *t, unsigned int weight )
+    {
+        return this->_addTask( (dptask_ref *)this->gt.getRef( t ), weight );
+    }
+
+    //add a dynamic task to task list
+    bool dptask::addDynamicTask( dptask *t )
+    {
+        return this->_addTask( (dptask_ref *)this->gt.getRef( t ), 0 );
+    }
+
+    //add a dynamic task to task list
+    bool dptask::addDynamicTask( dptask_ref *t )
+    {
+        return this->_addTask( (dptask_ref *)this->gt.getRef( t ), 0 );
+    }
+
+    //add a dynamic task to task list
+    bool dptask::addDynamicTask( dptask_readlock *t )
+    {
+        return this->_addTask( (dptask_ref *)this->gt.getRef( t ), 0 );
+    }
+
+    //add a dynamic task to task list
+    bool dptask::addDynamicTask( dptask_writelock *t )
+    {
+        return this->_addTask( (dptask_ref *)this->gt.getRef( t ), 0 );
     }
 
 }

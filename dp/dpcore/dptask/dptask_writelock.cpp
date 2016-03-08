@@ -46,6 +46,42 @@ namespace dp
         this->p->setDelay( ms );
     }
 
+    //set thread that owns task
+    void dptask_writelock::setOwnerThread( dpthread *t )
+    {
+        this->p->setOwnerThread( t );
+    }
+
+    //set thread that owns task
+    void dptask_writelock::setOwnerThread( dpthread_writelock *t )
+    {
+        this->p->setOwnerThread( t );
+    }
+
+    //set thread that owns task
+    void dptask_writelock::setOwnerThread( dpthread_ref *t )
+    {
+        this->p->setOwnerThread( t );
+    }
+
+    //set task manager that owns task
+    void dptask_writelock::setOwnerTaskManager( dptaskmgr *t )
+    {
+        this->p->setOwnerTaskManager( t );
+    }
+
+    //set task manager that owns task
+    void dptask_writelock::setOwnerTaskManager( dptaskmgr_writelock *t )
+    {
+        this->p->setOwnerTaskManager( t );
+    }
+
+    //set task manager that owns task
+    void dptask_writelock::setOwnerTaskManager( dptaskmgr_ref *t )
+    {
+        this->p->setOwnerTaskManager( t );
+    }
+
 }
 
 

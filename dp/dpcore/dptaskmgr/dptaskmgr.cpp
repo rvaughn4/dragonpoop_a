@@ -218,6 +218,12 @@ namespace dp
         dpthread_writelock *ptl;
         dpshared_guard g;
         bool r;
+        dptask_writelock *tskl;
+
+        tskl = (dptask_writelock *)dpshared_guard_tryWriteLock_timeout( g, t, 1000 );
+        if( tskl )
+            tskl->setOwnerTaskManager( this );
+        g.release( tskl );
 
         lw = dptaskmgr_max_threads * 900;
         for( i = 0; i < dptaskmgr_max_threads; i++ )

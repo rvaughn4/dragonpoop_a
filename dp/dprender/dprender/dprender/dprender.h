@@ -6,17 +6,22 @@
 #ifndef dprender_h
 #define dprender_h
 
-#include "../../../dpcore/dpshared/dpshared.h"
+#include "../../../dpcore/dptask/dptask.h"
 
 namespace dp
 {
 
     class dprender_writelock;
+    class dpapi_factory;
+    class dpapi;
 
     class dprender : public dptask
     {
 
     private:
+
+        dpapi_factory *apifactory;
+        dpapi *api;
 
     protected:
 
