@@ -164,17 +164,9 @@ namespace dp
         //get reference
         dpshared_ref *dpshared_ref::getRef( void )
         {
-            dpshared_guard g;
-            dpshared_writelock *l;
-
             if( !this->isLinked() )
                 return 0;
-
-            l = dpshared_guard_tryWriteLock_timeout( g, this->p, 5000 );
-            if( !l )
-                return 0;
-
-            return l->getRef();
+            return this->p->getRef();
         }
 
 }

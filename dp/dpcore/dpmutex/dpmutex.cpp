@@ -24,6 +24,8 @@ namespace dp
         {
             this->mm = 0;
             this->slk = new dpspinlock();
+            this->rlock_ctr = 0;
+            this->wlock_ctr = 0;
             this->wlock_tid = (std::thread::id)0;
         }
 

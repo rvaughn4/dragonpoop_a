@@ -75,6 +75,19 @@ namespace dp
         dpapi_context_writelock *ctxl;
         std::atomic<bool> *pflag;
         dpshared_guard g;
+        dpapi_writelock *apil;
+
+        apil = (dpapi_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->api, 30 );
+        if( apil )
+        {
+            apil->run();
+            if( !apil->isOpen() )
+            {
+                this->stop();
+                return;
+            }
+            g.release( apil );
+        }
 
         if( !( *this->flag_next ) )
             return;

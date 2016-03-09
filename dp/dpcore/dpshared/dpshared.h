@@ -34,6 +34,10 @@ namespace dp
         std::shared_ptr<dpshared_ref_kernel> k;
 #ifdef dpshared_debug
         const char *cname;
+
+        const char *cfile_macro;
+        unsigned int line_macro;
+        const char *cfunc_macro;
 #endif
 
     protected:
