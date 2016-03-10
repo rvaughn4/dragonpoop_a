@@ -89,49 +89,49 @@ namespace dp
     //add static task
     bool dptaskmgr::addStaticTask( dptask *t, unsigned int weight )
     {
-        return this->_addTask( &this->threads, t, weight );
+        return this->_addTask( &this->threads, (dptask_ref *)this->tskg.getRef( t ), weight );
     }
 
     //add static task
     bool dptaskmgr::addStaticTask( dptask_ref *t, unsigned int weight )
     {
-        return 0;//this->_addTask( &this->threads, (dptask_ref *)this->tskg.getRef( t ), weight );
+        return this->_addTask( &this->threads, (dptask_ref *)this->tskg.getRef( t ), weight );
     }
 
     //add static task
     bool dptaskmgr::addStaticTask( dptask_readlock *t, unsigned int weight )
     {
-        return 0;//this->_addTask( &this->threads, (dptask_ref *)this->tskg.getRef( t ), weight );
+        return this->_addTask( &this->threads, (dptask_ref *)this->tskg.getRef( t ), weight );
     }
 
     //add static task
     bool dptaskmgr::addStaticTask( dptask_writelock *t, unsigned int weight )
     {
-        return 0;//this->_addTask( &this->threads, (dptask_ref *)this->tskg.getRef( t ), weight );
+        return this->_addTask( &this->threads, (dptask_ref *)this->tskg.getRef( t ), weight );
     }
 
     //add dynamic task
     bool dptaskmgr::addDynamicTask( dptask *t )
     {
-        return this->_addTask( &this->threads, t, 0 );
+        return this->_addTask( &this->threads, (dptask_ref *)this->tskg.getRef( t ), 0 );
     }
 
     //add dynamic task
     bool dptaskmgr::addDynamicTask( dptask_ref *t )
     {
-        return 0;//this->_addTask( &this->threads, (dptask_ref *)this->tskg.getRef( t ), 0 );
+        return this->_addTask( &this->threads, (dptask_ref *)this->tskg.getRef( t ), 0 );
     }
 
     //add dynamic task
     bool dptaskmgr::addDynamicTask( dptask_readlock *t )
     {
-        return 0;//this->_addTask( &this->threads, (dptask_ref *)this->tskg.getRef( t ), 0 );
+        return this->_addTask( &this->threads, (dptask_ref *)this->tskg.getRef( t ), 0 );
     }
 
     //add dynamic task
     bool dptaskmgr::addDynamicTask( dptask_writelock *t )
     {
-        return 0;//this->_addTask( &this->threads, (dptask_ref *)this->tskg.getRef( t ), 0 );
+        return this->_addTask( &this->threads, (dptask_ref *)this->tskg.getRef( t ), 0 );
     }
 
     //make thread
@@ -208,13 +208,13 @@ namespace dp
     }
 
     //add task to thread with least static tasks
-    bool dptaskmgr::_addTask( dptaskmgr_threadlist *tl, dptask *t, unsigned int weight )
+    bool dptaskmgr::_addTask( dptaskmgr_threadlist *tl, dptask_ref *t, unsigned int weight )
     {
         unsigned int i, lw;
         dptaskmgr_dpthread *p;
-        std::list<dpthread *> lt;
-        std::list<dpthread *>::iterator it;
-        dpthread *pt;
+        std::list<dptaskmgr_dpthread *> lt;
+        std::list<dptaskmgr_dpthread *>::iterator it;
+        dptaskmgr_dpthread *pt;
         dpthread_writelock *ptl;
         dpshared_guard g;
         bool r;
@@ -234,10 +234,10 @@ namespace dp
             if( p->weight < lw )
             {
                 lw = p->weight;
-                lt.push_front( p->thd );
+                lt.push_front( p );
             }
             else
-                lt.push_back( p->thd );
+                lt.push_back( p );
         }
 
         r = 0;
@@ -245,7 +245,7 @@ namespace dp
         {
             pt = *it;
 
-            ptl = (dpthread_writelock *)dpshared_guard_tryWriteLock_timeout( g, pt, 30 );
+            ptl = (dpthread_writelock *)dpshared_guard_tryWriteLock_timeout( g, pt->thd, 30 );
             if( !ptl )
                 continue;
 
@@ -253,8 +253,11 @@ namespace dp
                 r = ptl->addDynamicTask( t );
             else
                 r = ptl->addStaticTask( t, weight );
+
+            pt->weight += weight;
         }
 
+        this->tskg.release( t );
         return r;
     }
 

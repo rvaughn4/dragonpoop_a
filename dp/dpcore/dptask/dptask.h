@@ -44,6 +44,7 @@ namespace dp
         dpthread_ref *runthread;
         dptaskmgr_ref *runmgr;
         dpshared_guard gt;
+        unsigned int thread_no;
 
         //startup state
         void startstate( dptask_writelock *tl );
@@ -75,11 +76,11 @@ namespace dp
         //override to handle processing
         virtual void onRun( dpshared_writelock *wl );
         //override to do task execution
-        virtual void onTaskRun( dptask_writelock *tl );
+        virtual bool onTaskRun( dptask_writelock *tl );
         //override to do task startup
-        virtual void onTaskStart( dptask_writelock *tl );
+        virtual bool onTaskStart( dptask_writelock *tl );
         //override to do task shutdown
-        virtual void onTaskStop( dptask_writelock *tl );
+        virtual bool onTaskStop( dptask_writelock *tl );
         //returns true if running
         bool isRun( void );
         //stops task
@@ -127,6 +128,8 @@ namespace dp
         dptask( const char *cname, unsigned int ms_delay );
         //dtor
         virtual ~dptask( void );
+        //ask task to stop and returns true if stopped
+        static bool stopAndDelete( dptask **t );
 
         friend class dptask_writelock;
         friend class dptask_readlock;

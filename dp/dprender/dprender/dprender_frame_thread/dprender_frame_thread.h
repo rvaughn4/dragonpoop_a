@@ -34,11 +34,11 @@ namespace dp
         //generate ref
         virtual dpshared_ref *genRef( std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync );
         //override to do task execution
-        virtual void onTaskRun( dptask_writelock *tl );
+        virtual bool onTaskRun( dptask_writelock *tl );
         //override to do task startup
-        virtual void onTaskStart( dptask_writelock *tl );
+        virtual bool onTaskStart( dptask_writelock *tl );
         //override to do task shutdown
-        virtual void onTaskStop( dptask_writelock *tl );
+        virtual bool onTaskStop( dptask_writelock *tl );
 
     public:
 

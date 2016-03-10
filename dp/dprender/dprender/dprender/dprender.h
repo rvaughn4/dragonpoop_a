@@ -30,6 +30,8 @@ namespace dp
         dpapi_primary_commandlist *cl_a, *cl_b, *cl_next, *cl_prev;
         std::atomic<bool> flag_a, flag_b, *flag_next, *flag_prev;
         dprender_frame_thread *frametask;
+        uint64_t t_last_f;
+        unsigned int fps, f_last_t;
 
     protected:
 
@@ -40,11 +42,11 @@ namespace dp
         //generate ref
         virtual dpshared_ref *genRef( std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync );
         //override to do task execution
-        virtual void onTaskRun( dptask_writelock *tl );
+        virtual bool onTaskRun( dptask_writelock *tl );
         //override to do task startup
-        virtual void onTaskStart( dptask_writelock *tl );
+        virtual bool onTaskStart( dptask_writelock *tl );
         //override to do task shutdown
-        virtual void onTaskStop( dptask_writelock *tl );
+        virtual bool onTaskStop( dptask_writelock *tl );
 
     public:
 
@@ -52,6 +54,8 @@ namespace dp
         dprender( dpapi_factory *wf );
         //dtor
         virtual ~dprender( void );
+        //wait for flag to set or unset
+        static bool waitForFlag( std::atomic<bool> *f, bool m, unsigned int wait_ms, dptask_writelock *l );
 
         friend class dprender_writelock;
         friend class dprender_readlock;

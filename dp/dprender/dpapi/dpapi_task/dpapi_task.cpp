@@ -28,31 +28,32 @@ namespace dp
     }
 
     //override to do task execution
-    void dpapi_task::onTaskRun( dptask_writelock *tl )
+    bool dpapi_task::onTaskRun( dptask_writelock *tl )
     {
         dpapi_writelock *l;
         dpshared_guard g;
 
-        l = (dpapi_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->w, 100 );
+        l = (dpapi_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->w, 1000 );
         if( !l )
-            return;
+            return 0;
 
         l->run();
 
-        if( !l->isOpen() )
-            this->stop();
+        return l->isOpen();
     }
 
     //override to do task startup
-    void dpapi_task::onTaskStart( dptask_writelock *tl )
+    bool dpapi_task::onTaskStart( dptask_writelock *tl )
     {
         this->w = this->wf->makeApi();
+        return this->w != 0;
     }
 
     //override to do task shutdown
-    void dpapi_task::onTaskStop( dptask_writelock *tl )
+    bool dpapi_task::onTaskStop( dptask_writelock *tl )
     {
         delete this->w;
+        return 1;
     }
 
 }

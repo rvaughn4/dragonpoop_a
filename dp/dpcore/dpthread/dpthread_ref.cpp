@@ -14,6 +14,7 @@ namespace dp
     dpthread_ref::dpthread_ref( dpthread *p, std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync ) : dpshared_ref( p, k, t_sync )
     {
         this->p = p;
+        this->thread_no = p->thread_no;
     }
 
     //dtor

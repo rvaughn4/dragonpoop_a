@@ -15,10 +15,13 @@ deleting the readlock or writelock object unlocks the shared
 #include "../dpthread/dpthread.h"
 #include "../dpthread/dpthread_ref.h"
 #include "../dpthread/dpthread_writelock.h"
+#include "../../dpdefines.h"
 
 #include <thread>
 #include <string>
-#include <iostream>
+#if defined dptask_debug
+    #include <iostream>
+#endif
 
 namespace dp
 {
@@ -33,11 +36,16 @@ namespace dp
         this->ms_delay = ms_delay;
         this->runthread = 0;
         this->runmgr = 0;
+        this->thread_no = 0;
     }
 
     //dtor
     dptask::~dptask( void )
     {
+#if defined dptask_debug
+        std::cout << "Task " << this->cname << " is stopping...(" << this->thread_no << ")\r\n";
+#endif
+
         this->waitForStop();
         this->_setTaskMgr( 0 );
         this->_setThread( 0 );
@@ -58,8 +66,9 @@ namespace dp
     //generate ref
     dpshared_ref *dptask::genRef( std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync )
     {
+#if defined dptask_debug
         std::cout << "Task " << this->cname << " .\r\n";
-
+#endif
 
         return new dptask_ref( this, k, t_sync );
     }
@@ -88,21 +97,21 @@ namespace dp
     }
 
     //override to do task execution
-    void dptask::onTaskRun( dptask_writelock *tl )
+    bool dptask::onTaskRun( dptask_writelock *tl )
     {
-
+        return 1;
     }
 
     //override to do task startup
-    void dptask::onTaskStart( dptask_writelock *tl )
+    bool dptask::onTaskStart( dptask_writelock *tl )
     {
-
+        return 1;
     }
 
     //override to do task shutdown
-    void dptask::onTaskStop( dptask_writelock *tl )
+    bool dptask::onTaskStop( dptask_writelock *tl )
     {
-
+        return 1;
     }
 
     //startup state
@@ -110,30 +119,40 @@ namespace dp
     {
         this->bStarted = 1;
         this->bIsRun = 1;
-        this->state = &dptask::runstate;
-        this->onTaskStart( tl );
+        if( this->onTaskStart( tl ) )
+            this->state = &dptask::runstate;
+        else
+            this->state = &dptask::stopstate;
 
-        std::cout << "Task " << this->cname << " has started.\r\n";
+#if defined dptask_debug
+        std::cout << "Task " << this->cname << " has started.(" << this->thread_no << ")\r\n";
+#endif
     }
 
     //run state
     void dptask::runstate( dptask_writelock *tl )
     {
-        if( this->bDoRun )
-            this->onTaskRun( tl );
-        if( !this->bDoRun )
+        if( !this->bDoRun || !this->onTaskRun( tl ) )
             this->state = &dptask::stopstate;
-        std::cout << "Task " << this->cname << " has ran.\r\n";
+
+#if defined dptask_debug
+        std::cout << "Task " << this->cname << " has ran.(" << this->thread_no << ")\r\n";
+#endif
     }
 
     //shutdown state
     void dptask::stopstate( dptask_writelock *tl )
     {
         this->bStopped = 1;
-        this->onTaskStop( tl );
-        this->state = &dptask::nullstate;
-        std::cout << "Task " << this->cname << " has stopped.\r\n";
-        this->bIsRun = 0;
+        if( this->onTaskStop( tl ) )
+        {
+            this->state = &dptask::nullstate;
+            this->bIsRun = 0;
+
+#if defined dptask_debug
+            std::cout << "Task " << this->cname << " has stopped.(" << this->thread_no << ")\r\n";
+#endif
+        }
     }
 
     //null state
@@ -195,6 +214,8 @@ namespace dp
     {
         if( this->runthread )
             this->gt.release( this->runthread );
+        if( t )
+            this->thread_no = t->thread_no;
         this->runthread = t;
     }
 
@@ -341,6 +362,31 @@ namespace dp
     bool dptask::addDynamicTask( dptask_writelock *t )
     {
         return this->_addTask( (dptask_ref *)this->gt.getRef( t ), 0 );
+    }
+
+    //ask task to stop and returns true if stopped
+    bool dptask::stopAndDelete( dptask **t )
+    {
+        dptask_writelock *tskl;
+        dpshared_guard g;
+
+        if( !t )
+            return 1;
+        if( !( *t ) )
+            return 1;
+
+        tskl = (dptask_writelock *)dpshared_guard_tryWriteLock_timeout( g, ( *t ), 100 );
+        if( !tskl )
+            return 0;
+        tskl->stop();
+        if( tskl->isRun() )
+            return 0;
+        g.release( tskl );
+
+        delete ( *t );
+        *t = 0;
+
+        return 1;
     }
 
 }

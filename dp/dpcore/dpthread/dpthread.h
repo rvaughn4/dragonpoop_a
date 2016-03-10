@@ -41,6 +41,7 @@ namespace dp
         unsigned int cnt;
     };
 
+
     class dpthread : public dpshared
     {
 
@@ -108,6 +109,7 @@ namespace dp
 
     public:
 
+        unsigned int thread_no;
 
         //ctor
         dpthread( void );

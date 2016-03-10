@@ -31,6 +31,7 @@ namespace dp
 
     public:
 
+        unsigned int thread_no;
 
         //ctor
         dpthread_ref( dpthread *p, std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync );

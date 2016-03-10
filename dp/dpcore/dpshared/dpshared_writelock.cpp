@@ -63,6 +63,18 @@ namespace dp
             this->p->run( this );
         }
 
+        //returns current epoch time in seconds
+        uint64_t dpshared_writelock::getEpoch( void )
+        {
+            return this->p->getEpoch();
+        }
+
+        //returns tickcount in ms
+        uint64_t dpshared_writelock::getTicks( void )
+        {
+            return this->p->getTicks();
+        }
+
 }
 
 

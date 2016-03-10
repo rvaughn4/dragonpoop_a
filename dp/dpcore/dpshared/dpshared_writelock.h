@@ -8,6 +8,7 @@ deleting this object releases the writelock on the dpshared
 #define dpshared_writelock_h
 
 #include "dpshareddefines.h"
+#include <stdint.h>
 
 namespace dp
 {
@@ -54,6 +55,10 @@ namespace dp
         dpshared_ref *getRef( void );
         //called to run
         void run( void );
+        //returns current epoch time in seconds
+        uint64_t getEpoch( void );
+        //returns tickcount in ms
+        uint64_t getTicks( void );
 
         friend class dpshared;
         friend class dpshared_guard;

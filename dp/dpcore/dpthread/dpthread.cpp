@@ -14,9 +14,16 @@ deleting the readlock or writelock object unlocks the shared
 #include "../dptask/dptask_ref.h"
 #include "../dptask/dptask_readlock.h"
 #include "../dptask/dptask_writelock.h"
+#include "../../dpdefines.h"
+
+#if defined dpthread_debug
+    #include <iostream>
+#endif
 
 namespace dp
 {
+
+    static unsigned int dpthread_tno = 1;
 
     //ctor
     dpthread::dpthread( void ) : dpshared()
@@ -24,6 +31,8 @@ namespace dp
         this->setName( "Thread" );
         this->bIsRun = 0;
         this->bDoRun = 1;
+        this->thread_no = dpthread_tno;
+        dpthread_tno++;
         this->zeroTasks();
         this->thd = new std::thread( dpthread_threadproc, this );
         while( !this->bIsRun )
@@ -34,8 +43,18 @@ namespace dp
     dpthread::~dpthread( void )
     {
         this->bDoRun = 0;
+
+#if defined dpthread_debug
+        std::cout << "Thread " << this->thread_no << " closing...\r\n";
+#endif
+
         while( this->bIsRun )
             std::this_thread::sleep_for( std::chrono::milliseconds( 0 ) );
+
+#if defined dpthread_debug
+        std::cout << "Thread " << this->thread_no << " closing...\r\n";
+#endif
+
         if( this->thd->joinable() )
             this->thd->join();
         delete this->thd;
@@ -116,6 +135,10 @@ namespace dp
         if( !tr )
             return;
 
+#if defined dpthread_debug
+        std::cout << "Thread " << t->thread_no << " opened.\r\n";
+#endif
+
         d = 1;
         while( d )
         {
@@ -136,6 +159,11 @@ namespace dp
 
             std::this_thread::sleep_for( std::chrono::milliseconds( tms ) );
         }
+
+#if defined dpthread_debug
+        std::cout << "Thread " << t->thread_no << " closed.\r\n";
+#endif
+
     }
 
     //returns true if should run

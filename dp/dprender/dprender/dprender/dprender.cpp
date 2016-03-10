@@ -16,12 +16,17 @@
 #include "../../dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist.h"
 #include "../../dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_writelock.h"
 #include "../dprender_frame_thread/dprender_frame_thread.h"
+#include "../../../dpdefines.h"
+
+#if defined dprender_debug
+#include <iostream>
+#endif // defined
 
 namespace dp
 {
 
     //ctor
-    dprender::dprender( dpapi_factory *wf ) : dptask( "Renderer Main", 30 )
+    dprender::dprender( dpapi_factory *wf ) : dptask( "Renderer Main", 3 )
     {
         this->apifactory = wf;
         this->api = 0;
@@ -29,6 +34,9 @@ namespace dp
         this->cl_a = this->cl_b = 0;
         this->flag_a = this->flag_b = 0;
         this->frametask = 0;
+        this->fps = 0;
+        this->f_last_t = 0;
+        this->t_last_f = 0;
     }
 
     //dtor
@@ -68,7 +76,7 @@ namespace dp
     }
 
     //override to do task execution
-    void dprender::onTaskRun( dptask_writelock *tl )
+    bool dprender::onTaskRun( dptask_writelock *tl )
     {
         dpapi_primary_commandlist_writelock *cll;
         dpapi_primary_commandlist *pcl;
@@ -76,29 +84,28 @@ namespace dp
         std::atomic<bool> *pflag;
         dpshared_guard g;
         dpapi_writelock *apil;
+        unsigned int f;
+        uint64_t tn;
 
         apil = (dpapi_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->api, 30 );
         if( apil )
         {
             apil->run();
             if( !apil->isOpen() )
-            {
-                this->stop();
-                return;
-            }
+                return 0;
             g.release( apil );
         }
 
-        if( !( *this->flag_next ) )
-            return;
+        if( !dprender::waitForFlag( this->flag_next, 1, 10, tl ) )
+            return 1;
 
         ctxl = (dpapi_context_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->main_ctx, 30 );
         if( !ctxl )
-            return;
+            return 1;
 
         cll = (dpapi_primary_commandlist_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->cl_next, 30 );
         if( !cll )
-            return;
+            return 1;
 
         cll->execute( ctxl );
         ( *this->flag_next ) = 0;
@@ -111,61 +118,58 @@ namespace dp
 
         this->cl_prev = pcl;
         this->flag_prev = pflag;
+
+        tn = this->getTicks();
+        this->f_last_t++;
+        if( this->t_last_f + 100 < tn )
+        {
+            this->fps = ( this->fps + this->f_last_t * 10 ) / 2;
+            this->t_last_f = tn;
+            this->f_last_t = 0;
+        }
+
+#if defined dprender_debug
+        std::cout << "Render Main: Primary command buffer executed. Frame presented. " << this->fps <<" FPS\r\n";
+#endif // defined
+
+        return 1;
     }
 
     //override to do task startup
-    void dprender::onTaskStart( dptask_writelock *tl )
+    bool dprender::onTaskStart( dptask_writelock *tl )
     {
         dpshared_guard g;
         dpapi_writelock *apil;
         dpapi_context_writelock *ctxl;
 
         if( !this->apifactory )
-        {
-            this->stop();
-            return;
-        }
+            return 0;
 
         this->api = this->apifactory->makeApi();
         if( !this->api )
-        {
-            this->stop();
-            return;
-        }
+            return 0;
 
         apil = (dpapi_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->api, 1000 );
         if( !apil )
-        {
-            this->stop();
-            return;
-        }
+            return 0;
 
         this->main_ctx = apil->makeContext();
         this->frame_ctx = apil->makeContext();
 
         g.release( apil );
         if( !this->main_ctx || !this->frame_ctx )
-        {
-            this->stop();
-            return;
-        }
+            return 0;
 
         ctxl = (dpapi_context_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->main_ctx, 1000 );
         if( !ctxl )
-        {
-            this->stop();
-            return;
-        }
+            return 0;
 
         this->cl_a = ctxl->makePrimaryCommandList();
         this->cl_b = ctxl->makePrimaryCommandList();
 
         g.release( ctxl );
         if( !this->cl_a || !this->cl_b )
-        {
-            this->stop();
-            return;
-        }
+            return 0;
 
         this->flag_a = this->flag_b = 0;
         this->cl_next = this->cl_a;
@@ -175,24 +179,24 @@ namespace dp
 
         this->frametask = new dprender_frame_thread( this->frame_ctx, this->cl_a, this->cl_b, &this->flag_a, &this->flag_b );
         if( !this->frametask )
-        {
-            this->stop();
-            return;
-        }
+            return 0;
 
         if( !this->addStaticTask( this->frametask, 1 ) )
-        {
-            this->stop();
-            return;
-        }
+            return 0;
+
+#if defined dprender_debug
+        std::cout << "Render Main: Started.\r\n";
+#endif // defined
+
+        return 1;
     }
 
     //override to do task shutdown
-    void dprender::onTaskStop( dptask_writelock *tl )
+    bool dprender::onTaskStop( dptask_writelock *tl )
     {
-        if( this->frametask )
-            delete this->frametask;
-        this->frametask = 0;
+
+        if( !dptask::stopAndDelete( (dptask **)&this->frametask ) )
+            return 0;
 
         if( this->cl_a )
             delete this->cl_a;
@@ -211,6 +215,34 @@ namespace dp
         if( this->api )
             delete this->api;
         this->api = 0;
+
+#if defined dprender_debug
+        std::cout << "Render Main: Stopped.\r\n";
+#endif // defined
+
+        return 1;
+    }
+
+    //wait for flag to set or unset
+    bool dprender::waitForFlag( std::atomic<bool> *f, bool m, unsigned int wait_ms, dptask_writelock *l )
+    {
+        uint64_t w, ts, tn, te;
+
+        if( *f == m )
+            return 1;
+
+        ts = tn = l->getTicks();
+        w = wait_ms;
+        te = ts + w;
+
+        while( tn < te )
+        {
+            if( *f == m )
+                return 1;
+            tn = l->getTicks();
+        }
+
+        return 0;
     }
 
 }
