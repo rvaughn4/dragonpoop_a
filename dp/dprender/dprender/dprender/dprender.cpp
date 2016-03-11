@@ -152,6 +152,8 @@ namespace dp
         if( !apil )
             return 0;
 
+        apil->run();
+
         this->main_ctx = apil->makeContext();
         this->frame_ctx = apil->makeContext();
 

@@ -4,7 +4,9 @@
 */
 
 #include "dpapi_x11_opengl1o5.h"
+#include "dpapi_x11_opengl1o5_writelock.h"
 #include "../../../dpwindow/dpwindow_x11/dpwindow_x11_factory.h"
+#include "../dpapi_x11_opengl1o5_context/dpapi_x11_opengl1o5_context.h"
 
 namespace dp
 {
@@ -20,6 +22,12 @@ namespace dp
     {
         if( this->dlGl )
             dlclose( this->dlGl );
+    }
+
+    //generate writelock
+    dpshared_writelock *dpapi_x11_opengl1o5::genWriteLock( dpmutex_writelock *ml )
+    {
+        return new dpapi_x11_opengl1o5_writelock( this, ml );
     }
 
     //override to load opengl library
@@ -87,10 +95,39 @@ namespace dp
         return (opengl1o5_lib_functions *)&this->gl;
     }
 
-    //override to handle end of frame
-    void dpapi_x11_opengl1o5::onFrameEnd( void )
+    //return x11 display
+    x11_window_Display *dpapi_x11_opengl1o5::getDisplay( void )
     {
-        this->gl.glXSwapBuffers( this->dpy, *this->win );
+        return this->dpy;
+    }
+
+    //return x11 window
+    x11_window_Window *dpapi_x11_opengl1o5::getWindow( void )
+    {
+        return this->win;
+    }
+
+    //return x11 visual
+    x11_window_XVisualInfo *dpapi_x11_opengl1o5::getVisual( void )
+    {
+        return this->vi;
+    }
+
+    //override to generate rendering context
+    dpapi_context *dpapi_x11_opengl1o5::makeContext( dpapi_writelock *al )
+    {
+        dpapi_context *r;
+
+        if( this->last_ctx >= dpapi_x11_opengl1o5_MAX_CTX )
+            return 0;
+        if( !this->shared_ctx[ this->last_ctx ] )
+            return 0;
+
+        r = new dpapi_x11_opengl1o5_context( al, &this->gl, &this->shared_ctx[ this->last_ctx ] );
+
+        if( r )
+            this->last_ctx++;
+        return r;
     }
 
 }

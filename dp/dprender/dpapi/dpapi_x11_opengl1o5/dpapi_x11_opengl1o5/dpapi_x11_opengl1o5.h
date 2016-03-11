@@ -32,14 +32,22 @@ namespace dp
 
     protected:
 
+        //generate writelock
+        virtual dpshared_writelock *genWriteLock( dpmutex_writelock *ml );
         //override to load opengl library
         virtual bool loadGL( dpwindow_writelock *wl, dpapi_opengl1o5_writelock *al );
         //override to handle loading of function pointers
         virtual void *loadFunction( dpwindow_writelock *wl, dpapi_opengl1o5_writelock *al, const char *cname );
         //override to provide pointer to gl function pointers
         virtual opengl1o5_lib_functions *getGL( void );
-        //override to handle end of frame
-        virtual void onFrameEnd( void );
+        //return x11 display
+        x11_window_Display *getDisplay( void );
+        //return x11 window
+        x11_window_Window *getWindow( void );
+        //return x11 visual
+        x11_window_XVisualInfo *getVisual( void );
+        //override to generate rendering context
+        virtual dpapi_context *makeContext( dpapi_writelock *al );
 
     public:
 
@@ -47,6 +55,8 @@ namespace dp
         dpapi_x11_opengl1o5( unsigned int w, unsigned int h, const char *cname );
         //dtor
         virtual ~dpapi_x11_opengl1o5( void );
+
+        friend class dpapi_x11_opengl1o5_writelock;
 
     };
 
