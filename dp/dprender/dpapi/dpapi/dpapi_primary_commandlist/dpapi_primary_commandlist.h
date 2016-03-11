@@ -48,17 +48,17 @@ namespace dp
         virtual dpshared_ref *genRef( std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync );
 
         //generate clear color buffer command
-        virtual dpapi_primary_commandlist_command *genCommandClearColor( float r, float g, float b, float a );
+        virtual dpapi_primary_commandlist_command *genCommandClearColor( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, float r, float g, float b, float a );
         //generate clear depth buffer command
-        virtual dpapi_primary_commandlist_command *genCommandClearDepth( float d );
+        virtual dpapi_primary_commandlist_command *genCommandClearDepth( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, float d );
         //generate start renderpass command
-        virtual dpapi_primary_commandlist_command *genCommandRenderpassStart( dpapi_renderpass *rp );
+        virtual dpapi_primary_commandlist_command *genCommandRenderpassStart( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, dpapi_renderpass *rp );
         //generate end renderpass command
-        virtual dpapi_primary_commandlist_command *genCommandRenderpassEnd( void );
+        virtual dpapi_primary_commandlist_command *genCommandRenderpassEnd( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl );
         //generate commandlist command
-        virtual dpapi_primary_commandlist_command *genCommandCommandList( dpapi_commandlist *cl );
+        virtual dpapi_primary_commandlist_command *genCommandCommandList( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, dpapi_commandlist *cl );
         //generate swap buffers command
-        virtual dpapi_primary_commandlist_command *genCommandSwapBuffers( void );
+        virtual dpapi_primary_commandlist_command *genCommandSwapBuffers( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl );
 
         //clear commandlist and make ready for new commands / record mode
         virtual bool clearAndRecord( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl );
@@ -68,17 +68,17 @@ namespace dp
         virtual bool execute( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl );
 
         //add clear color buffer command
-        virtual bool clearColor( float r, float g, float b, float a );
+        virtual bool clearColor( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, float r, float g, float b, float a );
         //add clear depth buffer command
-        virtual bool clearDepth( float d );
+        virtual bool clearDepth( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, float d );
         //add begin renderpass command
-        virtual bool startRenderpass( dpapi_renderpass *rp );
+        virtual bool startRenderpass( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, dpapi_renderpass *rp );
         //add end renderpass command
-        virtual bool endRenderpass( void );
+        virtual bool endRenderpass( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl );
         //add commandlist command
-        virtual bool addCommandList( dpapi_commandlist *cl );
+        virtual bool addCommandList( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, dpapi_commandlist *cl );
         //add swap buffers
-        virtual bool swapBuffers( void );
+        virtual bool swapBuffers( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl );
 
     public:
 

@@ -40,17 +40,17 @@ namespace dp
         //execute commands
         bool execute( dpapi_context_writelock *ctxl );
         //add clear color buffer command
-        bool clearColor( float r, float g, float b, float a );
+        bool clearColor( dpapi_context_writelock *ctxl, float r, float g, float b, float a );
         //add clear depth buffer command
-        bool clearDepth( float d );
+        bool clearDepth( dpapi_context_writelock *ctxl, float d );
         //add begin renderpass command
-        bool startRenderpass( dpapi_renderpass *rp );
+        bool startRenderpass( dpapi_context_writelock *ctxl, dpapi_renderpass *rp );
         //add end renderpass command
-        bool endRenderpass( void );
+        bool endRenderpass( dpapi_context_writelock *ctxl );
         //add commandlist command
-        bool addCommandList( dpapi_commandlist *cl );
+        bool addCommandList( dpapi_context_writelock *ctxl, dpapi_commandlist *cl );
         //add swap buffers
-        bool swapBuffers( void );
+        bool swapBuffers( dpapi_context_writelock *ctxl );
 
     };
 

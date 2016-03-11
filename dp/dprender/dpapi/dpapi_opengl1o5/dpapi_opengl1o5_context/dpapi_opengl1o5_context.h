@@ -7,6 +7,7 @@
 #define dpapi_opengl1o5_context_h
 
 #include "../../dpapi/dpapi_context/dpapi_context.h"
+#include "../dpapi_opengl1o5/dpapi_opengl1o5_functions.h"
 
 namespace dp
 {
@@ -18,6 +19,7 @@ namespace dp
 
     private:
 
+        opengl1o5_lib_functions *gl;
 
     protected:
 
@@ -29,11 +31,13 @@ namespace dp
         virtual dpshared_ref *genRef( std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync );
         //generate renderpass
         virtual dpapi_renderpass *makeRenderpass( dpapi_opengl1o5_context_writelock *l );
+        //generate primary commandlist
+        virtual dpapi_primary_commandlist *makePrimaryCommandList( dpapi_context_writelock *l );
 
     public:
 
         //ctor
-        dpapi_opengl1o5_context( dpapi_writelock *awl );
+        dpapi_opengl1o5_context( dpapi_writelock *awl, opengl1o5_lib_functions *gl );
         //dtor
         virtual ~dpapi_opengl1o5_context( void );
 

@@ -74,7 +74,7 @@ namespace dp
 
         this->dpshared::onRun( wl );
 
-        wndl = (dpwindow_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->w, 100 );
+        wndl = (dpwindow_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->w, 3 );
 
         if( wndl )
         {
@@ -82,7 +82,7 @@ namespace dp
             b = wndl->isOpen();
 
             if( !this->bIsStarted && b )
-                this->bIsOpen = this->initApi( wndl, (dpapi_writelock *)wl );
+                this->bIsStarted = this->bIsOpen = this->initApi( wndl, (dpapi_writelock *)wl );
 
             this->bIsOpen &= b;
 
@@ -109,7 +109,6 @@ namespace dp
     void dpapi::runApi( dpapi_writelock *al )
     {
         this->onFrameStart();
-
         this->onFrameEnd();
     }
 

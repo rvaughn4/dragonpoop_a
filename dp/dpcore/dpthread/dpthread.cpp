@@ -107,7 +107,7 @@ namespace dp
 
         if( !this->getClosestRunTime( &rt ) )
         {
-            this->t_delay = 200;
+            this->t_delay = 10;
             return;
         }
 
@@ -145,7 +145,7 @@ namespace dp
             if( !tr->isLinked() )
                 return;
 
-            tl = (dpthread_writelock *)dpshared_guard_tryWriteLock_timeout( g, tr, 100 + tms );
+            tl = (dpthread_writelock *)dpshared_guard_tryWriteLock_timeout( g, tr, tms );
             if( !tl )
             {
                 std::this_thread::sleep_for( std::chrono::milliseconds( tms ) );

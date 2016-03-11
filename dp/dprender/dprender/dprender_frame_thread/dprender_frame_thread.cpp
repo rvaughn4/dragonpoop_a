@@ -90,7 +90,11 @@ namespace dp
         std::cout << "Render Frame: Primary command buffer cleared.\r\n";
 #endif // defined
 
-/////
+        cll->clearColor( ctxl, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX );
+        cll->clearDepth( ctxl, 1 );
+
+
+        cll->swapBuffers( ctxl );
 
         if( !cll->compile( ctxl ) )
             return 1;

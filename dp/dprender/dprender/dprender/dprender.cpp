@@ -84,10 +84,9 @@ namespace dp
         std::atomic<bool> *pflag;
         dpshared_guard g;
         dpapi_writelock *apil;
-        unsigned int f;
         uint64_t tn;
 
-        apil = (dpapi_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->api, 30 );
+        apil = (dpapi_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->api, 3 );
         if( apil )
         {
             apil->run();
@@ -123,7 +122,7 @@ namespace dp
         this->f_last_t++;
         if( this->t_last_f + 100 < tn )
         {
-            this->fps = ( this->fps + this->f_last_t * 10 ) / 2;
+            this->fps = this->f_last_t * 10;
             this->t_last_f = tn;
             this->f_last_t = 0;
         }

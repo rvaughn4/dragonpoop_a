@@ -41,39 +41,39 @@ namespace dp
     }
 
     //add clear color buffer command
-    bool dpapi_primary_commandlist_writelock::clearColor( float r, float g, float b, float a )
+    bool dpapi_primary_commandlist_writelock::clearColor( dpapi_context_writelock *ctxl, float r, float g, float b, float a )
     {
-        return this->p->clearColor( r, g, b, a );
+        return this->p->clearColor( this, ctxl, r, g, b, a );
     }
 
     //add clear depth buffer command
-    bool dpapi_primary_commandlist_writelock::clearDepth( float d )
+    bool dpapi_primary_commandlist_writelock::clearDepth( dpapi_context_writelock *ctxl, float d )
     {
-        return this->p->clearDepth( d );
+        return this->p->clearDepth( this, ctxl, d );
     }
 
     //add begin renderpass command
-    bool dpapi_primary_commandlist_writelock::startRenderpass( dpapi_renderpass *rp )
+    bool dpapi_primary_commandlist_writelock::startRenderpass( dpapi_context_writelock *ctxl, dpapi_renderpass *rp )
     {
-        return this->p->startRenderpass( rp );
+        return this->p->startRenderpass( this, ctxl, rp );
     }
 
     //add end renderpass command
-    bool dpapi_primary_commandlist_writelock::endRenderpass( void )
+    bool dpapi_primary_commandlist_writelock::endRenderpass( dpapi_context_writelock *ctxl )
     {
-        return this->p->endRenderpass();
+        return this->p->endRenderpass( this, ctxl );
     }
 
     //add commandlist command
-    bool dpapi_primary_commandlist_writelock::addCommandList( dpapi_commandlist *cl )
+    bool dpapi_primary_commandlist_writelock::addCommandList( dpapi_context_writelock *ctxl, dpapi_commandlist *cl )
     {
-        return this->p->addCommandList( cl );
+        return this->p->addCommandList( this, ctxl, cl );
     }
 
     //add swap buffers
-    bool dpapi_primary_commandlist_writelock::swapBuffers( void )
+    bool dpapi_primary_commandlist_writelock::swapBuffers( dpapi_context_writelock *ctxl )
     {
-        return this->p->swapBuffers();
+        return this->p->swapBuffers( this, ctxl );
     }
 
 }

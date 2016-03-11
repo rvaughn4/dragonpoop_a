@@ -7,6 +7,8 @@
 #include "dpapi_opengl1o5_ref.h"
 #include "dpapi_opengl1o5_readlock.h"
 #include "dpapi_opengl1o5_writelock.h"
+#include "../dpapi_opengl1o5_context/dpapi_opengl1o5_context.h"
+
 #include <sstream>
 
 namespace dp
@@ -154,7 +156,7 @@ namespace dp
     //override to generate rendering context
     dpapi_context *dpapi_opengl1o5::makeContext( dpapi_writelock *al )
     {
-        return this->dpapi::makeContext( al );
+        return new dpapi_opengl1o5_context( al, &this->gl );
     }
 
     //override to load opengl library
@@ -172,7 +174,7 @@ namespace dp
     //override to provide pointer to gl function pointers
     opengl1o5_lib_functions *dpapi_opengl1o5::getGL( void )
     {
-        return 0;
+        return &this->gl;
     }
 
     //override to handle end of frame
@@ -184,9 +186,7 @@ namespace dp
     //override to handle start of frame
     void dpapi_opengl1o5::onFrameStart( void )
     {
-        this->gl.glClearDepth( 1.0 );
-        this->gl.glClearColor( 1, 1, 1, 1 );
-        this->gl.glClear( opengl1o5_lib_COLOR_BUFFER_BIT | opengl1o5_lib_DEPTH_BUFFER_BIT );
+
     }
 
 }

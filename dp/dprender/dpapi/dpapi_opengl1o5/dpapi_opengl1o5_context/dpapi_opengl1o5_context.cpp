@@ -7,14 +7,15 @@
 #include "dpapi_opengl1o5_context_ref.h"
 #include "dpapi_opengl1o5_context_readlock.h"
 #include "dpapi_opengl1o5_context_writelock.h"
+#include "../dpapi_opengl1o5_primary_commandlist/dpapi_opengl1o5_primary_commandlist.h"
 
 namespace dp
 {
 
     //ctor
-    dpapi_opengl1o5_context::dpapi_opengl1o5_context( dpapi_writelock *awl ) : dpapi_context( awl )
+    dpapi_opengl1o5_context::dpapi_opengl1o5_context( dpapi_writelock *awl, opengl1o5_lib_functions *gl ) : dpapi_context( awl )
     {
-
+        this->gl = gl;
     }
 
     //dtor
@@ -45,6 +46,12 @@ namespace dp
     dpapi_renderpass *dpapi_opengl1o5_context::makeRenderpass( dpapi_opengl1o5_context_writelock *l )
     {
         return 0;
+    }
+
+    //generate primary commandlist
+    dpapi_primary_commandlist *dpapi_opengl1o5_context::makePrimaryCommandList( dpapi_context_writelock *l )
+    {
+        return new dpapi_opengl1o5_primary_commandlist( l, this->gl );
     }
 
 }

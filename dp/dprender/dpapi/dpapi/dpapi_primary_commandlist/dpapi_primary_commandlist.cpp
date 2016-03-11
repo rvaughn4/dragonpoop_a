@@ -7,7 +7,10 @@
 #include "dpapi_primary_commandlist_ref.h"
 #include "dpapi_primary_commandlist_readlock.h"
 #include "dpapi_primary_commandlist_writelock.h"
-#include "../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command.h"
+#include "../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command.h"
+#include "../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_clearcolor/dpapi_primary_commandlist_command_clearcolor.h"
+#include "../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_cleardepth/dpapi_primary_commandlist_command_cleardepth.h"
+#include "../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_swapbuffers/dpapi_primary_commandlist_command_swapbuffers.h"
 
 namespace dp
 {
@@ -118,39 +121,39 @@ namespace dp
     }
 
     //generate clear color buffer command
-    dpapi_primary_commandlist_command *dpapi_primary_commandlist::genCommandClearColor( float r, float g, float b, float a )
+    dpapi_primary_commandlist_command *dpapi_primary_commandlist::genCommandClearColor( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, float r, float g, float b, float a )
     {
-        return 0;
+        return new dpapi_primary_commandlist_command_clearcolor( l, ctxl, r, g, b, a );
     }
 
     //generate clear depth buffer command
-    dpapi_primary_commandlist_command *dpapi_primary_commandlist::genCommandClearDepth( float d )
+    dpapi_primary_commandlist_command *dpapi_primary_commandlist::genCommandClearDepth( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, float d )
     {
-        return 0;
+        return new dpapi_primary_commandlist_command_cleardepth( l, ctxl, d );
     }
 
     //generate start renderpass command
-    dpapi_primary_commandlist_command *dpapi_primary_commandlist::genCommandRenderpassStart( dpapi_renderpass *rp )
+    dpapi_primary_commandlist_command *dpapi_primary_commandlist::genCommandRenderpassStart( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, dpapi_renderpass *rp )
     {
         return 0;
     }
 
     //generate end renderpass command
-    dpapi_primary_commandlist_command *dpapi_primary_commandlist::genCommandRenderpassEnd( void )
+    dpapi_primary_commandlist_command *dpapi_primary_commandlist::genCommandRenderpassEnd( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl )
     {
         return 0;
     }
 
     //generate commandlist command
-    dpapi_primary_commandlist_command *dpapi_primary_commandlist::genCommandCommandList( dpapi_commandlist *cl )
+    dpapi_primary_commandlist_command *dpapi_primary_commandlist::genCommandCommandList( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, dpapi_commandlist *cl )
     {
         return 0;
     }
 
     //generate swap buffers command
-    dpapi_primary_commandlist_command *dpapi_primary_commandlist::genCommandSwapBuffers( void )
+    dpapi_primary_commandlist_command *dpapi_primary_commandlist::genCommandSwapBuffers( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl )
     {
-        return 0;
+        return new dpapi_primary_commandlist_command_swapbuffers( l, ctxl );
     }
 
     //clear commandlist and make ready for new commands / record mode
@@ -173,50 +176,50 @@ namespace dp
     }
 
     //add clear color buffer command
-    bool dpapi_primary_commandlist::clearColor( float r, float g, float b, float a )
+    bool dpapi_primary_commandlist::clearColor( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, float r, float g, float b, float a )
     {
         dpapi_primary_commandlist_command *c;
-        c = this->genCommandClearColor( r, g, b, a );
+        c = this->genCommandClearColor( l, ctxl, r, g, b, a );
         return this->addCommand( c );
     }
 
     //add clear depth buffer command
-    bool dpapi_primary_commandlist::clearDepth( float d )
+    bool dpapi_primary_commandlist::clearDepth( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, float d )
     {
         dpapi_primary_commandlist_command *c;
-        c = this->genCommandClearDepth( d );
+        c = this->genCommandClearDepth( l, ctxl, d );
         return this->addCommand( c );
     }
 
     //add begin renderpass command
-    bool dpapi_primary_commandlist::startRenderpass( dpapi_renderpass *rp )
+    bool dpapi_primary_commandlist::startRenderpass( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, dpapi_renderpass *rp )
     {
         dpapi_primary_commandlist_command *c;
-        c = this->genCommandRenderpassStart( rp );
+        c = this->genCommandRenderpassStart( l, ctxl, rp );
         return this->addCommand( c );
     }
 
     //add end renderpass command
-    bool dpapi_primary_commandlist::endRenderpass( void )
+    bool dpapi_primary_commandlist::endRenderpass( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl )
     {
         dpapi_primary_commandlist_command *c;
-        c = this->genCommandRenderpassEnd();
+        c = this->genCommandRenderpassEnd( l, ctxl );
         return this->addCommand( c );
     }
 
     //add commandlist command
-    bool dpapi_primary_commandlist::addCommandList( dpapi_commandlist *cl )
+    bool dpapi_primary_commandlist::addCommandList( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, dpapi_commandlist *cl )
     {
         dpapi_primary_commandlist_command *c;
-        c = this->genCommandCommandList( cl );
+        c = this->genCommandCommandList( l, ctxl, cl );
         return this->addCommand( c );
     }
 
     //add swap buffers
-    bool dpapi_primary_commandlist::swapBuffers( void )
+    bool dpapi_primary_commandlist::swapBuffers( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl )
     {
         dpapi_primary_commandlist_command *c;
-        c = this->genCommandSwapBuffers();
+        c = this->genCommandSwapBuffers( l, ctxl );
         return this->addCommand( c );
     }
 
