@@ -688,7 +688,7 @@
 	"../../dpapi/dpapi_context/dpapi_context_writelock.h"
 	"../../dpapi/dpapi_context/dpapi_context.h"
 
-1457294202 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist.h
+1457779130 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist.h
 	"../../../../dpcore/dpshared/dpshared.h"
 
 1457293284 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_ref.h
@@ -759,11 +759,8 @@
 1457428291 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_writelock.h
 	"../../../dpcore/dptask/dptask_writelock.h"
 
-1457660445 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.cpp
+1457778195 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.cpp
 	"dprender_frame_thread.h"
-	"dprender_frame_thread_ref.h"
-	"dprender_frame_thread_readlock.h"
-	"dprender_frame_thread_writelock.h"
 	"../../../dpcore/dpshared/dpshared_guard.h"
 	"../../dpapi/dpapi/dpapi/dpapi_factory.h"
 	"../../dpapi/dpapi/dpapi/dpapi.h"
@@ -776,7 +773,7 @@
 	"../../../dpdefines.h"
 	<iostream>
 
-1457604813 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.h
+1457778228 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.h
 	"../../../dpcore/dptask/dptask.h"
 	<atomic>
 

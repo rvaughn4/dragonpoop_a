@@ -4,9 +4,6 @@
 */
 
 #include "dprender_frame_thread.h"
-#include "dprender_frame_thread_ref.h"
-#include "dprender_frame_thread_readlock.h"
-#include "dprender_frame_thread_writelock.h"
 #include "../../../dpcore/dpshared/dpshared_guard.h"
 #include "../../dpapi/dpapi/dpapi/dpapi_factory.h"
 #include "../../dpapi/dpapi/dpapi/dpapi.h"
@@ -43,24 +40,6 @@ namespace dp
     dprender_frame_thread::~dprender_frame_thread( void )
     {
 
-    }
-
-    //generate readlock
-    dpshared_readlock *dprender_frame_thread::genReadLock( dpmutex_readlock *ml )
-    {
-        return new dprender_frame_thread_readlock( this, ml );
-    }
-
-    //generate writelock
-    dpshared_writelock *dprender_frame_thread::genWriteLock( dpmutex_writelock *ml )
-    {
-        return new dprender_frame_thread_writelock( this, ml );
-    }
-
-    //generate ref
-    dpshared_ref *dprender_frame_thread::genRef( std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync )
-    {
-        return new dprender_frame_thread_ref( this, k, t_sync );
     }
 
     //override to do task execution

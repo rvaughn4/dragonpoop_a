@@ -27,12 +27,6 @@ namespace dp
 
     protected:
 
-        //generate readlock
-        virtual dpshared_readlock *genReadLock( dpmutex_readlock *ml );
-        //generate writelock
-        virtual dpshared_writelock *genWriteLock( dpmutex_writelock *ml );
-        //generate ref
-        virtual dpshared_ref *genRef( std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync );
         //override to do task execution
         virtual bool onTaskRun( dptask_writelock *tl );
         //override to do task startup
