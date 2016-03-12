@@ -35,6 +35,12 @@ namespace dp
         uint64_t t_last_f;
         unsigned int fps, f_last_t;
         dprender_scenelink_list scenes;
+        dpshared_guard clg;
+
+        //zero out scenes
+        void zeroScenes( void );
+        //delete scenes
+        void deleteScenes( void );
 
     protected:
 

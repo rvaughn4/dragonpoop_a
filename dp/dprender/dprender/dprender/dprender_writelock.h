@@ -13,6 +13,7 @@ namespace dp
 {
 
     class dprender;
+    class dprender_scene;
 
     class dprender_writelock : public dptask_writelock
     {
@@ -30,6 +31,8 @@ namespace dp
 
         //ctor
         dprender_writelock( dprender *p, dpmutex_writelock *ml );
+        //make scene
+        dprender_scene *makeScene( void );
 
     };
 

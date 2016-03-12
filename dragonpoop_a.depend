@@ -729,7 +729,7 @@
 
 1457346334 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command.h
 
-1457700379 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender.cpp
+1457814431 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender.cpp
 	"dprender.h"
 	"dprender_ref.h"
 	"dprender_readlock.h"
@@ -743,6 +743,7 @@
 	"../../dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist.h"
 	"../../dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_writelock.h"
 	"../dprender_frame_thread/dprender_frame_thread.h"
+	"../dprender_scene/dprender_scene.h"
 	"../../../dpdefines.h"
 	<iostream>
 
@@ -753,7 +754,7 @@
 1457428278 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_readlock.h
 	"../../../dpcore/dptask/dptask_readlock.h"
 
-1457813298 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender.h
+1457815047 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender.h
 	"../../../dpcore/dptask/dptask.h"
 	"dprender_scenelink.h"
 	<atomic>
@@ -765,11 +766,11 @@
 1457428301 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_ref.h
 	"../../../dpcore/dptask/dptask_ref.h"
 
-1457428028 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_writelock.cpp
+1457814678 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_writelock.cpp
 	"dprender_writelock.h"
 	"dprender.h"
 
-1457428291 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_writelock.h
+1457814618 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_writelock.h
 	"../../../dpcore/dptask/dptask_writelock.h"
 
 1457778195 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.cpp

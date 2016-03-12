@@ -13,13 +13,19 @@ namespace dp
     //ctor
     dprender_writelock::dprender_writelock( dprender *p, dpmutex_writelock *ml ) : dptask_writelock( p, ml )
     {
-
+        this->p = p;
     }
 
     //dtor
     dprender_writelock::~dprender_writelock( void )
     {
 
+    }
+
+    //make scene
+    dprender_scene *dprender_writelock::makeScene( void )
+    {
+        return this->p->makeScene( this );
     }
 
 }
