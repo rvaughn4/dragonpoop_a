@@ -11,6 +11,7 @@
 #include "../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_clearcolor/dpapi_primary_commandlist_command_clearcolor.h"
 #include "../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_cleardepth/dpapi_primary_commandlist_command_cleardepth.h"
 #include "../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_swapbuffers/dpapi_primary_commandlist_command_swapbuffers.h"
+#include "../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_commandlist/dpapi_primary_commandlist_command_commandlist.h"
 
 namespace dp
 {
@@ -147,7 +148,7 @@ namespace dp
     //generate commandlist command
     dpapi_primary_commandlist_command *dpapi_primary_commandlist::genCommandCommandList( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, dpapi_commandlist *cl )
     {
-        return 0;
+        return new dpapi_primary_commandlist_command_commandlist( l, ctxl, cl );
     }
 
     //generate swap buffers command

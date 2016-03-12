@@ -29,8 +29,6 @@ namespace dp
         virtual dpapi_primary_commandlist_command *genCommandRenderpassStart( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, dpapi_renderpass *rp );
         //generate end renderpass command
         virtual dpapi_primary_commandlist_command *genCommandRenderpassEnd( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl );
-        //generate commandlist command
-        virtual dpapi_primary_commandlist_command *genCommandCommandList( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, dpapi_commandlist *cl );
         //generate swap buffers command
         virtual dpapi_primary_commandlist_command *genCommandSwapBuffers( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl );
 

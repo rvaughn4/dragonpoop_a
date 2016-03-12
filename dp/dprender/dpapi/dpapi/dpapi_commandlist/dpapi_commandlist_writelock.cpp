@@ -22,6 +22,24 @@ namespace dp
 
     }
 
+    //clear and make commandlist ready to accept commands
+    bool dpapi_commandlist_writelock::clearAndRecord( dpapi_context_writelock *ctx )
+    {
+        return this->p->clearAndRecord( ctx, this );
+    }
+
+    //compile list
+    bool dpapi_commandlist_writelock::compile( dpapi_context_writelock *ctx )
+    {
+        return this->p->compile( ctx, this );
+    }
+
+    //execute list
+    bool dpapi_commandlist_writelock::execute( dpapi_context_writelock *ctx )
+    {
+        return this->p->execute( ctx, this );
+    }
+
 }
 
 

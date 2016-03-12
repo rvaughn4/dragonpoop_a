@@ -47,12 +47,6 @@ namespace dp
         return 0;
     }
 
-    //generate commandlist command
-    dpapi_primary_commandlist_command *dpapi_opengl1o5_primary_commandlist::genCommandCommandList( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, dpapi_commandlist *cl )
-    {
-        return 0;
-    }
-
     //generate swap buffers command
     dpapi_primary_commandlist_command *dpapi_opengl1o5_primary_commandlist::genCommandSwapBuffers( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl )
     {
