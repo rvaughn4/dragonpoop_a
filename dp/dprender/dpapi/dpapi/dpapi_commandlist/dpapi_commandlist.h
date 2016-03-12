@@ -14,6 +14,7 @@ namespace dp
     class dpapi_context_writelock;
     class dpapi_commandlist_writelock;
     class dpapi_commandlist_command;
+    class dpapi_bundle;
     #define dpapi_commandlist_MAX_commands 4096
 
     class dpapi_commandlist : public dpshared
@@ -49,6 +50,10 @@ namespace dp
         virtual bool compile( dpapi_context_writelock *ctx, dpapi_commandlist_writelock *wl );
         //execute list
         virtual bool execute( dpapi_context_writelock *ctx, dpapi_commandlist_writelock *wl );
+        //override to generate bundle command
+        virtual dpapi_commandlist_command *genBundleCommand( dpapi_context_writelock *ctx, dpapi_commandlist_writelock *wl, dpapi_bundle *bdle );
+        //add bundle to commandlist
+        virtual bool addBundle( dpapi_context_writelock *ctx, dpapi_commandlist_writelock *wl, dpapi_bundle *bdle );
 
     public:
 

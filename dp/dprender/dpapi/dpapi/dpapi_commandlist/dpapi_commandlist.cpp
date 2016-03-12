@@ -8,6 +8,7 @@
 #include "dpapi_commandlist_readlock.h"
 #include "dpapi_commandlist_writelock.h"
 #include "../dpapi_commandlist_command/dpapi_commandlist_command/dpapi_commandlist_command.h"
+#include "../dpapi_commandlist_command/dpapi_commandlist_command_bundle/dpapi_commandlist_command_bundle.h"
 
 namespace dp
 {
@@ -134,6 +135,28 @@ namespace dp
     bool dpapi_commandlist::execute( dpapi_context_writelock *ctx, dpapi_commandlist_writelock *wl )
     {
         return this->executeCommands( wl, ctx );
+    }
+
+    //override to generate bundle command
+    dpapi_commandlist_command *dpapi_commandlist::genBundleCommand( dpapi_context_writelock *ctx, dpapi_commandlist_writelock *wl, dpapi_bundle *bdle )
+    {
+        return new dpapi_commandlist_command_bundle( wl, ctx, bdle );
+    }
+
+    //add bundle to commandlist
+    bool dpapi_commandlist::addBundle( dpapi_context_writelock *ctx, dpapi_commandlist_writelock *wl, dpapi_bundle *bdle )
+    {
+        dpapi_commandlist_command *nc;
+
+        nc = this->genBundleCommand( ctx, wl, bdle );
+        if( !nc )
+            return 0;
+
+        if( this->addCommand( nc ) )
+            return 1;
+
+        delete nc;
+        return 0;
     }
 
 }
