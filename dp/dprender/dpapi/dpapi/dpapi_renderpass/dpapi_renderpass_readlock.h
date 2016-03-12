@@ -13,8 +13,6 @@ namespace dp
 {
 
     class dpapi_renderpass;
-    class dpmutex_readlock;
-    class dpapi_renderpass_ref;
 
     class dpapi_renderpass_readlock : public dpshared_readlock
     {

@@ -16,6 +16,7 @@
 #include "../../dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist.h"
 #include "../../dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_writelock.h"
 #include "../dprender_frame_thread/dprender_frame_thread.h"
+#include "../dprender_scene/dprender_scene.h"
 #include "../../../dpdefines.h"
 
 #if defined dprender_debug
@@ -244,6 +245,16 @@ namespace dp
         }
 
         return 0;
+    }
+
+    //make scene
+    dprender_scene *dprender::makeScene( dprender_writelock *wl )
+    {
+        dprender_scene *r;
+
+        r = new dprender_scene( wl );
+
+        return r;
     }
 
 }

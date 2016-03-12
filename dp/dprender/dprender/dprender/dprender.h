@@ -7,6 +7,7 @@
 #define dprender_h
 
 #include "../../../dpcore/dptask/dptask.h"
+#include "dprender_scenelink.h"
 #include <atomic>
 
 namespace dp
@@ -18,6 +19,7 @@ namespace dp
     class dpapi_context;
     class dpapi_primary_commandlist;
     class dprender_frame_thread;
+    class dprender_scene;
 
     class dprender : public dptask
     {
@@ -32,6 +34,7 @@ namespace dp
         dprender_frame_thread *frametask;
         uint64_t t_last_f;
         unsigned int fps, f_last_t;
+        dprender_scenelink_list scenes;
 
     protected:
 
@@ -47,6 +50,8 @@ namespace dp
         virtual bool onTaskStart( dptask_writelock *tl );
         //override to do task shutdown
         virtual bool onTaskStop( dptask_writelock *tl );
+        //make scene
+        dprender_scene *makeScene( dprender_writelock *wl );
 
     public:
 

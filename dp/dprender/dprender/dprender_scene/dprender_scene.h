@@ -3,22 +3,21 @@
 
 */
 
-#ifndef dpapi_renderpass_h
-#define dpapi_renderpass_h
+#ifndef dprender_scene_h
+#define dprender_scene_h
 
-#include "../../../../dpcore/dpshared/dpshared.h"
+#include "../../../dpcore/dpshared/dpshared.h"
 
 namespace dp
 {
 
-    class dpapi_renderpass_writelock;
-    class dpapi_context_writelock;
+    class dprender_scene_writelock;
+    class dprender_writelock;
 
-    class dpapi_renderpass : public dpshared
+    class dprender_scene : public dpshared
     {
 
     private:
-
 
     protected:
 
@@ -32,12 +31,12 @@ namespace dp
     public:
 
         //ctor
-        dpapi_renderpass( dpapi_context_writelock *awl );
+        dprender_scene( dprender_writelock *rl );
         //dtor
-        virtual ~dpapi_renderpass( void );
+        virtual ~dprender_scene( void );
 
-        friend class dpapi_renderpass_writelock;
-        friend class dpapi_renderpass_readlock;
+        friend class dprender_scene_writelock;
+        friend class dprender_scene_readlock;
     };
 
 }
