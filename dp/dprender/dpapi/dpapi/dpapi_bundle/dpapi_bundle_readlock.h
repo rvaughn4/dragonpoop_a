@@ -17,9 +17,9 @@ namespace dp
     class dpapi_bundle_readlock : public dpshared_readlock
     {
 
-        dpapi_bundle *p;
-
     private:
+
+        dpapi_bundle *p;
 
     protected:
 
