@@ -43,6 +43,22 @@
 		</Linker>
 		<Unit filename="dp/dp.cpp" />
 		<Unit filename="dp/dp.h" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer/dpbuffer.cpp" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer/dpbuffer.h" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.cpp" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.h" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared.cpp" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared.h" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_readlock.cpp" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_readlock.h" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_ref.cpp" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_ref.h" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_writelock.cpp" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_writelock.h" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.cpp" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.h" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.cpp" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.h" />
 		<Unit filename="dp/dpcore/dpmutex/dpmutex.cpp" />
 		<Unit filename="dp/dpcore/dpmutex/dpmutex.h" />
 		<Unit filename="dp/dpcore/dpmutex/dpmutex_readlock.cpp" />
@@ -275,6 +291,14 @@
 		<Unit filename="dp/dprender/dprender/dprender_scene/dprender_scene_ref.h" />
 		<Unit filename="dp/dprender/dprender/dprender_scene/dprender_scene_writelock.cpp" />
 		<Unit filename="dp/dprender/dprender/dprender_scene/dprender_scene_writelock.h" />
+		<Unit filename="dp/dprender/dpvertex/dpindex.h" />
+		<Unit filename="dp/dprender/dpvertex/dpindexbuffer.cpp" />
+		<Unit filename="dp/dprender/dpvertex/dpindexbuffer.h" />
+		<Unit filename="dp/dprender/dpvertex/dpvarbuffer.cpp" />
+		<Unit filename="dp/dprender/dpvertex/dpvarbuffer.h" />
+		<Unit filename="dp/dprender/dpvertex/dpvertex.h" />
+		<Unit filename="dp/dprender/dpvertex/dpvertexbuffer.cpp" />
+		<Unit filename="dp/dprender/dpvertex/dpvertexbuffer.h" />
 		<Unit filename="dp/dprender/dpwindow/dpwindow/dpwindow.cpp" />
 		<Unit filename="dp/dprender/dpwindow/dpwindow/dpwindow.h" />
 		<Unit filename="dp/dprender/dpwindow/dpwindow/dpwindow_factory.cpp" />

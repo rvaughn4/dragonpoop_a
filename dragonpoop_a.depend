@@ -1185,7 +1185,11 @@
 1458178633 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.cpp
 	"dpbuffer_dynamic.h"
 
-1458170711 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared.cpp
+1458371753 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared.cpp
+	"dpbuffer_shared.h"
+	"dpbuffer_shared_ref.h"
+	"dpbuffer_shared_readlock.h"
+	"dpbuffer_shared_writelock.h"
 
 1458180881 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_readlock.cpp
 	"dpbuffer_shared_readlock.h"
@@ -1202,9 +1206,11 @@
 1458177151 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.cpp
 	"dpbuffer_static.h"
 
-1458169158 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpindexbuffer.cpp
+1458373495 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpindexbuffer.cpp
+	"dpindexbuffer.h"
 
-1458170162 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpvarbuffer.cpp
+1458373146 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpvarbuffer.cpp
+	"dpvarbuffer.h"
 
 1458169146 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpvertexbuffer.cpp
 
@@ -1221,10 +1227,10 @@
 1458177922 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.h
 	"../dpbuffer/dpbuffer.h"
 
-1458179880 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.cpp
+1458373037 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.cpp
 	"dpbuffer_wrapper.h"
 
-1458181053 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.h
+1458372981 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.h
 	"../dpbuffer/dpbuffer.h"
 
 1458180990 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_readlock.h
@@ -1241,4 +1247,15 @@
 1458180825 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_writelock.h
 	"../../dpshared/dpshared_writelock.h"
 	"../dpbuffer_wrapper/dpbuffer_wrapper.h"
+
+1458373637 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpvarbuffer.h
+	"../../dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.h"
+	"../../dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.h"
+
+1458373587 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpindexbuffer.h
+	"dpvarbuffer.h"
+	"dpindex.h"
+
+1458169805 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpindex.h
+	<stdint.h>
 

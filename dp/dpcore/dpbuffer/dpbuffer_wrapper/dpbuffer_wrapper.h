@@ -26,6 +26,10 @@ namespace dp
         virtual unsigned int _getSize( void );
         //auto resize buffer if necessary so that buffer extends to or past byte offset given (override)
         virtual bool _autoResize( unsigned int sz );
+        //ctor
+        dpbuffer_wrapper( void );
+        //set wrapped
+        void setWrapped( dpbuffer *b );
 
     public:
 

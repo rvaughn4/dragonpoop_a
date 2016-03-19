@@ -14,10 +14,22 @@ namespace dp
         this->b = b;
     }
 
+    //ctor
+    dpbuffer_wrapper::dpbuffer_wrapper( void )
+    {
+        this->b = 0;
+    }
+
     //dtor
     dpbuffer_wrapper::~dpbuffer_wrapper( void )
     {
 
+    }
+
+    //set wrapped
+    void dpbuffer_wrapper::setWrapped( dpbuffer *b )
+    {
+        this->b = b;
     }
 
     //returns buffer
