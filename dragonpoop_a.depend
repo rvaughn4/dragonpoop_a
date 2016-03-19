@@ -687,7 +687,7 @@
 	"dpapi_primary_commandlist_writelock.h"
 	"dpapi_primary_commandlist.h"
 
-1457661058 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context.h
+1458428151 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context.h
 	"../../dpapi/dpapi_context/dpapi_context.h"
 	"../dpapi_opengl1o5/dpapi_opengl1o5_functions.h"
 
@@ -1222,7 +1222,7 @@
 1458427207 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer/dpbuffer.h
 	<stdint.h>
 
-1458427022 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer/dpbuffer.cpp
+1458427452 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer/dpbuffer.cpp
 	"dpbuffer.h"
 	"../dpbuffer_static/dpbuffer_static.h"
 
@@ -1267,4 +1267,35 @@
 
 1458169920 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpvertex.h
 	<stdint.h>
+
+1458428080 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.cpp
+	"dpapi_opengl1o5_vertexbuffer.h"
+	"dpapi_opengl1o5_vertexbuffer_ref.h"
+	"dpapi_opengl1o5_vertexbuffer_readlock.h"
+	"dpapi_opengl1o5_vertexbuffer_writelock.h"
+	"../dpapi_opengl1o5_context/dpapi_opengl1o5_context_writelock.h"
+
+1458427750 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.h
+	"../../dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer.h"
+
+1458427893 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_ref.h
+	"../../dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer_ref.h"
+
+1458427813 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_readlock.h
+	"../../dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer_readlock.h"
+
+1458427836 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_writelock.h
+	"../../dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer_writelock.h"
+
+1458428095 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_readlock.cpp
+	"dpapi_opengl1o5_vertexbuffer_readlock.h"
+	"dpapi_opengl1o5_vertexbuffer.h"
+
+1458428109 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_ref.cpp
+	"dpapi_opengl1o5_vertexbuffer_ref.h"
+	"dpapi_opengl1o5_vertexbuffer.h"
+
+1458428123 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_writelock.cpp
+	"dpapi_opengl1o5_vertexbuffer_writelock.h"
+	"dpapi_opengl1o5_vertexbuffer.h"
 
