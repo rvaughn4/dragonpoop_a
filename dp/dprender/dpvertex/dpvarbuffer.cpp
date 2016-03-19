@@ -109,6 +109,16 @@ namespace dp
         return this->read( b, sz );
     }
 
+    //return count of elements
+    unsigned int dpvarbuffer::getCount( void )
+    {
+        if( !this->sz_element )
+            this->sz_element = this->_getElementSize();
+        if( !this->sz_element )
+            return 0;
+        return this->getSize() / this->sz_element;
+    }
+
 };
 
 

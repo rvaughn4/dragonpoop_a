@@ -13,6 +13,7 @@ namespace dp
 
     class dpapi_vertexbuffer_writelock;
     class dpapi_context_writelock;
+    class dpvertexbuffer;
 
     class dpapi_vertexbuffer : public dpshared
     {
@@ -32,7 +33,7 @@ namespace dp
     public:
 
         //ctor
-        dpapi_vertexbuffer( dpapi_context_writelock *ctx );
+        dpapi_vertexbuffer( dpapi_context_writelock *ctx, dpvertexbuffer *vb );
         //dtor
         virtual ~dpapi_vertexbuffer( void );
 

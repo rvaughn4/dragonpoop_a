@@ -17,7 +17,7 @@ namespace dp
 
     private:
 
-        unsigned int cnt, sz_element;
+        unsigned int sz_element;
         dpbuffer_dynamic b;
 
     protected:
@@ -39,6 +39,8 @@ namespace dp
         bool write( char *b, unsigned int sz, unsigned int index );
         //read bytes from bufffer at index
         bool read( char *b, unsigned int sz, unsigned int index );
+        //return count of elements
+        unsigned int getCount( void );
 
     };
 

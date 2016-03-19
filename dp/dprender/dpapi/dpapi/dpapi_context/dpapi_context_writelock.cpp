@@ -40,6 +40,12 @@ namespace dp
         return this->p->makeCommandList( this );
     }
 
+    //generate vertex buffer
+    dpapi_vertexbuffer *dpapi_context_writelock::makeVertexBuffer( dpvertexbuffer *vb )
+    {
+        return this->p->makeVertexBuffer( this, vb );
+    }
+
 }
 
 

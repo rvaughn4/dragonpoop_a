@@ -84,6 +84,12 @@ namespace dp
             virtual bool writeAlignedBytes( char *b, unsigned int sz );
             //write aligned bytes from buffer until cnt bytes are written
             virtual bool writeAlignedBytes( char *b, unsigned int sz, unsigned int cnt );
+            //return size in bytes
+            unsigned int getSize( void );
+            //return size in bits
+            unsigned int getSizeBits( void );
+            //copy buffer into this buffer
+            void copy( dpbuffer *b );
 
         };
 

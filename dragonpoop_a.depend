@@ -459,7 +459,7 @@
 1457809734 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi_writelock.h
 	"../../../../dpcore/dpshared/dpshared_writelock.h"
 
-1457344121 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context.cpp
+1458426612 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context.cpp
 	"dpapi_context.h"
 	"dpapi_context_ref.h"
 	"dpapi_context_readlock.h"
@@ -467,8 +467,9 @@
 	"../dpapi_renderpass/dpapi_renderpass.h"
 	"../dpapi_commandlist/dpapi_commandlist.h"
 	"../dpapi_primary_commandlist/dpapi_primary_commandlist.h"
+	"../dpapi_vertexbuffer/dpapi_vertexbuffer.h"
 
-1457343990 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context.h
+1458426558 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context.h
 	"../../../../dpcore/dpshared/dpshared.h"
 
 1457007010 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_ref.h
@@ -477,7 +478,7 @@
 1457006958 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_readlock.h
 	"../../../../dpcore/dpshared/dpshared_readlock.h"
 
-1457344247 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_writelock.h
+1458426669 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_writelock.h
 	"../../../../dpcore/dpshared/dpshared_writelock.h"
 
 1457007451 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_readlock.cpp
@@ -488,7 +489,7 @@
 	"dpapi_context_ref.h"
 	"dpapi_context.h"
 
-1457344293 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_writelock.cpp
+1458426715 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_writelock.cpp
 	"dpapi_context_writelock.h"
 	"dpapi_context.h"
 
@@ -1086,7 +1087,7 @@
 	"dpapi_texture_writelock.h"
 	"dpapi_texture.h"
 
-1458003218 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer.cpp
+1458426453 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer.cpp
 	"dpapi_vertexbuffer.h"
 	"dpapi_vertexbuffer_ref.h"
 	"dpapi_vertexbuffer_readlock.h"
@@ -1170,7 +1171,7 @@
 1457948227 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture_writelock.h
 	"../../../../dpcore/dpshared/dpshared_writelock.h"
 
-1458003090 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer.h
+1458426442 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer.h
 	"../../../../dpcore/dpshared/dpshared.h"
 
 1458003148 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer_ref.h
@@ -1209,18 +1210,19 @@
 1458373495 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpindexbuffer.cpp
 	"dpindexbuffer.h"
 
-1458373146 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpvarbuffer.cpp
+1458427153 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpvarbuffer.cpp
 	"dpvarbuffer.h"
 
-1458169146 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpvertexbuffer.cpp
+1458373611 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpvertexbuffer.cpp
+	"dpvertexbuffer.h"
 
 1458177469 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.h
 	"../dpbuffer/dpbuffer.h"
 
-1458179138 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer/dpbuffer.h
+1458427207 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer/dpbuffer.h
 	<stdint.h>
 
-1458177384 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer/dpbuffer.cpp
+1458427022 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer/dpbuffer.cpp
 	"dpbuffer.h"
 	"../dpbuffer_static/dpbuffer_static.h"
 
@@ -1248,7 +1250,7 @@
 	"../../dpshared/dpshared_writelock.h"
 	"../dpbuffer_wrapper/dpbuffer_wrapper.h"
 
-1458373637 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpvarbuffer.h
+1458427084 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpvarbuffer.h
 	"../../dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.h"
 	"../../dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.h"
 
@@ -1257,5 +1259,12 @@
 	"dpindex.h"
 
 1458169805 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpindex.h
+	<stdint.h>
+
+1458373561 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpvertexbuffer.h
+	"dpvarbuffer.h"
+	"dpvertex.h"
+
+1458169920 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpvertex.h
 	<stdint.h>
 

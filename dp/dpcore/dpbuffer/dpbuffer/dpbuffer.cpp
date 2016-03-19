@@ -303,6 +303,58 @@ namespace dp
         return this->writeAlignedBytes( &sb, cnt );
     }
 
+    //return size in bytes
+    unsigned int dpbuffer::getSize( void )
+    {
+        unsigned int s, r;
+
+        r = this->write.byte_cursor;
+        s = this->_getSize();
+        if( r > s )
+            r = s;
+
+        return r;
+    }
+
+    //return size in bits
+    unsigned int dpbuffer::getSizeBits( void )
+    {
+        unsigned int s, r;
+
+        r = this->write.bit_cursor;
+        s = this->_getSize() * 8;
+        if( r > s )
+            r = s;
+
+        return r;
+    }
+
+    //copy buffer into this buffer
+    void dpbuffer::copy( dpbuffer *b )
+    {
+        unsigned int s, i, ts;
+        char *bb, *tb;
+
+        s = b->_getSize();
+        bb = b->_getBuffer();
+        if( !s || !bb )
+            return;
+        this->_autoResize( s );
+
+        tb = this->_getBuffer();
+        ts = this->_getSize();
+        if( !tb || !ts )
+            return;
+        if( s > ts )
+            s = ts;
+
+        for( i = 0; i < s; i++ )
+            tb[ i ] = bb[ i ];
+
+        this->write = b->write;
+        this->read = b->read;
+    }
+
 };
 
 

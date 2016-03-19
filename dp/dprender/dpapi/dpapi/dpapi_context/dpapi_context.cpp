@@ -10,6 +10,7 @@
 #include "../dpapi_renderpass/dpapi_renderpass.h"
 #include "../dpapi_commandlist/dpapi_commandlist.h"
 #include "../dpapi_primary_commandlist/dpapi_primary_commandlist.h"
+#include "../dpapi_vertexbuffer/dpapi_vertexbuffer.h"
 
 namespace dp
 {
@@ -60,6 +61,12 @@ namespace dp
     dpapi_commandlist *dpapi_context::makeCommandList( dpapi_context_writelock *l )
     {
         return new dpapi_commandlist( l );
+    }
+
+    //generate vertex buffer
+    dpapi_vertexbuffer *dpapi_context::makeVertexBuffer( dpapi_context_writelock *l, dpvertexbuffer *vb )
+    {
+        return new dpapi_vertexbuffer( l, vb );
     }
 
 }

@@ -18,6 +18,8 @@ namespace dp
     class dpapi_renderpass;
     class dpapi_commandlist;
     class dpapi_primary_commandlist;
+    class dpapi_vertexbuffer;
+    class dpvertexbuffer;
 
     class dpapi_context : public dpshared
     {
@@ -39,6 +41,8 @@ namespace dp
         virtual dpapi_primary_commandlist *makePrimaryCommandList( dpapi_context_writelock *l );
         //generate secondary commandlist
         virtual dpapi_commandlist *makeCommandList( dpapi_context_writelock *l );
+        //generate vertex buffer
+        virtual dpapi_vertexbuffer *makeVertexBuffer( dpapi_context_writelock *l, dpvertexbuffer *vb );
 
     public:
 

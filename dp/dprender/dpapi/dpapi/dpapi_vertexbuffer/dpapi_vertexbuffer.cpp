@@ -12,7 +12,7 @@ namespace dp
 {
 
     //ctor
-    dpapi_vertexbuffer::dpapi_vertexbuffer( dpapi_context_writelock *ctx )
+    dpapi_vertexbuffer::dpapi_vertexbuffer( dpapi_context_writelock *ctx, dpvertexbuffer *vb )
     {
 
     }
