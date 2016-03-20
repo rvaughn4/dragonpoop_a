@@ -9,6 +9,7 @@
 #include "dpapi_opengl1o5_context_writelock.h"
 #include "../dpapi_opengl1o5_primary_commandlist/dpapi_opengl1o5_primary_commandlist.h"
 #include "../dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.h"
+#include "../dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer.h"
 
 namespace dp
 {
@@ -65,6 +66,12 @@ namespace dp
     bool dpapi_opengl1o5_context::makeActive( dpapi_opengl1o5_context_writelock *l )
     {
         return 0;
+    }
+
+    //generate vertex buffer
+    dpapi_indexbuffer *dpapi_opengl1o5_context::makeIndexBuffer( dpapi_context_writelock *l, dpindexbuffer *ib )
+    {
+        return new dpapi_opengl1o5_indexbuffer( (dpapi_opengl1o5_context_writelock *)l, ib, this->gl );
     }
 
 }

@@ -12,6 +12,7 @@
 #include "../dpapi_primary_commandlist/dpapi_primary_commandlist.h"
 #include "../dpapi_vertexbuffer/dpapi_vertexbuffer.h"
 #include "../dpapi_bundle/dpapi_bundle.h"
+#include "../dpapi_indexbuffer/dpapi_indexbuffer.h"
 
 namespace dp
 {
@@ -80,6 +81,12 @@ namespace dp
     dpapi_bundle *dpapi_context::makeBundle( dpapi_context_writelock *ctx, dpapi_bundle *bdle )
     {
         return new dpapi_bundle( ctx, bdle );
+    }
+
+    //generate index buffer
+    dpapi_indexbuffer *dpapi_context::makeIndexBuffer( dpapi_context_writelock *l, dpindexbuffer *ib )
+    {
+        return new dpapi_indexbuffer( l, ib );
     }
 
 }

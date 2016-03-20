@@ -13,6 +13,7 @@ namespace dp
 
     class dpapi_indexbuffer_writelock;
     class dpapi_context_writelock;
+    class dpindexbuffer;
 
     class dpapi_indexbuffer : public dpshared
     {
@@ -32,7 +33,7 @@ namespace dp
     public:
 
         //ctor
-        dpapi_indexbuffer( dpapi_context_writelock *ctx );
+        dpapi_indexbuffer( dpapi_context_writelock *ctx, dpindexbuffer *ib );
         //dtor
         virtual ~dpapi_indexbuffer( void );
 

@@ -90,6 +90,8 @@ namespace dp
             unsigned int getSizeBits( void );
             //copy buffer into this buffer
             void copy( dpbuffer *b );
+            //get pointer to buffer
+            char *getBuffer( void );
 
         };
 

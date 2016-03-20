@@ -355,6 +355,12 @@ namespace dp
         this->read = b->read;
     }
 
+    //get pointer to buffer
+    char *dpbuffer::getBuffer( void )
+    {
+        return this->_getBuffer();
+    }
+
 };
 
 

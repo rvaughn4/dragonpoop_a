@@ -58,6 +58,12 @@ namespace dp
         return this->p->makeBundle( this, bdle );
     }
 
+    //generate index buffer
+    dpapi_indexbuffer *dpapi_context_writelock::makeIndexBuffer( dpindexbuffer *ib )
+    {
+        return this->p->makeIndexBuffer( this, ib );
+    }
+
 }
 
 

@@ -8,6 +8,7 @@
 
 #include "../../dpapi/dpapi_bundle/dpapi_bundle.h"
 #include "../../../dpvertex/dpvertexbuffer.h"
+#include "../../../dpvertex/dpindexbuffer.h"
 #include "../dpapi_opengl1o5/dpapi_opengl1o5_functions.h"
 
 namespace dp
@@ -27,6 +28,7 @@ namespace dp
     private:
 
         dpvertexbuffer vb;
+        dpindexbuffer ib;
         opengl1o5_lib_functions *gl;
 
     protected:
@@ -39,7 +41,7 @@ namespace dp
     public:
 
         //ctor
-        dpapi_opengl1o5_bundle( dpapi_opengl1o5_context_writelock *ctx, dpapi_opengl1o5_vertexbuffer *vb, dpapi_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1, opengl1o5_lib_functions *gl );
+        dpapi_opengl1o5_bundle( dpapi_opengl1o5_context_writelock *ctx, dpapi_opengl1o5_vertexbuffer *vb, dpapi_opengl1o5_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1, opengl1o5_lib_functions *gl );
         //ctor
         dpapi_opengl1o5_bundle( dpapi_opengl1o5_context_writelock *ctx, dpapi_opengl1o5_bundle *bdle );
         //dtor

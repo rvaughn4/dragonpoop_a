@@ -233,6 +233,8 @@
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_ref.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_writelock.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_writelock.h" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_bundle/dpapi_opengl1o5_bundle.cpp" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_bundle/dpapi_opengl1o5_bundle.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_readlock.cpp" />

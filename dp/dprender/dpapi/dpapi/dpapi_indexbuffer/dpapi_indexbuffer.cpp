@@ -12,7 +12,7 @@ namespace dp
 {
 
     //ctor
-    dpapi_indexbuffer::dpapi_indexbuffer( dpapi_context_writelock *ctx )
+    dpapi_indexbuffer::dpapi_indexbuffer( dpapi_context_writelock *ctx, dpindexbuffer *ib )
     {
 
     }

@@ -54,6 +54,7 @@ namespace dp
 #define opengl1o5_lib_UNSIGNED_INT				0x1405
 #define opengl1o5_lib_FLOAT				0x1406
 #define opengl1o5_lib_ARRAY_BUFFER                   0x8892
+#define opengl1o5_lib_ELEMENT_ARRAY_BUFFER           0x8893
 #define opengl1o5_lib_STATIC_DRAW                    0x88E4
     typedef void (* opengl1o5_lib_functions_glGenBuffers )( opengl1o5_lib_GLsizei n, opengl1o5_lib_GLuint *buffers );
     typedef void (* opengl1o5_lib_functions_glBindBuffer )( opengl1o5_lib_GLenum target, opengl1o5_lib_GLuint buffer );
