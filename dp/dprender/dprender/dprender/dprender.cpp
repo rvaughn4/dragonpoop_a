@@ -271,6 +271,19 @@ namespace dp
         return tl->addScene( s, apil, rl );
     }
 
+    //remove scene
+    void dprender::removeScene( dprender_scene *s, dprender_writelock *rl )
+    {
+        dpshared_guard g;
+        dprender_frame_thread_writelock *tl;
+
+        tl = (dprender_frame_thread_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->frametask, 1000 );
+        if( !tl )
+            return;
+
+        tl->removeScene( s, rl );
+    }
+
 }
 
 

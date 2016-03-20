@@ -73,7 +73,8 @@ namespace dp
         //get reference
         dpshared_ref *dpshared::getRef( void )
         {
-            return this->genRef( &this->k, &this->t_sync );
+            dpshared_ref *r = this->genRef( &this->k, &this->t_sync );
+            return r;
         }
 
         //attempt readlock
@@ -529,7 +530,10 @@ namespace dp
 
             l = dpshared_guard_tryWriteLock_timeout( g, this, 5000 );
             ( *this->k ).unlink();
+            g.release( l );
 
+            l = dpshared_guard_tryWriteLock_timeout( g, this, 5000 );
+            ( *this->k ).unlink();
             g.release( l );
         }
 

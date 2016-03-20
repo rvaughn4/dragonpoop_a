@@ -33,6 +33,14 @@ namespace dp
     //dtor
     dprender_scene::~dprender_scene( void )
     {
+        dprender_writelock *rl;
+        dpshared_guard g;
+
+        rl = (dprender_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->rr, 1000 );
+        if( rl )
+            rl->removeScene( this );
+        g.release( rl );
+
         this->waitForStop();
         this->unlink();
         this->deleteTasksAndContexts();

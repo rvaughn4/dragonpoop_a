@@ -10,6 +10,7 @@ object can be deleted while refs are still held
 #include "dpshareddefines.h"
 #include "dpshared_ref_kernel.h"
 #include <memory>
+#include <atomic>
 
 namespace dp
 {
@@ -23,7 +24,7 @@ namespace dp
 
     private:
 
-        dpshared *p;
+        std::atomic<dpshared *>p;
         std::shared_ptr<dpshared_ref_kernel> k;
         std::shared_ptr< std::atomic<uint64_t> > t_sync;
 
@@ -101,9 +102,12 @@ namespace dp
         bool isLinked( void );
         //unlink ref
         void unlink( void );
+        //compares parent
+        bool isParent( dpshared *p );
 
         friend class dpshared_guard;
         friend class dpshared;
+        friend class dpshared_ref_kernel;
     };
 
 }

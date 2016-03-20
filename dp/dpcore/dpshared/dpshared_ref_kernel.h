@@ -8,9 +8,13 @@ handles safe deletion of shared object refs
 
 #include "dpshareddefines.h"
 #include <atomic>
+#include "../dpmutex/dpspinlock.h"
 
 namespace dp
 {
+
+    #define dpshared_ref_kernel_max 64
+    class dpshared_ref;
 
     class dpshared_ref_kernel
     {
@@ -18,6 +22,7 @@ namespace dp
     private:
 
         std::atomic<bool> bLinked;
+        dpspinlock s;
 
     protected:
 
@@ -29,9 +34,8 @@ namespace dp
         virtual ~dpshared_ref_kernel( void );
         //returns true if linked
         bool isLinked( void );
-        //unlink
+        //unlink all refs
         void unlink( void );
-
     };
 
 }

@@ -53,6 +53,8 @@ namespace dp
         virtual bool onTaskStop( dptask_writelock *tl );
         //add scene
         bool addScene( dprender_scene *s, dprender_writelock *rl );
+        //remove scene
+        void removeScene( dprender_scene *s, dprender_writelock *rl );
 
     public:
 

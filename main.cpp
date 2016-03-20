@@ -35,7 +35,7 @@ int main()
     wtl->addScene( sc );
     g.release( wtl );
 
-    std::this_thread::sleep_for( std::chrono::milliseconds( 15000 ) );
+    std::this_thread::sleep_for( std::chrono::milliseconds( 2000 ) );
 
     delete sc;
     delete wt;

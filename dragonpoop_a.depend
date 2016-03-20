@@ -18,7 +18,7 @@
 1454887924 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpspinlock.h
 	<atomic>
 
-1458503045 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
+1458504346 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
 	"dp/dpcore/dptaskmgr/dptaskmgr.h"
 	"dp/dpcore/dptaskmgr/dptaskmgr_writelock.h"
 	"dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h"
@@ -91,7 +91,7 @@
 	<thread>
 	<chrono>
 
-1458503450 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared.cpp
+1458505966 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared.cpp
 	"dpshared.h"
 	"../dpmutex/dpmutex.h"
 	"../dpmutex/dpmutex_readlock.h"
@@ -119,10 +119,11 @@
 	"dpshareddefines.h"
 	<stdint.h>
 
-1456092665 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_ref.h
+1458506375 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_ref.h
 	"dpshareddefines.h"
 	"dpshared_ref_kernel.h"
 	<memory>
+	<atomic>
 
 1456686411 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_guard.cpp
 	"dpshared_guard.h"
@@ -137,12 +138,13 @@
 	"../dpmutex/dpmutex_readlock.h"
 	<iostream>
 
-1457529499 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_ref.cpp
+1458506398 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_ref.cpp
 	"dpshared_ref.h"
 	"dpshared.h"
 	"dpshared_readlock.h"
 	"dpshared_writelock.h"
 	"dpshared_guard.h"
+	"dpshared_ref_kernel.h"
 
 1457609583 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_writelock.cpp
 	"dpshareddefines.h"
@@ -151,12 +153,14 @@
 	"../dpmutex/dpmutex_writelock.h"
 	<iostream>
 
-1455448097 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_ref_kernel.h
+1458505875 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_ref_kernel.h
 	"dpshareddefines.h"
 	<atomic>
+	"../dpmutex/dpspinlock.h"
 
-1455448121 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_ref_kernel.cpp
+1458505951 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_ref_kernel.cpp
 	"dpshared_ref_kernel.h"
+	"dpshared_ref.h"
 
 1457654652 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpthread/dpthread.cpp
 	"dpthread.h"
@@ -739,7 +743,7 @@
 
 1457346334 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command.h
 
-1458503780 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender.cpp
+1458506695 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender.cpp
 	"dprender.h"
 	"dprender_ref.h"
 	"dprender_readlock.h"
@@ -766,7 +770,7 @@
 1457428278 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_readlock.h
 	"../../../dpcore/dptask/dptask_readlock.h"
 
-1458490224 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender.h
+1458506105 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender.h
 	"../../../dpcore/dptask/dptask.h"
 	<atomic>
 
@@ -777,14 +781,14 @@
 1457428301 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_ref.h
 	"../../../dpcore/dptask/dptask_ref.h"
 
-1458490451 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_writelock.cpp
+1458506171 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_writelock.cpp
 	"dprender_writelock.h"
 	"dprender.h"
 
-1458490328 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_writelock.h
+1458506143 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_writelock.h
 	"../../../dpcore/dptask/dptask_writelock.h"
 
-1458503792 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.cpp
+1458506452 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.cpp
 	"dprender_frame_thread.h"
 	"dprender_frame_thread_ref.h"
 	"dprender_frame_thread_readlock.h"
@@ -804,7 +808,7 @@
 	"../dprender_scene/dprender_scene_ref.h"
 	<iostream>
 
-1458502812 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.h
+1458506300 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.h
 	"../../../dpcore/dptask/dptask.h"
 	<atomic>
 
@@ -814,7 +818,7 @@
 1458490828 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_readlock.h
 	"../../../dpcore/dptask/dptask_readlock.h"
 
-1458491583 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_writelock.h
+1458506567 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_writelock.h
 	"../../../dpcore/dptask/dptask_writelock.h"
 
 1458490851 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_readlock.cpp
@@ -825,7 +829,7 @@
 	"dprender_frame_thread_ref.h"
 	"dprender_frame_thread.h"
 
-1458502309 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_writelock.cpp
+1458506589 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_writelock.cpp
 	"dprender_frame_thread_writelock.h"
 	"dprender_frame_thread.h"
 
@@ -1003,7 +1007,7 @@
 1457808185 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_scene/dpapi_scene_writelock.h
 	"../../../../dpcore/dpshared/dpshared_writelock.h"
 
-1458503183 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_scene/dprender_scene.cpp
+1458506257 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_scene/dprender_scene.cpp
 	"dprender_scene.h"
 	"dprender_scene_ref.h"
 	"dprender_scene_readlock.h"

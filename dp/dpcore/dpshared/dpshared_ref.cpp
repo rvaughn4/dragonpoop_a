@@ -9,6 +9,7 @@ object can be deleted while refs are still held
 #include "dpshared_readlock.h"
 #include "dpshared_writelock.h"
 #include "dpshared_guard.h"
+#include "dpshared_ref_kernel.h"
 
 namespace dp
 {
@@ -38,9 +39,13 @@ namespace dp
 #endif
                                     )
         {
+            dpshared *p;
+
             if( !this->isLinked() )
                 return 0;
-            return this->p->_usemacro_tryReadLock(
+
+            p = this->p;
+            return p->_usemacro_tryReadLock(
 #ifdef dpshared_debug
                                         cfile_macro, line_macro, cfunc_macro
 #endif
@@ -58,9 +63,13 @@ namespace dp
 #endif
                                     )
         {
+            dpshared *p;
+
             if( !this->isLinked() )
                 return 0;
-            return this->p->_usemacro_tryWriteLock(
+
+            p = this->p;
+            return p->_usemacro_tryWriteLock(
 #ifdef dpshared_debug
                                         cfile_macro, line_macro, cfunc_macro
 #endif
@@ -77,9 +86,13 @@ namespace dp
 #endif
                                     )
         {
+            dpshared *p;
+
             if( !this->isLinked() )
                 return 0;
-            return this->p->_usemacro_tryReadLock( timeout_ms
+
+            p = this->p;
+            return p->_usemacro_tryReadLock( timeout_ms
 #ifdef dpshared_debug
                                         , cfile_macro, line_macro, cfunc_macro
 #endif
@@ -96,9 +109,12 @@ namespace dp
 #endif
                                     )
         {
+            dpshared *p;
+
             if( !this->isLinked() )
                 return 0;
-            return this->p->_usemacro_tryWriteLock( timeout_ms
+            p = this->p;
+            return p->_usemacro_tryWriteLock( timeout_ms
 #ifdef dpshared_debug
                                         , cfile_macro, line_macro, cfunc_macro
 #endif
@@ -116,9 +132,12 @@ namespace dp
 #endif
                                     )
         {
+            dpshared *p;
+
             if( !this->isLinked() )
                 return 0;
-            return this->p->_usemacro_readLock(
+            p = this->p;
+            return p->_usemacro_readLock(
 #ifdef dpshared_debug
                                         cfile_macro, line_macro, cfunc_macro
 #endif
@@ -136,9 +155,12 @@ namespace dp
 #endif
                                     )
         {
+            dpshared *p;
+
             if( !this->isLinked() )
                 return 0;
-            return this->p->_usemacro_writeLock(
+            p = this->p;
+            return p->_usemacro_writeLock(
 #ifdef dpshared_debug
                                         cfile_macro, line_macro, cfunc_macro
 #endif
@@ -150,7 +172,7 @@ namespace dp
         {
             if( !this->p )
                 return 0;
-            if( !this->k )
+            if( !this->k || this->k.unique() )
                 return 0;
             return ( *this->k ).isLinked();
         }
@@ -164,9 +186,17 @@ namespace dp
         //get reference
         dpshared_ref *dpshared_ref::getRef( void )
         {
+            dpshared *p;
             if( !this->isLinked() )
                 return 0;
-            return this->p->getRef();
+            p = this->p;
+            return p->getRef();
+        }
+
+        //compares parent
+        bool dpshared_ref::isParent( dpshared *p )
+        {
+            return p == this->p;
         }
 
 }

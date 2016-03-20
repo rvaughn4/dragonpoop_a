@@ -28,6 +28,12 @@ namespace dp
         return this->p->addScene( s, apil, rl, this );
     }
 
+    //remove scene
+    void dprender_frame_thread_writelock::removeScene( dprender_scene *s, dprender_writelock *rl )
+    {
+        this->p->removeScene( s, rl, this );
+    }
+
 }
 
 

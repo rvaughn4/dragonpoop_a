@@ -169,6 +169,24 @@ namespace dp
         return this->_addScene( s );
     }
 
+    //remove scene
+    void dprender_frame_thread::removeScene( dprender_scene *s, dprender_writelock *rl, dprender_frame_thread_writelock *tl )
+    {
+        unsigned int i;
+        dprender_scene_ref *p;
+
+        for( i = 0; i < dprender_frame_thread_MAX_scenes; i++ )
+        {
+            p = this->scenes[ i ];
+            if( !p )
+                continue;
+            if( !p->isParent( s ) )
+                continue;
+            this->g.release( p );
+            this->scenes[ i ] = 0;
+        }
+    }
+
     //zero scenes
     void dprender_frame_thread::zeroScenes( void )
     {
@@ -187,7 +205,10 @@ namespace dp
         for( i = 0; i < dprender_frame_thread_MAX_scenes; i++ )
         {
             p = this->scenes[ i ];
+            if( !p )
+                continue;
             this->g.release( p );
+            this->scenes[ i ] = 0;
         }
     }
 
