@@ -40,6 +40,12 @@ namespace dp
         return this->p->execute( ctx, this );
     }
 
+    //add bundle to commandlist
+    bool dpapi_commandlist_writelock::addBundle( dpapi_context_writelock *ctx, dpapi_bundle *bdle )
+    {
+        return this->p->addBundle( ctx, this, bdle );
+    }
+
 }
 
 

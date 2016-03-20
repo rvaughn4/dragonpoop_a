@@ -18,8 +18,7 @@
 #include "../../dpapi/dpapi/dpapi_commandlist/dpapi_commandlist.h"
 #include "../../dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_writelock.h"
 #include "../dprender_frame_thread/dprender_frame_thread.h"
-#include "../dprender_scene/dprender_scene.h"
-#include "../dprender_scene/dprender_scene_ref.h"
+#include "../dprender_frame_thread/dprender_frame_thread_writelock.h"
 #include "../../../dpdefines.h"
 
 #if defined dprender_debug
@@ -41,14 +40,11 @@ namespace dp
         this->fps = 0;
         this->f_last_t = 0;
         this->t_last_f = 0;
-
-        this->zeroScenes();
     }
 
     //dtor
     dprender::~dprender( void )
     {
-
 
         if( this->frametask )
             delete this->frametask;
@@ -56,8 +52,6 @@ namespace dp
             delete this->cl_a;
         if( this->cl_b )
             delete this->cl_b;
-
-        this->deleteScenes();
 
         if( this->main_ctx )
             delete this->main_ctx;
@@ -258,126 +252,21 @@ namespace dp
         return 0;
     }
 
-    bool __helper_makeScene( dprender_scenelink_clist *p, dpapi_writelock *al )
+    //add scene
+    bool dprender::addScene( dprender_scene *s, dprender_writelock *rl )
     {
-        p->clists.a.cl = 0;
-        p->clists.a.b = 0;
-        p->clists.b.cl = 0;
-        p->clists.b.b = 0;
-        p->clists.consumer.pnext = &p->clists.a;
-        p->clists.consumer.pprev = &p->clists.b;
-        p->clists.creator = p->clists.consumer;
-
-        return ( p->clists.a.cl !=0 ) && ( p->clists.b.cl != 0 );
-    }
-
-    //make scene
-    dprender_scene *dprender::makeScene( dprender_writelock *wl )
-    {
-        dprender_scene *r;
-        dprender_scene_ref *rr;
-        unsigned int i;
-        dpapi_writelock *al;
         dpshared_guard g;
-        dprender_scenelink *p, *f;
-        bool b;
+        dpapi_writelock *apil;
+        dprender_frame_thread_writelock *tl;
 
-        for( i = 0, f = 0; i < dprender_scenelink_MAX; i++ )
-        {
-            p = &this->scenes.scenes[ i ];
-            if( p->bAlive )
-                continue;
-            f = p;
-        }
-
-        al = (dpapi_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->api, 1000 );
-        if( !al )
+        apil = (dpapi_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->api, 1000 );
+        if( !apil )
+            return 0;
+        tl = (dprender_frame_thread_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->frametask, 1000 );
+        if( !tl )
             return 0;
 
-        b = __helper_makeScene( &f->guis, al );
-        b &= __helper_makeScene( &f->sky, al );
-        b &= __helper_makeScene( &f->terrain, al );
-        b &= __helper_makeScene( &f->models, al );
-        if( !b )
-            return 0;
-
-        r = new dprender_scene( wl );
-        if( !r )
-            return 0;
-        rr = (dprender_scene_ref *)this->clg.getRef( r );
-        if( !rr )
-        {
-            delete r;
-            return r;
-        }
-
-        f->rscene = rr;
-        f->bAlive = 1;
-
-        return r;
-    }
-
-    void __helper_zeroScenes( dprender_scenelink_clist *p )
-    {
-        p->clists.a.cl = 0;
-        p->clists.a.b = 0;
-        p->clists.b.cl = 0;
-        p->clists.b.b = 0;
-        p->clists.consumer.pnext = &p->clists.a;
-        p->clists.consumer.pprev = &p->clists.b;
-        p->clists.creator = p->clists.consumer;
-    }
-
-    //zero out scenes
-    void dprender::zeroScenes( void )
-    {
-        dprender_scenelink *p;
-        unsigned int i;
-
-        for( i = 0; i < dprender_scenelink_MAX; i++ )
-        {
-            p = &this->scenes.scenes[ i ];
-
-            p->bAlive = 0;
-            p->rscene = 0;
-
-            __helper_zeroScenes( &p->guis );
-            __helper_zeroScenes( &p->sky );
-            __helper_zeroScenes( &p->terrain );
-            __helper_zeroScenes( &p->models );
-        }
-    }
-
-    void __helper_deleteScenes( dprender_scenelink_clist *p )
-    {
-        if( p->clists.a.cl )
-            delete p->clists.a.cl;
-        if( p->clists.b.cl )
-            delete p->clists.b.cl;
-    }
-
-    //delete scenes
-    void dprender::deleteScenes( void )
-    {
-        dprender_scenelink *p;
-        unsigned int i;
-        dprender_scene_ref *rr;
-
-        for( i = 0; i < dprender_scenelink_MAX; i++ )
-        {
-            p = &this->scenes.scenes[ i ];
-
-            rr = p->rscene;
-            if( rr )
-                this->clg.release( rr );
-
-            __helper_deleteScenes( &p->guis );
-            __helper_deleteScenes( &p->sky );
-            __helper_deleteScenes( &p->terrain );
-            __helper_deleteScenes( &p->models );
-        }
-
-        this->zeroScenes();
+        return tl->addScene( s, apil, rl );
     }
 
 }

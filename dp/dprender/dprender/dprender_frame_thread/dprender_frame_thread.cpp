@@ -14,6 +14,8 @@
 #include "../../dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_writelock.h"
 #include "../dprender/dprender.h"
 #include "../../../dpdefines.h"
+#include "../dprender_scene/dprender_scene_writelock.h"
+#include "../dprender_scene/dprender_scene.h"
 
 #if defined dprender_debug
 #include <iostream>
@@ -112,6 +114,24 @@ namespace dp
         std::cout << "Render Frame: Stopped.\r\n";
 #endif // defined
         return 1;
+    }
+
+    //add scene
+    bool dprender_frame_thread::addScene( dprender_scene *s, dpapi_writelock *apil, dprender_writelock *rl, dprender_frame_thread_writelock *tl )
+    {
+        dpshared_guard g;
+        dprender_scene_writelock *sl;
+        bool r;
+
+        sl = (dprender_scene_writelock *)dpshared_guard_tryWriteLock_timeout( g, s, 1000 );
+        if( !sl )
+            return 0;
+
+        if( !sl->attach( apil, rl, tl ) )
+            return 0;
+
+        g.release( sl );
+        return this->addDynamicTask( s );
     }
 
 }

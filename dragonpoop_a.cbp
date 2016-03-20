@@ -291,6 +291,12 @@
 		<Unit filename="dp/dprender/dprender/dprender/dprender_writelock.h" />
 		<Unit filename="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.cpp" />
 		<Unit filename="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.h" />
+		<Unit filename="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_readlock.cpp" />
+		<Unit filename="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_readlock.h" />
+		<Unit filename="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_ref.cpp" />
+		<Unit filename="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_ref.h" />
+		<Unit filename="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_writelock.cpp" />
+		<Unit filename="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_writelock.h" />
 		<Unit filename="dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.cpp" />
 		<Unit filename="dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.h" />
 		<Unit filename="dp/dprender/dprender/dprender_scene/dprender_scene.cpp" />

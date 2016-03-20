@@ -13,6 +13,9 @@ namespace dp
 {
 
     class dprender_scene;
+    class dpapi_writelock;
+    class dprender_writelock;
+    class dprender_frame_thread_writelock;
 
     class dprender_scene_writelock : public dpshared_writelock
     {
@@ -30,6 +33,8 @@ namespace dp
 
         //ctor
         dprender_scene_writelock( dprender_scene *p, dpmutex_writelock *ml );
+        //attach scene to renderer
+        bool attach( dpapi_writelock *apil, dprender_writelock *rl, dprender_frame_thread_writelock *tl );
 
     };
 

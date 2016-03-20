@@ -22,10 +22,10 @@ namespace dp
 
     }
 
-    //make scene
-    dprender_scene *dprender_writelock::makeScene( void )
+    //add scene
+    bool dprender_writelock::addScene( dprender_scene *s )
     {
-        return this->p->makeScene( this );
+        return this->p->addScene( s, this );
     }
 
 }

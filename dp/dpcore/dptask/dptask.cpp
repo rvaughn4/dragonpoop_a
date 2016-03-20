@@ -18,6 +18,7 @@ deleting the readlock or writelock object unlocks the shared
 #include "../../dpdefines.h"
 
 #include <thread>
+#include <string.h>
 #include <string>
 #if defined dptask_debug
     #include <iostream>
@@ -206,6 +207,7 @@ namespace dp
         std::string s( cname );
 
         this->dpshared::setName( cname );
+        memset( this->cname, 0, sizeof( this->cname ) );
         s.copy( this->cname, sizeof( this->cname ) );
     }
 

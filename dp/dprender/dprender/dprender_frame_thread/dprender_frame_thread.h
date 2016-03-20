@@ -15,6 +15,9 @@ namespace dp
     class dprender_frame_thread_writelock;
     class dpapi_primary_commandlist;
     class dpapi_context;
+    class dprender_writelock;
+    class dprender_scene;
+    class dpapi_writelock;
 
     class dprender_frame_thread : public dptask
     {
@@ -33,6 +36,8 @@ namespace dp
         virtual bool onTaskStart( dptask_writelock *tl );
         //override to do task shutdown
         virtual bool onTaskStop( dptask_writelock *tl );
+        //add scene
+        bool addScene( dprender_scene *s, dpapi_writelock *apil, dprender_writelock *rl, dprender_frame_thread_writelock *tl );
 
     public:
 
