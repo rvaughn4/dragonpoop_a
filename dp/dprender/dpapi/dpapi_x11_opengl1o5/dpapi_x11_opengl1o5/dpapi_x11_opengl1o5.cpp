@@ -20,6 +20,7 @@ namespace dp
     //dtor
     dpapi_x11_opengl1o5::~dpapi_x11_opengl1o5( void )
     {
+        this->unlink();
         if( this->dlGl )
             dlclose( this->dlGl );
     }

@@ -42,7 +42,7 @@ namespace dp
     //dtor
     dpapi_opengl1o5_bundle::~dpapi_opengl1o5_bundle( void )
     {
-
+        this->unlink();
     }
 
     //compile bundle

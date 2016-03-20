@@ -56,6 +56,8 @@ namespace dp
     //dtor
     dprender_gui_thread::~dprender_gui_thread( void )
     {
+        this->waitForStop();
+        this->unlink();
 
         delete this->bdle;
         delete this->vb;

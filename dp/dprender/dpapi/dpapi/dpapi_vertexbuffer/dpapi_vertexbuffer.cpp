@@ -20,7 +20,7 @@ namespace dp
     //dtor
     dpapi_vertexbuffer::~dpapi_vertexbuffer( void )
     {
-
+        this->unlink();
     }
 
     //generate readlock

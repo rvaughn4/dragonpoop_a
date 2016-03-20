@@ -11,7 +11,7 @@ namespace dp
 {
 
     //ctor
-    dprender_scene_ref::dprender_scene_ref( dprender_scene *p, std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync ) : dpshared_ref( p, k, t_sync )
+    dprender_scene_ref::dprender_scene_ref( dprender_scene *p, std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync ) : dptask_ref( p, k, t_sync )
     {
         this->p = p;
     }

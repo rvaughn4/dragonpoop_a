@@ -134,6 +134,8 @@ namespace dp
         uint64_t getEpoch( void );
         //returns tickcount in ms
         uint64_t getTicks( void );
+        //unlink
+        void unlink( void );
 
     public:
 

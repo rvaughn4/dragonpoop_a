@@ -11,7 +11,7 @@ namespace dp
 {
 
     //ctor
-    dprender_scene_readlock::dprender_scene_readlock( dprender_scene *p, dpmutex_readlock *ml ) : dpshared_readlock( p, ml )
+    dprender_scene_readlock::dprender_scene_readlock( dprender_scene *p, dpmutex_readlock *ml ) : dptask_readlock( p, ml )
     {
 
     }

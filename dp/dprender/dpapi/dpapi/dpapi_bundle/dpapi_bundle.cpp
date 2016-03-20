@@ -26,7 +26,7 @@ namespace dp
     //dtor
     dpapi_bundle::~dpapi_bundle( void )
     {
-
+        this->unlink();
     }
 
     //generate readlock

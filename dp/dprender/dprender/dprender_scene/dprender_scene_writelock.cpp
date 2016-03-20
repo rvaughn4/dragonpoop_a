@@ -11,7 +11,7 @@ namespace dp
 {
 
     //ctor
-    dprender_scene_writelock::dprender_scene_writelock( dprender_scene *p, dpmutex_writelock *ml ) : dpshared_writelock( p, ml )
+    dprender_scene_writelock::dprender_scene_writelock( dprender_scene *p, dpmutex_writelock *ml ) : dptask_writelock( p, ml )
     {
         this->p = p;
     }
@@ -26,6 +26,18 @@ namespace dp
     bool dprender_scene_writelock::attach( dpapi_writelock *apil, dprender_writelock *rl, dprender_frame_thread_writelock *tl )
     {
         return this->p->attach( apil, rl, tl );
+    }
+
+    //draw scene
+    bool dprender_scene_writelock::draw( dpapi_context_writelock *ctxl, dpapi_primary_commandlist_writelock *cll )
+    {
+        return this->p->draw( this, ctxl, cll );
+    }
+
+    //purge tasks and all api stuff so that api can be deleted
+    void dprender_scene_writelock::purgeAll( void )
+    {
+        this->p->purgeAll();
     }
 
 }

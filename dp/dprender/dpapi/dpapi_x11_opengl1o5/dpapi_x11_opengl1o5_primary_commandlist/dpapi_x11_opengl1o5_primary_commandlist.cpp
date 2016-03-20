@@ -18,7 +18,7 @@ namespace dp
     //dtor
     dpapi_x11_opengl1o5_primary_commandlist::~dpapi_x11_opengl1o5_primary_commandlist( void )
     {
-
+        this->unlink();
     }
 
     dpapi_primary_commandlist_command *dpapi_x11_opengl1o5_primary_commandlist::genCommandSwapBuffers( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl )

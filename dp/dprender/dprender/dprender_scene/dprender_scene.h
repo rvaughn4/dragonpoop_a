@@ -23,16 +23,20 @@ namespace dp
     class dprender_frame_thread_writelock;
     class dprender_writelock;
     class dprender_ref;
+    class dpapi_context_writelock;
+    class dpapi_primary_commandlist_writelock;
+
+    struct dprender_scene_task_inner
+    {
+        dpapi_commandlist *cl;
+        std::atomic<bool> b;
+    };
 
     struct dprender_scene_task
     {
         dptask *tsk;
         dpapi_context *ctx;
-        struct
-        {
-            dpapi_commandlist *cl;
-            std::atomic<bool> b;
-        } a, b;
+        dprender_scene_task_inner a, b, *pnext, *pprev;
     };
 
     class dprender_scene : public dptask
@@ -64,6 +68,8 @@ namespace dp
         bool makeContexts( dpapi_writelock *apil );
         //make tasks
         bool makeTasks( dprender_scene_writelock *l );
+        //stop tasks, or return zero if task not stopped
+        bool stopTasks( void );
 
     protected:
 
@@ -83,6 +89,10 @@ namespace dp
         virtual bool onTaskStop( dptask_writelock *tl );
         //generate gui task
         virtual dprender_gui_thread *makeGuiTask( dprender_scene_writelock *l, dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b );
+        //draw scene
+        bool draw( dprender_scene_writelock *rl, dpapi_context_writelock *ctxl, dpapi_primary_commandlist_writelock *cll );
+        //purge tasks and all api stuff so that api can be deleted
+        void purgeAll( void );
 
     public:
 

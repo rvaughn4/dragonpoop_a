@@ -20,7 +20,7 @@ namespace dp
     //dtor
     dpapi_material::~dpapi_material( void )
     {
-
+        this->unlink();
     }
 
     //generate readlock

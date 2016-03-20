@@ -12,6 +12,7 @@ deleting the readlock or writelock object unlocks the shared
 #include "dpshared_readlock.h"
 #include "dpshared_writelock.h"
 #include "dpshared_ref.h"
+#include "dpshared_guard.h"
 
 #if defined dpshared_debugout_all || defined dpshared_debug_lock_fails
 #include <iostream>
@@ -518,6 +519,18 @@ namespace dp
         uint64_t dpshared::getTicks( void )
         {
             return this->m->getTicks();
+        }
+
+        //unlink
+        void dpshared::unlink( void )
+        {
+            dpshared_guard g;
+            dpshared_writelock *l;
+
+            l = dpshared_guard_tryWriteLock_timeout( g, this, 5000 );
+            ( *this->k ).unlink();
+
+            g.release( l );
         }
 
 }

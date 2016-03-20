@@ -20,7 +20,7 @@ namespace dp
     //dtor
     dpapi_opengl1o5_primary_commandlist::~dpapi_opengl1o5_primary_commandlist( void )
     {
-
+        this->unlink();
     }
 
     //generate clear color buffer command

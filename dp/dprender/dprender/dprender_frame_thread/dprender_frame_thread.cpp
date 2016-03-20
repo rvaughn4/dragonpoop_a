@@ -4,6 +4,9 @@
 */
 
 #include "dprender_frame_thread.h"
+#include "dprender_frame_thread_ref.h"
+#include "dprender_frame_thread_readlock.h"
+#include "dprender_frame_thread_writelock.h"
 #include "../../../dpcore/dpshared/dpshared_guard.h"
 #include "../../dpapi/dpapi/dpapi/dpapi_factory.h"
 #include "../../dpapi/dpapi/dpapi/dpapi.h"
@@ -16,6 +19,7 @@
 #include "../../../dpdefines.h"
 #include "../dprender_scene/dprender_scene_writelock.h"
 #include "../dprender_scene/dprender_scene.h"
+#include "../dprender_scene/dprender_scene_ref.h"
 
 #if defined dprender_debug
 #include <iostream>
@@ -36,12 +40,34 @@ namespace dp
         this->cl_prev = this->cl_b;
         this->flag_next = this->flag_a;
         this->flag_prev = this->flag_b;
+
+        this->zeroScenes();
     }
 
     //dtor
     dprender_frame_thread::~dprender_frame_thread( void )
     {
+        this->waitForStop();
+        this->unlink();
+        this->deleteScenes();
+    }
 
+    //generate readlock
+    dpshared_readlock *dprender_frame_thread::genReadLock( dpmutex_readlock *ml )
+    {
+        return new dprender_frame_thread_readlock( this, ml );
+    }
+
+    //generate writelock
+    dpshared_writelock *dprender_frame_thread::genWriteLock( dpmutex_writelock *ml )
+    {
+        return new dprender_frame_thread_writelock( this, ml );
+    }
+
+    //generate ref
+    dpshared_ref *dprender_frame_thread::genRef( std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync )
+    {
+        return new dprender_frame_thread_ref( this, k, t_sync );
     }
 
     //override to do task execution
@@ -53,7 +79,7 @@ namespace dp
         std::atomic<bool> *pflag;
         dpshared_guard g;
 
-        if( !dprender::waitForFlag( this->flag_next, 0, 10, tl ) )
+        if( ( *this->flag_next ) )
             return 1;
 
         ctxl = (dpapi_context_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->ctx, 30 );
@@ -74,6 +100,7 @@ namespace dp
         cll->clearColor( ctxl, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX );
         cll->clearDepth( ctxl, 1 );
 
+        this->drawScenes( ctxl, cll );
 
         cll->swapBuffers( ctxl );
 
@@ -110,6 +137,11 @@ namespace dp
     //override to do task shutdown
     bool dprender_frame_thread::onTaskStop( dptask_writelock *tl )
     {
+        if( !this->stopScenes() )
+            return 0;
+
+        this->deleteScenes();
+
 #if defined dprender_debug
         std::cout << "Render Frame: Stopped.\r\n";
 #endif // defined
@@ -121,7 +153,6 @@ namespace dp
     {
         dpshared_guard g;
         dprender_scene_writelock *sl;
-        bool r;
 
         sl = (dprender_scene_writelock *)dpshared_guard_tryWriteLock_timeout( g, s, 1000 );
         if( !sl )
@@ -131,7 +162,111 @@ namespace dp
             return 0;
 
         g.release( sl );
-        return this->addDynamicTask( s );
+
+        if( !this->addDynamicTask( s ) )
+            return 0;
+
+        return this->_addScene( s );
+    }
+
+    //zero scenes
+    void dprender_frame_thread::zeroScenes( void )
+    {
+        unsigned int i;
+
+        for( i = 0; i < dprender_frame_thread_MAX_scenes; i++ )
+            this->scenes[ i ] = 0;
+    }
+
+    //delete scenes
+    void dprender_frame_thread::deleteScenes( void )
+    {
+        unsigned int i;
+        dprender_scene_ref *p;
+
+        for( i = 0; i < dprender_frame_thread_MAX_scenes; i++ )
+        {
+            p = this->scenes[ i ];
+            this->g.release( p );
+        }
+    }
+
+    //draw scenes
+    void dprender_frame_thread::drawScenes( dpapi_context_writelock *ctxl, dpapi_primary_commandlist_writelock *cll )
+    {
+        unsigned int i;
+        dprender_scene_ref *p;
+        dprender_scene_writelock *pl;
+        dpshared_guard g;
+
+        for( i = 0; i < dprender_frame_thread_MAX_scenes; i++ )
+        {
+            p = this->scenes[ i ];
+            if( !p )
+                continue;
+
+            pl = (dprender_scene_writelock *)dpshared_guard_tryWriteLock_timeout( g, p, 30 );
+            if( !pl )
+                continue;
+
+            pl->draw( ctxl, cll );
+            g.release( pl );
+        }
+    }
+
+    //add scene
+    bool dprender_frame_thread::_addScene( dprender_scene *s )
+    {
+        unsigned int i;
+        dprender_scene_ref *p;
+
+        for( i = 0; i < dprender_frame_thread_MAX_scenes; i++ )
+        {
+            p = this->scenes[ i ];
+            if( p )
+                continue;
+            p = (dprender_scene_ref *)this->g.getRef( s );
+            if( !p )
+                return 0;
+            this->scenes[ i ] = p;
+            return 1;
+        }
+
+        return 0;
+    }
+
+    //stop all scenes or return zero if not stopped
+    bool dprender_frame_thread::stopScenes( void )
+    {
+        bool r;
+        unsigned int i;
+        dprender_scene_ref *p;
+        dprender_scene_writelock *pl;
+        dpshared_guard g;
+
+        r = 1;
+        for( i = 0; i < dprender_frame_thread_MAX_scenes; i++ )
+        {
+            p = this->scenes[ i ];
+            if( !p )
+                continue;
+            if( !p->isLinked() )
+                continue;
+
+            pl = (dprender_scene_writelock *)dpshared_guard_tryWriteLock_timeout( g, p, 100 );
+            if( !pl )
+            {
+                r = 0;
+                continue;
+            }
+
+            if( !pl->isRun() )
+                continue;
+            pl->stop();
+            r = 0;
+        }
+
+        return r;
     }
 
 }

@@ -30,7 +30,7 @@ namespace dp
     //dtor
     dpapi_x11_opengl1o5_context::~dpapi_x11_opengl1o5_context( void )
     {
-
+        this->unlink();
     }
 
     //generate primary commandlist

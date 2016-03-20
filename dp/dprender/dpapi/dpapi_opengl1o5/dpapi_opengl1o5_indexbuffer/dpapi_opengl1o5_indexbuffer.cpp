@@ -41,6 +41,8 @@ namespace dp
     {
         dpapi_opengl1o5_context_writelock *l;
 
+        this->unlink();
+
         if( this->ibo )
         {
             l = (dpapi_opengl1o5_context_writelock *)dpshared_guard_tryWriteLock_timeout( this->g, this->ctxr, 2000 );

@@ -20,7 +20,7 @@ namespace dp
     //dtor
     dpapi_indexbuffer::~dpapi_indexbuffer( void )
     {
-
+        this->unlink();
     }
 
     //generate readlock

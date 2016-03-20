@@ -7,6 +7,7 @@
 #include "dprender_scene_ref.h"
 #include "dprender_scene_readlock.h"
 #include "dprender_scene_writelock.h"
+#include "../../dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_writelock.h"
 #include "../../dpapi/dpapi/dpapi_commandlist/dpapi_commandlist.h"
 #include "../../dpapi/dpapi/dpapi_context/dpapi_context.h"
 #include "../../dpapi/dpapi/dpapi_context/dpapi_context_writelock.h"
@@ -32,6 +33,8 @@ namespace dp
     //dtor
     dprender_scene::~dprender_scene( void )
     {
+        this->waitForStop();
+        this->unlink();
         this->deleteTasksAndContexts();
     }
 
@@ -94,7 +97,8 @@ namespace dp
     //override to do task shutdown
     bool dprender_scene::onTaskStop( dptask_writelock *tl )
     {
-
+        if( !this->stopTasks() )
+            return 0;
         this->deleteTasksAndContexts();
         return 1;
     }
@@ -120,6 +124,8 @@ namespace dp
             p->a.cl = 0;
             p->b.b = 0;
             p->b.cl = 0;
+            p->pnext = &p->a;
+            p->pprev = &p->b;
         }
     }
 
@@ -132,8 +138,8 @@ namespace dp
         for( i = 0; i < 5; i++ )
         {
             p = &this->tasks.tsks[ i ];
-            if( p->tsk )
-                delete p->tsk;
+
+            dptask::stopAndDelete( &p->tsk );
             if( p->a.cl )
                 delete p->a.cl;
             if( p->b.cl )
@@ -190,6 +196,63 @@ namespace dp
         }
 
         return 1;
+    }
+
+    //draw scene
+    bool dprender_scene::draw( dprender_scene_writelock *rl, dpapi_context_writelock *ctxl, dpapi_primary_commandlist_writelock *cll )
+    {
+        dprender_scene_task *t;
+        dprender_scene_task_inner *c;
+
+        t = &this->tasks.tskname.gui_task;
+        if( !t->pnext->b )
+            return 0;
+        cll->addCommandList( ctxl, t->pnext->cl );
+        t->pnext->b = 0;
+        c = t->pnext;
+        t->pnext = t->pprev;
+        t->pprev = c;
+
+        return 1;
+    }
+
+    //purge tasks and all api stuff so that api can be deleted
+    void dprender_scene::purgeAll( void )
+    {
+        this->deleteTasksAndContexts();
+    }
+
+    //stop tasks, or return zero if task not stopped
+    bool dprender_scene::stopTasks( void )
+    {
+        unsigned int i;
+        dprender_scene_task *p;
+        dpshared_guard g;
+        dptask_writelock *l;
+        bool r;
+
+        r = 1;
+        for( i = 0; i < 5; i++ )
+        {
+            p = &this->tasks.tsks[ i ];
+            if( !p->tsk )
+                continue;
+
+            l = (dptask_writelock *)dpshared_guard_tryWriteLock_timeout( g, p->tsk, 100 );
+            if( !l )
+            {
+                r = 0;
+                continue;
+            }
+
+            if( !l->isRun() )
+                continue;
+
+            r = 0;
+            l->stop();
+        }
+
+        return r;
     }
 
 }

@@ -25,6 +25,7 @@ namespace dp
     //dtor
     dpapi_primary_commandlist::~dpapi_primary_commandlist( void )
     {
+        this->unlink();
         this->deleteCommands();
     }
 

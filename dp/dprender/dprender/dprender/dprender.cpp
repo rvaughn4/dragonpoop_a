@@ -45,6 +45,8 @@ namespace dp
     //dtor
     dprender::~dprender( void )
     {
+        this->waitForStop();
+        this->unlink();
 
         if( this->frametask )
             delete this->frametask;
@@ -101,7 +103,7 @@ namespace dp
             g.release( apil );
         }
 
-        if( !dprender::waitForFlag( this->flag_next, 1, 10, tl ) )
+        if( !( *this->flag_next ) )
             return 1;
 
         ctxl = (dpapi_context_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->main_ctx, 30 );

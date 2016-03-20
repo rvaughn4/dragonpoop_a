@@ -20,7 +20,7 @@ namespace dp
     //dtor
     dpapi_renderpass::~dpapi_renderpass( void )
     {
-
+        this->unlink();
     }
 
     //generate readlock

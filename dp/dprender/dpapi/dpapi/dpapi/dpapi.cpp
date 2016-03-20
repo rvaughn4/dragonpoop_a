@@ -28,6 +28,7 @@ namespace dp
     //dtor
     dpapi::~dpapi( void )
     {
+        this->unlink();
         delete this->w;
         delete this->wf;
     }

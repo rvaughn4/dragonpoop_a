@@ -7,14 +7,14 @@ deleting this object releases the readlock on the dprender_scene
 #ifndef dprender_scene_readlock_h
 #define dprender_scene_readlock_h
 
-#include "../../../dpcore/dpshared/dpshared_readlock.h"
+#include "../../../dpcore/dptask/dptask_readlock.h"
 
 namespace dp
 {
 
     class dprender_scene;
 
-    class dprender_scene_readlock : public dpshared_readlock
+    class dprender_scene_readlock : public dptask_readlock
     {
 
         dprender_scene *p;

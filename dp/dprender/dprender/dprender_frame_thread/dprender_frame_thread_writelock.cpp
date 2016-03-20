@@ -13,7 +13,7 @@ namespace dp
     //ctor
     dprender_frame_thread_writelock::dprender_frame_thread_writelock( dprender_frame_thread *p, dpmutex_writelock *ml ) : dptask_writelock( p, ml )
     {
-
+        this->p = p;
     }
 
     //dtor

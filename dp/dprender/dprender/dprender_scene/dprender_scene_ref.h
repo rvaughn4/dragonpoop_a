@@ -7,14 +7,14 @@ object can be deleted while refs are still held
 #ifndef dprender_scene_ref_h
 #define dprender_scene_ref_h
 
-#include "../../../dpcore/dpshared/dpshared_ref.h"
+#include "../../../dpcore/dptask/dptask_ref.h"
 
 namespace dp
 {
 
     class dprender_scene;
 
-    class dprender_scene_ref : public dpshared_ref
+    class dprender_scene_ref : public dptask_ref
     {
 
     private:

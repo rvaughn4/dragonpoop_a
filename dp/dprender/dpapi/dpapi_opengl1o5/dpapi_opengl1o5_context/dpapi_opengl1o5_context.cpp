@@ -23,7 +23,7 @@ namespace dp
     //dtor
     dpapi_opengl1o5_context::~dpapi_opengl1o5_context( void )
     {
-
+        this->unlink();
     }
 
     //generate readlock

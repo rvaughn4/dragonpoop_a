@@ -48,6 +48,8 @@ namespace dp
 #endif
 
         this->waitForStop();
+        this->unlink();
+
         this->_setTaskMgr( 0 );
         this->_setThread( 0 );
     }

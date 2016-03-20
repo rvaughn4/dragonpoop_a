@@ -243,6 +243,14 @@
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_ref.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_writelock.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_writelock.h" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer.cpp" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer.h" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer_readlock.cpp" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer_readlock.h" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer_ref.cpp" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer_ref.h" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer_writelock.cpp" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer_writelock.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist/dpapi_opengl1o5_primary_commandlist.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist/dpapi_opengl1o5_primary_commandlist.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_clearcolor/dpapi_opengl1o5_primary_commandlist_command_clearcolor.cpp" />

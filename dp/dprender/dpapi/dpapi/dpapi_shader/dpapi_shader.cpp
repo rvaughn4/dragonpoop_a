@@ -20,7 +20,7 @@ namespace dp
     //dtor
     dpapi_shader::~dpapi_shader( void )
     {
-
+        this->unlink();
     }
 
     //generate readlock
