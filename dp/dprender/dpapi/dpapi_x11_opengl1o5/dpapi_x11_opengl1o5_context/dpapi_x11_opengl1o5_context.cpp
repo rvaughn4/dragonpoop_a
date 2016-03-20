@@ -81,6 +81,13 @@ namespace dp
         return this->ctx;
     }
 
+    //make this context active in this thread
+    bool dpapi_x11_opengl1o5_context::makeActive( dpapi_opengl1o5_context_writelock *l )
+    {
+        this->gl->glXMakeCurrent( this->dpy, *this->win, *this->ctx );
+        return 1;
+    }
+
 }
 
 

@@ -46,6 +46,18 @@ namespace dp
         return this->p->makeVertexBuffer( this, vb );
     }
 
+    //generate bundle
+    dpapi_bundle *dpapi_context_writelock::makeBundle( dpapi_vertexbuffer *vb, dpapi_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1 )
+    {
+        return this->p->makeBundle( this, vb, ib, m, t0, t1 );
+    }
+
+    //generate bundle
+    dpapi_bundle *dpapi_context_writelock::makeBundle( dpapi_bundle *bdle )
+    {
+        return this->p->makeBundle( this, bdle );
+    }
+
 }
 
 

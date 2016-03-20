@@ -13,6 +13,7 @@ namespace dp
 {
 
     class dpapi_opengl1o5_vertexbuffer;
+    class dpvertexbuffer;
 
     class dpapi_opengl1o5_vertexbuffer_writelock : public dpapi_vertexbuffer_writelock
     {
@@ -30,6 +31,10 @@ namespace dp
 
         //ctor
         dpapi_opengl1o5_vertexbuffer_writelock( dpapi_opengl1o5_vertexbuffer *p, dpmutex_writelock *ml );
+        //return vbo
+        unsigned int getVBO( void );
+        //return vb
+        dpvertexbuffer *getVB( void );
 
     };
 

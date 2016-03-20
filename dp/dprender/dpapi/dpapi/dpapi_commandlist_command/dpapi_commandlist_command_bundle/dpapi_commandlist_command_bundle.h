@@ -18,7 +18,12 @@ namespace dp
 
     private:
 
+        dpapi_bundle *bdle;
+
     protected:
+
+        //return internal bundle
+        dpapi_bundle *getBundle( void );
 
     public:
 

@@ -11,6 +11,7 @@
 #include "../dpapi_commandlist/dpapi_commandlist.h"
 #include "../dpapi_primary_commandlist/dpapi_primary_commandlist.h"
 #include "../dpapi_vertexbuffer/dpapi_vertexbuffer.h"
+#include "../dpapi_bundle/dpapi_bundle.h"
 
 namespace dp
 {
@@ -67,6 +68,18 @@ namespace dp
     dpapi_vertexbuffer *dpapi_context::makeVertexBuffer( dpapi_context_writelock *l, dpvertexbuffer *vb )
     {
         return new dpapi_vertexbuffer( l, vb );
+    }
+
+    //generate bundle
+    dpapi_bundle *dpapi_context::makeBundle( dpapi_context_writelock *ctx, dpapi_vertexbuffer *vb, dpapi_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1 )
+    {
+        return new dpapi_bundle( ctx, vb, ib, m, t0, t1 );
+    }
+
+    //generate bundle
+    dpapi_bundle *dpapi_context::makeBundle( dpapi_context_writelock *ctx, dpapi_bundle *bdle )
+    {
+        return new dpapi_bundle( ctx, bdle );
     }
 
 }

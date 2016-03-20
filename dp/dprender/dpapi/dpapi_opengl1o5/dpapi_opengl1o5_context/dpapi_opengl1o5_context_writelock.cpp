@@ -22,6 +22,12 @@ namespace dp
 
     }
 
+    //make this context active in this thread
+    bool dpapi_opengl1o5_context_writelock::makeActive( void )
+    {
+        return this->p->makeActive( this );
+    }
+
 }
 
 

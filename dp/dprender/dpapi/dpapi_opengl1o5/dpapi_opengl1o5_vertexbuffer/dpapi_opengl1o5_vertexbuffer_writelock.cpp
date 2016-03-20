@@ -22,6 +22,18 @@ namespace dp
 
     }
 
+    //return vbo
+    unsigned int dpapi_opengl1o5_vertexbuffer_writelock::getVBO( void )
+    {
+        return this->p->getVBO();
+    }
+
+    //return vb
+    dpvertexbuffer *dpapi_opengl1o5_vertexbuffer_writelock::getVB( void )
+    {
+        return this->p->getVB();
+    }
+
 }
 
 

@@ -58,7 +58,13 @@ namespace dp
     //generate vertex buffer
     dpapi_vertexbuffer *dpapi_opengl1o5_context::makeVertexBuffer( dpapi_context_writelock *l, dpvertexbuffer *vb )
     {
-        return new dpapi_opengl1o5_vertexbuffer( (dpapi_opengl1o5_context_writelock *)l, vb );
+        return new dpapi_opengl1o5_vertexbuffer( (dpapi_opengl1o5_context_writelock *)l, vb, this->gl );
+    }
+
+    //make this context active in this thread
+    bool dpapi_opengl1o5_context::makeActive( dpapi_opengl1o5_context_writelock *l )
+    {
+        return 0;
     }
 
 }

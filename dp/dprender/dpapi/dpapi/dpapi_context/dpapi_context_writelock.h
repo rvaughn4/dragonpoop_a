@@ -18,8 +18,12 @@ namespace dp
     class dpapi_renderpass;
     class dpapi_commandlist;
     class dpapi_primary_commandlist;
-    class dpapi_vertexbuffer;
     class dpvertexbuffer;
+    class dpapi_bundle;
+    class dpapi_vertexbuffer;
+    class dpapi_indexbuffer;
+    class dpapi_material;
+    class dpapi_texture;
 
     class dpapi_context_writelock : public dpshared_writelock
     {
@@ -38,13 +42,17 @@ namespace dp
         //ctor
         dpapi_context_writelock( dpapi_context *p, dpmutex_writelock *ml );
         //generate renderpass
-        virtual dpapi_renderpass *makeRenderpass( void );
+        dpapi_renderpass *makeRenderpass( void );
         //generate primary commandlist
-        virtual dpapi_primary_commandlist *makePrimaryCommandList( void );
+        dpapi_primary_commandlist *makePrimaryCommandList( void );
         //generate secondary commandlist
-        virtual dpapi_commandlist *makeCommandList( void );
+        dpapi_commandlist *makeCommandList( void );
         //generate vertex buffer
-        virtual dpapi_vertexbuffer *makeVertexBuffer( dpvertexbuffer *vb );
+        dpapi_vertexbuffer *makeVertexBuffer( dpvertexbuffer *vb );
+        //generate bundle
+        dpapi_bundle *makeBundle( dpapi_vertexbuffer *vb, dpapi_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1 );
+        //generate bundle
+        dpapi_bundle *makeBundle( dpapi_bundle *bdle );
 
     };
 

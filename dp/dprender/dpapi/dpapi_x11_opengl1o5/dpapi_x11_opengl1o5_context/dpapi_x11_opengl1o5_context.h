@@ -42,6 +42,8 @@ namespace dp
         x11_window_XVisualInfo *getVisual( void );
         //return x11 context
         opengl1o5_lib_GLXContext *getContext( void );
+        //make this context active in this thread
+        virtual bool makeActive( dpapi_opengl1o5_context_writelock *l );
 
     public:
 

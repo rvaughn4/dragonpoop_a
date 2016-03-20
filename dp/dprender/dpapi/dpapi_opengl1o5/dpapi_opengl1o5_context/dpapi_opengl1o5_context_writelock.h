@@ -33,6 +33,8 @@ namespace dp
 
         //ctor
         dpapi_opengl1o5_context_writelock( dpapi_opengl1o5_context *p, dpmutex_writelock *ml );
+        //make this context active in this thread
+        bool makeActive( void );
 
     };
 
