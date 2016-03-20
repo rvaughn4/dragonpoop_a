@@ -47,6 +47,18 @@ namespace dp
         return new dpapi_bundle_ref( this, k, t_sync );
     }
 
+    //compile bundle
+    bool dpapi_bundle::compile( dpapi_context_writelock *ctx, dpapi_bundle_writelock *l )
+    {
+        return 1;
+    }
+
+    //execute bundle
+    bool dpapi_bundle::execute( dpapi_context_writelock *ctx, dpapi_bundle_writelock *l )
+    {
+        return 1;
+    }
+
 }
 
 

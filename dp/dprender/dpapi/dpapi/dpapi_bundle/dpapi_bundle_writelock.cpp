@@ -22,6 +22,18 @@ namespace dp
 
     }
 
+    //compile bundle
+    bool dpapi_bundle_writelock::compile( dpapi_context_writelock *ctx )
+    {
+        return this->p->compile( ctx, this );
+    }
+
+    //execute bundle
+    bool dpapi_bundle_writelock::execute( dpapi_context_writelock *ctx )
+    {
+        return this->p->execute( ctx, this );
+    }
+
 }
 
 

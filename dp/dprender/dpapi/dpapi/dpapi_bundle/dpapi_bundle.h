@@ -32,6 +32,10 @@ namespace dp
         virtual dpshared_writelock *genWriteLock( dpmutex_writelock *ml );
         //generate ref
         virtual dpshared_ref *genRef( std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync );
+        //compile bundle
+        virtual bool compile( dpapi_context_writelock *ctx, dpapi_bundle_writelock *l );
+        //execute bundle
+        virtual bool execute( dpapi_context_writelock *ctx, dpapi_bundle_writelock *l );
 
     public:
 

@@ -49,6 +49,10 @@ namespace dp
     typedef void (* opengl1o5_lib_functions_glDepthFunc )( opengl1o5_lib_GLenum func );
     typedef void (* opengl1o5_lib_functions_glBlendFunc )( opengl1o5_lib_GLenum sfactor, opengl1o5_lib_GLenum dfactor );
 
+#define opengl1o5_lib_TRIANGLES				0x0004
+#define opengl1o5_lib_UNSIGNED_SHORT			0x1403
+#define opengl1o5_lib_UNSIGNED_INT				0x1405
+#define opengl1o5_lib_FLOAT				0x1406
 #define opengl1o5_lib_ARRAY_BUFFER                   0x8892
 #define opengl1o5_lib_STATIC_DRAW                    0x88E4
     typedef void (* opengl1o5_lib_functions_glGenBuffers )( opengl1o5_lib_GLsizei n, opengl1o5_lib_GLuint *buffers );

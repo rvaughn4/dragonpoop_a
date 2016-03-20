@@ -13,6 +13,7 @@ namespace dp
 {
 
     class dpapi_bundle;
+    class dpapi_context_writelock;
 
     class dpapi_bundle_writelock : public dpshared_writelock
     {
@@ -30,6 +31,10 @@ namespace dp
 
         //ctor
         dpapi_bundle_writelock( dpapi_bundle *p, dpmutex_writelock *ml );
+        //compile bundle
+        bool compile( dpapi_context_writelock *ctx );
+        //execute bundle
+        bool execute( dpapi_context_writelock *ctx );
 
     };
 
