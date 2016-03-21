@@ -28,8 +28,8 @@ namespace dp
     {
         unsigned int r;
 
-        r = byte_cursor * 8;
-        r -= bit_cursor;
+        r = bit_cursor;
+        r -= byte_cursor * 8;
 
         return r;
     }
@@ -82,8 +82,8 @@ namespace dp
     //set write bit cursor
     void dpbuffer::setWriteBitCursor( unsigned int c )
     {
-        this->write.byte_cursor = c;
-        this->write.bit_cursor = c / 8;
+        this->write.bit_cursor = c;
+        this->write.byte_cursor = c / 8;
     }
 
     //return bit offset in current byte for read cursor
@@ -101,12 +101,13 @@ namespace dp
     //read bit, returns true if read
     bool dpbuffer::readBit( bool *b )
     {
-        unsigned int c, o;
+        unsigned int c, o, sz;
         unsigned char *buf, pdat;
 
         c = this->read.bit_cursor;
+        sz = this->_getSize() * 8;
 
-        if( !this->_autoResize( c / 8 ) )
+        if( c >= sz )
             return 0;
 
         o = this->getReadBitOffset();
@@ -127,12 +128,14 @@ namespace dp
     //write bit, returns true if written
     bool dpbuffer::writeBit( bool b )
     {
-        unsigned int c, o, rm, m;
+        unsigned int c, o, rm, m, ns;
         unsigned char *buf, pdat, bdat;
 
         c = this->write.bit_cursor;
 
-        if( !this->_autoResize( c / 8 ) )
+        ns = c + 1;
+        ns = ns / 8;
+        if( !this->_autoResize( ns + 1 ) )
             return 0;
 
         o = this->getWriteBitOffset();
@@ -159,15 +162,15 @@ namespace dp
     //read aligned byte, returns true if read
     bool dpbuffer::readAlignedByte( uint8_t *b )
     {
-        unsigned int c, o;
+        unsigned int c, o, sz;
         unsigned char *buf;
 
         c = this->read.byte_cursor;
         o = this->getReadBitOffset();
+        sz = this->_getSize();
         if( o )
             c++;
-
-        if( !this->_autoResize( c ) )
+        if( c >= sz )
             return 0;
 
         buf = (unsigned char *)this->_getBuffer();
@@ -191,7 +194,7 @@ namespace dp
         if( o )
             c++;
 
-        if( !this->_autoResize( c ) )
+        if( !this->_autoResize( c + 1 ) )
             return 0;
 
         buf = (unsigned char *)this->_getBuffer();

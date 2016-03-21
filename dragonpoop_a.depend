@@ -18,13 +18,14 @@
 1454887924 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpspinlock.h
 	<atomic>
 
-1458504346 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
+1458558984 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
 	"dp/dpcore/dptaskmgr/dptaskmgr.h"
 	"dp/dpcore/dptaskmgr/dptaskmgr_writelock.h"
 	"dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h"
 	"dp/dprender/dprender/dprender/dprender.h"
 	"dp/dprender/dprender/dprender/dprender_writelock.h"
 	"dp/dprender/dprender/dprender_scene/dprender_scene.h"
+	"dp/dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.h"
 	<iostream>
 	<thread>
 
@@ -1233,7 +1234,7 @@
 1458003180 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer_writelock.h
 	"../../../../dpcore/dpshared/dpshared_writelock.h"
 
-1458178633 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.cpp
+1458558049 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.cpp
 	"dpbuffer_dynamic.h"
 
 1458371753 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared.cpp
@@ -1254,7 +1255,7 @@
 	"dpbuffer_shared_writelock.h"
 	"dpbuffer_shared.h"
 
-1458177151 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.cpp
+1458557162 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.cpp
 	"dpbuffer_static.h"
 
 1458373495 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpindexbuffer.cpp
@@ -1269,10 +1270,10 @@
 1458177469 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.h
 	"../dpbuffer/dpbuffer.h"
 
-1458471891 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer/dpbuffer.h
+1458558145 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer/dpbuffer.h
 	<stdint.h>
 
-1458471923 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer/dpbuffer.cpp
+1458558803 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer/dpbuffer.cpp
 	"dpbuffer.h"
 	"../dpbuffer_static/dpbuffer_static.h"
 

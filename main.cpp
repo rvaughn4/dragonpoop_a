@@ -7,6 +7,8 @@
 #include "dp/dprender/dprender/dprender/dprender_writelock.h"
 #include "dp/dprender/dprender/dprender_scene/dprender_scene.h"
 
+#include "dp/dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.h"
+
 #include <iostream>
 #include <thread>
 
@@ -40,6 +42,7 @@ int main()
     delete sc;
     delete wt;
     delete tmgr;
+
 
     std::cout.flush();
 

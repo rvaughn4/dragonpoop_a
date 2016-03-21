@@ -41,7 +41,7 @@ namespace dp
         unsigned int nsz, i;
 
         if( this->b.b && this->b.sz > sz )
-            return 0;
+            return 1;
         ob = this->b;
 
         nsz = 8 + ob.sz * 2;
