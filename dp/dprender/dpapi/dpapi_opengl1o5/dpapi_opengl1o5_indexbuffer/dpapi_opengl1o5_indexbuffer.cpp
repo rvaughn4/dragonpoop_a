@@ -32,7 +32,7 @@ namespace dp
             }
         }
 
-        if( !this->ibo )
+       // if( !this->ibo )
             this->ib.copy( ib );
     }
 

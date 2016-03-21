@@ -13,6 +13,7 @@ namespace dp
     {
         this->b = b;
         this->sz = sz;
+        this->setWriteByteCursor( sz );
     }
 
     //dtor

@@ -11,6 +11,7 @@ namespace dp
     //ctor
     dpvarbuffer::dpvarbuffer( void ) : dpbuffer_wrapper()
     {
+        this->sz_element = 0;
         this->setWrapped( &this->b );
     }
 

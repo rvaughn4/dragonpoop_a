@@ -48,6 +48,30 @@ namespace dp
 
         ctxl = (dpapi_context_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->ctx, 1000 );
 
+        dpindex i;
+
+        i.i = 0;
+        ib.write( &i );
+        i.i = 1;
+        ib.write( &i );
+        i.i = 2;
+        ib.write( &i );
+
+        dpvertex v;
+
+        v.vert.x = 0;
+        v.vert.y = 0;
+        v.vert.z = 0;
+        vb.write( &v );
+        v.vert.x = 0;
+        v.vert.y = -1;
+        v.vert.z = 0;
+        vb.write( &v );
+        v.vert.x = 1;
+        v.vert.y = -1;
+        v.vert.z = 1;
+        vb.write( &v );
+
         this->ib = ctxl->makeIndexBuffer( &ib );
         this->vb = ctxl->makeVertexBuffer( &vb );
         this->bdle = ctxl->makeBundle( this->vb, this->ib, 0, 0, 0 );

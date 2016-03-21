@@ -10,6 +10,7 @@
 #include "../dpapi_opengl1o5_primary_commandlist/dpapi_opengl1o5_primary_commandlist.h"
 #include "../dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.h"
 #include "../dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer.h"
+#include "../dpapi_opengl1o5_bundle/dpapi_opengl1o5_bundle.h"
 
 namespace dp
 {
@@ -72,6 +73,18 @@ namespace dp
     dpapi_indexbuffer *dpapi_opengl1o5_context::makeIndexBuffer( dpapi_context_writelock *l, dpindexbuffer *ib )
     {
         return new dpapi_opengl1o5_indexbuffer( (dpapi_opengl1o5_context_writelock *)l, ib, this->gl );
+    }
+
+    //generate bundle
+    dpapi_bundle *dpapi_opengl1o5_context::makeBundle( dpapi_context_writelock *ctx, dpapi_vertexbuffer *vb, dpapi_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1 )
+    {
+        return new dpapi_opengl1o5_bundle( (dpapi_opengl1o5_context_writelock *)ctx, (dpapi_opengl1o5_vertexbuffer *)vb, (dpapi_opengl1o5_indexbuffer *)ib, m, t0, t1, this->gl );
+    }
+
+    //generate bundle
+    dpapi_bundle *dpapi_opengl1o5_context::makeBundle( dpapi_context_writelock *ctx, dpapi_bundle *bdle )
+    {
+        return new dpapi_opengl1o5_bundle( (dpapi_opengl1o5_context_writelock *)ctx, (dpapi_opengl1o5_bundle *)bdle );
     }
 
 }

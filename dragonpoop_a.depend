@@ -562,7 +562,7 @@
 1457175053 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_writelock.h
 	"../../dpapi/dpapi/dpapi_writelock.h"
 
-1458503667 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context.cpp
+1458556619 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context.cpp
 	"dpapi_opengl1o5_context.h"
 	"dpapi_opengl1o5_context_ref.h"
 	"dpapi_opengl1o5_context_readlock.h"
@@ -570,6 +570,7 @@
 	"../dpapi_opengl1o5_primary_commandlist/dpapi_opengl1o5_primary_commandlist.h"
 	"../dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.h"
 	"../dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer.h"
+	"../dpapi_opengl1o5_bundle/dpapi_opengl1o5_bundle.h"
 
 1457285629 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_readlock.cpp
 	"dpapi_opengl1o5_context_readlock.h"
@@ -699,7 +700,7 @@
 	"dpapi_primary_commandlist_writelock.h"
 	"dpapi_primary_commandlist.h"
 
-1458471403 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context.h
+1458556479 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context.h
 	"../../dpapi/dpapi_context/dpapi_context.h"
 	"../dpapi_opengl1o5/dpapi_opengl1o5_functions.h"
 
@@ -963,7 +964,7 @@
 
 1457266645 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_commandlist_command/dpapi_commandlist_command_cleardepth/dpapi_commandlist_command_cleardepth.cpp
 
-1458503802 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.cpp
+1458556369 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.cpp
 	"dprender_gui_thread.h"
 	"../../../dpcore/dpshared/dpshared_guard.h"
 	"../../dpapi/dpapi/dpapi/dpapi_factory.h"
@@ -1259,7 +1260,7 @@
 1458373495 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpindexbuffer.cpp
 	"dpindexbuffer.h"
 
-1458427153 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpvarbuffer.cpp
+1458556950 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpvarbuffer.cpp
 	"dpvarbuffer.h"
 
 1458373611 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpvertexbuffer.cpp
@@ -1317,7 +1318,7 @@
 1458169920 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpvertex.h
 	<stdint.h>
 
-1458503702 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.cpp
+1458556785 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.cpp
 	"dpapi_opengl1o5_vertexbuffer.h"
 	"dpapi_opengl1o5_vertexbuffer_ref.h"
 	"dpapi_opengl1o5_vertexbuffer_readlock.h"
@@ -1352,7 +1353,7 @@
 	"dpapi_opengl1o5_vertexbuffer_writelock.h"
 	"dpapi_opengl1o5_vertexbuffer.h"
 
-1458503657 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_bundle/dpapi_opengl1o5_bundle.cpp
+1458556725 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_bundle/dpapi_opengl1o5_bundle.cpp
 	"dpapi_opengl1o5_bundle.h"
 	"../dpapi_opengl1o5_context/dpapi_opengl1o5_context_writelock.h"
 	"../dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.h"
@@ -1367,7 +1368,7 @@
 	"../../../dpvertex/dpindexbuffer.h"
 	"../dpapi_opengl1o5/dpapi_opengl1o5_functions.h"
 
-1458503678 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer.cpp
+1458556775 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer.cpp
 	"dpapi_opengl1o5_indexbuffer.h"
 	"dpapi_opengl1o5_indexbuffer_ref.h"
 	"dpapi_opengl1o5_indexbuffer_readlock.h"

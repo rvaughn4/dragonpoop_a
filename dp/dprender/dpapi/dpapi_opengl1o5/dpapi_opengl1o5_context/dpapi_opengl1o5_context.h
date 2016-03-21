@@ -39,6 +39,10 @@ namespace dp
         virtual bool makeActive( dpapi_opengl1o5_context_writelock *l );
         //generate vertex buffer
         virtual dpapi_indexbuffer *makeIndexBuffer( dpapi_context_writelock *l, dpindexbuffer *vb );
+        //generate bundle
+        virtual dpapi_bundle *makeBundle( dpapi_context_writelock *ctx, dpapi_vertexbuffer *vb, dpapi_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1 );
+        //generate bundle
+        virtual dpapi_bundle *makeBundle( dpapi_context_writelock *ctx, dpapi_bundle *bdle );
 
     public:
 

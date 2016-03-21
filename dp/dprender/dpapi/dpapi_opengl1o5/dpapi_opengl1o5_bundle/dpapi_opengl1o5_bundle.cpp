@@ -68,7 +68,7 @@ namespace dp
         this->gl->glTexCoordPointer( 2, opengl1o5_lib_FLOAT, sizeof( dpvertex ), &v->texcoord[ 0 ].s );
         this->gl->glVertexPointer( 3, opengl1o5_lib_FLOAT, sizeof( dpvertex ), &v->vert.x );
 
-        this->gl->glDrawElements( opengl1o5_lib_TRIANGLES, 0, opengl1o5_lib_UNSIGNED_SHORT, i );
+        this->gl->glDrawElements( opengl1o5_lib_TRIANGLES, this->ib.getCount(), opengl1o5_lib_UNSIGNED_SHORT, i );
 
         return 1;
     }

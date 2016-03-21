@@ -32,7 +32,7 @@ namespace dp
             }
         }
 
-        if( !this->vbo )
+     //   if( !this->vbo )
             this->vb.copy( vb );
     }
 
