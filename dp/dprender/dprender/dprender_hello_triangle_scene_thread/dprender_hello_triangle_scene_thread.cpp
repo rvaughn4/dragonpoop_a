@@ -3,7 +3,7 @@
 
 */
 
-#include "dprender_gui_thread.h"
+#include "dprender_hello_triangle_scene_thread.h"
 #include "../../../dpcore/dpshared/dpshared_guard.h"
 #include "../../dpapi/dpapi/dpapi/dpapi_factory.h"
 #include "../../dpapi/dpapi/dpapi/dpapi.h"
@@ -29,7 +29,7 @@ namespace dp
 {
 
     //ctor
-    dprender_gui_thread::dprender_gui_thread( dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b ) : dprender_scene_thread( ctx, cl_a, cl_b, flag_a, flag_b )
+    dprender_hello_triangle_scene_thread::dprender_hello_triangle_scene_thread( dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b ) : dprender_scene_thread( ctx, cl_a, cl_b, flag_a, flag_b )
     {
         this->ib = 0;
         this->vb = 0;
@@ -37,14 +37,14 @@ namespace dp
     }
 
     //dtor
-    dprender_gui_thread::~dprender_gui_thread( void )
+    dprender_hello_triangle_scene_thread::~dprender_hello_triangle_scene_thread( void )
     {
         this->waitForStop();
         this->unlink();
     }
 
     //override to handle scene start
-    bool dprender_gui_thread::onSceneStart( dprender_scene_thread_writelock *l, dpapi_context_writelock *ctx )
+    bool dprender_hello_triangle_scene_thread::onSceneStart( dprender_scene_thread_writelock *l, dpapi_context_writelock *ctx )
     {
         dpvertexbuffer vb;
         dpindexbuffer ib;
@@ -81,7 +81,7 @@ namespace dp
     }
 
     //override to handle scene stop/cleanup
-    bool dprender_gui_thread::onSceneStop( dprender_scene_thread_writelock *l, dpapi_context_writelock *ctx )
+    bool dprender_hello_triangle_scene_thread::onSceneStop( dprender_scene_thread_writelock *l, dpapi_context_writelock *ctx )
     {
         delete this->bdle;
         delete this->vb;
@@ -90,7 +90,7 @@ namespace dp
     }
 
     //override to handle scene render
-    bool dprender_gui_thread::onSceneRender( dprender_scene_thread_writelock *l, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
+    bool dprender_hello_triangle_scene_thread::onSceneRender( dprender_scene_thread_writelock *l, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
     {
         cll->addBundle( ctx, this->bdle );
         return 1;

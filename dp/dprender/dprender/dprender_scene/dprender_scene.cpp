@@ -13,9 +13,11 @@
 #include "../../dpapi/dpapi/dpapi_context/dpapi_context_writelock.h"
 #include "../../dpapi/dpapi/dpapi/dpapi_writelock.h"
 #include "../../dpapi/dpapi/dpapi/dpapi_ref.h"
-#include "../dprender_gui_thread/dprender_gui_thread.h"
 #include "../dprender/dprender_writelock.h"
 #include "../dprender/dprender_ref.h"
+#include "../dprender_scene_thread/dprender_scene_thread.h"
+#include "../dprender_gui_thread/dprender_gui_thread.h"
+#include "../dprender_hello_triangle_scene_thread/dprender_hello_triangle_scene_thread.h"
 
 #include <string.h>
 
@@ -112,9 +114,10 @@ namespace dp
     }
 
     //generate gui task
-    dprender_gui_thread *dprender_scene::makeGuiTask( dprender_scene_writelock *l, dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b )
+    dprender_scene_thread *dprender_scene::makeGuiTask( dprender_scene_writelock *l, dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b )
     {
-        return new dprender_gui_thread( ctx, cl_a, cl_b, flag_a, flag_b );
+        //return new dprender_gui_thread( ctx, cl_a, cl_b, flag_a, flag_b );
+        return new dprender_hello_triangle_scene_thread( ctx, cl_a, cl_b, flag_a, flag_b );
     }
 
     //zero tasks
@@ -147,7 +150,8 @@ namespace dp
         {
             p = &this->tasks.tsks[ i ];
 
-            dptask::stopAndDelete( &p->tsk );
+            if( p->tsk )
+                delete p->tsk;
             if( p->a.cl )
                 delete p->a.cl;
             if( p->b.cl )

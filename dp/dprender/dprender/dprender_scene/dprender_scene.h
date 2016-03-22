@@ -15,7 +15,7 @@ namespace dp
 
     class dprender_scene_writelock;
     class dprender_writelock;
-    class dprender_gui_thread;
+    class dprender_scene_thread;
     class dpapi_context;
     class dpapi_commandlist;
     class dpapi_writelock;
@@ -34,7 +34,7 @@ namespace dp
 
     struct dprender_scene_task
     {
-        dptask *tsk;
+        dprender_scene_thread *tsk;
         dpapi_context *ctx;
         dprender_scene_task_inner a, b, *pnext, *pprev;
     };
@@ -88,7 +88,7 @@ namespace dp
         //override to do task shutdown
         virtual bool onTaskStop( dptask_writelock *tl );
         //generate gui task
-        virtual dprender_gui_thread *makeGuiTask( dprender_scene_writelock *l, dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b );
+        virtual dprender_scene_thread *makeGuiTask( dprender_scene_writelock *l, dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b );
         //draw scene
         bool draw( dprender_scene_writelock *rl, dpapi_context_writelock *ctxl, dpapi_primary_commandlist_writelock *cll );
         //purge tasks and all api stuff so that api can be deleted
