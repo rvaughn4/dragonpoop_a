@@ -138,6 +138,7 @@ namespace dp
         this->gl.glDeleteBuffers = (opengl1o5_lib_functions_glDeleteBuffers)this->loadFunction( wl, al, "glDeleteBuffers" );
         if( !this->gl.glDeleteBuffers )
             this->gl.glDeleteBuffers = (opengl1o5_lib_functions_glDeleteBuffers)this->loadFunction( wl, al, "glDeleteBuffersARB" );
+
         this->gl.bUseVB = this->gl.glGenBuffers != 0 && this->gl.glDeleteBuffers != 0 && this->gl.glBindBuffer != 0 && this->gl.glBufferData != 0;
 
         p0 = this->sext.find( "GL_ARB_vertex_buffer_object" );

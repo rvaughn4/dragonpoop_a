@@ -28,11 +28,12 @@ namespace dp
             if( this->ibo )
             {
                 this->gl->glBindBuffer( opengl1o5_lib_ELEMENT_ARRAY_BUFFER, this->ibo );
-                this->gl->glBufferData( opengl1o5_lib_ELEMENT_ARRAY_BUFFER, ib->getSize(), 0, opengl1o5_lib_STATIC_DRAW );
+                this->gl->glBufferData( opengl1o5_lib_ELEMENT_ARRAY_BUFFER, ib->getSize(), ib->getBuffer(), opengl1o5_lib_STATIC_DRAW );
             }
         }
 
-       // if( !this->ibo )
+        this->cnt = ib->getCount();
+        if( !this->ibo )
             this->ib.copy( ib );
     }
 
@@ -85,6 +86,12 @@ namespace dp
     dpindexbuffer *dpapi_opengl1o5_indexbuffer::getIB( void )
     {
         return &this->ib;
+    }
+
+    //return count
+    unsigned int dpapi_opengl1o5_indexbuffer::getCount( void )
+    {
+        return this->cnt;
     }
 
 }

@@ -7,14 +7,15 @@
 #include "dp/dprender/dprender/dprender/dprender_writelock.h"
 #include "dp/dprender/dprender/dprender_scene/dprender_scene.h"
 
-#include "dp/dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.h"
+#include "dp/dprender/dpvertex/dpindexbuffer.h"
+#include "dp/dprender/dpvertex/dpvertexbuffer.h"
 
 #include <iostream>
 #include <thread>
 
 int main()
 {
-
+///*
     dp::dptaskmgr *tmgr;
     dp::dpshared_guard g;
     dp::dprender *wt;
@@ -42,8 +43,17 @@ int main()
     delete sc;
     delete wt;
     delete tmgr;
+///*/
+/*
+    dp::dpvertexbuffer vb, vb2;
+    dp::dpvertex v;
 
+    v.vert.x = 42;
 
+    vb.write( &v );
+
+    vb2.copy( &vb );
+*/
     std::cout.flush();
 
 

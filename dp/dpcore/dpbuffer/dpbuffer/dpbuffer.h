@@ -16,82 +16,71 @@ namespace dp
 
         private:
 
-            struct
-            {
-                unsigned int byte_cursor, bit_cursor;
-            } read, write;
-
         protected:
 
             //ctor
             dpbuffer( void );
-            //returns buffer
-            virtual char *_getBuffer( void ) = 0;
-            //returns size of buffer (override)
-            virtual unsigned int _getSize( void ) = 0;
-            //auto resize buffer if necessary so that buffer extends to or past byte offset given (override)
-            virtual bool _autoResize( unsigned int sz ) = 0;
 
         public:
 
             //dtor
             virtual ~dpbuffer( void );
             //return read byte cursor
-            virtual unsigned int getReadByteCursor( void );
+            virtual unsigned int getReadByteCursor( void ) = 0;
             //set read byte cursor
-            virtual void setReadByteCursor( unsigned int c );
+            virtual void setReadByteCursor( unsigned int c ) = 0;
             //return write byte cursor
-            virtual unsigned int getWriteByteCursor( void );
+            virtual unsigned int getWriteByteCursor( void ) = 0;
             //set write byte cursor
-            virtual void setWriteByteCursor( unsigned int c );
+            virtual void setWriteByteCursor( unsigned int c ) = 0;
             //return read bit cursor
-            virtual unsigned int getReadBitCursor( void );
+            virtual unsigned int getReadBitCursor( void ) = 0;
             //set read bit cursor
-            virtual void setReadBitCursor( unsigned int c );
+            virtual void setReadBitCursor( unsigned int c ) = 0;
             //return write bit cursor
-            virtual unsigned int getWriteBitCursor( void );
+            virtual unsigned int getWriteBitCursor( void ) = 0;
             //set write bit cursor
-            virtual void setWriteBitCursor( unsigned int c );
+            virtual void setWriteBitCursor( unsigned int c ) = 0;
             //return bit offset in current byte for read cursor
-            virtual unsigned int getReadBitOffset( void );
+            virtual unsigned int getReadBitOffset( void ) = 0;
             //return bit offset in current byte for write cursor
-            virtual unsigned int getWriteBitOffset( void );
+            virtual unsigned int getWriteBitOffset( void ) = 0;
             //read bit, returns true if read
-            virtual bool readBit( bool *b );
+            virtual bool readBit( bool *b ) = 0;
             //write bit, returns true if written
-            virtual bool writeBit( bool b );
+            virtual bool writeBit( bool b ) = 0;
             //read aligned byte, returns true if read
-            virtual bool readAlignedByte( uint8_t *b );
+            virtual bool readAlignedByte( uint8_t *b ) = 0;
             //write aligned byte, returns true if written
-            virtual bool writeAlignedByte( uint8_t b );
+            virtual bool writeAlignedByte( uint8_t b ) = 0;
             //read aligned byte, returns true if read
-            virtual bool readUnalignedByte( uint8_t *b );
+            virtual bool readUnalignedByte( uint8_t *b ) = 0;
             //write aligned byte, returns true if written
-            virtual bool writeUnalignedByte( uint8_t b );
+            virtual bool writeUnalignedByte( uint8_t b ) = 0;
             //read aligned bytes into buffer until all are read
-            virtual bool readAlignedBytes( dpbuffer *b );
+            virtual bool readAlignedBytes( dpbuffer *b ) = 0;
             //read aligned bytes into buffer until cnt bytes are read
-            virtual bool readAlignedBytes( dpbuffer *b, unsigned int cnt );
+            virtual bool readAlignedBytes( dpbuffer *b, unsigned int cnt ) = 0;
             //read aligned bytes into buffer until all are read
-            virtual bool readAlignedBytes( char *b, unsigned int sz );
+            virtual bool readAlignedBytes( char *b, unsigned int sz ) = 0;
             //read aligned bytes into buffer until cnt bytes are read
-            virtual bool readAlignedBytes( char *b, unsigned int sz, unsigned int cnt );
+            virtual bool readAlignedBytes( char *b, unsigned int sz, unsigned int cnt ) = 0;
             //write aligned bytes from buffer until all are written
-            virtual bool writeAlignedBytes( dpbuffer *b );
+            virtual bool writeAlignedBytes( dpbuffer *b ) = 0;
             //write aligned bytes from buffer until cnt bytes are written
-            virtual bool writeAlignedBytes( dpbuffer *b, unsigned int cnt );
+            virtual bool writeAlignedBytes( dpbuffer *b, unsigned int cnt ) = 0;
             //write aligned bytes from buffer until all are written
-            virtual bool writeAlignedBytes( char *b, unsigned int sz );
+            virtual bool writeAlignedBytes( char *b, unsigned int sz ) = 0;
             //write aligned bytes from buffer until cnt bytes are written
-            virtual bool writeAlignedBytes( char *b, unsigned int sz, unsigned int cnt );
+            virtual bool writeAlignedBytes( char *b, unsigned int sz, unsigned int cnt ) = 0;
             //return size in bytes
-            unsigned int getSize( void );
+            virtual unsigned int getSize( void ) = 0;
             //return size in bits
-            unsigned int getSizeBits( void );
+            virtual unsigned int getSizeBits( void ) = 0;
             //copy buffer into this buffer
-            void copy( dpbuffer *b );
+            virtual void copy( dpbuffer *b ) = 0;
             //get pointer to buffer
-            char *getBuffer( void );
+            virtual char *getBuffer( void ) = 0;
 
         };
 

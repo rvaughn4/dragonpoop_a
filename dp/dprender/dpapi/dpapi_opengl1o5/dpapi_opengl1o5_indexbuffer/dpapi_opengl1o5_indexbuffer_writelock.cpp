@@ -34,6 +34,12 @@ namespace dp
         return this->p->getIB();
     }
 
+    //return count
+    unsigned int dpapi_opengl1o5_indexbuffer_writelock::getCount( void )
+    {
+        return this->p->getCount();
+    }
+
 }
 
 

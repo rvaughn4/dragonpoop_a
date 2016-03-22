@@ -21,6 +21,11 @@ namespace dp
     #define opengl1o5_lib_EXTENSIONS				0x1F03
     typedef const opengl1o5_lib_GLubyte * (* opengl1o5_lib_functions_glGetString )( opengl1o5_lib_GLenum name );
 
+#define opengl1o5_lib_VERTEX_ARRAY				0x8074
+#define opengl1o5_lib_NORMAL_ARRAY				0x8075
+#define opengl1o5_lib_INDEX_ARRAY				0x8077
+#define opengl1o5_lib_TEXTURE_COORD_ARRAY			0x8078
+
     typedef void (* opengl1o5_lib_functions_glEnableClientState )( opengl1o5_lib_GLint state );
     typedef void (* opengl1o5_lib_functions_glTexCoordPointer )( opengl1o5_lib_GLint size, opengl1o5_lib_GLenum type, opengl1o5_lib_GLsizei stride, const opengl1o5_lib_GLvoid *ptr );
     typedef void (* opengl1o5_lib_functions_glNormalPointer )( opengl1o5_lib_GLenum type, opengl1o5_lib_GLsizei stride, const opengl1o5_lib_GLvoid *ptr );
@@ -60,6 +65,7 @@ namespace dp
     typedef void (* opengl1o5_lib_functions_glBindBuffer )( opengl1o5_lib_GLenum target, opengl1o5_lib_GLuint buffer );
     typedef void (* opengl1o5_lib_functions_glBufferData )( opengl1o5_lib_GLenum target, opengl1o5_lib_GLsizei size, const opengl1o5_lib_GLvoid *data, opengl1o5_lib_GLenum usage );
     typedef void (* opengl1o5_lib_functions_glDeleteBuffers )( opengl1o5_lib_GLsizei n, opengl1o5_lib_GLuint *buffers );
+    typedef void (* opengl1o5_lib_functions_glCopyBufferSubData )( opengl1o5_lib_GLenum readtarget, opengl1o5_lib_GLenum writetarget, opengl1o5_lib_GLint readoffset, opengl1o5_lib_GLint writeoffset, opengl1o5_lib_GLsizei size );
     typedef void (* opengl1o5_lib_functions_glFlush )( void );
     typedef opengl1o5_lib_GLenum (* opengl1o5_lib_functions_glGetError )( void );
     typedef void (* opengl1o5_lib_functions_glDeleteLists )( opengl1o5_lib_GLuint list, opengl1o5_lib_GLsizei range );
@@ -105,6 +111,7 @@ namespace dp
         opengl1o5_lib_functions_glBindBuffer glBindBuffer;
         opengl1o5_lib_functions_glBufferData glBufferData;
         opengl1o5_lib_functions_glDeleteBuffers glDeleteBuffers;
+        opengl1o5_lib_functions_glCopyBufferSubData glCopyBufferSubData;
         bool bUseVB;
         opengl1o5_lib_functions_glDeleteLists glDeleteLists;
         opengl1o5_lib_functions_glGenLists glGenLists;

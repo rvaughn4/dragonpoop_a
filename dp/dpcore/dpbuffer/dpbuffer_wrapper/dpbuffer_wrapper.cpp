@@ -32,24 +32,6 @@ namespace dp
         this->b = b;
     }
 
-    //returns buffer
-    char *dpbuffer_wrapper::_getBuffer( void )
-    {
-        return 0;
-    }
-
-    //returns size of buffer (override)
-    unsigned int dpbuffer_wrapper::_getSize( void )
-    {
-        return 0;
-    }
-
-    //auto resize buffer if necessary so that buffer extends to or past byte offset given (override)
-    bool dpbuffer_wrapper::_autoResize( unsigned int sz )
-    {
-        return 0;
-    }
-
     //return read byte cursor
     unsigned int dpbuffer_wrapper::getReadByteCursor( void )
     {
@@ -192,6 +174,30 @@ namespace dp
     bool dpbuffer_wrapper::writeAlignedBytes( char *b, unsigned int sz, unsigned int cnt )
     {
         return this->b->writeAlignedBytes( b, sz, cnt );
+    }
+
+    //return size in bytes
+    unsigned int dpbuffer_wrapper::getSize( void )
+    {
+        return this->b->getSize();
+    }
+
+    //return size in bits
+    unsigned int dpbuffer_wrapper::getSizeBits( void )
+    {
+        return this->b->getSizeBits();
+    }
+
+    //copy buffer into this buffer
+    void dpbuffer_wrapper::copy( dpbuffer *b )
+    {
+        this->b->copy( b );
+    }
+
+    //get pointer to buffer
+    char *dpbuffer_wrapper::getBuffer( void )
+    {
+        return this->b->getBuffer();
     }
 
 };

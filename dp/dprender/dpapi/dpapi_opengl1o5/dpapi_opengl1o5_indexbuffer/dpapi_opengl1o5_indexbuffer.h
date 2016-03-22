@@ -25,7 +25,7 @@ namespace dp
 
         dpshared_guard g;
         opengl1o5_lib_functions *gl;
-        unsigned int ibo;
+        unsigned int ibo, cnt;
         dpindexbuffer ib;
         dpapi_opengl1o5_context_ref *ctxr;
 
@@ -41,6 +41,8 @@ namespace dp
         unsigned int getIBO( void );
         //return vb
         dpindexbuffer *getIB( void );
+        //return count
+        unsigned int getCount( void );
 
     public:
 

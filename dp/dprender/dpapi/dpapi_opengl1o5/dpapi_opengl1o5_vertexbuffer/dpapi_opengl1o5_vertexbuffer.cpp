@@ -28,11 +28,13 @@ namespace dp
             if( this->vbo )
             {
                 this->gl->glBindBuffer( opengl1o5_lib_ARRAY_BUFFER, this->vbo );
-                this->gl->glBufferData( opengl1o5_lib_ARRAY_BUFFER, vb->getSize(), 0, opengl1o5_lib_STATIC_DRAW );
+                this->gl->glBufferData( opengl1o5_lib_ARRAY_BUFFER, vb->getSize(), vb->getBuffer(), opengl1o5_lib_STATIC_DRAW );
+                this->gl->glBindBuffer( opengl1o5_lib_ARRAY_BUFFER, 0 );
             }
         }
 
-     //   if( !this->vbo )
+        this->cnt = vb->getCount();
+        if( !this->vbo )
             this->vb.copy( vb );
     }
 
@@ -85,6 +87,12 @@ namespace dp
     dpvertexbuffer *dpapi_opengl1o5_vertexbuffer::getVB( void )
     {
         return &this->vb;
+    }
+
+    //return count
+    unsigned int dpapi_opengl1o5_vertexbuffer::getCount( void )
+    {
+        return this->cnt;
     }
 
 }

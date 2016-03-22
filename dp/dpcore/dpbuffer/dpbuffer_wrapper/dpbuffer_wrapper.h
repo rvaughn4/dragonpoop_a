@@ -20,12 +20,6 @@ namespace dp
 
     protected:
 
-        //returns buffer
-        virtual char *_getBuffer( void );
-        //returns size of buffer (override)
-        virtual unsigned int _getSize( void );
-        //auto resize buffer if necessary so that buffer extends to or past byte offset given (override)
-        virtual bool _autoResize( unsigned int sz );
         //ctor
         dpbuffer_wrapper( void );
         //set wrapped
@@ -85,6 +79,14 @@ namespace dp
         virtual bool writeAlignedBytes( char *b, unsigned int sz );
         //write aligned bytes from buffer until cnt bytes are written
         virtual bool writeAlignedBytes( char *b, unsigned int sz, unsigned int cnt );
+        //return size in bytes
+        virtual unsigned int getSize( void );
+        //return size in bits
+        virtual unsigned int getSizeBits( void );
+        //copy buffer into this buffer
+        virtual void copy( dpbuffer *b );
+        //get pointer to buffer
+        virtual char *getBuffer( void );
 
     };
 

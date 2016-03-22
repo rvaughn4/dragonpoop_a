@@ -35,6 +35,8 @@ namespace dp
         unsigned int getVBO( void );
         //return vb
         dpvertexbuffer *getVB( void );
+        //return count
+        unsigned int getCount( void );
 
     };
 

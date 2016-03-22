@@ -35,6 +35,8 @@ namespace dp
         unsigned int getIBO( void );
         //return ib
         dpindexbuffer *getIB( void );
+        //return count
+        unsigned int getCount( void );
 
     };
 

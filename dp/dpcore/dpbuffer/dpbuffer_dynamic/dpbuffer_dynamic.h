@@ -6,7 +6,7 @@
 #ifndef dpbuffer_dynamic_h
 #define dpbuffer_dynamic_h
 
-#include "../dpbuffer/dpbuffer.h"
+#include "../dpbuffer_concrete/dpbuffer_concrete.h"
 
 namespace dp
 {
@@ -17,7 +17,7 @@ namespace dp
         unsigned int sz;
     };
 
-    class dpbuffer_dynamic : public dpbuffer
+    class dpbuffer_dynamic : public dpbuffer_concrete
     {
 
     private:

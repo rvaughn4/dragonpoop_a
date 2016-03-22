@@ -25,7 +25,7 @@ namespace dp
 
         dpshared_guard g;
         opengl1o5_lib_functions *gl;
-        unsigned int vbo;
+        unsigned int vbo, cnt;
         dpvertexbuffer vb;
         dpapi_opengl1o5_context_ref *ctxr;
 
@@ -41,6 +41,8 @@ namespace dp
         unsigned int getVBO( void );
         //return vb
         dpvertexbuffer *getVB( void );
+        //return count
+        unsigned int getCount( void );
 
     public:
 

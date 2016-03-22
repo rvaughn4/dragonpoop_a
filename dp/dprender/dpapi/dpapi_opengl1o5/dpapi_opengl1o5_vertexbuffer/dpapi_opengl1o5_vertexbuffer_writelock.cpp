@@ -34,6 +34,12 @@ namespace dp
         return this->p->getVB();
     }
 
+    //return count
+    unsigned int dpapi_opengl1o5_vertexbuffer_writelock::getCount( void )
+    {
+        return this->p->getCount();
+    }
+
 }
 
 

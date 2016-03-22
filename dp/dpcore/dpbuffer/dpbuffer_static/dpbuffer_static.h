@@ -6,12 +6,12 @@
 #ifndef dpbuffer_static_h
 #define dpbuffer_static_h
 
-#include "../dpbuffer/dpbuffer.h"
+#include "../dpbuffer_concrete/dpbuffer_concrete.h"
 
 namespace dp
 {
 
-        class dpbuffer_static : public dpbuffer
+        class dpbuffer_static : public dpbuffer_concrete
         {
 
         private:
