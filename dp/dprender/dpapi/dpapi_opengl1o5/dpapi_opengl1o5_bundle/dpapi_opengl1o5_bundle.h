@@ -7,8 +7,8 @@
 #define dpapi_opengl1o5_bundle_h
 
 #include "../../dpapi/dpapi_bundle/dpapi_bundle.h"
-#include "../../../dpvertex/dpvertexbuffer.h"
-#include "../../../dpvertex/dpindexbuffer.h"
+#include "../../../../dpgfx/dpvertex/dpvertexbuffer.h"
+#include "../../../../dpgfx/dpvertex/dpindexbuffer.h"
 #include "../dpapi_opengl1o5/dpapi_opengl1o5_functions.h"
 
 namespace dp

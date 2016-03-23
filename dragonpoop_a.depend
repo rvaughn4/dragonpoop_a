@@ -18,15 +18,13 @@
 1454887924 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpspinlock.h
 	<atomic>
 
-1458643852 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
+1458656101 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
 	"dp/dpcore/dptaskmgr/dptaskmgr.h"
 	"dp/dpcore/dptaskmgr/dptaskmgr_writelock.h"
 	"dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h"
 	"dp/dprender/dprender/dprender/dprender.h"
 	"dp/dprender/dprender/dprender/dprender_writelock.h"
 	"dp/dprender/dprender/dprender_scene/dprender_scene.h"
-	"dp/dprender/dpvertex/dpindexbuffer.h"
-	"dp/dprender/dpvertex/dpvertexbuffer.h"
 	<iostream>
 	<thread>
 
@@ -966,7 +964,7 @@
 
 1457266645 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_commandlist_command/dpapi_commandlist_command_cleardepth/dpapi_commandlist_command_cleardepth.cpp
 
-1458650089 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.cpp
+1458656045 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.cpp
 	"dprender_gui_thread.h"
 	"../../../dpcore/dpshared/dpshared_guard.h"
 	"../../dpapi/dpapi/dpapi/dpapi_factory.h"
@@ -981,8 +979,8 @@
 	"../../dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer.h"
 	"../../dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer.h"
 	"../../dpapi/dpapi/dpapi_bundle/dpapi_bundle.h"
-	"../../dpvertex/dpindexbuffer.h"
-	"../../dpvertex/dpvertexbuffer.h"
+	"../../../dpgfx/dpvertex/dpindexbuffer.h"
+	"../../../dpgfx/dpvertex/dpvertexbuffer.h"
 	<iostream>
 
 1457781370 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_commandlist/dpapi_primary_commandlist_command_commandlist.h
@@ -1258,7 +1256,7 @@
 	"dpbuffer_shared_writelock.h"
 	"dpbuffer_shared.h"
 
-1458557162 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.cpp
+1458730127 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.cpp
 	"dpbuffer_static.h"
 
 1458373495 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpindexbuffer.cpp
@@ -1270,7 +1268,7 @@
 1458373611 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpvertex/dpvertexbuffer.cpp
 	"dpvertexbuffer.h"
 
-1458643244 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.h
+1458730035 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.h
 	"../dpbuffer_concrete/dpbuffer_concrete.h"
 
 1458643421 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer/dpbuffer.h
@@ -1329,10 +1327,10 @@
 	"../dpapi_opengl1o5_context/dpapi_opengl1o5_context_writelock.h"
 	"../dpapi_opengl1o5_context/dpapi_opengl1o5_context_ref.h"
 
-1458644649 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.h
+1458656007 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.h
 	"../../dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer.h"
 	"../dpapi_opengl1o5/dpapi_opengl1o5_functions.h"
-	"../../../dpvertex/dpvertexbuffer.h"
+	"../../../../dpgfx/dpvertex/dpvertexbuffer.h"
 	"../../../../dpcore/dpshared/dpshared_guard.h"
 
 1458427893 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_ref.h
@@ -1365,10 +1363,10 @@
 	"../dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer_writelock.h"
 	"../../../../dpcore/dpshared/dpshared_guard.h"
 
-1458644861 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_bundle/dpapi_opengl1o5_bundle.h
+1458655819 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_bundle/dpapi_opengl1o5_bundle.h
 	"../../dpapi/dpapi_bundle/dpapi_bundle.h"
-	"../../../dpvertex/dpvertexbuffer.h"
-	"../../../dpvertex/dpindexbuffer.h"
+	"../../../../dpgfx/dpvertex/dpvertexbuffer.h"
+	"../../../../dpgfx/dpvertex/dpindexbuffer.h"
 	"../dpapi_opengl1o5/dpapi_opengl1o5_functions.h"
 
 1458646874 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer.cpp
@@ -1379,10 +1377,10 @@
 	"../dpapi_opengl1o5_context/dpapi_opengl1o5_context_writelock.h"
 	"../dpapi_opengl1o5_context/dpapi_opengl1o5_context_ref.h"
 
-1458644770 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer.h
+1458656016 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer.h
 	"../../dpapi/dpapi_indexbuffer/dpapi_indexbuffer.h"
 	"../dpapi_opengl1o5/dpapi_opengl1o5_functions.h"
-	"../../../dpvertex/dpindexbuffer.h"
+	"../../../../dpgfx/dpvertex/dpindexbuffer.h"
 	"../../../../dpcore/dpshared/dpshared_guard.h"
 
 1458469008 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer_ref.h
@@ -1458,7 +1456,7 @@
 	"dprender_scene_thread_writelock.h"
 	"dprender_scene_thread.h"
 
-1458652209 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_hello_triangle_scene_thread/dprender_hello_triangle_scene_thread.cpp
+1458656054 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_hello_triangle_scene_thread/dprender_hello_triangle_scene_thread.cpp
 	"dprender_hello_triangle_scene_thread.h"
 	"../../../dpcore/dpshared/dpshared_guard.h"
 	"../../dpapi/dpapi/dpapi/dpapi_factory.h"
@@ -1473,10 +1471,53 @@
 	"../../dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer.h"
 	"../../dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer.h"
 	"../../dpapi/dpapi/dpapi_bundle/dpapi_bundle.h"
-	"../../dpvertex/dpindexbuffer.h"
-	"../../dpvertex/dpvertexbuffer.h"
+	"../../../dpgfx/dpvertex/dpindexbuffer.h"
+	"../../../dpgfx/dpvertex/dpvertexbuffer.h"
 	<iostream>
 
 1458652190 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_hello_triangle_scene_thread/dprender_hello_triangle_scene_thread.h
 	"../dprender_scene_thread/dprender_scene_thread.h"
+
+1458373495 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpvertex/dpindexbuffer.cpp
+	"dpindexbuffer.h"
+
+1458373587 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpvertex/dpindexbuffer.h
+	"dpvarbuffer.h"
+	"dpindex.h"
+
+1458427084 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpvertex/dpvarbuffer.h
+	"../../dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.h"
+	"../../dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.h"
+
+1458169805 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpvertex/dpindex.h
+	<stdint.h>
+
+1458556950 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpvertex/dpvarbuffer.cpp
+	"dpvarbuffer.h"
+
+1458373611 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpvertex/dpvertexbuffer.cpp
+	"dpvertexbuffer.h"
+
+1458373561 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpvertex/dpvertexbuffer.h
+	"dpvarbuffer.h"
+	"dpvertex.h"
+
+1458169920 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpvertex/dpvertex.h
+	<stdint.h>
+
+1458732622 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap/dpbitmap.cpp
+	"dpbitmap.h"
+	"../dpbitmap_uncompressed/dpbitmap_uncompressed.h"
+
+1458729407 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap/dpbitmap.h
+	"../../../dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.h"
+	"../../../dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.h"
+
+1458728696 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.cpp
+
+1458728538 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_uncompressed/dpbitmap_uncompressed.cpp
+
+1458734414 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_uncompressed/dpbitmap_uncompressed.h
+	"../dpbitmap/dpbitmap.h"
+	"../../../dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.h"
 

@@ -31,9 +31,13 @@ namespace dp
         public:
 
             //ctor
+            dpbuffer_static( void );
+            //ctor
             dpbuffer_static( char *b, unsigned int sz );
             //dtor
             virtual ~dpbuffer_static( void );
+            //set buffer
+            void setBuffer( char *b, unsigned int sz );
 
         };
 

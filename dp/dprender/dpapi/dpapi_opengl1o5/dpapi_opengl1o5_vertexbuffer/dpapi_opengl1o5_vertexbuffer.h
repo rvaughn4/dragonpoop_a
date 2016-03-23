@@ -8,7 +8,7 @@
 
 #include "../../dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer.h"
 #include "../dpapi_opengl1o5/dpapi_opengl1o5_functions.h"
-#include "../../../dpvertex/dpvertexbuffer.h"
+#include "../../../../dpgfx/dpvertex/dpvertexbuffer.h"
 #include "../../../../dpcore/dpshared/dpshared_guard.h"
 
 namespace dp

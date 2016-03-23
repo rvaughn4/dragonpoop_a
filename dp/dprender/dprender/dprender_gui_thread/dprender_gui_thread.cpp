@@ -18,8 +18,8 @@
 #include "../../dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer.h"
 #include "../../dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer.h"
 #include "../../dpapi/dpapi/dpapi_bundle/dpapi_bundle.h"
-#include "../../dpvertex/dpindexbuffer.h"
-#include "../../dpvertex/dpvertexbuffer.h"
+#include "../../../dpgfx/dpvertex/dpindexbuffer.h"
+#include "../../../dpgfx/dpvertex/dpvertexbuffer.h"
 
 #if defined dprender_debug
 #include <iostream>
