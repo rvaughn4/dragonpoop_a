@@ -120,8 +120,12 @@
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.h" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.cpp" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h" />
+		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_8bit_palette/dpbitmap_8bit_palette.cpp" />
+		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_8bit_palette/dpbitmap_8bit_palette.h" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_uncompressed/dpbitmap_uncompressed.cpp" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_uncompressed/dpbitmap_uncompressed.h" />
+		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_uncompressed_palette/dpbitmap_uncompressed_palette.cpp" />
+		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_uncompressed_palette/dpbitmap_uncompressed_palette.h" />
 		<Unit filename="dp/dpgfx/dpgfx/dpgfx.cpp" />
 		<Unit filename="dp/dpgfx/dpgfx/dpgfx.h" />
 		<Unit filename="dp/dpgfx/dpgfx/dpgfx_readlock.cpp" />
