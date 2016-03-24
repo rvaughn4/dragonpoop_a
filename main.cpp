@@ -12,6 +12,7 @@
 */
 
 #include "dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.h"
+#include "dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
 #include <fstream>
 
 int main()
@@ -49,7 +50,7 @@ int main()
 
  //   std::cout.flush();
 
-    dp::dpbitmap *b = new dp::dpbitmap_24bit_uncompressed( 640, 480 );
+    dp::dpbitmap *b = new dp::dpbitmap_32bit_uncompressed( 255, 255 );
 
     std::fstream f;
 
@@ -60,12 +61,12 @@ int main()
 
     c.b = 0;
     c.a = 1;
-    for( y = 0; y < 480; y++ )
+    for( y = 0; y < 255; y++ )
     {
-        c.r = (float)y / 480.0f;
-        for( x = 0; x < 640; x++ )
+        c.r = (float)y / 255.0f;
+        for( x = 0; x < 255; x++ )
         {
-            c.g = (float)x / 640.0f;
+            c.g = (float)x / 255.0f;
             if( x & 1 )
                 c.b = 1;
             else

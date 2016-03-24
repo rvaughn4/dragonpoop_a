@@ -160,10 +160,14 @@ namespace dp
         dpbitmap_uncompressed( int w, int h, int bits, int bitmap_header_size, int offset_to_pixels, int file_size );
         //ctor
         dpbitmap_uncompressed( dpbuffer *b );
-        //write color to pointer
-        virtual bool writeColor( dpbitmap_color *c, dpbuffer *b ) = 0;
-        //read color from pointer
-        virtual bool readColor( dpbitmap_color *c, dpbuffer *b ) = 0;
+        //return default red mask
+        virtual uint32_t getRedMask( void ) = 0;
+        //return default green mask
+        virtual uint32_t getGreenMask( void ) = 0;
+        //return default blue mask
+        virtual uint32_t getBlueMask( void ) = 0;
+        //return default alpha mask
+        virtual uint32_t getAlphaMask( void ) = 0;
 
     public:
 

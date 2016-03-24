@@ -18,10 +18,14 @@ namespace dp
 
     protected:
 
-        //write color to pointer
-        virtual bool writeColor( dpbitmap_color *c, dpbuffer *b );
-        //read color from pointer
-        virtual bool readColor( dpbitmap_color *c, dpbuffer *b );
+        //return default red mask
+        virtual uint32_t getRedMask( void );
+        //return default green mask
+        virtual uint32_t getGreenMask( void );
+        //return default blue mask
+        virtual uint32_t getBlueMask( void );
+        //return default alpha mask
+        virtual uint32_t getAlphaMask( void );
 
     public:
 

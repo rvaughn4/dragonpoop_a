@@ -45,11 +45,30 @@ namespace dp
 
     }
 
+    void dpbitmap_uncompressed__setPixel__a( uint32_t mask, float c, uint32_t *v )
+    {
+        uint32_t cntzeros, i;
+
+        if( !mask )
+            return;
+
+        for( cntzeros = 0; ((mask >> cntzeros) & 1) == 0; cntzeros++ );
+
+        i = mask >> cntzeros;
+        c = c * (float)i;
+        i = (uint32_t)c;
+        i = i << cntzeros;
+        i = i & mask;
+
+        *v = *v | i;
+    }
+
     //set pixel color
     bool dpbitmap_uncompressed::setPixel( int x, int y, dpbitmap_color *c )
     {
         dpbuffer_static bs;
         int scn, i, bpp, h;
+        uint32_t v, rm, gm, bm, am;
 
         scn = this->getScanSize();
         bpp = this->getBits() / 8;
@@ -63,8 +82,19 @@ namespace dp
 
         i = ( x * bpp ) + ( y * scn );
 
+        rm = this->getRedMask();
+        gm = this->getGreenMask();
+        bm = this->getBlueMask();
+        am = this->getAlphaMask();
+
+        v = 0;
+        dpbitmap_uncompressed__setPixel__a( rm, c->r, &v );
+        dpbitmap_uncompressed__setPixel__a( gm, c->g, &v );
+        dpbitmap_uncompressed__setPixel__a( bm, c->b, &v );
+        dpbitmap_uncompressed__setPixel__a( am, c->a, &v );
+
         bs.setWriteByteCursor( i );
-        return this->writeColor( c, &bs );
+        return bs.writeAlignedBytes( (char *)&v, bpp );
     }
 
     //get pixel color
@@ -86,7 +116,7 @@ namespace dp
         i = ( x * bpp ) + ( y * scn );
 
         bs.setReadByteCursor( i );
-        return this->readColor( c, &bs );
+        return 1;//;this->readColor( c, &bs );
     }
 
     //returns width

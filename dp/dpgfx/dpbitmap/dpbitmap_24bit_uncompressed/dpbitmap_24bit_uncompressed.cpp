@@ -75,54 +75,28 @@ namespace dp
         return w;
     }
 
-    bool dpbitmap_24bit_uncompressed__writeColor__a( float c, dpbuffer *b )
+    //return default red mask
+    uint32_t dpbitmap_24bit_uncompressed::getRedMask( void )
     {
-        uint8_t v;
-        bool r;
-
-        c = c * 255.0f;
-        if( c > 255 )
-            c = 255;
-        v = (uint8_t)c;
-
-        r = b->writeAlignedByte( v );
-        if( !r )
-            return 0;
-
-        return r;
+        return 0x00ff0000;
     }
 
-    //write color to pointer
-    bool dpbitmap_24bit_uncompressed::writeColor( dpbitmap_color *c, dpbuffer *b )
+    //return default green mask
+    uint32_t dpbitmap_24bit_uncompressed::getGreenMask( void )
     {
-        return
-        dpbitmap_24bit_uncompressed__writeColor__a( c->b, b )
-        &&
-        dpbitmap_24bit_uncompressed__writeColor__a( c->g, b )
-        &&
-        dpbitmap_24bit_uncompressed__writeColor__a( c->r, b );
+        return 0x0000ff00;
     }
 
-    bool dpbitmap_24bit_uncompressed__readColor__a( float *c, dpbuffer *b )
+    //return default blue mask
+    uint32_t dpbitmap_24bit_uncompressed::getBlueMask( void )
     {
-        uint8_t v;
-
-        if( !b->readAlignedByte( &v ) )
-            return 0;
-
-        *c = (float)v / 256.0f;
-        return 1;
+        return 0x000000ff;
     }
 
-    //read color from pointer
-    bool dpbitmap_24bit_uncompressed::readColor( dpbitmap_color *c, dpbuffer *b )
+    //return default alpha mask
+    uint32_t dpbitmap_24bit_uncompressed::getAlphaMask( void )
     {
-        return
-        dpbitmap_24bit_uncompressed__readColor__a( &c->b, b )
-        &&
-        dpbitmap_24bit_uncompressed__readColor__a( &c->g, b )
-        &&
-        dpbitmap_24bit_uncompressed__readColor__a( &c->r, b );
+        return 0;
     }
 
 };
