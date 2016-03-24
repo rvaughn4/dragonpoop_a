@@ -92,6 +92,8 @@ namespace dp
             virtual void copy( dpbuffer *b );
             //get pointer to buffer
             virtual char *getBuffer( void );
+            //get section at offset with size
+            virtual bool getSection( dpbuffer_static *bs, unsigned int offset, unsigned int sz );
 
         };
 

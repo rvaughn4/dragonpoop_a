@@ -200,6 +200,12 @@ namespace dp
         return this->b->getBuffer();
     }
 
+    //get section at offset with size
+    bool dpbuffer_wrapper::getSection( dpbuffer_static *bs, unsigned int offset, unsigned int sz )
+    {
+        return this->b->getSection( bs, offset, sz );
+    }
+
 };
 
 

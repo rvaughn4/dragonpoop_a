@@ -114,6 +114,8 @@
 		<Unit filename="dp/dpdefines.h" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap/dpbitmap.cpp" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap/dpbitmap.h" />
+		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_16bit_uncompressed/dpbitmap_16bit_uncompressed.cpp" />
+		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_16bit_uncompressed/dpbitmap_16bit_uncompressed.h" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.cpp" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.h" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.cpp" />

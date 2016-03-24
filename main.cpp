@@ -11,6 +11,7 @@
 #include <thread>
 */
 
+#include "dp/dpgfx/dpbitmap/dpbitmap_16bit_uncompressed/dpbitmap_16bit_uncompressed.h"
 #include "dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.h"
 #include "dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
 #include <fstream>
@@ -50,7 +51,7 @@ int main()
 
  //   std::cout.flush();
 
-    dp::dpbitmap *b = new dp::dpbitmap_32bit_uncompressed( 255, 255 );
+    dp::dpbitmap *b = new dp::dpbitmap_16bit_uncompressed( 255, 255 );
 
     std::fstream f;
 

@@ -368,6 +368,27 @@ namespace dp
         return this->_getBuffer();
     }
 
+    //get section at offset with size
+    bool dpbuffer_concrete::getSection( dpbuffer_static *bs, unsigned int offset, unsigned int sz )
+    {
+        unsigned int tsz, twc;
+        char *b;
+
+        tsz = this->_getSize();
+        twc = this->write.byte_cursor;
+        b = this->_getBuffer();
+
+        if( twc < tsz )
+            tsz = twc;
+        if( offset + sz >= tsz )
+            return 0;
+        if( !b )
+            return 0;
+
+        bs->setBuffer( &b[ offset ], sz );
+        return 1;
+    }
+
 };
 
 

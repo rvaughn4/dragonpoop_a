@@ -18,7 +18,7 @@
 1454887924 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpspinlock.h
 	<atomic>
 
-1458814586 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
+1458837840 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
 	"dp/dpcore/dptaskmgr/dptaskmgr.h"
 	"dp/dpcore/dptaskmgr/dptaskmgr_writelock.h"
 	"dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h"
@@ -27,6 +27,7 @@
 	"dp/dprender/dprender/dprender_scene/dprender_scene.h"
 	<iostream>
 	<thread>
+	"dp/dpgfx/dpbitmap/dpbitmap_16bit_uncompressed/dpbitmap_16bit_uncompressed.h"
 	"dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.h"
 	"dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
 	<fstream>
@@ -1274,19 +1275,19 @@
 1458730035 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.h
 	"../dpbuffer_concrete/dpbuffer_concrete.h"
 
-1458643421 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer/dpbuffer.h
+1458838201 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer/dpbuffer.h
 	<stdint.h>
 
-1458643201 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer/dpbuffer.cpp
+1458838174 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer/dpbuffer.cpp
 	"dpbuffer.h"
 
 1458643219 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.h
 	"../dpbuffer_concrete/dpbuffer_concrete.h"
 
-1458643406 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.cpp
+1458838474 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.cpp
 	"dpbuffer_wrapper.h"
 
-1458643315 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.h
+1458838441 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.h
 	"../dpbuffer/dpbuffer.h"
 
 1458180990 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_readlock.h
@@ -1410,10 +1411,10 @@
 1458649863 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.h
 	"../dprender_scene_thread/dprender_scene_thread.h"
 
-1458643444 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_concrete/dpbuffer_concrete.h
+1458838210 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_concrete/dpbuffer_concrete.h
 	"../dpbuffer/dpbuffer.h"
 
-1458643729 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_concrete/dpbuffer_concrete.cpp
+1458838397 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_concrete/dpbuffer_concrete.cpp
 	"dpbuffer_concrete.h"
 	"../dpbuffer_static/dpbuffer_static.h"
 
@@ -1520,7 +1521,7 @@
 	"dpbitmap_32bit_uncompressed.h"
 	<string.h>
 
-1458814741 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_uncompressed/dpbitmap_uncompressed.cpp
+1458838808 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_uncompressed/dpbitmap_uncompressed.cpp
 	"dpbitmap_uncompressed.h"
 
 1458814676 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_uncompressed/dpbitmap_uncompressed.h
@@ -1530,10 +1531,17 @@
 1458814683 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h
 	"../dpbitmap_uncompressed/dpbitmap_uncompressed.h"
 
-1458814709 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.cpp
+1458837829 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.cpp
 	"dpbitmap_24bit_uncompressed.h"
 	<string.h>
 
 1458814690 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.h
+	"../dpbitmap_uncompressed/dpbitmap_uncompressed.h"
+
+1458839184 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_16bit_uncompressed/dpbitmap_16bit_uncompressed.cpp
+	"dpbitmap_16bit_uncompressed.h"
+	<string.h>
+
+1458830760 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_16bit_uncompressed/dpbitmap_16bit_uncompressed.h
 	"../dpbitmap_uncompressed/dpbitmap_uncompressed.h"
 

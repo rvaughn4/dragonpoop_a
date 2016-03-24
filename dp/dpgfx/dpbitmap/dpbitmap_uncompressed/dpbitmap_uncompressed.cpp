@@ -69,13 +69,11 @@ namespace dp
         dpbuffer_static bs;
         int scn, i, bpp, h;
         uint32_t v, rm, gm, bm, am;
+        dpbitmap_uncompressed_winv3NT2_header *hdr;
 
         scn = this->getScanSize();
         bpp = this->getBits() / 8;
         h = this->getHeight();
-
-        if( !this->getPixelData( &bs ) )
-            return 0;
 
         if( h > 0 )
             y = h - y + 1;
@@ -87,6 +85,25 @@ namespace dp
         bm = this->getBlueMask();
         am = this->getAlphaMask();
 
+        if( !this->getBitmapHeader( &bs ) )
+            return 0;
+        hdr = (dpbitmap_uncompressed_winv3NT2_header *)bs.getBuffer();
+
+        if( hdr->h.h.biSize >= sizeof(dpbitmap_uncompressed_winv3NT_header ) )
+        {
+            if( hdr->h.h.biCompression == dpbitmap_uncompressed_winv2_header_BI_BITFIELDS || hdr->h.h.biCompression == dpbitmap_uncompressed_winv3_header_BI_ALPHABITFIELDS )
+            {
+                rm = hdr->h.biRedMask;
+                gm = hdr->h.biGreenMask;
+                bm = hdr->h.biBlueMask;
+                if( hdr->h.h.biSize >= sizeof(dpbitmap_uncompressed_winv3NT2_header ) )
+                   am = 0;
+            }
+        }
+
+        if( !this->getPixelData( &bs ) )
+            return 0;
+
         v = 0;
         dpbitmap_uncompressed__setPixel__a( rm, c->r, &v );
         dpbitmap_uncompressed__setPixel__a( gm, c->g, &v );
@@ -94,7 +111,7 @@ namespace dp
         dpbitmap_uncompressed__setPixel__a( am, c->a, &v );
 
         bs.setWriteByteCursor( i );
-        return bs.writeAlignedBytes( (char *)&v, bpp );
+        return bs.writeAlignedBytes( (char *)&v, sizeof( v ) );
     }
 
     //get pixel color
@@ -172,65 +189,43 @@ namespace dp
     //get file header
     bool dpbitmap_uncompressed::getFileHeader( dpbuffer_static *b )
     {
-        dpbitmap_uncompressed_file_header *h;
-
-        if( this->getSize() <= sizeof( dpbitmap_uncompressed_file_header ) )
-            return 0;
-
-        h = (dpbitmap_uncompressed_file_header *)this->getBuffer();
-        if( !h )
-            return 0;
-
-        b->setBuffer( (char *)h, sizeof( dpbitmap_uncompressed_file_header ) );
-        return 1;
+        return this->getSection( b, 0, sizeof(dpbitmap_uncompressed_file_header) );
     }
 
     //get bitmap header
-    bool dpbitmap_uncompressed::getBitmapHeader( dpbuffer_static *sb )
+    bool dpbitmap_uncompressed::getBitmapHeader( dpbuffer_static *b )
     {
         dpbitmap_uncompressed_core_header *h;
-        char *b;
 
-        if( this->getSize() <= sizeof( dpbitmap_uncompressed_file_header ) + sizeof(dpbitmap_uncompressed_core_header) )
+        if( !this->getSection( b, sizeof( dpbitmap_uncompressed_file_header ), sizeof(dpbitmap_uncompressed_core_header) ) )
             return 0;
+        h = (dpbitmap_uncompressed_core_header *)b->getBuffer();
 
-        b = this->getBuffer();
-        if( !b )
-            return 0;
-
-        h = (dpbitmap_uncompressed_core_header *)&b[ sizeof( dpbitmap_uncompressed_file_header ) ];
-        if( h->bcSize + sizeof( dpbitmap_uncompressed_file_header ) > this->getSize() )
-            return 0;
-
-        sb->setBuffer( (char *)h, h->bcSize );
-        return 1;
+        return this->getSection( b, sizeof( dpbitmap_uncompressed_file_header ), h->bcSize );
     }
 
     //get pixel data
-    bool dpbitmap_uncompressed::getPixelData( dpbuffer_static *sb )
+    bool dpbitmap_uncompressed::getPixelData( dpbuffer_static *b )
     {
-        dpbitmap_uncompressed_file_header *fh;
-        char *b;
+        dpbitmap_uncompressed_file_header *h;
 
-        if( this->getSize() <= sizeof( dpbitmap_uncompressed_file_header ) + sizeof(dpbitmap_uncompressed_core_header) )
-            return 0;
+        if( !this->getSection( b, 0, sizeof(dpbitmap_uncompressed_file_header) ) )
+           return 0;
+        h = (dpbitmap_uncompressed_file_header *)b->getBuffer();
 
-        b = this->getBuffer();
-        if( !b )
-            return 0;
-
-        fh = (dpbitmap_uncompressed_file_header *)b;
-        if( fh->bfSize > this->getSize() )
-            return 0;
-
-        sb->setBuffer( (char *)&b[ fh->bfOffBits ], fh->bfSize );//- fh->bfOffBits + 1 );
-        return 1;
+        return this->getSection( b, h->bfOffBits, h->bfSize - h->bfOffBits );
     }
 
     //get extra data
     bool dpbitmap_uncompressed::getExtraData( dpbuffer_static *b )
     {
-        return 0;
+        dpbitmap_uncompressed_file_header *h;
+
+        if( !this->getSection( b, 0, sizeof(dpbitmap_uncompressed_file_header) ) )
+           return 0;
+        h = (dpbitmap_uncompressed_file_header *)b->getBuffer();
+
+        return this->getSection( b, h->bfSize, this->getSize() - h->bfSize );
     }
 
 };

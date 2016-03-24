@@ -19,9 +19,19 @@ namespace dp
         return sizeof( dpbitmap_uncompressed_file_header ) + dpbitmap_24bit_uncompressed__header_size();
     }
 
+    int dpbitmap_24bit_uncompressed__scansize( int w )
+    {
+        int s;
+
+        w *= 3;
+        for( s = 4; s < w; s+= 4 );
+
+        return s;
+    }
+
     int dpbitmap_24bit_uncompressed__file_size( int w, int h )
     {
-        return dpbitmap_24bit_uncompressed__pixel_offset() + ( w * h * 4 );
+        return dpbitmap_24bit_uncompressed__pixel_offset() + ( dpbitmap_24bit_uncompressed__scansize( w ) * h );
     }
 
     //ctor
@@ -67,12 +77,7 @@ namespace dp
     //returns scan line length
     unsigned int dpbitmap_24bit_uncompressed::getScanSize( void )
     {
-        unsigned int w;
-
-        w = this->getWidth() * 3;
-        w = ( w & 3 ) + w;
-
-        return w;
+        return dpbitmap_24bit_uncompressed__scansize( this->getWidth() );
     }
 
     //return default red mask
