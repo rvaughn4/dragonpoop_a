@@ -1,5 +1,5 @@
 
-
+/*
 #include "dp/dpcore/dptaskmgr/dptaskmgr.h"
 #include "dp/dpcore/dptaskmgr/dptaskmgr_writelock.h"
 #include "dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h"
@@ -9,10 +9,14 @@
 
 #include <iostream>
 #include <thread>
+*/
+
+#include "dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.h"
+#include <fstream>
 
 int main()
 {
-
+/*
     dp::dptaskmgr *tmgr;
     dp::dpshared_guard g;
     dp::dprender *wt;
@@ -40,9 +44,39 @@ int main()
     delete sc;
     delete wt;
     delete tmgr;
+*/
 
-    std::cout.flush();
 
+ //   std::cout.flush();
 
+    dp::dpbitmap *b = new dp::dpbitmap_24bit_uncompressed( 640, 480 );
+
+    std::fstream f;
+
+    f.open( "test1234.bmp", f.binary | f.out | f.trunc );
+
+    int x, y;
+    dp::dpbitmap_color c;
+
+    c.b = 0;
+    c.a = 1;
+    for( y = 0; y < 480; y++ )
+    {
+        c.r = (float)y / 480.0f;
+        for( x = 0; x < 640; x++ )
+        {
+            c.g = (float)x / 640.0f;
+            if( x & 1 )
+                c.b = 1;
+            else
+                c.b = 0;
+            b->setPixel( x, y, &c );
+        }
+    }
+
+    f.write( b->getBuffer(), b->getSize() );
+    f.close();
+
+    delete b;
     return 0;
 }

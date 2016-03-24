@@ -3,15 +3,15 @@
 
 */
 
-#ifndef dpbitmap_32bit_uncompressed_h
-#define dpbitmap_32bit_uncompressed_h
+#ifndef dpbitmap_24bit_uncompressed_h
+#define dpbitmap_24bit_uncompressed_h
 
 #include "../dpbitmap_uncompressed/dpbitmap_uncompressed.h"
 
 namespace dp
 {
 
-    class dpbitmap_32bit_uncompressed : public dpbitmap_uncompressed
+    class dpbitmap_24bit_uncompressed : public dpbitmap_uncompressed
     {
 
     private:
@@ -26,11 +26,11 @@ namespace dp
     public:
 
         //ctor
-        dpbitmap_32bit_uncompressed( int w, int h );
+        dpbitmap_24bit_uncompressed( int w, int h );
         //ctor
-        dpbitmap_32bit_uncompressed( dpbuffer *b );
+        dpbitmap_24bit_uncompressed( dpbuffer *b );
         //dtor
-        virtual ~dpbitmap_32bit_uncompressed( void );
+        virtual ~dpbitmap_24bit_uncompressed( void );
         //returns bits per pixel
         virtual int getBits( void );
         //returns scan line length
@@ -41,6 +41,7 @@ namespace dp
 };
 
 #endif
+
 
 
 
