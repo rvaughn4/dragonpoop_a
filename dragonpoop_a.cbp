@@ -116,10 +116,14 @@
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap/dpbitmap.h" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_16bit_uncompressed/dpbitmap_16bit_uncompressed.cpp" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_16bit_uncompressed/dpbitmap_16bit_uncompressed.h" />
+		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_1bit_palette/dpbitmap_1bit_palette.cpp" />
+		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_1bit_palette/dpbitmap_1bit_palette.h" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.cpp" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.h" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.cpp" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h" />
+		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_4bit_palette/dpbitmap_4bit_palette.cpp" />
+		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_4bit_palette/dpbitmap_4bit_palette.h" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_8bit_palette/dpbitmap_8bit_palette.cpp" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_8bit_palette/dpbitmap_8bit_palette.h" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_uncompressed/dpbitmap_uncompressed.cpp" />

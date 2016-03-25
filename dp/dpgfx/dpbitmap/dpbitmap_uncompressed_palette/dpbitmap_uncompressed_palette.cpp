@@ -5,6 +5,7 @@
 
 #include "dpbitmap_uncompressed_palette.h"
 #include <string.h>
+#include <math.h>
 
 namespace dp
 {
@@ -16,7 +17,22 @@ namespace dp
 
     int dpbitmap_uncompressed_palette__pixel_offset( int bits )
     {
-        return sizeof( dpbitmap_uncompressed_file_header ) + dpbitmap_uncompressed_palette__header_size();
+        int psz;
+
+        switch( bits )
+        {
+            case 1:
+                psz = 2 * 4;
+                break;
+            case 4:
+                psz = 4 * 2 * 2 * 2;
+                break;
+            case 8:
+            default:
+                psz = 4 * 6 * 6 * 6;
+        }
+
+        return sizeof( dpbitmap_uncompressed_file_header ) + dpbitmap_uncompressed_palette__header_size() + psz;
     }
 
     int dpbitmap_uncompressed_palette__scansize( int w, int bits )
@@ -57,11 +73,16 @@ namespace dp
         bh->biHeight = h;
         bh->biPlanes = 1;
         bh->biBitCount = bits;
+        bh->biSizeImage = dpbitmap_uncompressed_palette__file_size( w, h, bits ) - dpbitmap_uncompressed_palette__pixel_offset( bits );
         switch( bits )
         {
             case 1:
-            case 2:
+                clrdim = 2;
+                break;
             case 4:
+                clrdim = 2;
+                break;
+            case 8:
             default:
                 clrdim = 6;
         }
@@ -126,13 +147,47 @@ namespace dp
     //set pixel color
     bool dpbitmap_uncompressed_palette::setPixel( int x, int y, dpbitmap_color *c )
     {
-        return 1;
+        dpbuffer_static b;
+        unsigned int scnsz, i, bpp, v, h;
+
+        if( !this->getPixelData( &b ) )
+            return 0;
+
+        if( !this->findColor( &v, c ) )
+            return 0;
+
+        scnsz = this->getScanSize() * 8;
+        bpp = this->getBits();
+        if( this->isUpsideDown( &h ) )
+            y = h - y - 1;
+
+        i = y * scnsz + x * bpp;
+        b.setWriteBitCursor( i );
+
+        return b.writeUnalignedByte( (uint8_t)v );
     }
 
     //get pixel color
     bool dpbitmap_uncompressed_palette::getPixel( int x, int y, dpbitmap_color *c )
     {
-        return 1;
+        dpbuffer_static b;
+        unsigned int scnsz, i, bpp, v, h;
+
+        if( !this->getPixelData( &b ) )
+            return 0;
+
+        scnsz = this->getScanSize() * 8;
+        bpp = this->getBits();
+        if( this->isUpsideDown( &h ) )
+            y = h - y - 1;
+
+        i = y * scnsz + x * bpp;
+        b.setReadBitCursor( i );
+        v = 0;
+        if( !b.readUnalignedByte( (uint8_t *)&v ) )
+            return 0;
+
+        return this->getPaletteColor( v, c );
     }
 
     //get palette data
@@ -157,9 +212,12 @@ namespace dp
     //find closest color in palette
     bool dpbitmap_uncompressed_palette::findColor( uint32_t *r, dpbitmap_color *c )
     {
-        unsigned int i, e, szp;
+        unsigned int i, e, szp, p;
         dpbitmap_uncompressed_core_header *h;
         dpbuffer_static b;
+        float d, dr, dt;
+        dpbitmap_color fc;
+        char *buf, *cbuf;
 
         if( !this->getBitmapHeader( &b ) )
             return 0;
@@ -168,12 +226,38 @@ namespace dp
         if( h->bcSize == sizeof( dpbitmap_uncompressed_core_header ) )
             szp = 3;
 
+        if( !this->getPaletteData( &b ) )
+            return 0;
+        buf = b.getBuffer();
+
         *r = 0;
-        e = 0;
+        e = b.getSize() / szp;
+        fc.r = c->r * 255.0f;
+        fc.g = c->g * 255.0f;
+        fc.b = c->b * 255.0f;
 
+        dr = 1000;
+        for( i = 0, p = 0; i < e; i++, p += szp )
+        {
+            cbuf = &buf[ p ];
 
+            dt = (float)cbuf[ 0 ] - fc.b;
+            d = dt * dt;
+            dt = (float)cbuf[ 1 ] - fc.g;
+            d += dt * dt;
+            dt = (float)cbuf[ 2 ] - fc.r;
+            d += dt * dt;
 
-        return 0;
+            d = sqrtf( d );
+
+            if( d < dr )
+            {
+                *r = i;
+                dr = d;
+            }
+        }
+
+        return 1;
     }
 
     //convert palette index to color

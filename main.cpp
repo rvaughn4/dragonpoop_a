@@ -10,7 +10,9 @@
 #include <iostream>
 #include <thread>
 */
+#include "dp/dpgfx/dpbitmap/dpbitmap_1bit_palette/dpbitmap_1bit_palette.h"
 
+#include "dp/dpgfx/dpbitmap/dpbitmap_4bit_palette/dpbitmap_4bit_palette.h"
 
 #include "dp/dpgfx/dpbitmap/dpbitmap_8bit_palette/dpbitmap_8bit_palette.h"
 #include "dp/dpgfx/dpbitmap/dpbitmap_16bit_uncompressed/dpbitmap_16bit_uncompressed.h"
@@ -53,7 +55,8 @@ int main()
 
  //   std::cout.flush();
 
-    dp::dpbitmap *b = new dp::dpbitmap_8bit_palette( 255, 255 );
+    //dp::dpbitmap *b = new dp::dpbitmap_1bit_palette( 255, 255 );
+    dp::dpbitmap *b = new dp::dpbitmap_32bit_uncompressed( 255, 255 );
 
     std::fstream f;
 

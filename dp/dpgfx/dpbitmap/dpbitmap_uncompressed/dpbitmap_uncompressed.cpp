@@ -67,16 +67,14 @@ namespace dp
     bool dpbitmap_uncompressed::setPixel( int x, int y, dpbitmap_color *c )
     {
         dpbuffer_static bs;
-        int scn, i, bpp, h;
+        unsigned int scn, i, bpp, h;
         uint32_t v, rm, gm, bm, am;
         dpbitmap_uncompressed_winv3NT2_header *hdr;
 
         scn = this->getScanSize();
         bpp = this->getBits() / 8;
-        h = this->getHeight();
-
-        if( h > 0 )
-            y = h - y + 1;
+        if( this->isUpsideDown( &h ) )
+            y = h - y - 1;
 
         i = ( x * bpp ) + ( y * scn );
 
@@ -118,17 +116,15 @@ namespace dp
     bool dpbitmap_uncompressed::getPixel( int x, int y, dpbitmap_color *c )
     {
         dpbuffer_static bs;
-        int scn, i, bpp, h;
+        unsigned int scn, i, bpp, h;
 
         scn = this->getScanSize();
         bpp = this->getBits() / 8;
-        h = this->getHeight();
+        if( this->isUpsideDown( &h ) )
+            y = h - y - 1;
 
         if( !this->getPixelData( &bs ) )
             return 0;
-
-        if( h > 0 )
-            y = h - y + 1;
 
         i = ( x * bpp ) + ( y * scn );
 
@@ -184,6 +180,42 @@ namespace dp
             return hc->bcHeight;
 
         return hw->biHeight;
+    }
+
+    //returns true if upside down, also gets height
+    bool dpbitmap_uncompressed::isUpsideDown( unsigned int *h )
+    {
+        dpbuffer_static bs;
+        union
+        {
+            dpbitmap_uncompressed_core_header *hc;
+            dpbitmap_uncompressed_winv3_header *hw;
+        };
+
+        *h = 0;
+        if( !this->getBitmapHeader( &bs ) )
+            return 0;
+
+        if( bs.getSize() < sizeof(dpbitmap_uncompressed_core_header) )
+            return 0;
+        hw = (dpbitmap_uncompressed_winv3_header *)bs.getBuffer();
+        if( !hw )
+            return 0;
+
+        if( hc->bcSize == sizeof( dpbitmap_uncompressed_core_header ) )
+        {
+            *h = hc->bcHeight;
+            return 1;
+        }
+
+        if( hw->biHeight > 0 )
+        {
+            *h = hw->biHeight;
+            return 1;
+        }
+
+        *h = -hw->biHeight;
+        return 0;
     }
 
     //get file header

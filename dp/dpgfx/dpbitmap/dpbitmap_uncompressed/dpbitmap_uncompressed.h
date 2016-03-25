@@ -181,6 +181,8 @@ namespace dp
         virtual int getWidth( void );
         //returns height
         virtual int getHeight( void );
+        //returns true if upside down, also gets height
+        virtual bool isUpsideDown( unsigned int *h );
         //returns bits per pixel
         virtual int getBits( void ) = 0;
         //returns scan line length
