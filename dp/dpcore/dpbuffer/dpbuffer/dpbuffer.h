@@ -89,6 +89,14 @@ namespace dp
             virtual char *getBuffer( void ) = 0;
             //get section at offset with size
             virtual bool getSection( dpbuffer_static *bs, unsigned int offset, unsigned int sz ) = 0;
+            //load buffer from buffer
+            virtual bool load( dpbuffer *b ) = 0;
+            //load buffer from file
+            virtual bool load( const char *fname ) = 0;
+            //save buffer to file
+            virtual bool save( const char *fname ) = 0;
+            //save buffer to buffer
+            virtual bool save( dpbuffer *b ) = 0;
 
         };
 

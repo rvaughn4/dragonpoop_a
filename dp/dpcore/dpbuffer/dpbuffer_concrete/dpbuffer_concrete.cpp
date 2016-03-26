@@ -5,6 +5,7 @@
 
 #include "dpbuffer_concrete.h"
 #include "../dpbuffer_static/dpbuffer_static.h"
+#include <fstream>
 
 namespace dp
 {
@@ -401,6 +402,50 @@ namespace dp
 
         bs->setBuffer( &b[ offset ], sz );
         return 1;
+    }
+
+    //load buffer from buffer
+    bool dpbuffer_concrete::load( dpbuffer *b )
+    {
+        this->copy( b );
+        return 1;
+    }
+
+    //load buffer from file
+    bool dpbuffer_concrete::load( const char *fname )
+    {
+        std::fstream f;
+        int v;
+
+        f.open( fname, f.in | f.binary );
+        if( !f.is_open() )
+            return 0;
+
+        this->setWriteByteCursor( 0 );
+        while( ( v = f.get() ) != EOF )
+            this->writeAlignedByte( v );
+
+        return 1;
+    }
+
+    //save buffer to file
+    bool dpbuffer_concrete::save( const char *fname )
+    {
+        std::fstream f;
+
+        f.open( fname, f.out | f.trunc | f.binary );
+        if( !f.is_open() )
+            return 0;
+
+        f.write( this->getBuffer(), this->getSize() );
+
+        return 1;
+    }
+
+    //save buffer to buffer
+    bool dpbuffer_concrete::save( dpbuffer *b )
+    {
+        return b->load( this );
     }
 
 };

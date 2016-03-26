@@ -218,6 +218,30 @@ namespace dp
         return this->b->getSection( bs, offset, sz );
     }
 
+    //load buffer from buffer
+    bool dpbuffer_wrapper::load( dpbuffer *b )
+    {
+        return this->b->load( b );
+    }
+
+    //load buffer from file
+    bool dpbuffer_wrapper::load( const char *fname )
+    {
+        return this->b->load( fname );
+    }
+
+    //save buffer to file
+    bool dpbuffer_wrapper::save( const char *fname )
+    {
+        return this->b->save( fname );
+    }
+
+    //save buffer to buffer
+    bool dpbuffer_wrapper::save( dpbuffer *b )
+    {
+        return this->b->save( b );
+    }
+
 };
 
 

@@ -11,14 +11,12 @@
 #include <thread>
 */
 #include "dp/dpgfx/dpbitmap/dpbitmap_1bit_palette/dpbitmap_1bit_palette.h"
-
 #include "dp/dpgfx/dpbitmap/dpbitmap_4bit_palette/dpbitmap_4bit_palette.h"
-
 #include "dp/dpgfx/dpbitmap/dpbitmap_8bit_palette/dpbitmap_8bit_palette.h"
 #include "dp/dpgfx/dpbitmap/dpbitmap_16bit_uncompressed/dpbitmap_16bit_uncompressed.h"
 #include "dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.h"
 #include "dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
-#include <fstream>
+#include "dp/dpgfx/dpbitmap/dpbitmap_png/dpbitmap_png.h"
 
 int main()
 {
@@ -55,29 +53,22 @@ int main()
 
  //   std::cout.flush();
 
-    dp::dpbuffer_dynamic bib;
-    int v;
+    dp::dpbitmap *bi = new dp::dpbitmap_8bit_palette( 32, 32 );
 
-    std::fstream ff;
+    bi->load( "8bitsample.bmp" );
 
-    ff.open( "8bitsample.bmp", ff.binary | ff.in );
-
-    while( (v = ff.get() ) != EOF )
-        bib.writeAlignedByte( v );
-    ff.close();
-
-    dp::dpbitmap *bi = new dp::dpbitmap_8bit_palette( &bib );
     dp::dpbitmap *b = new dp::dpbitmap_32bit_uncompressed( bi->getWidth(), bi->getHeight() );
+    dp::dpbitmap *bp = new dp::dpbitmap_png( 32, 32 );
 
     b->copy( bi );
+    //bp->copy( b );
 
-    std::fstream f;
-
-    f.open( "test1234.bmp", f.binary | f.out | f.trunc );
-    f.write( b->getBuffer(), b->getSize() );
-    f.close();
+    b->save( "test1234.bmp" );
+    bp->save( "test1234.png" );
 
     delete bi;
     delete b;
+    delete bp;
+
     return 0;
 }

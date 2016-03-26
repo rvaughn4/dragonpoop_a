@@ -45,6 +45,14 @@ namespace dp
         virtual int getHeight( void ) = 0;
         //copy bitmap
         virtual void copy( dpbitmap *b ) = 0;
+        //load buffer from buffer
+        virtual bool load( dpbuffer *b );
+        //load buffer from file
+        virtual bool load( const char *fname );
+        //save buffer to file
+        virtual bool save( const char *fname );
+        //save buffer to buffer
+        virtual bool save( dpbuffer *b );
 
     };
 
