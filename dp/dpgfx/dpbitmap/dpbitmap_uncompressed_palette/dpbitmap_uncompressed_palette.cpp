@@ -156,35 +156,36 @@ namespace dp
         if( !this->findColor( &v, c ) )
             return 0;
 
-        scnsz = this->getScanSize() * 8;
+        scnsz = this->getScanSize();
         bpp = this->getBits();
         if( this->isUpsideDown( &h ) )
             y = h - y - 1;
 
-        i = y * scnsz + x * bpp;
+        i = y * scnsz * 8 + x * bpp;
         b.setWriteBitCursor( i );
 
-        return b.writeUnalignedByte( (uint8_t)v );
+        return b.writeUnalignedByte( (uint8_t)v, bpp );
     }
 
     //get pixel color
     bool dpbitmap_uncompressed_palette::getPixel( int x, int y, dpbitmap_color *c )
     {
         dpbuffer_static b;
-        unsigned int scnsz, i, bpp, v, h;
+        unsigned int scnsz, i, bpp, h;
+        uint8_t v;
 
         if( !this->getPixelData( &b ) )
             return 0;
 
-        scnsz = this->getScanSize() * 8;
+        scnsz = this->getScanSize();
         bpp = this->getBits();
         if( this->isUpsideDown( &h ) )
             y = h - y - 1;
 
-        i = y * scnsz + x * bpp;
+        i = y * scnsz * 8 + x * bpp;
         b.setReadBitCursor( i );
         v = 0;
-        if( !b.readUnalignedByte( (uint8_t *)&v ) )
+        if( !b.readUnalignedByte( &v, bpp ) )
             return 0;
 
         return this->getPaletteColor( v, c );
@@ -282,17 +283,17 @@ namespace dp
         i *= szp;
         if( i >= b.getSize() )
             return 0;
-        b.setWriteByteCursor( i );
+        b.setReadByteCursor( i );
 
         if( !b.readAlignedByte( &v ) )
             return 0;
-        c->r = (float)v / 256.0f;
+        c->b = (float)v / 256.0f;
         if( !b.readAlignedByte( &v ) )
             return 0;
         c->g = (float)v / 256.0f;
         if( !b.readAlignedByte( &v ) )
             return 0;
-        c->b = (float)v / 256.0f;
+        c->r = (float)v / 256.0f;
 
         return 1;
     }

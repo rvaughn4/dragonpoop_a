@@ -55,35 +55,29 @@ int main()
 
  //   std::cout.flush();
 
-    //dp::dpbitmap *b = new dp::dpbitmap_1bit_palette( 255, 255 );
-    dp::dpbitmap *b = new dp::dpbitmap_32bit_uncompressed( 255, 255 );
+    dp::dpbuffer_dynamic bib;
+    int v;
+
+    std::fstream ff;
+
+    ff.open( "8bitsample.bmp", ff.binary | ff.in );
+
+    while( (v = ff.get() ) != EOF )
+        bib.writeAlignedByte( v );
+    ff.close();
+
+    dp::dpbitmap *bi = new dp::dpbitmap_8bit_palette( &bib );
+    dp::dpbitmap *b = new dp::dpbitmap_32bit_uncompressed( bi->getWidth(), bi->getHeight() );
+
+    b->copy( bi );
 
     std::fstream f;
 
     f.open( "test1234.bmp", f.binary | f.out | f.trunc );
-
-    int x, y;
-    dp::dpbitmap_color c;
-
-    c.b = 0;
-    c.a = 1;
-    for( y = 0; y < 255; y++ )
-    {
-        c.r = (float)y / 255.0f;
-        for( x = 0; x < 255; x++ )
-        {
-            c.g = (float)x / 255.0f;
-            if( x & 1 )
-                c.b = 1;
-            else
-                c.b = 0;
-            b->setPixel( x, y, &c );
-        }
-    }
-
     f.write( b->getBuffer(), b->getSize() );
     f.close();
 
+    delete bi;
     delete b;
     return 0;
 }

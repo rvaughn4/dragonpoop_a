@@ -128,6 +128,18 @@ namespace dp
         return this->b->writeUnalignedByte( b );
     }
 
+    //read aligned byte, returns true if read
+    bool dpbuffer_wrapper::readUnalignedByte( uint8_t *b, unsigned int sz )
+    {
+        return this->b->readUnalignedByte( b, sz );
+    }
+
+    //write aligned byte, returns true if written
+    bool dpbuffer_wrapper::writeUnalignedByte( uint8_t b, unsigned int sz )
+    {
+        return this->b->writeUnalignedByte( b, sz );
+    }
+
     //read aligned bytes into buffer until all are read
     bool dpbuffer_wrapper::readAlignedBytes( dpbuffer *b )
     {

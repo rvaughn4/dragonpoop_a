@@ -43,6 +43,8 @@ namespace dp
         virtual int getWidth( void ) = 0;
         //returns height
         virtual int getHeight( void ) = 0;
+        //copy bitmap
+        virtual void copy( dpbitmap *b ) = 0;
 
     };
 

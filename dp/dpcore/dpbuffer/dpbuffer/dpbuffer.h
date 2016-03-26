@@ -59,6 +59,10 @@ namespace dp
             virtual bool readUnalignedByte( uint8_t *b ) = 0;
             //write aligned byte, returns true if written
             virtual bool writeUnalignedByte( uint8_t b ) = 0;
+            //read aligned byte, returns true if read
+            virtual bool readUnalignedByte( uint8_t *b, unsigned int sz ) = 0;
+            //write aligned byte, returns true if written
+            virtual bool writeUnalignedByte( uint8_t b, unsigned int sz ) = 0;
             //read aligned bytes into buffer until all are read
             virtual bool readAlignedBytes( dpbuffer *b ) = 0;
             //read aligned bytes into buffer until cnt bytes are read

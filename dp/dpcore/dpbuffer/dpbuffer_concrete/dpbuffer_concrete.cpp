@@ -69,8 +69,8 @@ namespace dp
     //set read bit cursor
     void dpbuffer_concrete::setReadBitCursor( unsigned int c )
     {
-        this->read.byte_cursor = c;
-        this->read.bit_cursor = c / 8;
+        this->read.byte_cursor = c / 8;
+        this->read.bit_cursor = c;
     }
 
     //return write bit cursor
@@ -101,13 +101,14 @@ namespace dp
     //read bit, returns true if read
     bool dpbuffer_concrete::readBit( bool *b )
     {
-        unsigned int c, o, sz;
+        unsigned int c, o, sz, cb;
         unsigned char *buf, pdat;
 
         c = this->read.bit_cursor;
+        cb = this->read.byte_cursor * 8;
         sz = this->_getSize() * 8;
 
-        if( c >= sz )
+        if( c >= sz || cb >= sz )
             return 0;
 
         o = this->getReadBitOffset();
@@ -210,11 +211,23 @@ namespace dp
     //read aligned byte, returns true if read
     bool dpbuffer_concrete::readUnalignedByte( uint8_t *b )
     {
+        return this->readUnalignedByte( b, 8 );
+    }
+
+    //write aligned byte, returns true if written
+    bool dpbuffer_concrete::writeUnalignedByte( uint8_t b )
+    {
+        return this->writeUnalignedByte( b, 8 );
+    }
+
+    //read aligned byte, returns true if read
+    bool dpbuffer_concrete::readUnalignedByte( uint8_t *b, unsigned int sz )
+    {
         unsigned int i, r;
         bool tv;
 
         r = 0;
-        for( i = 0; i < 8; i++ )
+        for( i = 0; i < sz; i++ )
         {
             if( !this->readBit( &tv ) )
                 return 0;
@@ -228,12 +241,12 @@ namespace dp
     }
 
     //write aligned byte, returns true if written
-    bool dpbuffer_concrete::writeUnalignedByte( uint8_t b )
+    bool dpbuffer_concrete::writeUnalignedByte( uint8_t b, unsigned int sz )
     {
         unsigned int i, r, v;
 
         r = b;
-        for( i = 0; i < 8; i++ )
+        for( i = 0; i < sz; i++ )
         {
             v = r >> i;
             v = v & 1;
@@ -270,13 +283,14 @@ namespace dp
     //read aligned bytes into buffer until all are read
     bool dpbuffer_concrete::readAlignedBytes( char *b, unsigned int sz )
     {
-        return this->readAlignedBytes( b, sz, this->write.byte_cursor );
+        return this->readAlignedBytes( b, sz, sz );
     }
 
     //read aligned bytes into buffer until cnt bytes are read
     bool dpbuffer_concrete::readAlignedBytes( char *b, unsigned int sz, unsigned int cnt )
     {
         dpbuffer_static sb( b, sz );
+        sb.setWriteByteCursor( 0 );
         return this->readAlignedBytes( &sb, cnt );
     }
 
@@ -380,7 +394,7 @@ namespace dp
 
         if( twc < tsz )
             tsz = twc;
-        if( offset + sz >= tsz )
+        if( offset + sz > tsz )
             return 0;
         if( !b )
             return 0;

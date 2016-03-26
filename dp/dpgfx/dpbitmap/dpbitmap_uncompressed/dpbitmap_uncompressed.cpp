@@ -112,24 +112,74 @@ namespace dp
         return bs.writeAlignedBytes( (char *)&v, sizeof( v ) );
     }
 
+    void dpbitmap_uncompressed__getPixel__a( uint32_t mask, float *c, uint32_t v )
+    {
+        uint32_t cntzeros, i;
+
+        if( !mask )
+            return;
+
+        for( cntzeros = 0; ((mask >> cntzeros) & 1) == 0; cntzeros++ );
+
+        i = mask >> cntzeros;
+        v = v & mask;
+        v = v >> cntzeros;
+        *c = (float)v;
+        if( i != 0 )
+            *c = *c / (float)i;
+        else
+            *c = 0;
+    }
+
     //get pixel color
     bool dpbitmap_uncompressed::getPixel( int x, int y, dpbitmap_color *c )
     {
         dpbuffer_static bs;
         unsigned int scn, i, bpp, h;
+        uint32_t v, rm, gm, bm, am;
+        dpbitmap_uncompressed_winv3NT2_header *hdr;
 
         scn = this->getScanSize();
         bpp = this->getBits() / 8;
         if( this->isUpsideDown( &h ) )
             y = h - y - 1;
 
+        i = ( x * bpp ) + ( y * scn );
+        rm = this->getRedMask();
+        gm = this->getGreenMask();
+        bm = this->getBlueMask();
+        am = this->getAlphaMask();
+
+        if( !this->getBitmapHeader( &bs ) )
+            return 0;
+        hdr = (dpbitmap_uncompressed_winv3NT2_header *)bs.getBuffer();
+
+        if( hdr->h.h.biSize >= sizeof(dpbitmap_uncompressed_winv3NT_header ) )
+        {
+            if( hdr->h.h.biCompression == dpbitmap_uncompressed_winv2_header_BI_BITFIELDS || hdr->h.h.biCompression == dpbitmap_uncompressed_winv3_header_BI_ALPHABITFIELDS )
+            {
+                rm = hdr->h.biRedMask;
+                gm = hdr->h.biGreenMask;
+                bm = hdr->h.biBlueMask;
+                if( hdr->h.h.biSize >= sizeof(dpbitmap_uncompressed_winv3NT2_header ) )
+                   am = 0;
+            }
+        }
+
         if( !this->getPixelData( &bs ) )
             return 0;
 
-        i = ( x * bpp ) + ( y * scn );
-
         bs.setReadByteCursor( i );
-        return 1;//;this->readColor( c, &bs );
+        v = 0;
+        for( i = 0; i < bpp; i++ )
+            bs.readAlignedByte( &( (uint8_t *)&v )[ i ] );
+
+        dpbitmap_uncompressed__getPixel__a( rm, &c->r, v );
+        dpbitmap_uncompressed__getPixel__a( gm, &c->g, v );
+        dpbitmap_uncompressed__getPixel__a( bm, &c->b, v );
+        dpbitmap_uncompressed__getPixel__a( am, &c->a, v );
+
+        return 1;
     }
 
     //returns width
@@ -179,6 +229,8 @@ namespace dp
         if( hc->bcSize == sizeof( dpbitmap_uncompressed_core_header ) )
             return hc->bcHeight;
 
+        if( hw->biHeight < 0 )
+            return -hw->biHeight;
         return hw->biHeight;
     }
 
@@ -258,6 +310,25 @@ namespace dp
         h = (dpbitmap_uncompressed_file_header *)b->getBuffer();
 
         return this->getSection( b, h->bfSize, this->getSize() - h->bfSize );
+    }
+
+    //copy bitmap
+    void dpbitmap_uncompressed::copy( dpbitmap *b )
+    {
+        unsigned int x, y, w, h;
+        dpbitmap_color c;
+
+        w = b->getWidth();
+        h = b->getHeight();
+
+        for( y = 0; y < h; y++ )
+        {
+            for( x = 0; x < w; x++ )
+            {
+                b->getPixel( x, y, &c );
+                this->setPixel( x, y, &c );
+            }
+        }
     }
 
 };
