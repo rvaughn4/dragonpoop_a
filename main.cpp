@@ -10,14 +10,9 @@
 #include <iostream>
 #include <thread>
 */
-#include "dp/dpgfx/dpbitmap/dpbitmap_1bit_palette/dpbitmap_1bit_palette.h"
-#include "dp/dpgfx/dpbitmap/dpbitmap_4bit_palette/dpbitmap_4bit_palette.h"
-#include "dp/dpgfx/dpbitmap/dpbitmap_8bit_palette/dpbitmap_8bit_palette.h"
-#include "dp/dpgfx/dpbitmap/dpbitmap_16bit_uncompressed/dpbitmap_16bit_uncompressed.h"
-#include "dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.h"
+
+#include "dp/dpgfx/dpbitmap/dpbitmap_loader/dpbitmap_loader.h"
 #include "dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
-#include "dp/dpgfx/dpbitmap/dpbitmap_png/dpbitmap_png.h"
-#include "dp/dpgfx/dpbitmap/dpbitmap_png_bitmap/dpbitmap_png_bitmap.h"
 
 int main()
 {
@@ -54,26 +49,14 @@ int main()
 
  //   std::cout.flush();
 
-    dp::dpbitmap *bi = new dp::dpbitmap_8bit_palette( 32, 32 );
+    dp::dpbitmap *b_in, *b_out;
+    dp::dpbitmap_loader bpl;
 
-    bi->load( "8bitsample.bmp" );
+    b_in = bpl.load( "test1234.bmp" );
+    b_out = new dp::dpbitmap_32bit_uncompressed( b_in->getWidth(), b_in->getHeight() );
 
-    dp::dpbitmap *b = new dp::dpbitmap_32bit_uncompressed( bi->getWidth(), bi->getHeight() );
-    dp::dpbitmap *bp = new dp::dpbitmap_png( bi->getWidth(), bi->getHeight() );
-    dp::dpbitmap *bpp = new dp::dpbitmap_png_bitmap( bi->getWidth(), bi->getHeight() );
-
-    b->copy( bi );
-    bp->copy( bi );
-    bpp->copy( bi );
-
-    b->save( "test1234.bmp" );
-    bp->save( "test1234.png" );
-    bpp->save( "test1234.png.bmp" );
-
-    delete bi;
-    delete b;
-    delete bp;
-    delete bpp;
+    b_out->copy( b_in );
+    b_out->save( "z_out.bmp" );
 
     return 0;
 }

@@ -153,7 +153,6 @@ namespace dp
             return 0;
 
         dest->writeAlignedBytes( src, sz );
-        src->setReadByteCursor( rbyc + sizeof( sz ) + sizeof( szr ) + sz );
 
         return 1;
     }
