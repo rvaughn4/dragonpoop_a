@@ -10,13 +10,13 @@ namespace dp
 {
 
     //ctor
-    dpbitmap_compressed::dpbitmap_compressed( int w, int h )
+    dpbitmap_compressed::dpbitmap_compressed( int w, int h ) : dpbitmap()
     {
         this->b = 0;
     }
 
     //ctor
-    dpbitmap_compressed::dpbitmap_compressed( dpbuffer *b )
+    dpbitmap_compressed::dpbitmap_compressed( dpbuffer *b ) : dpbitmap( b )
     {
         this->b = 0;
     }
@@ -56,10 +56,14 @@ namespace dp
     dpbitmap *dpbitmap_compressed::getUncompressed( void )
     {
         dpbitmap *nb;
+        unsigned int w, h;
 
         if( !this->b )
         {
-            nb = new dpbitmap_32bit_uncompressed( this->getWidth(), this->getHeight() );
+            w = this->getWidth();
+            h = this->getHeight();
+
+            nb = new dpbitmap_32bit_uncompressed( w, h );
             if( !nb )
                 return 0;
             if( this->uncompress( nb ) )

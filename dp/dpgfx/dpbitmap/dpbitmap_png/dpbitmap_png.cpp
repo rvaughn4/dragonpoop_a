@@ -6,6 +6,8 @@
 #include "dpbitmap_png.h"
 #include "../../../dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.h"
 #include "../../../dpcore/dpbuffer/dpbuffer_deflate/dpbuffer_deflate.h"
+#include "../dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
+#include "../dpbitmap_8bit_palette/dpbitmap_8bit_palette.h"
 #include <string.h>
 #include <arpa/inet.h>
 
@@ -21,7 +23,7 @@ namespace dp
     //ctor
     dpbitmap_png::dpbitmap_png( dpbuffer *b ) : dpbitmap_compressed( b )
     {
-
+        this->load( b );
     }
 
     //dtor
@@ -59,7 +61,230 @@ namespace dp
     //uncompress image and store in bitmap
     bool dpbitmap_png::uncompress( dpbitmap *b )
     {
+        dpbuffer_static bs;
+        dpbitmap_png_file_hdr *fh;
+        dpbitmap_png_IHDR_outter *ihdr;
+        uint32_t cv, tv, w, h, bits;
+        dpbitmap *nb;
+        uint8_t ctype;
+
+        if( !this->getFileHeader( &bs ) )
+            return 0;
+
+        fh = (dpbitmap_png_file_hdr *)bs.getBuffer();
+        tv = cv = 0;
+        memcpy( (char *)&tv, (char *)&fh->c_png, 3 );
+        memcpy( (char *)&cv, (char *)"PNG", 3 );
+        if( tv != cv )
+            return 0;
+
+        if( !this->getIHDR( &bs ) )
+            return 0;
+
+        ihdr = (dpbitmap_png_IHDR_outter *)bs.getBuffer();
+        w = htonl( ihdr->chnk.w );
+        h = htonl( ihdr->chnk.h );
+        bits = ihdr->chnk.bits;
+        ctype = ihdr->chnk.colorType;
+
+        nb = new dpbitmap_32bit_uncompressed( w, h );
+        if( !nb )
+            return 0;
+
+        if( !this->parsePixels( nb, w, h, bits, ctype ) )
+        {
+            delete nb;
+            return 0;
+        }
+
+        b->copy( nb );
+        delete nb;
+
         return 1;
+    }
+
+    //parse paletted pixels
+    bool dpbitmap_png::parsePalettePixels( dpbitmap *b, unsigned int w, unsigned int h, unsigned int bits, unsigned int ctype )
+    {
+        return 0;
+    }
+
+    void dpbitmap_png__parsePixels__a( dpbitmap_color *c, unsigned int bits, unsigned int ctype, char *b )
+    {
+        union
+        {
+            uint8_t *vb;
+            uint16_t *sb;
+            char *bb;
+        };
+
+        bb = b;
+        switch( bits )
+        {
+            case 8:
+            {
+                switch( ctype )
+                {
+                    case dpbitmap_png_IHDR_color_greyscale:
+                        c->r = vb[ 0 ];
+                        c->g = c->r;
+                        c->b = c->r;
+                        c->a = 255;
+                        break;
+                    case dpbitmap_png_IHDR_color_truecolor:
+                        c->r = vb[ 0 ];
+                        c->g = vb[ 1 ];
+                        c->b = vb[ 2 ];
+                        c->a = 255;
+                        break;
+                    case dpbitmap_png_IHDR_color_greyscale_alpha:
+                        c->r = vb[ 0 ];
+                        c->g = c->r;
+                        c->b = c->r;
+                        c->a = vb[ 1 ];
+                        break;
+                    case dpbitmap_png_IHDR_color_truecolor_alpha:
+                        c->r = vb[ 0 ];
+                        c->g = vb[ 1 ];
+                        c->b = vb[ 2 ];
+                        c->a = vb[ 3 ];
+                        break;
+                }
+
+                c->r = c->r / 256.0f;
+                c->g = c->g / 256.0f;
+                c->b = c->b / 256.0f;
+                c->a = c->a / 256.0f;
+
+                break;
+            }
+            case 16:
+            {
+                switch( ctype )
+                {
+                    case dpbitmap_png_IHDR_color_greyscale:
+                        c->r = htons( vb[ 0 ] );
+                        c->g = c->r;
+                        c->b = c->r;
+                        c->a = 65534;
+                        break;
+                    case dpbitmap_png_IHDR_color_truecolor:
+                        c->r = htons( vb[ 0 ] );
+                        c->g = htons( vb[ 1 ] );
+                        c->b = htons( vb[ 2 ] );
+                        c->a = 65534;
+                        break;
+                    case dpbitmap_png_IHDR_color_greyscale_alpha:
+                        c->r = htons( vb[ 0 ] );
+                        c->g = c->r;
+                        c->b = c->r;
+                        c->a = htons( vb[ 1 ] );
+                        break;
+                    case dpbitmap_png_IHDR_color_truecolor_alpha:
+                        c->r = htons( vb[ 0 ] );
+                        c->g = htons( vb[ 1 ] );
+                        c->b = htons( vb[ 2 ] );
+                        c->a = htons( vb[ 3 ] );
+                        break;
+                }
+
+                c->r = c->r / 65534.0f;
+                c->g = c->g / 65534.0f;
+                c->b = c->b / 65534.0f;
+                c->a = c->a / 65534.0f;
+
+                break;
+            }
+        }
+    }
+
+    //parse nonpalette pixels
+    bool dpbitmap_png::parsePixels( dpbitmap *b, unsigned int w, unsigned int h, unsigned int bits, unsigned int ctype )
+    {
+        dpbuffer_dynamic bs;
+        unsigned int x, y, i, bpp, sz;
+        uint8_t fb;
+        char *buf;
+        dpbitmap_color c, c_a, c_b, c_c;
+
+        if( bits != 8 && bits != 16 )
+            return 0;
+
+        if( !this->decompPixels( &bs ) )
+            return 0;
+
+        switch( ctype )
+        {
+            case dpbitmap_png_IHDR_color_greyscale:
+                bpp = bits;
+                break;
+            case dpbitmap_png_IHDR_color_truecolor:
+                bpp = bits * 3;
+                break;
+            case dpbitmap_png_IHDR_color_indexed:
+                return 0;
+            case dpbitmap_png_IHDR_color_greyscale_alpha:
+                bpp = bits * 2;
+                break;
+            case dpbitmap_png_IHDR_color_truecolor_alpha:
+                bpp = bits * 4;
+                break;
+        }
+
+        bpp = bpp / 8;
+        buf = bs.getBuffer();
+        sz = bs.getSize();
+
+        for( y = 0; y < h; y++ )
+        {
+            c_a.r = c_a.g = c_a.b = c_a.a = 0;
+            c_c = c_b = c_a;
+
+            i = ( y * ( w * bpp + 1 ) ) + x * bpp;
+            if( i < sz )
+                fb = ((uint8_t *)buf)[ i ];
+
+            for( x = 0; x < w; x++ )
+            {
+                i = ( y * ( w * bpp + 1 ) ) + 1 + x * bpp;
+                if( i + bpp <= sz )
+                    dpbitmap_png__parsePixels__a( &c, bits, ctype, &buf[ i ] );
+                if( x > 0 )
+                {
+                    i = ( y * ( w * bpp + 1 ) ) + 1 + ( x - 1 ) * bpp;
+                    if( i + bpp <= sz )
+                        dpbitmap_png__parsePixels__a( &c_a, bits, ctype, &buf[ i ] );
+                }
+                if( y > 0 )
+                {
+                    i = ( ( y - 1 ) * ( w * bpp + 1 ) ) + 1 + x * bpp;
+                    if( i + bpp <= sz )
+                        dpbitmap_png__parsePixels__a( &c_b, bits, ctype, &buf[ i ] );
+                }
+                if( y > 0 && x > 0 )
+                {
+                    i = ( ( y - 1 ) * ( w * bpp + 1 ) ) + 1 + ( x - 1 ) * bpp;
+                    if( i + bpp <= sz )
+                        dpbitmap_png__parsePixels__a( &c_c, bits, ctype, &buf[ i ] );
+                }
+
+                b->setPixel( x, y, &c );
+            }
+        }
+
+        return 1;
+    }
+
+    //decompress pixel data
+    bool dpbitmap_png::decompPixels( dpbuffer *pout )
+    {
+        dpbuffer_dynamic bs;
+        dpbuffer_deflate d;
+
+        if( !this->getIDAT( &bs ) )
+            return 0;
+
+        return d.decompress( &bs, pout );
     }
 
     //compress image and overrwrite previous data
@@ -215,7 +440,6 @@ namespace dp
         dpbuffer_deflate def;
         unsigned int w, h, x, y;
         dpbitmap_color c, c_a, c_b, c_c;
-        float f;
 
         if( !bm )
             b.writeAlignedByte( 0 );
@@ -226,7 +450,7 @@ namespace dp
 
             for( y = 0; y < h; y++ )
             {
-                b.writeAlignedByte( 4 );
+                b.writeAlignedByte( 0 );
                 c_a.r = c_a.g = c_a.b = c_a.a = 0;
                 c_c = c_b = c_a;
 
@@ -244,12 +468,12 @@ namespace dp
                     dpbitmap_png__genIDAT_conv( &c_a );
                     dpbitmap_png__genIDAT_conv( &c_b );
                     dpbitmap_png__genIDAT_conv( &c_c );
-
+/*
                     c.r = c.r - dpbitmap_png__genIDAT_pearth( c_a.r, c_b.r, c_c.r );
                     c.g = c.g - dpbitmap_png__genIDAT_pearth( c_a.g, c_b.g, c_c.g );
                     c.b = c.b - dpbitmap_png__genIDAT_pearth( c_a.b, c_b.b, c_c.b );
                     c.a = c.a - dpbitmap_png__genIDAT_pearth( c_a.a, c_b.a, c_c.a );
-
+*/
                     b.writeAlignedByte( c.r );
                     b.writeAlignedByte( c.g );
                     b.writeAlignedByte( c.b );
@@ -312,18 +536,23 @@ namespace dp
     }
 
     //get IDAT chuncks
-    bool dpbitmap_png::getIHDR( dpbuffer_dynamic *b )
+    bool dpbitmap_png::getIDAT( dpbuffer_dynamic *b )
     {
         dpbuffer_static bs;
         unsigned int i, sz;
 
+        dpbitmap_png_chunk_start *h;
+
         i = 0;
-        while( this->findChunk( "IHDR", i, &i, &sz ) )
+        while( this->findChunk( "IDAT", i, &i, &sz ) )
         {
-            if( !this->getSection( &bs, i + sizeof(dpbitmap_png_chunk_start), sz - sizeof(dpbitmap_png_chunk_start) - sizeof(dpbitmap_png_chunk_end) ) )
+            if( !this->getSection( &bs, i, sz ) )
                 return 1;
             i += sz;
-            b->writeAlignedBytes( &bs );
+            h = (dpbitmap_png_chunk_start *)bs.getBuffer();
+            h->len = htonl( h->len );
+            bs.setReadByteCursor( sizeof(dpbitmap_png_chunk_start) );
+            b->writeAlignedBytes( &bs, bs.getSize() - sizeof(dpbitmap_png_chunk_start) - sizeof(dpbitmap_png_chunk_end) );
         }
 
         return 1;
@@ -346,7 +575,7 @@ namespace dp
         dpbitmap_png_chunk_start *h;
         uint32_t id;
         unsigned int i, e, sl, sc;
-        char *b;
+        char *b, bb[ 5 ];
 
         id = *( (uint32_t *)cname );
         e = this->getSize();
@@ -363,7 +592,7 @@ namespace dp
                 return 0;
 
             h = (dpbitmap_png_chunk_start *)&b[ i ];
-            sc = sizeof(dpbitmap_png_chunk_start) + sizeof(dpbitmap_png_chunk_end) + h->len;
+            sc = sizeof(dpbitmap_png_chunk_start) + sizeof(dpbitmap_png_chunk_end) + htonl(h->len);
             if( sc > sl )
                 return 0;
             if( h->type == id )

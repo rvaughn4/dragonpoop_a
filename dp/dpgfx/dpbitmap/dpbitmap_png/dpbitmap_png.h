@@ -94,6 +94,12 @@ namespace dp
         bool genIDAT( dpbitmap *bm );
         //generate default iend chunk
         bool genIEND( void );
+        //parse paletted pixels
+        bool parsePalettePixels( dpbitmap *b, unsigned int w, unsigned int h, unsigned int bits, unsigned int ctype );
+        //parse nonpalette pixels
+        bool parsePixels( dpbitmap *b, unsigned int w, unsigned int h, unsigned int bits, unsigned int ctype );
+        //decompress pixel data
+        bool decompPixels( dpbuffer *pout );
 
     public:
 
@@ -114,7 +120,7 @@ namespace dp
         //get PLTE chunck
         virtual bool getPLTE( dpbuffer_static *b );
         //get IDAT chuncks
-        virtual bool getIHDR( dpbuffer_dynamic *b );
+        virtual bool getIDAT( dpbuffer_dynamic *b );
         //get IEND chunck
         virtual bool getIEND( dpbuffer_static *b );
         //find chunck offset and size

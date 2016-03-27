@@ -13,6 +13,8 @@ namespace dp
     //ctor
     dpbitmap_png_bitmap::dpbitmap_png_bitmap( int w, int h ) : dpbitmap_compressed( w, h )
     {
+        this->w = w;
+        this->h = h;
         this->png = new dpbitmap_png( w, h );
         this->compress( 0 );
     }
@@ -28,6 +30,9 @@ namespace dp
             return;
 
         this->png->load( &bs );
+
+        this->w = this->png->getWidth();
+        this->h = this->png->getHeight();
     }
 
     //dtor
@@ -39,13 +44,13 @@ namespace dp
     //returns width
     int dpbitmap_png_bitmap::getWidth( void )
     {
-        return this->png->getWidth();
+        return this->w;
     }
 
     //returns height
     int dpbitmap_png_bitmap::getHeight( void )
     {
-        return this->png->getHeight();
+        return this->h;
     }
 
     //uncompress image and store in bitmap
@@ -61,12 +66,19 @@ namespace dp
         dpbitmap_uncompressed_file_header fh;
         dpbitmap_uncompressed_winv3_header bh;
         unsigned int file_size, offset_to_pixels, image_size, bitmap_header_size;
+        dpbuffer_dynamic bs;
 
         if( b )
+        {
+            if( this->png )
+                delete this->png;
+            this->png = new dpbitmap_png( b->getWidth(), b->getHeight() );
             this->png->copy( b );
+            this->png->save( &bs );
+        }
 
         offset_to_pixels = sizeof(dpbitmap_uncompressed_file_header) + sizeof(dpbitmap_uncompressed_winv3_header);
-        image_size = this->png->getSize();
+        image_size = bs.getSize();
         file_size = image_size + offset_to_pixels;
         bitmap_header_size = sizeof(dpbitmap_uncompressed_winv3_header);
 
@@ -88,7 +100,7 @@ namespace dp
         this->setWriteByteCursor( 0 );
         this->writeAlignedBytes( (char *)&fh, sizeof( fh ) );
         this->writeAlignedBytes( (char *)&bh, sizeof( bh ) );
-        this->writeAlignedBytes( this->png );
+        this->writeAlignedBytes( &bs );
 
         return 1;
     }

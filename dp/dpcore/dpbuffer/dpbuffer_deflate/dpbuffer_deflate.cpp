@@ -39,16 +39,14 @@ namespace dp
     //decompress source buffer and output into dest buffer
     bool dpbuffer_deflate::decompress( dpbuffer *src, dpbuffer *dest )
     {
-        bool r = 0;
         uint8_t v;
 
-        if( !src->readAlignedByte( &v ) && !src->readAlignedByte( &v ) )
-            return 0;
+        src->readAlignedByte( &v );
+        src->readAlignedByte( &v );
 
-        while( this->readSection( src, dest ) )
-            r = 1;
+        while( this->readSection( src, dest ) );
 
-        return r;
+        return 1;
     }
 
     //read next section
@@ -147,10 +145,8 @@ namespace dp
             rbyc += 1;
         src->setReadByteCursor( rbyc );
 
-        if( !src->readAlignedBytes( (char *)&sz, sizeof( sz ) ) )
-            return 0;
-        if( !src->readAlignedBytes( (char *)&szr, sizeof( szr ) ) )
-            return 0;
+        src->readAlignedBytes( (char *)&sz, sizeof( sz ) );
+        src->readAlignedBytes( (char *)&szr, sizeof( szr ) );
 
         dest->writeAlignedBytes( src, sz );
 

@@ -13,6 +13,8 @@
 
 #include "dp/dpgfx/dpbitmap/dpbitmap_loader/dpbitmap_loader.h"
 #include "dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
+#include "dp/dpgfx/dpbitmap/dpbitmap_png/dpbitmap_png.h"
+#include "dp/dpgfx/dpbitmap/dpbitmap_png_bitmap/dpbitmap_png_bitmap.h"
 
 int main()
 {
@@ -51,8 +53,11 @@ int main()
 
     dp::dpbitmap *b_in, *b_out;
     dp::dpbitmap_loader bpl;
+    //dpbitmap_32bit_uncompressed
+    //dpbitmap_png
+    //dpbitmap_png_bitmap
 
-    b_in = bpl.load( "test1234.bmp" );
+    b_in = bpl.load( "test1234.png.bmp" );
     b_out = new dp::dpbitmap_32bit_uncompressed( b_in->getWidth(), b_in->getHeight() );
 
     b_out->copy( b_in );

@@ -46,7 +46,7 @@ namespace dp
     {
         if( !this->b )
             return 0;
-        return sz < this->sz;
+        return sz <= this->sz;
     }
 
     //set buffer

@@ -261,7 +261,7 @@ namespace dp
     //read aligned bytes into buffer until all are read
     bool dpbuffer_concrete::readAlignedBytes( dpbuffer *b )
     {
-        return this->readAlignedBytes( b, this->write.byte_cursor );
+        return this->readAlignedBytes( b, this->getWriteByteCursor() );
     }
 
     //read aligned bytes into buffer until cnt bytes are read

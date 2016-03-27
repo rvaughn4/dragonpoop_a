@@ -21,6 +21,7 @@ namespace dp
     private:
 
         dpbitmap_png *png;
+        unsigned int w, h;
 
     protected:
 
