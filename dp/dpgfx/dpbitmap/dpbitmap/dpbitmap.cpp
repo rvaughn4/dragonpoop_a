@@ -16,9 +16,10 @@ namespace dp
     }
 
     //ctor
-    dpbitmap::dpbitmap( dpbuffer *b ) : dpbuffer_wrapper( b )
+    dpbitmap::dpbitmap( dpbuffer *b ) : dpbuffer_wrapper()
     {
-
+        this->int_b.copy( b );
+        this->setWrapped( &this->int_b );
     }
 
     //dtor

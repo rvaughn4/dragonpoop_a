@@ -106,43 +106,38 @@ namespace dp
         return this->writeAlignedBytes( (char *)&h, sizeof( h ) );
     }
 
-// ---------------------------- reverse --------------------------------
-
-// Reverses (reflects) bits in a 32-bit word.
-unsigned reverse(unsigned x) {
-   x = ((x & 0x55555555) <<  1) | ((x >>  1) & 0x55555555);
-   x = ((x & 0x33333333) <<  2) | ((x >>  2) & 0x33333333);
-   x = ((x & 0x0F0F0F0F) <<  4) | ((x >>  4) & 0x0F0F0F0F);
-   x = (x << 24) | ((x & 0xFF00) << 8) |
-       ((x >> 8) & 0xFF00) | (x >> 24);
-   return x;
-}
-
-// ----------------------------- crc32a --------------------------------
-
-/* This is the basic CRC algorithm with no optimizations. It follows the
-logic circuit as closely as possible. */
-
-unsigned int crc32a(unsigned char *message, int sz) {
-   int i, j;
-   unsigned int byte, crc;
-
-   i = 0;
-   crc = 0xFFFFFFFF;
-   while ( i < sz )
+    // Reverses (reflects) bits in a 32-bit word.
+    unsigned reverse(unsigned x)
     {
-      byte = message[i];            // Get next byte.
-      byte = reverse(byte);         // 32-bit reversal.
-      for (j = 0; j <= 7; j++) {    // Do eight times.
-         if ((int)(crc ^ byte) < 0)
-              crc = (crc << 1) ^ 0x04C11DB7;
-         else crc = crc << 1;
-         byte = byte << 1;          // Ready next msg bit.
-      }
-      i = i + 1;
-   }
-   return reverse(~crc);
-}
+        x = ((x & 0x55555555) <<  1) | ((x >>  1) & 0x55555555);
+        x = ((x & 0x33333333) <<  2) | ((x >>  2) & 0x33333333);
+        x = ((x & 0x0F0F0F0F) <<  4) | ((x >>  4) & 0x0F0F0F0F);
+        x = (x << 24) | ((x & 0xFF00) << 8) | ((x >> 8) & 0xFF00) | (x >> 24);
+        return x;
+    }
+
+    //bad crc 32bit impl
+    unsigned int crc32a( unsigned char *buffer, int sz )
+    {
+        int i, j;
+        unsigned int byte, crc;
+
+        crc = 0xFFFFFFFF;
+        for( i = 0; i < sz; i++ )
+        {
+            byte = buffer[ i ];
+            byte = reverse(byte);
+            for( j = 0; j <= 7; j++ )
+            {
+                if( (int)( crc ^ byte ) < 0 )
+                    crc = ( crc << 1 ) ^ 0x04C11DB7;
+                else
+                    crc = crc << 1;
+                byte = byte << 1;
+            }
+        }
+        return reverse( ~crc );
+    }
 
     //generate default png ihdr chunck
     bool dpbitmap_png::genIHDR( int w, int h )
@@ -203,9 +198,12 @@ unsigned int crc32a(unsigned char *message, int sz) {
         return r;
     }
 
-    void dpbitmap_png__genIDAT_conv( )
+    void dpbitmap_png__genIDAT_conv( dpbitmap_color *c )
     {
-
+        c->r *= 255.0f;
+        c->g *= 255.0f;
+        c->b *= 255.0f;
+        c->a *= 255.0f;
     }
 
     //generate default idat chunk
@@ -241,6 +239,11 @@ unsigned int crc32a(unsigned char *message, int sz) {
                         bm->getPixel( x - 1, y - 1, &c_c );
                     if( y > 0 )
                         bm->getPixel( x, y - 1, &c_b );
+
+                    dpbitmap_png__genIDAT_conv( &c );
+                    dpbitmap_png__genIDAT_conv( &c_a );
+                    dpbitmap_png__genIDAT_conv( &c_b );
+                    dpbitmap_png__genIDAT_conv( &c_c );
 
                     c.r = c.r - dpbitmap_png__genIDAT_pearth( c_a.r, c_b.r, c_c.r );
                     c.g = c.g - dpbitmap_png__genIDAT_pearth( c_a.g, c_b.g, c_c.g );

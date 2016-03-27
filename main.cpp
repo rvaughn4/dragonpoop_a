@@ -17,6 +17,7 @@
 #include "dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.h"
 #include "dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
 #include "dp/dpgfx/dpbitmap/dpbitmap_png/dpbitmap_png.h"
+#include "dp/dpgfx/dpbitmap/dpbitmap_png_bitmap/dpbitmap_png_bitmap.h"
 
 int main()
 {
@@ -59,16 +60,20 @@ int main()
 
     dp::dpbitmap *b = new dp::dpbitmap_32bit_uncompressed( bi->getWidth(), bi->getHeight() );
     dp::dpbitmap *bp = new dp::dpbitmap_png( bi->getWidth(), bi->getHeight() );
+    dp::dpbitmap *bpp = new dp::dpbitmap_png_bitmap( bi->getWidth(), bi->getHeight() );
 
     b->copy( bi );
     bp->copy( bi );
+    bpp->copy( bi );
 
     b->save( "test1234.bmp" );
     bp->save( "test1234.png" );
+    bpp->save( "test1234.png.bmp" );
 
     delete bi;
     delete b;
     delete bp;
+    delete bpp;
 
     return 0;
 }
