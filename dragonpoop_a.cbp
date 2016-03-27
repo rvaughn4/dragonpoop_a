@@ -45,8 +45,12 @@
 		<Unit filename="dp/dp.h" />
 		<Unit filename="dp/dpcore/dpbuffer/dpbuffer/dpbuffer.cpp" />
 		<Unit filename="dp/dpcore/dpbuffer/dpbuffer/dpbuffer.h" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_compress/dpbuffer_compress.cpp" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_compress/dpbuffer_compress.h" />
 		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_concrete/dpbuffer_concrete.cpp" />
 		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_concrete/dpbuffer_concrete.h" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_deflate/dpbuffer_deflate.cpp" />
+		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_deflate/dpbuffer_deflate.h" />
 		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.cpp" />
 		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.h" />
 		<Unit filename="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared.cpp" />
@@ -126,6 +130,10 @@
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_4bit_palette/dpbitmap_4bit_palette.h" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_8bit_palette/dpbitmap_8bit_palette.cpp" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_8bit_palette/dpbitmap_8bit_palette.h" />
+		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_compressed/dpbitmap_compressed.cpp" />
+		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_compressed/dpbitmap_compressed.h" />
+		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_png/dpbitmap_png.cpp" />
+		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_png/dpbitmap_png.h" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_uncompressed/dpbitmap_uncompressed.cpp" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_uncompressed/dpbitmap_uncompressed.h" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_uncompressed_palette/dpbitmap_uncompressed_palette.cpp" />

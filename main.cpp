@@ -58,10 +58,10 @@ int main()
     bi->load( "8bitsample.bmp" );
 
     dp::dpbitmap *b = new dp::dpbitmap_32bit_uncompressed( bi->getWidth(), bi->getHeight() );
-    dp::dpbitmap *bp = new dp::dpbitmap_png( 32, 32 );
+    dp::dpbitmap *bp = new dp::dpbitmap_png( bi->getWidth(), bi->getHeight() );
 
     b->copy( bi );
-    //bp->copy( b );
+    bp->copy( bi );
 
     b->save( "test1234.bmp" );
     bp->save( "test1234.png" );

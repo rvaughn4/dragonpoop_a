@@ -294,6 +294,7 @@ namespace dp
         if( !b.readAlignedByte( &v ) )
             return 0;
         c->r = (float)v / 256.0f;
+        c->a = 1;
 
         return 1;
     }

@@ -66,7 +66,15 @@ namespace dp
     bool dpbitmap_png::compress( dpbitmap *b )
     {
         this->setWriteByteCursor( 0 );
-        return this->genDefaults( b->getWidth(), b->getHeight() );
+        return this->genFileHdr()
+        &&
+        this->genIHDR( b->getWidth(), b->getHeight() )
+        &&
+        this->genPLTE()
+        &&
+        this->genIDAT( b )
+        &&
+        this->genIEND();
     }
 
     //generate default png header and chunks
@@ -78,7 +86,7 @@ namespace dp
         &&
         this->genPLTE()
         &&
-        this->genIDAT()
+        this->genIDAT( 0 )
         &&
         this->genIEND();
     }
@@ -166,68 +174,103 @@ unsigned int crc32a(unsigned char *message, int sz) {
         return 1;
     }
 
-    //generate default idat chunk
-    bool dpbitmap_png::genIDAT( void )
+    float dpbitmap_png__genIDAT_pearth( float a, float b, float c )
     {
-        dpbitmap_png_chunk_start hs, *phs;
-        dpbitmap_png_chunk_end he, *phe;
+        float p, pa, pb, pc, r;
+
+        p = a + b - c;
+
+        r = a;
+        pa = p - a;
+        pa *= pa;
+
+        pb = p - b;
+        pb *= pb;
+        if( pb < pa )
+        {
+            pa = pb;
+            r = b;
+        }
+
+        pc = p - c;
+        pc *= pc;
+        if( pc < pa )
+        {
+            pa = pc;
+            r = c;
+        }
+
+        return r;
+    }
+
+    void dpbitmap_png__genIDAT_conv( )
+    {
+
+    }
+
+    //generate default idat chunk
+    bool dpbitmap_png::genIDAT( dpbitmap *bm )
+    {
+        dpbitmap_png_chunk_start hs;
+        dpbitmap_png_chunk_end he;
         dpbuffer_dynamic b, bd, b1;
-        char *buf;
         dpbuffer_deflate def;
+        unsigned int w, h, x, y;
+        dpbitmap_color c, c_a, c_b, c_c;
         float f;
 
-        unsigned int w, h, x, y;
-
-        w = 32;//this->getWidth();
-        h = 32;//this->getHeight();
-
-        b.writeAlignedByte( 0 );
-
-        x = (w * 4 + 1) * h;
-        b.writeAlignedBytes( (char *)&x, 2 );
-        x = ~x;
-        b.writeAlignedBytes( (char *)&x, 2 );
-
-        for( y = 0; y < h; y++ )
-        {
+        if( !bm )
             b.writeAlignedByte( 0 );
+        else
+        {
+            w = bm->getWidth();
+            h = bm->getHeight();
 
-            for( x = 0; x < w; x++ )
+            for( y = 0; y < h; y++ )
             {
-                f = 255;//(float)y * 255.0f / (float)h;
-                b.writeAlignedByte( f );
-                f = 255;//(float)x * 255.0f / (float)w;
-                b.writeAlignedByte( f );
-                f = 255;
-                b.writeAlignedByte( f );
-                f = 255;
-                b.writeAlignedByte( f );
+                b.writeAlignedByte( 4 );
+                c_a.r = c_a.g = c_a.b = c_a.a = 0;
+                c_c = c_b = c_a;
 
-                b.writeAlignedByte( f );
-                b.writeAlignedByte( f );
-                b.writeAlignedByte( f );
-                b.writeAlignedByte( f );
+                for( x = 0; x < w; x++ )
+                {
+                    bm->getPixel( x, y, &c );
+                    if( x > 0 )
+                        bm->getPixel( x - 1, y, &c_a );
+                    if( x > 0 && y > 0 )
+                        bm->getPixel( x - 1, y - 1, &c_c );
+                    if( y > 0 )
+                        bm->getPixel( x, y - 1, &c_b );
 
+                    c.r = c.r - dpbitmap_png__genIDAT_pearth( c_a.r, c_b.r, c_c.r );
+                    c.g = c.g - dpbitmap_png__genIDAT_pearth( c_a.g, c_b.g, c_c.g );
+                    c.b = c.b - dpbitmap_png__genIDAT_pearth( c_a.b, c_b.b, c_c.b );
+                    c.a = c.a - dpbitmap_png__genIDAT_pearth( c_a.a, c_b.a, c_c.a );
 
+                    b.writeAlignedByte( c.r );
+                    b.writeAlignedByte( c.g );
+                    b.writeAlignedByte( c.b );
+                    b.writeAlignedByte( c.a );
+                }
             }
         }
 
-       // def.compress( &b, &bd );
+        b.setReadByteCursor( 0 );
+        def.compress( &b, &bd );
 
         hs.type = *( (uint32_t *)"IDAT" );
-        hs.len = htonl( b.getSize() );
-        he.crc = 0;
+        hs.len = htonl( bd.getSize() );
 
         b1.writeAlignedBytes( (char *)&hs, sizeof( hs ) );
-        b1.writeAlignedBytes( &b );
-        b1.writeAlignedBytes( (char *)&he, sizeof( he ) );
+        bd.setReadByteCursor( 0 );
+        b1.writeAlignedBytes( &bd );
+        he.crc = htonl( crc32a( (unsigned char *)b1.getBuffer() + 4, 4 + bd.getSize() ) );
 
-        buf = b1.getBuffer();
-        phs = (dpbitmap_png_chunk_start *)buf;
-        phe = (dpbitmap_png_chunk_end *)&buf[ htonl(phs->len) + sizeof( dpbitmap_png_chunk_start ) ];
-        phe->crc = htonl( crc32a( (unsigned char *)&phs->type, htonl(phs->len) + sizeof( phs->type ) ) );
+        b1.setReadByteCursor( 0 );
+        this->writeAlignedBytes( &b1 );
+        this->writeAlignedBytes( (char *)&he, sizeof( he ) );
 
-        return this->writeAlignedBytes( &b1 );
+        return 1;
     }
 
     //generate default iend chunk

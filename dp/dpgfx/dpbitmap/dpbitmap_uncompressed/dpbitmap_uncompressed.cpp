@@ -95,7 +95,7 @@ namespace dp
                 gm = hdr->h.biGreenMask;
                 bm = hdr->h.biBlueMask;
                 if( hdr->h.h.biSize >= sizeof(dpbitmap_uncompressed_winv3NT2_header ) )
-                   am = 0;
+                   am = hdr->biAlphaMask;
             }
         }
 
@@ -121,6 +121,12 @@ namespace dp
 
         for( cntzeros = 0; ((mask >> cntzeros) & 1) == 0; cntzeros++ );
 
+        if( cntzeros >= 32 )
+        {
+            *c = 1;
+            return;
+        }
+
         i = mask >> cntzeros;
         v = v & mask;
         v = v >> cntzeros;
@@ -128,7 +134,7 @@ namespace dp
         if( i != 0 )
             *c = *c / (float)i;
         else
-            *c = 0;
+            *c = 1;
     }
 
     //get pixel color
@@ -162,7 +168,7 @@ namespace dp
                 gm = hdr->h.biGreenMask;
                 bm = hdr->h.biBlueMask;
                 if( hdr->h.h.biSize >= sizeof(dpbitmap_uncompressed_winv3NT2_header ) )
-                   am = 0;
+                   am = hdr->biAlphaMask;
             }
         }
 

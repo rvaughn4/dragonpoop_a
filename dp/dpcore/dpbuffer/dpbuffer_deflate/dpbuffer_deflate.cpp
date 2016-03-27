@@ -26,7 +26,11 @@ namespace dp
     {
         bool r = 0;
 
-        while( this->writeSection( src, dest, 1024 ) )
+        //write zlib header
+        dest->writeAlignedByte( 0x78 );
+        dest->writeAlignedByte( 0x01 );
+
+        while( this->writeSection( src, dest, 65000 ) )
             r = 1;
 
         return r;
@@ -36,6 +40,10 @@ namespace dp
     bool dpbuffer_deflate::decompress( dpbuffer *src, dpbuffer *dest )
     {
         bool r = 0;
+        uint8_t v;
+
+        if( !src->readAlignedByte( &v ) && !src->readAlignedByte( &v ) )
+            return 0;
 
         while( this->readSection( src, dest ) )
             r = 1;
@@ -48,6 +56,7 @@ namespace dp
     {
         uint8_t cd;
         unsigned int rc, sz;
+        bool r;
 
         rc = src->getReadByteCursor();
         sz = src->getWriteByteCursor();
@@ -58,10 +67,12 @@ namespace dp
         if( !src->readUnalignedByte( &cd, 3 ) )
             return 0;
 
+        r = !( cd & 1 );
+        cd = cd >> 1;
         switch( cd )
         {
             case dpbuffer_deflate_no_compress:
-                return this->readUncompressed( src, dest );
+                return this->readUncompressed( src, dest ) & r;
             case dpbuffer_deflate_static_huffman:
                 return 0;
             case dpbuffer_deflate_dynamic_huffman:
@@ -85,6 +96,7 @@ namespace dp
         cd = this->testSection( src, len );
         dest->writeUnalignedByte( cd, 3 );
 
+        cd = cd >> 1;
         switch( cd )
         {
             case dpbuffer_deflate_no_compress:
@@ -95,14 +107,31 @@ namespace dp
                 return 0;
         }
 
-        return 0;
 
+        return 0;
     }
 
     //test next section
     uint8_t dpbuffer_deflate::testSection( dpbuffer *src, unsigned int len )
     {
-        return dpbuffer_deflate_no_compress;
+        uint8_t r;
+        unsigned int rc, ln;
+
+        rc = src->getReadByteCursor();
+        ln = src->getWriteByteCursor();
+        if( ln < rc )
+            ln = 0;
+        else
+            ln = ln - rc;
+
+        r = dpbuffer_deflate_no_compress;
+        r = r << 1;
+        if( ln < len )
+            r = r | 1;
+        else
+            r = r & 0b110;
+
+        return r;
     }
 
     //read uncompressed section
@@ -156,7 +185,6 @@ namespace dp
 
         dest->writeAlignedBytes( src, sz );
 
-        dest->setWriteByteCursor( rbyc + sizeof( sz ) + sizeof( szr ) + sz );
         return 1;
     }
 

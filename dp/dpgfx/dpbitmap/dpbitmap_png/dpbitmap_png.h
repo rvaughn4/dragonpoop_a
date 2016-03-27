@@ -91,7 +91,7 @@ namespace dp
         //generate default png plte chunk
         bool genPLTE( void );
         //generate default idat chunk
-        bool genIDAT( void );
+        bool genIDAT( dpbitmap *bm );
         //generate default iend chunk
         bool genIEND( void );
 
