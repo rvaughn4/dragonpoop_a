@@ -10,6 +10,7 @@
 #include "../dpbitmap_8bit_palette/dpbitmap_8bit_palette.h"
 #include <string.h>
 #include <arpa/inet.h>
+#include <math.h>
 
 namespace dp
 {
@@ -198,6 +199,77 @@ namespace dp
         }
     }
 
+    void dpbitmap_png__parsePixels__left( dpbitmap_color *c, dpbitmap_color *c_a )
+    {
+        c->r = c->r + c_a->r;
+        c->g = c->g + c_a->g;
+        c->b = c->b + c_a->b;
+        c->a = c->a + c_a->a;
+    }
+
+    void dpbitmap_png__parsePixels__up( dpbitmap_color *c, dpbitmap_color *c_b )
+    {
+        c->r = c->r + c_b->r;
+        c->g = c->g + c_b->g;
+        c->b = c->b + c_b->b;
+        c->a = c->a + c_b->a;
+    }
+
+    float dpbitmap_png__parsePixels__mean_x( float c, float a, float b )
+    {
+        float r;
+
+        r = a + b;
+        r = r * 0.5f;
+
+        return c + floor( r );
+    }
+
+    void dpbitmap_png__parsePixels__mean( dpbitmap_color *c, dpbitmap_color *c_a, dpbitmap_color *c_b )
+    {
+        c->r = dpbitmap_png__parsePixels__mean_x( c->r, c_a->r, c_b->r );
+        c->g = dpbitmap_png__parsePixels__mean_x( c->g, c_a->g, c_b->g );
+        c->b = dpbitmap_png__parsePixels__mean_x( c->b, c_a->b, c_b->b );
+        c->a = dpbitmap_png__parsePixels__mean_x( c->a, c_a->a, c_b->a );
+    }
+
+    float dpbitmap_png__parsePixels__pearth_x( float a, float b, float c )
+    {
+        float p, pa, pb, pc, r;
+
+        p = a + b - c;
+
+        r = a;
+        pa = p - a;
+        pa *= pa;
+
+        pb = p - b;
+        pb *= pb;
+        if( pb < pa )
+        {
+            pa = pb;
+            r = b;
+        }
+
+        pc = p - c;
+        pc *= pc;
+        if( pc < pa )
+        {
+            pa = pc;
+            r = c;
+        }
+
+        return r;
+    }
+
+    void dpbitmap_png__parsePixels__pearth( dpbitmap_color *c, dpbitmap_color *c_a, dpbitmap_color *c_b, dpbitmap_color *c_c )
+    {
+        c->r = c->r + dpbitmap_png__parsePixels__pearth_x( c_a->r, c_b->r, c_c->r );
+        c->g = c->g + dpbitmap_png__parsePixels__pearth_x( c_a->g, c_b->g, c_c->g );
+        c->b = c->b + dpbitmap_png__parsePixels__pearth_x( c_a->b, c_b->b, c_c->b );
+        c->a = c->a + dpbitmap_png__parsePixels__pearth_x( c_a->a, c_b->a, c_c->a );
+    }
+
     //parse nonpalette pixels
     bool dpbitmap_png::parsePixels( dpbitmap *b, unsigned int w, unsigned int h, unsigned int bits, unsigned int ctype )
     {
@@ -266,6 +338,22 @@ namespace dp
                     i = ( ( y - 1 ) * ( w * bpp + 1 ) ) + 1 + ( x - 1 ) * bpp;
                     if( i + bpp <= sz )
                         dpbitmap_png__parsePixels__a( &c_c, bits, ctype, &buf[ i ] );
+                }
+
+                switch( fb )
+                {
+                    case 1:
+                        dpbitmap_png__parsePixels__left( &c, &c_a );
+                        break;
+                    case 2:
+                        dpbitmap_png__parsePixels__up( &c, &c_b );
+                        break;
+                    case 3:
+                        dpbitmap_png__parsePixels__mean( &c, &c_a, &c_b );
+                        break;
+                    case 4:
+                        dpbitmap_png__parsePixels__pearth( &c, &c_a, &c_b, &c_c );
+                        break;
                 }
 
                 b->setPixel( x, y, &c );
@@ -394,7 +482,41 @@ namespace dp
         return 1;
     }
 
-    float dpbitmap_png__genIDAT_pearth( float a, float b, float c )
+    void dpbitmap_png__genIDAT_left( dpbitmap_color *c, dpbitmap_color *c_a )
+    {
+        c->r = c->r - c_a->r;
+        c->g = c->g - c_a->g;
+        c->b = c->b - c_a->b;
+        c->a = c->a - c_a->a;
+    }
+
+    void dpbitmap_png__genIDAT_up( dpbitmap_color *c, dpbitmap_color *c_b )
+    {
+        c->r = c->r - c_b->r;
+        c->g = c->g - c_b->g;
+        c->b = c->b - c_b->b;
+        c->a = c->a - c_b->a;
+    }
+
+    float dpbitmap_png__genIDAT_mean_x( float c, float c_a, float c_b )
+    {
+        float r;
+
+        r = c_a + c_b;
+        r = r * 0.5f;
+
+        return c - floor( r );
+    }
+
+    void dpbitmap_png__genIDAT_mean( dpbitmap_color *c, dpbitmap_color *c_a, dpbitmap_color *c_b )
+    {
+        c->r = dpbitmap_png__genIDAT_mean_x( c->r, c_a->r, c_b->r );
+        c->g = dpbitmap_png__genIDAT_mean_x( c->g, c_a->g, c_b->g );
+        c->b = dpbitmap_png__genIDAT_mean_x( c->b, c_a->b, c_b->b );
+        c->a = dpbitmap_png__genIDAT_mean_x( c->a, c_a->a, c_b->a );
+    }
+
+    float dpbitmap_png__genIDAT_pearth_x( float a, float b, float c )
     {
         float p, pa, pb, pc, r;
 
@@ -423,6 +545,14 @@ namespace dp
         return r;
     }
 
+    void dpbitmap_png__genIDAT_pearth( dpbitmap_color *c, dpbitmap_color *c_a, dpbitmap_color *c_b, dpbitmap_color *c_c )
+    {
+        c->r -= dpbitmap_png__genIDAT_pearth_x( c_a->r, c_b->r, c_c->r );
+        c->g -= dpbitmap_png__genIDAT_pearth_x( c_a->g, c_b->g, c_c->g );
+        c->b -= dpbitmap_png__genIDAT_pearth_x( c_a->b, c_b->b, c_c->b );
+        c->a -= dpbitmap_png__genIDAT_pearth_x( c_a->a, c_b->a, c_c->a );
+    }
+
     void dpbitmap_png__genIDAT_conv( dpbitmap_color *c )
     {
         c->r *= 255.0f;
@@ -440,6 +570,7 @@ namespace dp
         dpbuffer_deflate def;
         unsigned int w, h, x, y;
         dpbitmap_color c, c_a, c_b, c_c;
+        uint8_t fv;
 
         if( !bm )
             b.writeAlignedByte( 0 );
@@ -447,10 +578,11 @@ namespace dp
         {
             w = bm->getWidth();
             h = bm->getHeight();
+            fv = 4;
 
             for( y = 0; y < h; y++ )
             {
-                b.writeAlignedByte( 0 );
+                b.writeAlignedByte( fv );
                 c_a.r = c_a.g = c_a.b = c_a.a = 0;
                 c_c = c_b = c_a;
 
@@ -468,12 +600,23 @@ namespace dp
                     dpbitmap_png__genIDAT_conv( &c_a );
                     dpbitmap_png__genIDAT_conv( &c_b );
                     dpbitmap_png__genIDAT_conv( &c_c );
-/*
-                    c.r = c.r - dpbitmap_png__genIDAT_pearth( c_a.r, c_b.r, c_c.r );
-                    c.g = c.g - dpbitmap_png__genIDAT_pearth( c_a.g, c_b.g, c_c.g );
-                    c.b = c.b - dpbitmap_png__genIDAT_pearth( c_a.b, c_b.b, c_c.b );
-                    c.a = c.a - dpbitmap_png__genIDAT_pearth( c_a.a, c_b.a, c_c.a );
-*/
+
+                    switch( fv )
+                    {
+                        case 1: //subtracted from left
+                            dpbitmap_png__genIDAT_left( &c, &c_a );
+                            break;
+                        case 2: //subtracted from up
+                            dpbitmap_png__genIDAT_up( &c, &c_b );
+                            break;
+                        case 3: //average of a and b rounded down
+                            dpbitmap_png__genIDAT_mean( &c, &c_a, &c_b );
+                            break;
+                        case 4: //pearth
+                            dpbitmap_png__genIDAT_pearth( &c, &c_a, &c_b, &c_c );
+                            break;
+                    }
+
                     b.writeAlignedByte( c.r );
                     b.writeAlignedByte( c.g );
                     b.writeAlignedByte( c.b );
@@ -575,7 +718,7 @@ namespace dp
         dpbitmap_png_chunk_start *h;
         uint32_t id;
         unsigned int i, e, sl, sc;
-        char *b, bb[ 5 ];
+        char *b;
 
         id = *( (uint32_t *)cname );
         e = this->getSize();

@@ -57,11 +57,11 @@ int main()
     //dpbitmap_png
     //dpbitmap_png_bitmap
 
-    b_in = bpl.load( "test1234.png.bmp" );
-    b_out = new dp::dpbitmap_32bit_uncompressed( b_in->getWidth(), b_in->getHeight() );
+    b_in = bpl.load( "32bitsample.bmp" );
+    b_out = new dp::dpbitmap_png( b_in->getWidth(), b_in->getHeight() );
 
     b_out->copy( b_in );
-    b_out->save( "z_out.bmp" );
+    b_out->save( "z_out.png" );
 
     return 0;
 }

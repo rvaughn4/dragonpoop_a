@@ -18,7 +18,7 @@
 1454887924 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpspinlock.h
 	<atomic>
 
-1459101488 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
+1459126413 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
 	"dp/dpcore/dptaskmgr/dptaskmgr.h"
 	"dp/dpcore/dptaskmgr/dptaskmgr_writelock.h"
 	"dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h"
@@ -1576,7 +1576,7 @@
 	"dpbitmap_compressed.h"
 	"../dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
 
-1459100473 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_png/dpbitmap_png.cpp
+1459126129 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_png/dpbitmap_png.cpp
 	"dpbitmap_png.h"
 	"../../../dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.h"
 	"../../../dpcore/dpbuffer/dpbuffer_deflate/dpbuffer_deflate.h"
@@ -1584,6 +1584,7 @@
 	"../dpbitmap_8bit_palette/dpbitmap_8bit_palette.h"
 	<string.h>
 	<arpa/inet.h>
+	<math.h>
 
 1459009188 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_compressed/dpbitmap_compressed.h
 	"../dpbitmap/dpbitmap.h"
