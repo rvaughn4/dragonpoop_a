@@ -51,17 +51,26 @@ int main()
 
  //   std::cout.flush();
 
-    dp::dpbitmap *b_in, *b_out;
+    dp::dpbitmap *b_in_bmp, *b_out_png, *b_in_png, *b_out_bmp;
     dp::dpbitmap_loader bpl;
-    //dpbitmap_32bit_uncompressed
-    //dpbitmap_png
-    //dpbitmap_png_bitmap
 
-    b_in = bpl.load( "32bitsample.bmp" );
-    b_out = new dp::dpbitmap_png( b_in->getWidth(), b_in->getHeight() );
+    b_in_bmp = bpl.load( "32bitsample.bmp" );
+    b_out_png = new dp::dpbitmap_png( b_in_bmp->getWidth(), b_in_bmp->getHeight() );
 
-    b_out->copy( b_in );
-    b_out->save( "z_out.png" );
+    b_out_png->copy( b_in_bmp );
+    b_out_png->save( "z_out.png" );
+
+    delete b_in_bmp;
+    delete b_out_png;
+
+    b_in_png = bpl.load( "z_out.png" );
+    b_out_bmp = new dp::dpbitmap_32bit_uncompressed( b_in_png->getWidth(), b_in_png->getHeight() );
+
+    b_out_bmp->copy( b_in_png );
+    b_out_bmp->save( "z_out.bmp" );
+
+    delete b_in_png;
+    delete b_out_bmp;
 
     return 0;
 }

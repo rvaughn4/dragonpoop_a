@@ -5,7 +5,7 @@
 
 #include "dpbitmap_png.h"
 #include "../../../dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.h"
-#include "../../../dpcore/dpbuffer/dpbuffer_deflate/dpbuffer_deflate.h"
+#include "../../../dpcore/dpbuffer/dpbuffer_zlib/dpbuffer_zlib.h"
 #include "../dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
 #include "../dpbitmap_8bit_palette/dpbitmap_8bit_palette.h"
 #include <string.h>
@@ -201,10 +201,10 @@ namespace dp
 
     void dpbitmap_png__parsePixels__left( dpbitmap_color *c, dpbitmap_color *c_a )
     {
-        c->r = c->r + c_a->r;
-        c->g = c->g + c_a->g;
-        c->b = c->b + c_a->b;
-        c->a = c->a + c_a->a;
+        c->r = c_a->r + c->r;
+        c->g = c_a->g + c->g;
+        c->b = c_a->b + c->b;
+        c->a = c_a->a + c->a;
     }
 
     void dpbitmap_png__parsePixels__up( dpbitmap_color *c, dpbitmap_color *c_b )
@@ -281,9 +281,7 @@ namespace dp
 
         if( bits != 8 && bits != 16 )
             return 0;
-
-        if( !this->decompPixels( &bs ) )
-            return 0;
+        this->decompPixels( &bs );
 
         switch( ctype )
         {
@@ -322,23 +320,11 @@ namespace dp
                 if( i + bpp <= sz )
                     dpbitmap_png__parsePixels__a( &c, bits, ctype, &buf[ i ] );
                 if( x > 0 )
-                {
-                    i = ( y * ( w * bpp + 1 ) ) + 1 + ( x - 1 ) * bpp;
-                    if( i + bpp <= sz )
-                        dpbitmap_png__parsePixels__a( &c_a, bits, ctype, &buf[ i ] );
-                }
+                    b->getPixel( x - 1, y, &c_a );
                 if( y > 0 )
-                {
-                    i = ( ( y - 1 ) * ( w * bpp + 1 ) ) + 1 + x * bpp;
-                    if( i + bpp <= sz )
-                        dpbitmap_png__parsePixels__a( &c_b, bits, ctype, &buf[ i ] );
-                }
+                    b->getPixel( x, y - 1, &c_b );
                 if( y > 0 && x > 0 )
-                {
-                    i = ( ( y - 1 ) * ( w * bpp + 1 ) ) + 1 + ( x - 1 ) * bpp;
-                    if( i + bpp <= sz )
-                        dpbitmap_png__parsePixels__a( &c_c, bits, ctype, &buf[ i ] );
-                }
+                    b->getPixel( x - 1, y - 1, &c_c );
 
                 switch( fb )
                 {
@@ -367,11 +353,13 @@ namespace dp
     bool dpbitmap_png::decompPixels( dpbuffer *pout )
     {
         dpbuffer_dynamic bs;
-        dpbuffer_deflate d;
+        dpbuffer_zlib d;
 
         if( !this->getIDAT( &bs ) )
             return 0;
 
+        bs.setReadByteCursor( 0 );
+        pout->setWriteByteCursor( 0 );
         return d.decompress( &bs, pout );
     }
 
@@ -567,7 +555,7 @@ namespace dp
         dpbitmap_png_chunk_start hs;
         dpbitmap_png_chunk_end he;
         dpbuffer_dynamic b, bd, b1;
-        dpbuffer_deflate def;
+        dpbuffer_zlib def;
         unsigned int w, h, x, y;
         dpbitmap_color c, c_a, c_b, c_c;
         uint8_t fv;
@@ -578,7 +566,7 @@ namespace dp
         {
             w = bm->getWidth();
             h = bm->getHeight();
-            fv = 4;
+            fv = 1;
 
             for( y = 0; y < h; y++ )
             {
@@ -626,6 +614,7 @@ namespace dp
         }
 
         b.setReadByteCursor( 0 );
+        bd.setWriteByteCursor( 0 );
         def.compress( &b, &bd );
 
         hs.type = *( (uint32_t *)"IDAT" );

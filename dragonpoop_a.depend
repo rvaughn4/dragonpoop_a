@@ -18,7 +18,7 @@
 1454887924 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpspinlock.h
 	<atomic>
 
-1459126413 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
+1459172587 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
 	"dp/dpcore/dptaskmgr/dptaskmgr.h"
 	"dp/dpcore/dptaskmgr/dptaskmgr_writelock.h"
 	"dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h"
@@ -1576,10 +1576,10 @@
 	"dpbitmap_compressed.h"
 	"../dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
 
-1459126129 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_png/dpbitmap_png.cpp
+1459173379 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_png/dpbitmap_png.cpp
 	"dpbitmap_png.h"
 	"../../../dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.h"
-	"../../../dpcore/dpbuffer/dpbuffer_deflate/dpbuffer_deflate.h"
+	"../../../dpcore/dpbuffer/dpbuffer_zlib/dpbuffer_zlib.h"
 	"../dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
 	"../dpbitmap_8bit_palette/dpbitmap_8bit_palette.h"
 	<string.h>
@@ -1628,4 +1628,127 @@
 	<string.h>
 
 1459083697 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_loader/dpbitmap_loader.h
+
+1459172084 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_zlib/dpbuffer_zlib.cpp
+	"dpbuffer_zlib.h"
+	"../dpbuffer/dpbuffer.h"
+	"../../../../zlib/zlib.h"
+
+1459165506 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_zlib/dpbuffer_zlib.h
+	"../dpbuffer_compress/dpbuffer_compress.h"
+
+1459165894 /home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/zlib.h
+	"zconf.h"
+
+1459165894 /home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/zconf.h
+	<windows.h>
+	<limits.h>
+	<sys/types.h>
+	<stdarg.h>
+	<stddef.h>
+	<unistd.h>
+	<unixio.h>
+
+1459165898 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/adler32.c
+	"zutil.h"
+
+1459165894 /home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/zutil.h
+	"zlib.h"
+	<stddef.h>
+	<string.h>
+	<stdlib.h>
+	<alloc.h>
+	<malloc.h>
+	<malloc.h>
+	<unix.h>
+	<stdio.h>
+
+1459165898 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/compress.c
+	"zlib.h"
+
+1459165898 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/crc32.c
+	<stdio.h>
+	"zutil.h"
+	"crc32.h"
+
+1459165894 /home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/crc32.h
+
+1459165898 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/deflate.c
+	"deflate.h"
+
+1459165894 /home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/deflate.h
+	"zutil.h"
+
+1459165898 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/gzclose.c
+	"gzguts.h"
+
+1459165894 /home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/gzguts.h
+	<stdio.h>
+	"zlib.h"
+	<string.h>
+	<stdlib.h>
+	<limits.h>
+	<fcntl.h>
+	<stddef.h>
+	<io.h>
+	<windows.h>
+	<errno.h>
+
+1459165898 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/gzlib.c
+	"gzguts.h"
+
+1459165898 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/gzread.c
+	"gzguts.h"
+
+1459165898 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/gzwrite.c
+	"gzguts.h"
+	<stdarg.h>
+
+1459165898 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/infback.c
+	"zutil.h"
+	"inftrees.h"
+	"inflate.h"
+	"inffast.h"
+	"inffixed.h"
+
+1459165894 /home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/inftrees.h
+
+1459165894 /home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/inflate.h
+
+1459165894 /home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/inffast.h
+
+1459165894 /home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/inffixed.h
+
+1459165898 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/inffast.c
+	"zutil.h"
+	"inftrees.h"
+	"inflate.h"
+	"inffast.h"
+
+1459165898 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/inflate.c
+	"zutil.h"
+	"inftrees.h"
+	"inflate.h"
+	"inffast.h"
+	"inffixed.h"
+	<stdio.h>
+
+1459165898 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/inftrees.c
+	"zutil.h"
+	"inftrees.h"
+
+1459165898 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/trees.c
+	"deflate.h"
+	<ctype.h>
+	"trees.h"
+	<stdio.h>
+
+1459165894 /home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/trees.h
+
+1459165898 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/uncompr.c
+	"zlib.h"
+
+1459165898 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/zlib/zutil.c
+	"zutil.h"
+	"gzguts.h"
 
