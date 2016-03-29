@@ -119,6 +119,9 @@ namespace dp
             char *bb;
         };
 
+        if( !b )
+            return;
+
         bb = b;
         switch( bits )
         {
@@ -164,28 +167,28 @@ namespace dp
                 switch( ctype )
                 {
                     case dpbitmap_png_IHDR_color_greyscale:
-                        c->r = htons( vb[ 0 ] );
+                        c->r = sb[ 0 ];
                         c->g = c->r;
                         c->b = c->r;
                         c->a = 65534;
                         break;
                     case dpbitmap_png_IHDR_color_truecolor:
-                        c->r = htons( vb[ 0 ] );
-                        c->g = htons( vb[ 1 ] );
-                        c->b = htons( vb[ 2 ] );
+                        c->r = sb[ 0 ];
+                        c->g = sb[ 1 ];
+                        c->b = sb[ 2 ];
                         c->a = 65534;
                         break;
                     case dpbitmap_png_IHDR_color_greyscale_alpha:
-                        c->r = htons( vb[ 0 ] );
+                        c->r = sb[ 0 ];
                         c->g = c->r;
                         c->b = c->r;
-                        c->a = htons( vb[ 1 ] );
+                        c->a = sb[ 1 ];
                         break;
                     case dpbitmap_png_IHDR_color_truecolor_alpha:
-                        c->r = htons( vb[ 0 ] );
-                        c->g = htons( vb[ 1 ] );
-                        c->b = htons( vb[ 2 ] );
-                        c->a = htons( vb[ 3 ] );
+                        c->r = sb[ 0 ];
+                        c->g = sb[ 1 ];
+                        c->b = sb[ 2 ];
+                        c->a = sb[ 3 ];
                         break;
                 }
 
@@ -199,60 +202,71 @@ namespace dp
         }
     }
 
-    void dpbitmap_png__parsePixels__left( dpbitmap_color *c, dpbitmap_color *c_a )
+    uint8_t dpbitmap_png__parsePixels__left_x( uint8_t c, uint8_t a )
     {
-        c->r = c_a->r + c->r;
-        c->g = c_a->g + c->g;
-        c->b = c_a->b + c->b;
-        c->a = c_a->a + c->a;
+        uint8_t r;
+
+        r = c + a;
+
+        return r;
     }
 
-    void dpbitmap_png__parsePixels__up( dpbitmap_color *c, dpbitmap_color *c_b )
+    void dpbitmap_png__parsePixels__left( unsigned int bpp, uint8_t *pc, uint8_t *pc_a )
     {
-        c->r = c->r + c_b->r;
-        c->g = c->g + c_b->g;
-        c->b = c->b + c_b->b;
-        c->a = c->a + c_b->a;
+        unsigned int i;
+        for( i = 0; i < bpp; i++ )
+                pc[ i ] = dpbitmap_png__parsePixels__left_x( pc[ i ], pc_a[ i ] );
     }
 
-    float dpbitmap_png__parsePixels__mean_x( float c, float a, float b )
+    void dpbitmap_png__parsePixels__up( unsigned int bpp, uint8_t *pc, uint8_t *pc_b )
     {
-        float r;
-
-        r = a + b;
-        r = r * 0.5f;
-
-        return c + floor( r );
+        dpbitmap_png__parsePixels__left( bpp, pc, pc_b );
     }
 
-    void dpbitmap_png__parsePixels__mean( dpbitmap_color *c, dpbitmap_color *c_a, dpbitmap_color *c_b )
+    uint8_t dpbitmap_png__parsePixels__mean_x( uint8_t c, uint8_t a, uint8_t b )
     {
-        c->r = dpbitmap_png__parsePixels__mean_x( c->r, c_a->r, c_b->r );
-        c->g = dpbitmap_png__parsePixels__mean_x( c->g, c_a->g, c_b->g );
-        c->b = dpbitmap_png__parsePixels__mean_x( c->b, c_a->b, c_b->b );
-        c->a = dpbitmap_png__parsePixels__mean_x( c->a, c_a->a, c_b->a );
+        unsigned int r;
+
+        r = (unsigned int)a + (unsigned int)b;
+        r = r >> 1;
+
+        return c + (uint8_t)r;
     }
 
-    float dpbitmap_png__parsePixels__pearth_x( float a, float b, float c )
+    void dpbitmap_png__parsePixels__mean( unsigned int bpp, uint8_t *c, uint8_t *c_a, uint8_t *c_b )
     {
-        float p, pa, pb, pc, r;
+        unsigned int i;
+
+        for( i = 0; i < bpp; i++ )
+            c[ i ] = dpbitmap_png__parsePixels__mean_x( c[ i ], c_a[ i ], c_b[ i ] );
+    }
+
+    uint8_t dpbitmap_png__parsePixels__pearth_x( uint8_t a, uint8_t b, uint8_t c )
+    {
+        uint8_t p, pa, pb, pc, r;
 
         p = a + b - c;
 
         r = a;
-        pa = p - a;
-        pa *= pa;
+        if( p > a )
+            pa = p - a;
+        else
+            pa = a - p;
 
-        pb = p - b;
-        pb *= pb;
+        if( p > b )
+            pb = p - b;
+        else
+            pb = b - p;
         if( pb < pa )
         {
             pa = pb;
             r = b;
         }
 
-        pc = p - c;
-        pc *= pc;
+        if( p > c )
+            pc = p - c;
+        else
+            pc = c - p;
         if( pc < pa )
         {
             pa = pc;
@@ -262,26 +276,27 @@ namespace dp
         return r;
     }
 
-    void dpbitmap_png__parsePixels__pearth( dpbitmap_color *c, dpbitmap_color *c_a, dpbitmap_color *c_b, dpbitmap_color *c_c )
+    void dpbitmap_png__parsePixels__pearth( unsigned int bpp, uint8_t *c, uint8_t *c_a, uint8_t *c_b, uint8_t *c_c )
     {
-        c->r = c->r + dpbitmap_png__parsePixels__pearth_x( c_a->r, c_b->r, c_c->r );
-        c->g = c->g + dpbitmap_png__parsePixels__pearth_x( c_a->g, c_b->g, c_c->g );
-        c->b = c->b + dpbitmap_png__parsePixels__pearth_x( c_a->b, c_b->b, c_c->b );
-        c->a = c->a + dpbitmap_png__parsePixels__pearth_x( c_a->a, c_b->a, c_c->a );
+        unsigned int i;
+
+        for( i = 0; i < bpp; i++ )
+            c[ i ] = c[ i ] + dpbitmap_png__parsePixels__pearth_x( c_a[ i ], c_b[ i ], c_c[ i ] );
     }
 
     //parse nonpalette pixels
     bool dpbitmap_png::parsePixels( dpbitmap *b, unsigned int w, unsigned int h, unsigned int bits, unsigned int ctype )
     {
         dpbuffer_dynamic bs;
-        unsigned int x, y, i, bpp, sz;
+        unsigned int x, y, i, bpp, sz, pi;
         uint8_t fb;
-        char *buf;
-        dpbitmap_color c, c_a, c_b, c_c;
+        char *buf, *pc, *pc_a, *pc_b, *pc_c, dummy[ 128 ];
+        dpbitmap_color c;
 
         if( bits != 8 && bits != 16 )
             return 0;
         this->decompPixels( &bs );
+        memset( dummy, 0, sizeof( dummy ) );
 
         switch( ctype )
         {
@@ -307,40 +322,55 @@ namespace dp
 
         for( y = 0; y < h; y++ )
         {
-            c_a.r = c_a.g = c_a.b = c_a.a = 0;
-            c_c = c_b = c_a;
 
-            i = ( y * ( w * bpp + 1 ) ) + x * bpp;
+            i = ( y * ( w * bpp + 1 ) );
             if( i < sz )
                 fb = ((uint8_t *)buf)[ i ];
+
+            pc = pc_a = pc_b = pc_c = dummy;
 
             for( x = 0; x < w; x++ )
             {
                 i = ( y * ( w * bpp + 1 ) ) + 1 + x * bpp;
                 if( i + bpp <= sz )
-                    dpbitmap_png__parsePixels__a( &c, bits, ctype, &buf[ i ] );
+                    pc = &buf[ i ];
                 if( x > 0 )
-                    b->getPixel( x - 1, y, &c_a );
+                {
+                    pi = i - bpp;
+                    if( pi + bpp < sz )
+                        pc_a = &buf[ pi ];
+                }
                 if( y > 0 )
-                    b->getPixel( x, y - 1, &c_b );
+                {
+                    pi = i - (w * bpp) - 1;
+                    if( pi + bpp < sz )
+                        pc_b = &buf[ pi ];
+                }
                 if( y > 0 && x > 0 )
-                    b->getPixel( x - 1, y - 1, &c_c );
+                {
+                    pi = i - (w * bpp) - 1;
+                    pi = pi - bpp;
+                    if( pi + bpp < sz )
+                        pc_c = &buf[ pi ];
+                }
 
                 switch( fb )
                 {
                     case 1:
-                        dpbitmap_png__parsePixels__left( &c, &c_a );
+                        dpbitmap_png__parsePixels__left( bpp, (uint8_t *)pc, (uint8_t *)pc_a );
                         break;
                     case 2:
-                        dpbitmap_png__parsePixels__up( &c, &c_b );
+                        dpbitmap_png__parsePixels__up( bpp, (uint8_t *)pc, (uint8_t *)pc_b );
                         break;
                     case 3:
-                        dpbitmap_png__parsePixels__mean( &c, &c_a, &c_b );
+                        dpbitmap_png__parsePixels__mean( bpp, (uint8_t *)pc, (uint8_t *)pc_a, (uint8_t *)pc_b );
                         break;
                     case 4:
-                        dpbitmap_png__parsePixels__pearth( &c, &c_a, &c_b, &c_c );
+                        dpbitmap_png__parsePixels__pearth( bpp, (uint8_t *)pc, (uint8_t *)pc_a, (uint8_t *)pc_b, (uint8_t *)pc_c );
                         break;
                 }
+
+                dpbitmap_png__parsePixels__a( &c, bits, ctype, pc );
 
                 b->setPixel( x, y, &c );
             }
@@ -366,14 +396,19 @@ namespace dp
     //compress image and overrwrite previous data
     bool dpbitmap_png::compress( dpbitmap *b )
     {
+        unsigned int bits, ctype;
+
+        bits = 8;
+        ctype = dpbitmap_png_IHDR_color_truecolor_alpha;
+
         this->setWriteByteCursor( 0 );
         return this->genFileHdr()
         &&
-        this->genIHDR( b->getWidth(), b->getHeight() )
+        this->genIHDR( b->getWidth(), b->getHeight(), bits, ctype )
         &&
         this->genPLTE()
         &&
-        this->genIDAT( b )
+        this->genIDAT( b, bits, ctype )
         &&
         this->genIEND();
     }
@@ -381,13 +416,18 @@ namespace dp
     //generate default png header and chunks
     bool dpbitmap_png::genDefaults( int w, int h )
     {
+        unsigned int bits, ctype;
+
+        bits = 8;
+        ctype = dpbitmap_png_IHDR_color_truecolor_alpha;
+
         return this->genFileHdr()
         &&
-        this->genIHDR( w, h )
+        this->genIHDR( w, h, bits, ctype )
         &&
         this->genPLTE()
         &&
-        this->genIDAT( 0 )
+        this->genIDAT( 0, bits, ctype )
         &&
         this->genIEND();
     }
@@ -441,7 +481,7 @@ namespace dp
     }
 
     //generate default png ihdr chunck
-    bool dpbitmap_png::genIHDR( int w, int h )
+    bool dpbitmap_png::genIHDR( unsigned int w, unsigned int h, unsigned int bits, unsigned int ctype )
     {
         dpbitmap_png_IHDR_outter hdr;
         dpbitmap_png_IHDR *c;
@@ -453,8 +493,8 @@ namespace dp
 
         c->w = htonl( (unsigned int)w );
         c->h = htonl( (unsigned int)h );
-        c->bits = 8;
-        c->colorType = dpbitmap_png_IHDR_color_truecolor_alpha;
+        c->bits = bits;
+        c->colorType = ctype;
         c->filterType = 0;
         c->compType = 0;
         c->interlaceType = 0;
@@ -470,60 +510,68 @@ namespace dp
         return 1;
     }
 
-    void dpbitmap_png__genIDAT_left( dpbitmap_color *c, dpbitmap_color *c_a )
+    uint8_t dpbitmap_png__genIDAT_left_x( uint8_t c, uint8_t a )
     {
-        c->r = c->r - c_a->r;
-        c->g = c->g - c_a->g;
-        c->b = c->b - c_a->b;
-        c->a = c->a - c_a->a;
+        return c - a;
     }
 
-    void dpbitmap_png__genIDAT_up( dpbitmap_color *c, dpbitmap_color *c_b )
+    void dpbitmap_png__genIDAT_left( unsigned int bpp, uint8_t *pc, uint8_t *pc_a )
     {
-        c->r = c->r - c_b->r;
-        c->g = c->g - c_b->g;
-        c->b = c->b - c_b->b;
-        c->a = c->a - c_b->a;
+        unsigned int i;
+
+        for( i = 0; i < bpp; i++ )
+            pc[ i ] = dpbitmap_png__genIDAT_left_x( pc[ i ], pc_a[ i ] );
     }
 
-    float dpbitmap_png__genIDAT_mean_x( float c, float c_a, float c_b )
+    void dpbitmap_png__genIDAT_up( unsigned int bpp, uint8_t *pc, uint8_t *pc_b )
     {
-        float r;
-
-        r = c_a + c_b;
-        r = r * 0.5f;
-
-        return c - floor( r );
+        dpbitmap_png__genIDAT_left( bpp, pc, pc_b );
     }
 
-    void dpbitmap_png__genIDAT_mean( dpbitmap_color *c, dpbitmap_color *c_a, dpbitmap_color *c_b )
+    uint8_t dpbitmap_png__genIDAT_mean_x( uint8_t c, uint8_t a, uint8_t b )
     {
-        c->r = dpbitmap_png__genIDAT_mean_x( c->r, c_a->r, c_b->r );
-        c->g = dpbitmap_png__genIDAT_mean_x( c->g, c_a->g, c_b->g );
-        c->b = dpbitmap_png__genIDAT_mean_x( c->b, c_a->b, c_b->b );
-        c->a = dpbitmap_png__genIDAT_mean_x( c->a, c_a->a, c_b->a );
+        unsigned int r;
+
+        r = a + b;
+        r = r >> 1;
+
+        return c - (uint8_t)r;
     }
 
-    float dpbitmap_png__genIDAT_pearth_x( float a, float b, float c )
+    void dpbitmap_png__genIDAT_mean( unsigned int bpp, uint8_t *pc, uint8_t *pc_a, uint8_t *pc_b )
     {
-        float p, pa, pb, pc, r;
+        unsigned int i;
+
+        for( i = 0; i < bpp; i++ )
+            pc[ i ] = dpbitmap_png__genIDAT_mean_x( pc[ i ], pc_a[ i ], pc_b[ i ] );
+    }
+
+    uint8_t dpbitmap_png__genIDAT_pearth_x( uint8_t a, uint8_t b, uint8_t c )
+    {
+        uint8_t p, pa, pb, pc, r;
 
         p = a + b - c;
 
         r = a;
-        pa = p - a;
-        pa *= pa;
+        if( p > a )
+            pa = p - a;
+        else
+            pa = a - p;
 
-        pb = p - b;
-        pb *= pb;
+        if( p > b )
+            pb = p - b;
+        else
+            pb = b - p;
         if( pb < pa )
         {
             pa = pb;
             r = b;
         }
 
-        pc = p - c;
-        pc *= pc;
+        if( p > c )
+            pc = p - c;
+        else
+            pc = c - p;
         if( pc < pa )
         {
             pa = pc;
@@ -533,12 +581,12 @@ namespace dp
         return r;
     }
 
-    void dpbitmap_png__genIDAT_pearth( dpbitmap_color *c, dpbitmap_color *c_a, dpbitmap_color *c_b, dpbitmap_color *c_c )
+    void dpbitmap_png__genIDAT_pearth( unsigned int bpp, uint8_t *pc, uint8_t *pc_a, uint8_t *pc_b, uint8_t *pc_c )
     {
-        c->r -= dpbitmap_png__genIDAT_pearth_x( c_a->r, c_b->r, c_c->r );
-        c->g -= dpbitmap_png__genIDAT_pearth_x( c_a->g, c_b->g, c_c->g );
-        c->b -= dpbitmap_png__genIDAT_pearth_x( c_a->b, c_b->b, c_c->b );
-        c->a -= dpbitmap_png__genIDAT_pearth_x( c_a->a, c_b->a, c_c->a );
+        unsigned int i;
+
+        for( i = 0; i < bpp; i++ )
+            pc[ i ] = pc[ i ] - dpbitmap_png__genIDAT_pearth_x( pc_a[ i ], pc_b[ i ], pc_c[ i ] );
     }
 
     void dpbitmap_png__genIDAT_conv( dpbitmap_color *c )
@@ -549,66 +597,207 @@ namespace dp
         c->a *= 255.0f;
     }
 
+    void dpbitmap_png__genIDAT__a( dpbitmap_color *c, unsigned int bits, unsigned int ctype, char *b )
+    {
+        union
+        {
+            uint8_t *vb;
+            uint16_t *sb;
+            char *bb;
+        };
+        float f;
+
+        if( !b )
+            return;
+
+        bb = b;
+        switch( bits )
+        {
+            case 8:
+            {
+                c->r *= 255.0f;
+                c->g *= 255.0f;
+                c->b *= 255.0f;
+                c->a *= 255.0f;
+
+                switch( ctype )
+                {
+                    case dpbitmap_png_IHDR_color_greyscale:
+                        f = c->r + c->g + c->b;
+                        f *= 0.33f;
+                        vb[ 0 ] = (uint8_t)f;
+                        break;
+                    case dpbitmap_png_IHDR_color_truecolor:
+                        vb[ 0 ] = (uint8_t)c->r;
+                        vb[ 1 ] = (uint8_t)c->g;
+                        vb[ 2 ] = (uint8_t)c->b;
+                        break;
+                    case dpbitmap_png_IHDR_color_greyscale_alpha:
+                        f = c->r + c->g + c->b;
+                        f *= 0.33f;
+                        vb[ 0 ] = (uint8_t)f;
+                        vb[ 1 ] = (uint8_t)c->a;
+                        break;
+                    case dpbitmap_png_IHDR_color_truecolor_alpha:
+                        vb[ 0 ] = (uint8_t)c->r;
+                        vb[ 1 ] = (uint8_t)c->g;
+                        vb[ 2 ] = (uint8_t)c->b;
+                        vb[ 3 ] = (uint8_t)c->a;
+                        break;
+                }
+
+                break;
+            }
+            case 16:
+            {
+                c->r *= 65534.0f;
+                c->g *= 65534.0f;
+                c->b *= 65534.0f;
+                c->a *= 65534.0f;
+
+                switch( ctype )
+                {
+                    case dpbitmap_png_IHDR_color_greyscale:
+                        f = c->r + c->g + c->b;
+                        f *= 0.33f;
+                        sb[ 0 ] = (uint16_t)f;
+                        break;
+                    case dpbitmap_png_IHDR_color_truecolor:
+                        sb[ 0 ] = (uint16_t)c->r;
+                        sb[ 1 ] = (uint16_t)c->g;
+                        sb[ 2 ] = (uint16_t)c->b;
+                        break;
+                    case dpbitmap_png_IHDR_color_greyscale_alpha:
+                        f = c->r + c->g + c->b;
+                        f *= 0.33f;
+                        sb[ 0 ] = (uint16_t)f;
+                        sb[ 1 ] = (uint16_t)c->a;
+                        break;
+                    case dpbitmap_png_IHDR_color_truecolor_alpha:
+                        sb[ 0 ] = (uint16_t)c->r;
+                        sb[ 1 ] = (uint16_t)c->g;
+                        sb[ 2 ] = (uint16_t)c->b;
+                        sb[ 3 ] = (uint16_t)c->a;
+                        break;
+                }
+
+                break;
+            }
+        }
+    }
+
     //generate default idat chunk
-    bool dpbitmap_png::genIDAT( dpbitmap *bm )
+    bool dpbitmap_png::genIDAT( dpbitmap *bm, unsigned int bits, unsigned int ctype )
     {
         dpbitmap_png_chunk_start hs;
         dpbitmap_png_chunk_end he;
         dpbuffer_dynamic b, bd, b1;
         dpbuffer_zlib def;
-        unsigned int w, h, x, y;
-        dpbitmap_color c, c_a, c_b, c_c;
-        uint8_t fv;
+        unsigned int w, h, x, y, bpp, sz, i, pi;
+        dpbitmap_color c;
+        uint8_t fv, *buf, *pc, *pc_a, *pc_b, *pc_c, dummy[ 64 ];
 
-        if( !bm )
-            b.writeAlignedByte( 0 );
-        else
+        fv = 1;
+        switch( ctype )
+        {
+            case dpbitmap_png_IHDR_color_greyscale:
+                bpp = bits;
+                break;
+            case dpbitmap_png_IHDR_color_truecolor:
+                bpp = bits * 3;
+                break;
+            case dpbitmap_png_IHDR_color_indexed:
+                return 0;
+            case dpbitmap_png_IHDR_color_greyscale_alpha:
+                bpp = bits * 2;
+                break;
+            case dpbitmap_png_IHDR_color_truecolor_alpha:
+                bpp = bits * 4;
+                break;
+        }
+        bpp = bpp / 8;
+
+        w = h = 8;
+        if( bm )
         {
             w = bm->getWidth();
             h = bm->getHeight();
-            fv = 1;
+        }
+        sz = h * (w * bpp + 1);
+        b.setWriteByteCursor( sz );
+        b.writeAlignedByte( 0 );
+        sz = b.getSize();
+        buf = (uint8_t *)b.getBuffer();
 
-            for( y = 0; y < h; y++ )
+        memset( dummy, 0, sizeof( dummy ) );
+
+        for( y = 0; y < h; y++ )
+        {
+            i = y * (w * bpp + 1);
+            if( i < sz )
+                buf[ i ] = fv;
+
+            for( x = 0; x < w; x++ )
             {
-                b.writeAlignedByte( fv );
-                c_a.r = c_a.g = c_a.b = c_a.a = 0;
-                c_c = c_b = c_a;
+                i = ( y * ( w * bpp + 1 ) ) + 1 + x * bpp;
+                pc = &buf[ i ];
 
-                for( x = 0; x < w; x++ )
-                {
+                if( bm )
                     bm->getPixel( x, y, &c );
-                    if( x > 0 )
-                        bm->getPixel( x - 1, y, &c_a );
-                    if( x > 0 && y > 0 )
-                        bm->getPixel( x - 1, y - 1, &c_c );
-                    if( y > 0 )
-                        bm->getPixel( x, y - 1, &c_b );
+                dpbitmap_png__genIDAT__a( &c, bits, ctype, (char *)pc );
+            }
+        }
 
-                    dpbitmap_png__genIDAT_conv( &c );
-                    dpbitmap_png__genIDAT_conv( &c_a );
-                    dpbitmap_png__genIDAT_conv( &c_b );
-                    dpbitmap_png__genIDAT_conv( &c_c );
+        for( y = h; y > 0; )
+        {
+            y--;
+/*
+            i = y * (w * bpp + 1);
+            if( i < sz )
+                buf[ i ] = fv;
+*/
+            pc = pc_a = pc_b = pc_c = dummy;
+            for( x = w; x > 0; )
+            {
+                x--;
 
-                    switch( fv )
-                    {
-                        case 1: //subtracted from left
-                            dpbitmap_png__genIDAT_left( &c, &c_a );
-                            break;
-                        case 2: //subtracted from up
-                            dpbitmap_png__genIDAT_up( &c, &c_b );
-                            break;
-                        case 3: //average of a and b rounded down
-                            dpbitmap_png__genIDAT_mean( &c, &c_a, &c_b );
-                            break;
-                        case 4: //pearth
-                            dpbitmap_png__genIDAT_pearth( &c, &c_a, &c_b, &c_c );
-                            break;
-                    }
+                i = ( y * ( w * bpp + 1 ) ) + 1 + x * bpp;
+                if( i + bpp <= sz )
+                    pc = &buf[ i ];
+                if( x > 0 )
+                {
+                    pi = i - bpp;
+                    if( pi + bpp < sz )
+                        pc_a = &buf[ pi ];
+                }
+                if( y > 0 )
+                {
+                    pi = i - (w * bpp) - 1;
+                    if( pi + bpp < sz )
+                        pc_b = &buf[ pi ];
+                }
+                if( y > 0 && x > 0 )
+                {
+                    pi = i - (w * bpp) - 1;
+                    pi = pi - bpp;
+                    if( pi + bpp < sz )
+                        pc_c = &buf[ pi ];
+                }
 
-                    b.writeAlignedByte( c.r );
-                    b.writeAlignedByte( c.g );
-                    b.writeAlignedByte( c.b );
-                    b.writeAlignedByte( c.a );
+                switch( fv )
+                {
+                    case 1: //subtracted from left
+                        dpbitmap_png__genIDAT_left( bpp, pc, pc_a );
+                        break;
+                    case 2: //subtracted from up
+                        dpbitmap_png__genIDAT_up( bpp, pc, pc_b );
+                        break;
+                    case 3: //average of a and b rounded down
+                        dpbitmap_png__genIDAT_mean( bpp, pc, pc_a, pc_b );
+                        break;
+                    case 4: //pearth
+                        dpbitmap_png__genIDAT_pearth( bpp, pc, pc_a, pc_b, pc_c );
+                        break;
                 }
             }
         }

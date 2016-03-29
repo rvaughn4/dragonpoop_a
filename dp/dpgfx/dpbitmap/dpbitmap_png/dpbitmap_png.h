@@ -87,11 +87,11 @@ namespace dp
         //generate default png file header
         bool genFileHdr( void );
         //generate default png ihdr chunck
-        bool genIHDR( int w, int h );
+        bool genIHDR( unsigned int w, unsigned int h, unsigned int bits, unsigned int ctype );
         //generate default png plte chunk
         bool genPLTE( void );
         //generate default idat chunk
-        bool genIDAT( dpbitmap *bm );
+        bool genIDAT( dpbitmap *bm, unsigned int bits, unsigned int ctype );
         //generate default iend chunk
         bool genIEND( void );
         //parse paletted pixels
