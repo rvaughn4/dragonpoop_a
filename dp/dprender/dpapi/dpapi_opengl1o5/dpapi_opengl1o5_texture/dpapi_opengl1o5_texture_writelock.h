@@ -30,6 +30,8 @@ namespace dp
 
         //ctor
         dpapi_opengl1o5_texture_writelock( dpapi_opengl1o5_texture *p, dpmutex_writelock *ml );
+        //return texture gluint
+        unsigned int getTex( void );
 
     };
 

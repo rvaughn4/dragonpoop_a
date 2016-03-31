@@ -64,6 +64,12 @@ namespace dp
         return this->p->makeIndexBuffer( this, ib );
     }
 
+    //generate texture
+    dpapi_texture *dpapi_context_writelock::makeTexture( dpbitmap *bm )
+    {
+        return this->p->makeTexture( this, bm );
+    }
+
 }
 
 

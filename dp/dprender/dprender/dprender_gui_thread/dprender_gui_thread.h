@@ -14,6 +14,7 @@ namespace dp
     class dpapi_vertexbuffer;
     class dpapi_indexbuffer;
     class dpapi_bundle;
+    class dpapi_texture;
 
     class dprender_gui_thread : public dprender_scene_thread
     {
@@ -23,6 +24,7 @@ namespace dp
         dpapi_vertexbuffer *vb;
         dpapi_indexbuffer *ib;
         dpapi_bundle *bdle;
+        dpapi_texture *t;
 
     protected:
 

@@ -8,19 +8,22 @@
 #include "dpapi_opengl1o5_texture_readlock.h"
 #include "dpapi_opengl1o5_texture_writelock.h"
 #include "../dpapi_opengl1o5_context/dpapi_opengl1o5_context_writelock.h"
+#include "../dpapi_opengl1o5_context/dpapi_opengl1o5_context_ref.h"
 #include "../../../../dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
 
 namespace dp
 {
 
     //ctor
-    dpapi_opengl1o5_texture::dpapi_opengl1o5_texture( dpapi_opengl1o5_context_writelock *ctx, dpbitmap *bm ) : dpapi_texture( ctx, bm )
+    dpapi_opengl1o5_texture::dpapi_opengl1o5_texture( dpapi_opengl1o5_context_writelock *ctx, dpbitmap *bm, opengl1o5_lib_functions *gl ) : dpapi_texture( ctx, bm )
     {
         dpbitmap_32bit_uncompressed b( bm->getWidth(), bm->getHeight() );
         dpbuffer_static bs;
 
         this->gltex = 0;
+        this->gl = gl;
 
+        this->ctx = (dpapi_opengl1o5_context_ref *)this->g.getRef( ctx );
         ctx->makeActive();
         b.copy( bm );
 
@@ -36,13 +39,22 @@ namespace dp
         this->gl->glTexParameteri( opengl1o5_lib_TEXTURE_2D, opengl1o5_lib_TEXTURE_MIN_FILTER, opengl1o5_lib_LINEAR );
         this->gl->glTexParameteri( opengl1o5_lib_TEXTURE_2D, opengl1o5_lib_TEXTURE_MAG_FILTER, opengl1o5_lib_LINEAR );
 
-        this->gl->glTexImage2D( opengl1o5_lib_TEXTURE_2D, 0, opengl1o5_lib_RGBA, b.getWidth(), b.getHeight(), 0, opengl1o5_lib_RGBA, opengl1o5_lib_UNSIGNED_BYTE, bs.getBuffer() );
+        this->gl->glTexImage2D( opengl1o5_lib_TEXTURE_2D, 0, opengl1o5_lib_RGBA, b.getWidth(), b.getHeight(), 0, opengl1o5_lib_BGRA, opengl1o5_lib_UNSIGNED_BYTE, bs.getBuffer() );
     }
 
     //dtor
     dpapi_opengl1o5_texture::~dpapi_opengl1o5_texture( void )
     {
+        dpapi_opengl1o5_context_writelock *ctx;
+        dpshared_guard g;
+
         this->unlink();
+
+        ctx = (dpapi_opengl1o5_context_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->ctx, 2000 );
+        if( !ctx )
+            return;
+
+        this->gl->glDeleteTextures( 1, &this->gltex );
     }
 
     //generate readlock
@@ -61,6 +73,12 @@ namespace dp
     dpshared_ref *dpapi_opengl1o5_texture::genRef( std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync )
     {
         return new dpapi_opengl1o5_texture_ref( this, k, t_sync );
+    }
+
+    //return texture gluint
+    unsigned int dpapi_opengl1o5_texture::getTex( void )
+    {
+        return this->gltex;
     }
 
 }

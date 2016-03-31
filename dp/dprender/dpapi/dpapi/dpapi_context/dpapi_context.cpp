@@ -13,6 +13,7 @@
 #include "../dpapi_vertexbuffer/dpapi_vertexbuffer.h"
 #include "../dpapi_bundle/dpapi_bundle.h"
 #include "../dpapi_indexbuffer/dpapi_indexbuffer.h"
+#include "../dpapi_texture/dpapi_texture.h"
 
 namespace dp
 {
@@ -87,6 +88,12 @@ namespace dp
     dpapi_indexbuffer *dpapi_context::makeIndexBuffer( dpapi_context_writelock *l, dpindexbuffer *ib )
     {
         return new dpapi_indexbuffer( l, ib );
+    }
+
+    //generate texture
+    dpapi_texture *dpapi_context::makeTexture( dpapi_context_writelock *l, dpbitmap *bm )
+    {
+        return new dpapi_texture( l, bm );
     }
 
 }

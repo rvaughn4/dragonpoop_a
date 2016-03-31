@@ -8,6 +8,7 @@
 
 #include "../../dpapi/dpapi_texture/dpapi_texture.h"
 #include "../dpapi_opengl1o5/dpapi_opengl1o5_functions.h"
+#include "../../../../dpcore/dpshared/dpshared_guard.h"
 
 namespace dp
 {
@@ -23,6 +24,8 @@ namespace dp
 
         opengl1o5_lib_functions *gl;
         unsigned int gltex;
+        dpapi_opengl1o5_context_ref *ctx;
+        dpshared_guard g;
 
     protected:
 
@@ -32,11 +35,13 @@ namespace dp
         virtual dpshared_writelock *genWriteLock( dpmutex_writelock *ml );
         //generate ref
         virtual dpshared_ref *genRef( std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync );
+        //return texture gluint
+        unsigned int getTex( void );
 
     public:
 
         //ctor
-        dpapi_opengl1o5_texture( dpapi_opengl1o5_context_writelock *ctx, dpbitmap *bm );
+        dpapi_opengl1o5_texture( dpapi_opengl1o5_context_writelock *ctx, dpbitmap *bm, opengl1o5_lib_functions *gl );
         //dtor
         virtual ~dpapi_opengl1o5_texture( void );
 

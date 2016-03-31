@@ -22,6 +22,12 @@ namespace dp
 
     }
 
+    //return texture gluint
+    unsigned int dpapi_opengl1o5_texture_writelock::getTex( void )
+    {
+        return this->p->getTex();
+    }
+
 }
 
 

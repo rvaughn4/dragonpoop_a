@@ -38,6 +38,7 @@ namespace dp
 #define opengl1o5_lib_TEXTURE_2D				0x0DE1
 #define opengl1o5_lib_RGBA					0x1908
 #define opengl1o5_lib_UNSIGNED_BYTE			0x1401
+#define opengl1o5_lib_BGRA					0x80E1
 
     typedef void (* opengl1o5_lib_functions_glGenTextures )( opengl1o5_lib_GLsizei n, opengl1o5_lib_GLuint *textures );
     typedef void (* opengl1o5_lib_functions_glDeleteTextures )( opengl1o5_lib_GLsizei n, opengl1o5_lib_GLuint *textures );

@@ -11,6 +11,7 @@
 #include "../dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.h"
 #include "../dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer.h"
 #include "../dpapi_opengl1o5_bundle/dpapi_opengl1o5_bundle.h"
+#include "../dpapi_opengl1o5_texture/dpapi_opengl1o5_texture.h"
 
 namespace dp
 {
@@ -85,6 +86,12 @@ namespace dp
     dpapi_bundle *dpapi_opengl1o5_context::makeBundle( dpapi_context_writelock *ctx, dpapi_bundle *bdle )
     {
         return new dpapi_opengl1o5_bundle( (dpapi_opengl1o5_context_writelock *)ctx, (dpapi_opengl1o5_bundle *)bdle );
+    }
+
+    //generate texture
+    dpapi_texture *dpapi_opengl1o5_context::makeTexture( dpapi_context_writelock *l, dpbitmap *bm )
+    {
+        return new dpapi_opengl1o5_texture( (dpapi_opengl1o5_context_writelock *)l, bm, this->gl );
     }
 
 }

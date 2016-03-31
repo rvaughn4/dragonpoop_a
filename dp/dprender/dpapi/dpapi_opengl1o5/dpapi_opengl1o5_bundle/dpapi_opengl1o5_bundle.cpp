@@ -9,6 +9,8 @@
 #include "../dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_writelock.h"
 #include "../dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer.h"
 #include "../dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer_writelock.h"
+#include "../dpapi_opengl1o5_texture/dpapi_opengl1o5_texture.h"
+#include "../dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_writelock.h"
 #include "../../../../dpcore/dpshared/dpshared_guard.h"
 
 namespace dp
@@ -20,11 +22,14 @@ namespace dp
         dpshared_guard g;
         dpapi_opengl1o5_vertexbuffer_writelock *vbl;
         dpapi_opengl1o5_indexbuffer_writelock *ibl;
+        dpapi_opengl1o5_texture_writelock *tl;
 
         this->gl = gl;
         this->cnt = 0;
         this->vbo = 0;
         this->ibo = 0;
+        this->t0 = 0;
+        this->t1 = 0;
 
         vbl = (dpapi_opengl1o5_vertexbuffer_writelock *)dpshared_guard_tryWriteLock_timeout( g, vb, 1000 );
         if( vbl )
@@ -39,6 +44,14 @@ namespace dp
             this->cnt = ibl->getCount();
             this->ib.copy( ibl->getIB() );
         }
+
+        tl = (dpapi_opengl1o5_texture_writelock *)dpshared_guard_tryWriteLock_timeout( g, t0, 1000 );
+        if( tl )
+            this->t0 = tl->getTex();
+
+        tl = (dpapi_opengl1o5_texture_writelock *)dpshared_guard_tryWriteLock_timeout( g, t1, 1000 );
+        if( tl )
+            this->t1 = tl->getTex();
     }
 
     //ctor
@@ -50,6 +63,8 @@ namespace dp
         this->vbo = bdle->vbo;
         this->ibo = bdle->ibo;
         this->cnt = bdle->cnt;
+        this->t0 = bdle->t0;
+        this->t1 = bdle->t1;
     }
 
     //dtor
@@ -71,10 +86,6 @@ namespace dp
         dpvertex *v;
         dpindex *i;
 
-        //GL_COPY_WRITE_BUFFER
-        //GL_COPY_READ_BUFFER
-        //glCopyBufferSubData
-
         c = (dpapi_opengl1o5_context_writelock *)ctx;
         v = (dpvertex *)this->vb.getBuffer();
         i = (dpindex *)this->ib.getBuffer();
@@ -83,6 +94,9 @@ namespace dp
         this->gl->glEnableClientState( opengl1o5_lib_NORMAL_ARRAY );
         this->gl->glEnableClientState( opengl1o5_lib_TEXTURE_COORD_ARRAY );
         this->gl->glEnableClientState( opengl1o5_lib_VERTEX_ARRAY );
+        this->gl->glEnable( opengl1o5_lib_TEXTURE_2D );
+
+        this->gl->glBindTexture( opengl1o5_lib_TEXTURE_2D, this->t0 );
 
         if( this->gl->bUseVB )
         {

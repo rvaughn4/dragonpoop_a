@@ -30,7 +30,7 @@ namespace dp
         dpvertexbuffer vb;
         dpindexbuffer ib;
         opengl1o5_lib_functions *gl;
-        unsigned int vbo, ibo, cnt;
+        unsigned int vbo, ibo, cnt, t1, t0;
 
     protected:
 
