@@ -697,7 +697,7 @@ namespace dp
         dpbitmap_color c;
         uint8_t fv, *buf, *pc, *pc_a, *pc_b, *pc_c, dummy[ 64 ];
 
-        fv = 1;
+        fv = 4;
         switch( ctype )
         {
             case dpbitmap_png_IHDR_color_greyscale:
@@ -733,10 +733,6 @@ namespace dp
 
         for( y = 0; y < h; y++ )
         {
-            i = y * (w * bpp + 1);
-            if( i < sz )
-                buf[ i ] = fv;
-
             for( x = 0; x < w; x++ )
             {
                 i = ( y * ( w * bpp + 1 ) ) + 1 + x * bpp;
@@ -751,15 +747,15 @@ namespace dp
         for( y = h; y > 0; )
         {
             y--;
-/*
+
             i = y * (w * bpp + 1);
             if( i < sz )
                 buf[ i ] = fv;
-*/
-            pc = pc_a = pc_b = pc_c = dummy;
+
             for( x = w; x > 0; )
             {
                 x--;
+                pc = pc_a = pc_b = pc_c = dummy;
 
                 i = ( y * ( w * bpp + 1 ) ) + 1 + x * bpp;
                 if( i + bpp <= sz )

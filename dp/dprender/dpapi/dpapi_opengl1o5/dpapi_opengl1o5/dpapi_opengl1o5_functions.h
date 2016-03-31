@@ -31,6 +31,14 @@ namespace dp
     typedef void (* opengl1o5_lib_functions_glNormalPointer )( opengl1o5_lib_GLenum type, opengl1o5_lib_GLsizei stride, const opengl1o5_lib_GLvoid *ptr );
     typedef void (* opengl1o5_lib_functions_glVertexPointer )( opengl1o5_lib_GLint size, opengl1o5_lib_GLenum type, opengl1o5_lib_GLsizei stride, const opengl1o5_lib_GLvoid *ptr );
     typedef void (* opengl1o5_lib_functions_glDrawElements )( opengl1o5_lib_GLenum mode, opengl1o5_lib_GLsizei count, opengl1o5_lib_GLenum type, const opengl1o5_lib_GLvoid *indicies );
+
+#define opengl1o5_lib_TEXTURE_MAG_FILTER			0x2800
+#define opengl1o5_lib_TEXTURE_MIN_FILTER			0x2801
+#define opengl1o5_lib_LINEAR				0x2601
+#define opengl1o5_lib_TEXTURE_2D				0x0DE1
+#define opengl1o5_lib_RGBA					0x1908
+#define opengl1o5_lib_UNSIGNED_BYTE			0x1401
+
     typedef void (* opengl1o5_lib_functions_glGenTextures )( opengl1o5_lib_GLsizei n, opengl1o5_lib_GLuint *textures );
     typedef void (* opengl1o5_lib_functions_glDeleteTextures )( opengl1o5_lib_GLsizei n, opengl1o5_lib_GLuint *textures );
     typedef void (* opengl1o5_lib_functions_glBindTexture )( opengl1o5_lib_GLenum target, opengl1o5_lib_GLuint texture );

@@ -12,7 +12,7 @@ namespace dp
 {
 
     //ctor
-    dpapi_texture::dpapi_texture( dpapi_context_writelock *ctx )
+    dpapi_texture::dpapi_texture( dpapi_context_writelock *ctx, dpbitmap *bm )
     {
 
     }
