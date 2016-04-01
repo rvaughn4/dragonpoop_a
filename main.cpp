@@ -9,9 +9,11 @@
 
 #include <thread>
 
+
+
 int main()
 {
-
+/*
     dp::dptaskmgr *tmgr;
     dp::dpshared_guard g;
     dp::dprender *wt;
@@ -39,6 +41,9 @@ int main()
     delete sc;
     delete wt;
     delete tmgr;
+*/
+
+
 
     return 0;
 }

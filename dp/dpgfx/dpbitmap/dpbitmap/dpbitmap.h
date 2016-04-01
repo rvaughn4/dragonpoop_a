@@ -17,6 +17,24 @@ namespace dp
         float r, g, b, a;
     };
 
+    struct dpbitmap_position
+    {
+        int32_t x, y;
+    };
+
+    struct dpbitmap_rectangle
+    {
+        union
+        {
+            dpbitmap_position p;
+            struct
+            {
+                int32_t x, y;
+            };
+        };
+        uint32_t w, h;
+    };
+
     class dpbitmap : public dpbuffer_wrapper
     {
 

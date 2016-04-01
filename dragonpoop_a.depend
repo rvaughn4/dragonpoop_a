@@ -965,7 +965,7 @@
 
 1457266645 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_commandlist_command/dpapi_commandlist_command_cleardepth/dpapi_commandlist_command_cleardepth.cpp
 
-1459423443 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.cpp
+1459424035 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.cpp
 	"dprender_gui_thread.h"
 	"../../../dpcore/dpshared/dpshared_guard.h"
 	"../../dpapi/dpapi/dpapi/dpapi_factory.h"
@@ -1516,7 +1516,7 @@
 	"dpbitmap.h"
 	"../dpbitmap_uncompressed/dpbitmap_uncompressed.h"
 
-1459009198 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap/dpbitmap.h
+1459515559 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap/dpbitmap.h
 	"../../../dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.h"
 	"../../../dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.h"
 
@@ -1788,4 +1788,28 @@
 	"../dpapi_opengl1o5_context/dpapi_opengl1o5_context_writelock.h"
 	"../dpapi_opengl1o5_context/dpapi_opengl1o5_context_ref.h"
 	"../../../../dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
+
+1459516814 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_bitmap/dpfont_bitmap.cpp
+	"dpfont_bitmap.h"
+
+1459515577 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont/dpfont.cpp
+	"dpfont.h"
+	"../dpfont_filter/dpfont_filter.h"
+	"../dpfont_bitmap/dpfont_bitmap.h"
+
+1459514377 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont/dpfont.h
+	"../../dpbitmap/dpbitmap/dpbitmap.h"
+	<ft2build.h>
+	<string>
+
+1444043134 /usr/include/freetype2/ft2build.h
+	<config/ftheader.h>
+
+1444043134 /usr/include/freetype2/config/ftheader.h
+
+1459511489 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_filter/dpfont_filter.h
+
+1459516680 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_bitmap/dpfont_bitmap.h
+	"../dpfont/dpfont.h"
+	"../../dpbitmap/dpbitmap_uncompressed/dpbitmap_uncompressed.h"
 

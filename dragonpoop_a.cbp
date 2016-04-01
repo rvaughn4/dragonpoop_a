@@ -36,10 +36,12 @@
 			<Add option="-std=c++11" />
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add directory="/usr/include/freetype2" />
 		</Compiler>
 		<Linker>
 			<Add library="pthread" />
 			<Add library="dl" />
+			<Add library="freetype" />
 		</Linker>
 		<Unit filename="dp/dp.cpp" />
 		<Unit filename="dp/dp.h" />
@@ -301,6 +303,14 @@
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_cleardepth/dpapi_opengl1o5_primary_commandlist_command_cleardepth.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_swapbuffers/dpapi_opengl1o5_primary_commandlist_command_swapbuffers.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_swapbuffers/dpapi_opengl1o5_primary_commandlist_command_swapbuffers.h" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture.cpp" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture.h" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_readlock.cpp" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_readlock.h" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_ref.cpp" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_ref.h" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_writelock.cpp" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_writelock.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_readlock.cpp" />
