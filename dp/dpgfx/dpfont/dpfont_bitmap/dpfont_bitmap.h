@@ -19,6 +19,7 @@ namespace dp
 
         FT_Library lb;
         FT_Face fc;
+        unsigned int fnt_size;
 
     protected:
 
@@ -36,7 +37,7 @@ namespace dp
     public:
 
         //ctor
-        dpfont_bitmap( FT_Library *lb, FT_Face *fc );
+        dpfont_bitmap( FT_Library *lb, FT_Face *fc, unsigned int fnt_size );
         //dtor
         virtual ~dpfont_bitmap( void );
         //returns width

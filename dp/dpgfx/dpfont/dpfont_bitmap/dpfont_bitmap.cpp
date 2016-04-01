@@ -15,10 +15,11 @@ namespace dp
     }
 
     //ctor
-    dpfont_bitmap::dpfont_bitmap( FT_Library *lb, FT_Face *fc ) : dpbitmap_uncompressed( 8, 8, 32, 32, 32, 64 )
+    dpfont_bitmap::dpfont_bitmap( FT_Library *lb, FT_Face *fc, unsigned int fnt_size ) : dpbitmap_uncompressed( 8, 8, 32, 32, 32, 64 )
     {
         this->lb = *lb;
         this->fc = *fc;
+        this->fnt_size = fnt_size;
     }
 
     //dtor
@@ -46,6 +47,7 @@ namespace dp
     int dpfont_bitmap::getHeight( void )
     {
         int r;
+        unsigned int by, bh;
 
         if( !this->fc->glyph )
             return 0;

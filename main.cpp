@@ -9,7 +9,8 @@
 
 #include <thread>
 
-
+#include "dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
+#include "dp/dpgfx/dpfont/dpfont/dpfont.h"
 
 int main()
 {
@@ -43,7 +44,16 @@ int main()
     delete tmgr;
 */
 
+    dp::dpfont f;
+    dp::dpbitmap *bm = new dp::dpbitmap_32bit_uncompressed( 42, 42 );
 
+    f.setSize( 42 );
+    f.openFont( "sans" );
+
+    f.drawCharacter( *".", 0, 0, bm );
+
+    bm->save( "derp.bmp" );
+    delete bm;
 
     return 0;
 }

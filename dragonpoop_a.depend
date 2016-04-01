@@ -18,7 +18,7 @@
 1454887924 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpspinlock.h
 	<atomic>
 
-1459423492 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
+1459537807 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
 	"dp/dpcore/dptaskmgr/dptaskmgr.h"
 	"dp/dpcore/dptaskmgr/dptaskmgr_writelock.h"
 	"dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h"
@@ -26,6 +26,8 @@
 	"dp/dprender/dprender/dprender/dprender_writelock.h"
 	"dp/dprender/dprender/dprender_scene/dprender_scene.h"
 	<thread>
+	"dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
+	"dp/dpgfx/dpfont/dpfont/dpfont.h"
 
 1454888242 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutex.h
 	"dpmutexdefines.h"
@@ -1789,10 +1791,10 @@
 	"../dpapi_opengl1o5_context/dpapi_opengl1o5_context_ref.h"
 	"../../../../dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
 
-1459516814 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_bitmap/dpfont_bitmap.cpp
+1459538008 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_bitmap/dpfont_bitmap.cpp
 	"dpfont_bitmap.h"
 
-1459515577 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont/dpfont.cpp
+1459536869 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont/dpfont.cpp
 	"dpfont.h"
 	"../dpfont_filter/dpfont_filter.h"
 	"../dpfont_bitmap/dpfont_bitmap.h"
@@ -1809,7 +1811,7 @@
 
 1459511489 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_filter/dpfont_filter.h
 
-1459516680 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_bitmap/dpfont_bitmap.h
+1459538048 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_bitmap/dpfont_bitmap.h
 	"../dpfont/dpfont.h"
 	"../../dpbitmap/dpbitmap_uncompressed/dpbitmap_uncompressed.h"
 

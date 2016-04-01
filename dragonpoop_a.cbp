@@ -146,6 +146,10 @@
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_uncompressed/dpbitmap_uncompressed.h" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_uncompressed_palette/dpbitmap_uncompressed_palette.cpp" />
 		<Unit filename="dp/dpgfx/dpbitmap/dpbitmap_uncompressed_palette/dpbitmap_uncompressed_palette.h" />
+		<Unit filename="dp/dpgfx/dpfont/dpfont/dpfont.cpp" />
+		<Unit filename="dp/dpgfx/dpfont/dpfont/dpfont.h" />
+		<Unit filename="dp/dpgfx/dpfont/dpfont_bitmap/dpfont_bitmap.cpp" />
+		<Unit filename="dp/dpgfx/dpfont/dpfont_bitmap/dpfont_bitmap.h" />
 		<Unit filename="dp/dpgfx/dpgfx/dpgfx.cpp" />
 		<Unit filename="dp/dpgfx/dpgfx/dpgfx.h" />
 		<Unit filename="dp/dpgfx/dpgfx/dpgfx_readlock.cpp" />

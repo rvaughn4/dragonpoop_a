@@ -106,6 +106,7 @@ namespace dp
     bool dpfont::drawCharacter( unsigned char b, dpbitmap_position *pos_in, dpbitmap_rectangle *rect_sz_out, dpbitmap *dest_bmp )
     {
         dpbitmap *bm;
+        unsigned int y_off;
 
         if( !this->lb_loaded || !this->fc_loaded )
             return 0;
@@ -113,9 +114,15 @@ namespace dp
         if( FT_Load_Char( this->fc, b, FT_LOAD_RENDER ) )
             return 0;
 
-        bm = new dpfont_bitmap( &this->lb, &this->fc );
+        bm = new dpfont_bitmap( &this->lb, &this->fc, this->sz );
         if( !bm )
             return 0;
+
+        y_off = bm->getHeight();
+        if( y_off < this->sz )
+            y_off = this->sz - y_off;
+        else
+            y_off = 0;
 
         if( dest_bmp )
             dest_bmp->copy( bm );
