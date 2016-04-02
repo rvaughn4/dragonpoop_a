@@ -50,7 +50,7 @@ int main()
     f.setSize( 42 );
     f.openFont( "sans" );
 
-    f.drawCharacter( *".", 0, 0, bm );
+    f.drawCharacter( *"H", 0, 0, bm );
 
     bm->save( "derp.bmp" );
     delete bm;

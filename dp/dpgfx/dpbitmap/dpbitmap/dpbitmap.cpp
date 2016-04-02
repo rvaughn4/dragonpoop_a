@@ -52,6 +52,15 @@ namespace dp
         return this->dpbuffer_wrapper::save( b );
     }
 
+    //get pixel offset
+    void dpbitmap::getPixelOffset( int *x, int *y )
+    {
+        if( x )
+            *x = 0;
+        if( y )
+            *y = 0;
+    }
+
 };
 
 

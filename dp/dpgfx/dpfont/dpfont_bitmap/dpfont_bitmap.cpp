@@ -47,7 +47,6 @@ namespace dp
     int dpfont_bitmap::getHeight( void )
     {
         int r;
-        unsigned int by, bh;
 
         if( !this->fc->glyph )
             return 0;
@@ -127,6 +126,22 @@ namespace dp
     uint32_t dpfont_bitmap::getAlphaMask( void )
     {
         return 0xFF;
+    }
+
+    //get pixel offset
+    void dpfont_bitmap::getPixelOffset( int *x, int *y )
+    {
+        int bh, by;
+
+        this->dpbitmap_uncompressed::getPixelOffset( x, y );
+
+        by = (int)this->fc->glyph->metrics.horiBearingY;
+        bh = (int)this->fc->glyph->metrics.height;
+        by = bh - by;
+        bh = (int)this->fnt_size - ( ( bh + by ) / 64 );
+
+        if( y )
+            *y += bh;
     }
 
 };

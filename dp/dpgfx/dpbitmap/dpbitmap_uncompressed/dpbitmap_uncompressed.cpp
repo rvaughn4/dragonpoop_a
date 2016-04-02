@@ -67,14 +67,20 @@ namespace dp
     bool dpbitmap_uncompressed::setPixel( int x, int y, dpbitmap_color *c )
     {
         dpbuffer_static bs;
-        unsigned int scn, i, bpp, h;
+        unsigned int scn, i, bpp, h, w;
         uint32_t v, rm, gm, bm, am;
         dpbitmap_uncompressed_winv3NT2_header *hdr;
 
         scn = this->getScanSize();
         bpp = this->getBits() / 8;
+        w = this->getWidth();
         if( this->isUpsideDown( &h ) )
-            y = h - y - 1;
+        {
+            if( y < (int)h )
+                y = h - y - 1;
+        }
+        if( y < 0 || y >= (int)h || x < 0 || x >= (int)w )
+            return 1;
 
         i = ( x * bpp ) + ( y * scn );
 
@@ -141,14 +147,23 @@ namespace dp
     bool dpbitmap_uncompressed::getPixel( int x, int y, dpbitmap_color *c )
     {
         dpbuffer_static bs;
-        unsigned int scn, i, bpp, h;
+        unsigned int scn, i, bpp, h, w;
         uint32_t v, rm, gm, bm, am;
         dpbitmap_uncompressed_winv3NT2_header *hdr;
 
         scn = this->getScanSize();
         bpp = this->getBits() / 8;
+        w = this->getWidth();
         if( this->isUpsideDown( &h ) )
-            y = h - y - 1;
+        {
+            if( y < (int)h )
+                y = h - y - 1;
+        }
+        if( y < 0 || y >= (int)h || x < 0 || x >= (int)w )
+        {
+            c->r = c->g = c->b = c->a = 0;
+            return 1;
+        }
 
         i = ( x * bpp ) + ( y * scn );
         rm = this->getRedMask();
@@ -323,16 +338,25 @@ namespace dp
     {
         unsigned int x, y, w, h;
         dpbitmap_color c;
+        int otx, oty, ox, oy, sy, sx;
 
         w = b->getWidth();
         h = b->getHeight();
+
+        this->getPixelOffset( &otx, &oty );
+        b->getPixelOffset( &ox, &oy );
 
         for( y = 0; y < h; y++ )
         {
             for( x = 0; x < w; x++ )
             {
-                b->getPixel( x, y, &c );
-                this->setPixel( x, y, &c );
+                sx = (int)x + otx;
+                sy = (int)y + oty;
+                b->getPixel( sx, sy, &c );
+
+                sx = (int)x + ox;
+                sy = (int)y + oy;
+                this->setPixel( sx, sy, &c );
             }
         }
     }

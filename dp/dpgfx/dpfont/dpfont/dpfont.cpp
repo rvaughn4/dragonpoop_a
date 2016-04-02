@@ -78,6 +78,7 @@ namespace dp
     bool dpfont::openFont( const char *fname )
     {
         FT_Face nfc;
+        int h;
 
         if( !this->lb_loaded && !FT_Init_FreeType( &this->lb ) )
             this->lb_loaded = 1;
@@ -93,6 +94,10 @@ namespace dp
             FT_Done_Face( nfc );
             return 0;
         }
+        h = nfc->size->metrics.ascender - nfc->size->metrics.descender;
+        if( h < 0 )
+            h *= -1;
+        this->sz = h / 115;
 
         if( this->fc_loaded )
             FT_Done_Face( this->fc );
@@ -228,6 +233,7 @@ namespace dp
 
         if( FT_Set_Pixel_Sizes( this->fc, s, 0 ) )
             return 0;
+        this->sz = this->fc->size->metrics.height >> 6;
 
         this->sz = s;
         return 1;

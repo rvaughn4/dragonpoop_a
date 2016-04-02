@@ -71,6 +71,8 @@ namespace dp
         virtual bool save( const char *fname );
         //save buffer to buffer
         virtual bool save( dpbuffer *b );
+        //get pixel offset
+        virtual void getPixelOffset( int *x, int *y );
 
     };
 

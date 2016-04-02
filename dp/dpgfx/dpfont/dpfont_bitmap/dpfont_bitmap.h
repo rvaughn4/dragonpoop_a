@@ -52,6 +52,8 @@ namespace dp
         virtual unsigned int getScanSize( void );
         //get pixel data
         virtual bool getPixelData( dpbuffer_static *b );
+        //get pixel offset
+        virtual void getPixelOffset( int *x, int *y );
 
     };
 
