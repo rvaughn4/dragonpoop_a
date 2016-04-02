@@ -78,18 +78,6 @@ namespace dp
         return this->b;
     }
 
-    //copy bitmap
-    void dpbitmap_compressed::copy( dpbitmap *b )
-    {
-        dpbitmap *nb;
-
-        nb = this->getUncompressed();
-        if( !nb )
-            return;
-
-        nb->copy( b );
-    }
-
     //load buffer from buffer
     bool dpbitmap_compressed::load( dpbuffer *b )
     {
@@ -122,6 +110,138 @@ namespace dp
         if( this->b && !this->compress( this->b ) )
             return 0;
         return this->dpbitmap::save( b );
+    }
+
+    //copy bitmap
+    void dpbitmap_compressed::copy( dpbitmap *b )
+    {
+        dpbitmap *nb;
+
+        nb = this->getUncompressed();
+        if( !nb )
+            return;
+
+        nb->copy( b );
+    }
+
+    //copy bitmap into position
+    void dpbitmap_compressed::copyInto( dpbitmap *b, dpbitmap_position *p_dest )
+    {
+        dpbitmap *nb;
+
+        nb = this->getUncompressed();
+        if( !nb )
+            return;
+
+        nb->copyInto( b, p_dest );
+    }
+
+    //copy bitmap into rect
+    void dpbitmap_compressed::copyInto( dpbitmap *b, dpbitmap_rectangle *p_dest )
+    {
+        dpbitmap *nb;
+
+        nb = this->getUncompressed();
+        if( !nb )
+            return;
+
+        nb->copyInto( b, p_dest );
+    }
+
+    //copy bitmap from position
+    void dpbitmap_compressed::copyFrom( dpbitmap *b, dpbitmap_position *p_src )
+    {
+        dpbitmap *nb;
+
+        nb = this->getUncompressed();
+        if( !nb )
+            return;
+
+        nb->copyFrom( b, p_src );
+    }
+
+    //copy bitmap from rect
+    void dpbitmap_compressed::copyFrom( dpbitmap *b, dpbitmap_rectangle *p_src )
+    {
+        dpbitmap *nb;
+
+        nb = this->getUncompressed();
+        if( !nb )
+            return;
+
+        nb->copyFrom( b, p_src );
+    }
+
+    //copy bitmap from position into position
+    void dpbitmap_compressed::copy( dpbitmap *b, dpbitmap_position *p_src, dpbitmap_position *p_dest )
+    {
+        dpbitmap *nb;
+
+        nb = this->getUncompressed();
+        if( !nb )
+            return;
+
+        nb->copy( b, p_src, p_dest );
+    }
+
+    //copy bitmap from rect into position
+    void dpbitmap_compressed::copy( dpbitmap *b, dpbitmap_rectangle *p_src, dpbitmap_position *p_dest )
+    {
+        dpbitmap *nb;
+
+        nb = this->getUncompressed();
+        if( !nb )
+            return;
+
+        nb->copy( b, p_src, p_dest );
+    }
+
+    //copy bitmap from position into rect
+    void dpbitmap_compressed::copy( dpbitmap *b, dpbitmap_position *p_src, dpbitmap_rectangle *p_dest )
+    {
+        dpbitmap *nb;
+
+        nb = this->getUncompressed();
+        if( !nb )
+            return;
+
+        nb->copy( b, p_src, p_dest );
+    }
+
+    //copy bitmap from rect into rect
+    void dpbitmap_compressed::copy( dpbitmap *b, dpbitmap_rectangle *p_src, dpbitmap_rectangle *p_dest )
+    {
+        dpbitmap *nb;
+
+        nb = this->getUncompressed();
+        if( !nb )
+            return;
+
+        nb->copy( b, p_src, p_dest );
+    }
+
+    //copy without stretching to position
+    void dpbitmap_compressed::copyNoStretch( dpbitmap *b, dpbitmap_position *p_dest )
+    {
+        dpbitmap *nb;
+
+        nb = this->getUncompressed();
+        if( !nb )
+            return;
+
+        nb->copyNoStretch( b, p_dest );
+    }
+
+    //copy without stretching to position
+    void dpbitmap_compressed::copyNoStretch( dpbitmap *b, dpbitmap_rectangle *p_src, dpbitmap_position *p_dest )
+    {
+        dpbitmap *nb;
+
+        nb = this->getUncompressed();
+        if( !nb )
+            return;
+
+        nb->copyNoStretch( b, p_src, p_dest );
     }
 
 };

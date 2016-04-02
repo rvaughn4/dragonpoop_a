@@ -62,7 +62,7 @@ namespace dp
         //returns height
         virtual int getHeight( void ) = 0;
         //copy bitmap
-        virtual void copy( dpbitmap *b ) = 0;
+        virtual void copy( dpbitmap *b );
         //load buffer from buffer
         virtual bool load( dpbuffer *b );
         //load buffer from file
@@ -73,6 +73,26 @@ namespace dp
         virtual bool save( dpbuffer *b );
         //get pixel offset
         virtual void getPixelOffset( int *x, int *y );
+        //copy bitmap into position
+        virtual void copyInto( dpbitmap *b, dpbitmap_position *p_dest );
+        //copy bitmap into rect
+        virtual void copyInto( dpbitmap *b, dpbitmap_rectangle *p_dest );
+        //copy bitmap from position
+        virtual void copyFrom( dpbitmap *b, dpbitmap_position *p_src );
+        //copy bitmap from rect
+        virtual void copyFrom( dpbitmap *b, dpbitmap_rectangle *p_src );
+        //copy bitmap from position into position
+        virtual void copy( dpbitmap *b, dpbitmap_position *p_src, dpbitmap_position *p_dest );
+        //copy bitmap from rect into position
+        virtual void copy( dpbitmap *b, dpbitmap_rectangle *p_src, dpbitmap_position *p_dest );
+        //copy bitmap from position into rect
+        virtual void copy( dpbitmap *b, dpbitmap_position *p_src, dpbitmap_rectangle *p_dest );
+        //copy bitmap from rect into rect
+        virtual void copy( dpbitmap *b, dpbitmap_rectangle *p_src, dpbitmap_rectangle *p_dest );
+        //copy without stretching to position
+        virtual void copyNoStretch( dpbitmap *b, dpbitmap_position *p_dest );
+        //copy without stretching to position
+        virtual void copyNoStretch( dpbitmap *b, dpbitmap_rectangle *p_src, dpbitmap_position *p_dest );
 
     };
 

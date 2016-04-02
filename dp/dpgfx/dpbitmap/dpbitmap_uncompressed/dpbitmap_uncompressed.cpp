@@ -333,34 +333,6 @@ namespace dp
         return this->getSection( b, h->bfSize, this->getSize() - h->bfSize );
     }
 
-    //copy bitmap
-    void dpbitmap_uncompressed::copy( dpbitmap *b )
-    {
-        unsigned int x, y, w, h;
-        dpbitmap_color c;
-        int otx, oty, ox, oy, sy, sx;
-
-        w = b->getWidth();
-        h = b->getHeight();
-
-        this->getPixelOffset( &otx, &oty );
-        b->getPixelOffset( &ox, &oy );
-
-        for( y = 0; y < h; y++ )
-        {
-            for( x = 0; x < w; x++ )
-            {
-                sx = (int)x + otx;
-                sy = (int)y + oty;
-                b->getPixel( sx, sy, &c );
-
-                sx = (int)x + ox;
-                sy = (int)y + oy;
-                this->setPixel( sx, sy, &c );
-            }
-        }
-    }
-
 };
 
 

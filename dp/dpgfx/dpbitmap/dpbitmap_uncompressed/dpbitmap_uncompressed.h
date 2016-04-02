@@ -195,8 +195,6 @@ namespace dp
         virtual bool getPixelData( dpbuffer_static *b );
         //get extra data
         virtual bool getExtraData( dpbuffer_static *b );
-        //copy bitmap
-        virtual void copy( dpbitmap *b );
 
     };
 
