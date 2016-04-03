@@ -35,12 +35,19 @@ namespace dp
         uint32_t w, h;
     };
 
+#define dpbitmap_transparency_mode_none 0
+#define dpbitmap_transparency_mode_blend 1
+#define dpbitmap_transparency_mode_mask 2
+#define dpbitmap_transparency_mode_inverse_mask 3
+
     class dpbitmap : public dpbuffer_wrapper
     {
 
     private:
 
         dpbuffer_dynamic int_b;
+        dpbitmap_color clr_mask, clr_clamp;
+        int transparency_mode;
 
     protected:
 
@@ -93,9 +100,20 @@ namespace dp
         virtual void copyNoStretch( dpbitmap *b, dpbitmap_position *p_dest );
         //copy without stretching to position
         virtual void copyNoStretch( dpbitmap *b, dpbitmap_rectangle *p_src, dpbitmap_position *p_dest );
+        //set color mask
+        virtual void setColorMask( dpbitmap_color *c );
+        //get color mask
+        virtual void getColorMask( dpbitmap_color *c );
+        //set color clamp
+        virtual void setColorClamp( dpbitmap_color *c );
+        //get color clamp
+        virtual void getColorClamp( dpbitmap_color *c );
+        //set transparency mode
+        virtual void setTransparencyMode( int m );
+        //get transparency mode
+        virtual int getTransparencyMode( void );
 
     };
-
 };
 
 #endif

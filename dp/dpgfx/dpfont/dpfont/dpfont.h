@@ -18,6 +18,10 @@ namespace dp
     class dpfont_filter;
     #define dpfont_max_filters 256
 
+    #define dpfont_align_left 0
+    #define dpfont_align_center 1
+    #define dpfont_align_right 2
+
     class dpfont
     {
 
@@ -29,6 +33,8 @@ namespace dp
         unsigned int sz;
         dpbitmap_color clr;
         dpfont_filter *filters[ dpfont_max_filters ];
+        int alignment;
+        std::string sfname;
 
         //zero filters
         void zeroFilters( void );
@@ -59,6 +65,16 @@ namespace dp
         void setColor( dpbitmap_color *c );
         //set font size
         bool setSize( unsigned int s );
+        //return size
+        unsigned int getSize( void );
+        //set alignment
+        void setAlignment( int a );
+        //get alignment
+        int getAlignment( void );
+        //get font name
+        void getName( std::string *s );
+        //add filter
+        void addFilter( dpfont_filter *f );
 
     };
 

@@ -14,6 +14,18 @@ namespace dp
     dpbitmap::dpbitmap( void ) : dpbuffer_wrapper()
     {
         this->setWrapped( &this->int_b );
+
+        this->transparency_mode = dpbitmap_transparency_mode_none;
+
+        this->clr_mask.r = 1;
+        this->clr_mask.g = 1;
+        this->clr_mask.b = 1;
+        this->clr_mask.a = 1;
+
+        this->clr_clamp.r = 1;
+        this->clr_clamp.g = 1;
+        this->clr_clamp.b = 1;
+        this->clr_clamp.a = 1;
     }
 
     //ctor
@@ -21,6 +33,18 @@ namespace dp
     {
         this->int_b.copy( b );
         this->setWrapped( &this->int_b );
+
+        this->transparency_mode = dpbitmap_transparency_mode_none;
+
+        this->clr_mask.r = 1;
+        this->clr_mask.g = 1;
+        this->clr_mask.b = 1;
+        this->clr_mask.a = 1;
+
+        this->clr_clamp.r = 1;
+        this->clr_clamp.g = 1;
+        this->clr_clamp.b = 1;
+        this->clr_clamp.a = 1;
     }
 
     //dtor
@@ -61,7 +85,6 @@ namespace dp
         if( y )
             *y = 0;
     }
-
 
     //copy bitmap
     void dpbitmap::copy( dpbitmap *b )
@@ -181,9 +204,8 @@ namespace dp
 
     void dpbitmap__copy__pixel( dpbitmap *bsrc, dpbitmap *bdest, int dx, int dy, int sx, int sy, float fx, float fy )
     {
-        int dox, doy, sox, soy;
-        dpbitmap_color c, dc;
-        float ca;
+        int dox, doy, sox, soy, tm;
+        dpbitmap_color c, dc, cm, cc;
 
         bdest->getPixelOffset( &dox, &doy );
         bsrc->getPixelOffset( &sox, &soy );
@@ -197,22 +219,94 @@ namespace dp
             bsrc->getPixel( sx, sy, &c );
         else
             dpbitmap__copy__pixel_x( bsrc, sx, sy, fx, fy, &c );
+        tm = bdest->getTransparencyMode();
 
-        if( c.a < 0.01f )
+        if( c.a < 0.01f && tm == dpbitmap_transparency_mode_blend )
             return;
 
-        bdest->getPixel( dx, dy, &dc );
+        bdest->getColorClamp( &cc );
 
-        ca = c.a;
-        if( ca > 0.2f )
-            ca = 1.0f;
-        else
-            ca = ca / 0.2f;
+        if( c.a < 0.99f )
+        {
+            if( c.a > cc.a )
+                c.a = 1.0f;
+            else
+                c.a = c.a / cc.a;
+        }
+        if( c.a < 0.01f && tm == dpbitmap_transparency_mode_blend )
+            return;
 
-        c.r = c.r * c.a + dc.r * (1.0f - c.a);
-        c.g = c.g * c.a + dc.g * (1.0f - c.a);
-        c.b = c.b * c.a + dc.b * (1.0f - c.a);
-        c.a = c.a * c.a + dc.a * (1.0f - c.a);
+        if( c.r < 0.99f )
+        {
+            if( c.r > cc.r )
+                c.r = 1.0f;
+            else
+                c.r = c.r / cc.r;
+        }
+
+        if( c.g < 0.99f )
+        {
+            if( c.g > cc.g )
+                c.g = 1.0f;
+            else
+                c.g = c.g / cc.g;
+        }
+
+        if( c.b < 0.99f )
+        {
+            if( c.b > cc.b )
+                c.b = 1.0f;
+            else
+                c.b = c.b / cc.b;
+        }
+
+        bdest->getColorMask( &cm );
+        if( cm.r < 0.99f )
+            c.r *= cm.r;
+        if( cm.g < 0.99f )
+            c.g *= cm.g;
+        if( cm.b < 0.99f )
+            c.b *= cm.b;
+        if( cm.a < 0.99f )
+            c.a *= cm.a;
+
+        switch( tm )
+        {
+            case dpbitmap_transparency_mode_none:
+                break;
+            case dpbitmap_transparency_mode_blend:
+                if( c.a < 0.99f )
+                {
+                    bdest->getPixel( dx, dy, &dc );
+                    c.r = c.r * c.a + dc.r * (1.0f - c.a);
+                    c.g = c.g * c.a + dc.g * (1.0f - c.a);
+                    c.b = c.b * c.a + dc.b * (1.0f - c.a);
+                    c.a = c.a * c.a + dc.a * (1.0f - c.a);
+                }
+                break;
+            case dpbitmap_transparency_mode_mask:
+                bdest->getPixel( dx, dy, &dc );
+                c.r = c.r * dc.r;
+                c.g = c.g * dc.g;
+                c.b = c.b * dc.b;
+                c.a = c.a * dc.a;
+                c.r = c.r * c.a + dc.r * (1.0f - c.a);
+                c.g = c.g * c.a + dc.g * (1.0f - c.a);
+                c.b = c.b * c.a + dc.b * (1.0f - c.a);
+                c.a = c.a * c.a + dc.a * (1.0f - c.a);
+                break;
+            case dpbitmap_transparency_mode_inverse_mask:
+                bdest->getPixel( dx, dy, &dc );
+                c.r = (1.0f - c.r) * dc.r;
+                c.g = (1.0f - c.g) * dc.g;
+                c.b = (1.0f - c.b) * dc.b;
+                c.a = (1.0f - c.a) * dc.a;
+                c.r = dc.r * c.a + c.r * (1.0f - c.a);
+                c.g = dc.g * c.a + c.g * (1.0f - c.a);
+                c.b = dc.b * c.a + c.b * (1.0f - c.a);
+                c.a = dc.a * c.a + c.a * (1.0f - c.a);
+                break;
+        }
 
         bdest->setPixel( dx, dy, &c );
     }
@@ -270,6 +364,42 @@ namespace dp
             }
         }
 
+    }
+
+    //set color mask
+    void dpbitmap::setColorMask( dpbitmap_color *c )
+    {
+        this->clr_mask = *c;
+    }
+
+    //get color mask
+    void dpbitmap::getColorMask( dpbitmap_color *c )
+    {
+        *c = this->clr_mask;
+    }
+
+    //set color clamp
+    void dpbitmap::setColorClamp( dpbitmap_color *c )
+    {
+        this->clr_clamp = *c;
+    }
+
+    //get color clamp
+    void dpbitmap::getColorClamp( dpbitmap_color *c )
+    {
+        *c = this->clr_clamp;
+    }
+
+    //set transparency mode
+    void dpbitmap::setTransparencyMode( int m )
+    {
+        this->transparency_mode = m;
+    }
+
+    //get transparency mode
+    int dpbitmap::getTransparencyMode( void )
+    {
+        return this->transparency_mode;
     }
 
 };

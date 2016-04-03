@@ -57,7 +57,7 @@ int main()
 
     f.setSize( 40 );
     f.openFont( "sans" );
-    std::string ss( "Hello, how are you? 1234567890 abcdefghijklmno pqrstuvwxyz" );
+    std::string ss( "Hello, [color ff00ffff]how [size 50]are you? 1234567890 abcdefghijklmno pqrstuvwxyz" );
 
     f.drawString( &ss, 0, 0, bm );
 

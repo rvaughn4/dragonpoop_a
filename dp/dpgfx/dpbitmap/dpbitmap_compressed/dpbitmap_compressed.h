@@ -73,6 +73,12 @@ namespace dp
         virtual void copyNoStretch( dpbitmap *b, dpbitmap_position *p_dest );
         //copy without stretching to position
         virtual void copyNoStretch( dpbitmap *b, dpbitmap_rectangle *p_src, dpbitmap_position *p_dest );
+        //set color mask
+        virtual void setColorMask( dpbitmap_color *c );
+        //set color clamp
+        virtual void setColorClamp( dpbitmap_color *c );
+        //set transparency mode
+        virtual void setTransparencyMode( int m );
 
     };
 

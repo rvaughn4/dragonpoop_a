@@ -57,6 +57,7 @@ namespace dp
     {
         dpbitmap *nb;
         unsigned int w, h;
+        dpbitmap_color c;
 
         if( !this->b )
         {
@@ -74,6 +75,12 @@ namespace dp
             delete nb;
             return 0;
         }
+
+        this->getColorClamp( &c );
+        this->b->setColorClamp( &c );
+        this->getColorMask( &c );
+        this->b->setColorMask( &c );
+        this->b->setTransparencyMode( this->getTransparencyMode() );
 
         return this->b;
     }
@@ -242,6 +249,30 @@ namespace dp
             return;
 
         nb->copyNoStretch( b, p_src, p_dest );
+    }
+
+    //set color mask
+    void dpbitmap_compressed::setColorMask( dpbitmap_color *c )
+    {
+        this->dpbitmap::setColorMask( c );
+        if( this->b )
+            this->b->setColorMask( c );
+    }
+
+    //set color clamp
+    void dpbitmap_compressed::setColorClamp( dpbitmap_color *c )
+    {
+        this->dpbitmap::setColorClamp( c );
+        if( this->b )
+            this->b->setColorClamp( c );
+    }
+
+    //set transparency mode
+    void dpbitmap_compressed::setTransparencyMode( int m )
+    {
+        this->dpbitmap::setTransparencyMode( m );
+        if( this->b )
+            this->b->setTransparencyMode( m );
     }
 
 };

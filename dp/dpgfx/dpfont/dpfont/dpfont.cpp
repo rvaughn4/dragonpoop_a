@@ -6,6 +6,8 @@ freetype 2 font
 #include "dpfont.h"
 #include "../dpfont_filter/dpfont_filter.h"
 #include "../dpfont_bitmap/dpfont_bitmap.h"
+#include "../dpfont_filter_color/dpfont_filter_color.h"
+#include "../dpfont_filter_size/dpfont_filter_size.h"
 
 namespace dp
 {
@@ -18,8 +20,12 @@ namespace dp
         this->sz = 10;
         this->clr.r = this->clr.g = this->clr.b = 0;
         this->clr.a = 1;
+        this->alignment = dpfont_align_left;
 
         this->zeroFilters();
+
+        this->addFilter( new dpfont_filter_color() );
+        this->addFilter( new dpfont_filter_size() );
     }
 
     //dtor
@@ -104,6 +110,8 @@ namespace dp
 
         this->fc = nfc;
         this->fc_loaded = 1;
+        this->sfname.assign( fname );
+
         return 1;
     }
 
@@ -112,6 +120,8 @@ namespace dp
     {
         dpbitmap *bm;
         dpbitmap_position dp;
+        dpbitmap_color clr;
+        int tm;
 
         if( !this->lb_loaded || !this->fc_loaded )
             return 0;
@@ -130,7 +140,15 @@ namespace dp
         }
 
         if( dest_bmp )
+        {
+            tm = dest_bmp->getTransparencyMode();
+            dest_bmp->setTransparencyMode( dpbitmap_transparency_mode_blend );
+            dest_bmp->getColorMask( &clr );
+            dest_bmp->setColorMask( &this->clr );
             dest_bmp->copyNoStretch( bm, pos_in );
+            dest_bmp->setColorMask( &clr );
+            dest_bmp->setTransparencyMode( tm );
+        }
 
         if( rect_sz_out )
         {
@@ -146,7 +164,7 @@ namespace dp
     //draw line, return count of characters in line including line breaks and filters, 0 is failure
     unsigned int dpfont::drawLine( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap *dest_bmp, unsigned int *lw, unsigned int *lh )
     {
-        unsigned int i, len_rem, r, last_sp;
+        unsigned int i, len_rem, r, last_sp, last_sp_w;
         dpbitmap_position ip;
         char *c;
         dpbitmap_rectangle ir;
@@ -156,6 +174,7 @@ namespace dp
 
         ip = rect_in->p;
         last_sp = 0;
+        last_sp_w = 0;
         for( i = 0; i < len; i++ )
         {
             c = &b[ i ];
@@ -171,8 +190,12 @@ namespace dp
             }
             if( c[ 0 ] == 32 )
             {
-                last_sp = i;
-                ip.x += this->sz / 4;
+                if( i > 0 )
+                {
+                    last_sp = i;
+                    last_sp_w = ip.x;
+                    ip.x += this->sz / 4;
+                }
                 continue;
             }
             if( c[ 0 ] == *"\r" )
@@ -189,7 +212,11 @@ namespace dp
             {
                 ip.x = rect_in->x;
                 if( last_sp )
+                {
+                    if( lw )
+                        *lw = last_sp_w;
                     return last_sp + 1;
+                }
                 return i;
             }
 
@@ -207,28 +234,54 @@ namespace dp
     //draw a string
     bool dpfont::drawString( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap_rectangle *rect_sz_out, dpbitmap *dest_bmp )
     {
-        unsigned int i, r, len_rem, lw, lh;
+        unsigned int i, r, len_rem, lw, lh, o_sz;
         char *c;
-        dpbitmap_rectangle ir;
+        dpbitmap_rectangle ir, irp;
+        std::string o_name;
+        dpbitmap_color o_clr;
 
         if( rect_in )
-            ir = *rect_in;
+            irp = *rect_in;
         else
         {
-            ir.x = ir.y = 0;
-            ir.w = dest_bmp->getWidth();
-            ir.h = dest_bmp->getHeight();
+            irp.x = irp.y = 0;
+            irp.w = dest_bmp->getWidth();
+            irp.h = dest_bmp->getHeight();
         }
+        ir = irp;
 
         for( i = 0; i < len; )
         {
             c = &b[ i ];
             len_rem = len - i;
             lh = this->sz * 7 / 6;
+            ir.x = irp.x;
+
+            o_name.assign( this->sfname );
+            o_sz = this->sz;
+            o_clr = this->clr;
 
             r = this->drawLine( c, len_rem, &ir, 0, &lw, &lh );
             if( !r )
                 return 0;
+
+            switch( this->alignment )
+            {
+            case dpfont_align_left:
+                break;
+            case dpfont_align_center:
+                ir.x = ( irp.w - lw ) / 2 + irp.x;
+                break;
+            case dpfont_align_right:
+                ir.x = ( irp.w - lw ) + irp.x;
+                break;
+            }
+
+            if( o_name.compare( this->sfname ) != 0 )
+                this->openFont( o_name.c_str() );
+            if( o_sz != this->sz )
+                this->setSize( o_sz );
+            this->clr = o_clr;
 
         //do centering
             r = this->drawLine( c, r, &ir, dest_bmp, &lw, &lh );
@@ -309,7 +362,7 @@ namespace dp
             p = this->filters[ i ];
             if( !p )
                 continue;
-            //
+            delete p;
         }
 
         this->zeroFilters();
@@ -318,7 +371,7 @@ namespace dp
     //run filters
     unsigned int dpfont::runFilters( char *b, unsigned int len, dpbitmap_position *pos_in, dpbitmap *dest_bmp )
     {
-        unsigned int i;
+        unsigned int i, r;
         dpfont_filter *p;
 
         for( i = 0; i < dpfont_max_filters; i++ )
@@ -327,10 +380,54 @@ namespace dp
             if( !p )
                 continue;
 
-            //
+            r = p->run( b, len, pos_in, dest_bmp, this );
+            if( r )
+                return r;
         }
 
         return 0;
+    }
+
+    //return size
+    unsigned int dpfont::getSize( void )
+    {
+        return this->sz;
+    }
+
+    //set alignment
+    void dpfont::setAlignment( int a )
+    {
+        this->alignment = a;
+    }
+
+    //get alignment
+    int dpfont::getAlignment( void )
+    {
+        return this->alignment;
+    }
+
+    //get font name
+    void dpfont::getName( std::string *s )
+    {
+        s->assign( this->sfname );
+    }
+
+    //add filter
+    void dpfont::addFilter( dpfont_filter *f )
+    {
+        unsigned int i;
+        dpfont_filter *p;
+
+        for( i = 0; i < dpfont_max_filters; i++ )
+        {
+            p = this->filters[ i ];
+            if( p )
+                continue;
+            this->filters[ i ] = f;
+            return;
+        }
+
+        delete f;
     }
 
 };

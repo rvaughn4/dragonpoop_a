@@ -18,7 +18,7 @@
 1454887924 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpspinlock.h
 	<atomic>
 
-1459652349 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
+1459703273 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
 	"dp/dpcore/dptaskmgr/dptaskmgr.h"
 	"dp/dpcore/dptaskmgr/dptaskmgr_writelock.h"
 	"dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h"
@@ -1517,12 +1517,12 @@
 1458169920 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpvertex/dpvertex.h
 	<stdint.h>
 
-1459652314 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap/dpbitmap.cpp
+1459697051 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap/dpbitmap.cpp
 	"dpbitmap.h"
 	"../dpbitmap_uncompressed/dpbitmap_uncompressed.h"
 	<math.h>
 
-1459600393 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap/dpbitmap.h
+1459694828 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap/dpbitmap.h
 	"../../../dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.h"
 	"../../../dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.h"
 
@@ -1580,7 +1580,7 @@
 1458901890 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_1bit_palette/dpbitmap_1bit_palette.h
 	"../dpbitmap_uncompressed_palette/dpbitmap_uncompressed_palette.h"
 
-1459601365 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_compressed/dpbitmap_compressed.cpp
+1459695041 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_compressed/dpbitmap_compressed.cpp
 	"dpbitmap_compressed.h"
 	"../dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
 
@@ -1594,7 +1594,7 @@
 	<arpa/inet.h>
 	<math.h>
 
-1459601173 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_compressed/dpbitmap_compressed.h
+1459695071 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_compressed/dpbitmap_compressed.h
 	"../dpbitmap/dpbitmap.h"
 
 1459257024 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpbitmap/dpbitmap_png/dpbitmap_png.h
@@ -1798,12 +1798,14 @@
 1459641726 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_bitmap/dpfont_bitmap.cpp
 	"dpfont_bitmap.h"
 
-1459652085 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont/dpfont.cpp
+1459703233 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont/dpfont.cpp
 	"dpfont.h"
 	"../dpfont_filter/dpfont_filter.h"
 	"../dpfont_bitmap/dpfont_bitmap.h"
+	"../dpfont_filter_color/dpfont_filter_color.h"
+	"../dpfont_filter_size/dpfont_filter_size.h"
 
-1459651326 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont/dpfont.h
+1459702248 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont/dpfont.h
 	"../../dpbitmap/dpbitmap/dpbitmap.h"
 	<ft2build.h>
 	<string>
@@ -1813,9 +1815,32 @@
 
 1444043134 /usr/include/freetype2/config/ftheader.h
 
-1459511489 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_filter/dpfont_filter.h
+1459702151 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_filter/dpfont_filter.h
+	"../../dpbitmap/dpbitmap/dpbitmap.h"
+	<string>
 
 1459593500 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_bitmap/dpfont_bitmap.h
 	"../dpfont/dpfont.h"
 	"../../dpbitmap/dpbitmap_uncompressed/dpbitmap_uncompressed.h"
+
+1459702051 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_filter/dpfont_filter.cpp
+	"dpfont_filter.h"
+
+1459702647 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_filter_color/dpfont_filter_color.cpp
+	"dpfont_filter_color.h"
+	<sstream>
+	"../dpfont/dpfont.h"
+
+1459699861 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_filter_face/dpfont_filter_face.cpp
+
+1459703190 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_filter_size/dpfont_filter_size.cpp
+	"dpfont_filter_size.h"
+	<sstream>
+	"../dpfont/dpfont.h"
+
+1459702055 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_filter_color/dpfont_filter_color.h
+	"../dpfont_filter/dpfont_filter.h"
+
+1459702938 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_filter_size/dpfont_filter_size.h
+	"../dpfont_filter/dpfont_filter.h"
 
