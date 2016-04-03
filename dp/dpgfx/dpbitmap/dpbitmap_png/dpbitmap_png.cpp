@@ -223,14 +223,16 @@ namespace dp
         dpbitmap_png__parsePixels__left( bpp, pc, pc_b );
     }
 
-    uint8_t dpbitmap_png__parsePixels__mean_x( uint8_t c, uint8_t a, uint8_t b )
+    uint8_t dpbitmap_png__parsePixels__mean_x( uint32_t c, uint32_t a, uint32_t b )
     {
-        unsigned int r;
+        uint32_t r;
 
-        r = (unsigned int)a + (unsigned int)b;
-        r = r >> 1;
+        r = a + b;
+        r = r / 2;
 
-        return c + (uint8_t)r;
+        r = r + c;
+
+        return r;
     }
 
     void dpbitmap_png__parsePixels__mean( unsigned int bpp, uint8_t *c, uint8_t *c_a, uint8_t *c_b )
@@ -241,39 +243,31 @@ namespace dp
             c[ i ] = dpbitmap_png__parsePixels__mean_x( c[ i ], c_a[ i ], c_b[ i ] );
     }
 
-    uint8_t dpbitmap_png__parsePixels__pearth_x( uint8_t a, uint8_t b, uint8_t c )
+    uint8_t dpbitmap_png__parsePixels__pearth_x( int32_t a, int32_t b, int32_t c )
     {
-        uint8_t p, pa, pb, pc, r;
+        int32_t p, pa, pb, pc;
 
         p = a + b - c;
 
-        r = a;
-        if( p > a )
-            pa = p - a;
-        else
-            pa = a - p;
+        pa = p - a;
+        if( pa < 0 )
+            pa *= -1;
 
-        if( p > b )
-            pb = p - b;
-        else
-            pb = b - p;
-        if( pb < pa )
-        {
-            pa = pb;
-            r = b;
-        }
+        pb = p - b;
+        if( pb < 0 )
+            pb *= -1;
 
-        if( p > c )
-            pc = p - c;
-        else
-            pc = c - p;
-        if( pc < pa )
-        {
-            pa = pc;
-            r = c;
-        }
+        pc = p - c;
+        if( pc < 0 )
+            pc *= -1;
 
-        return r;
+        if( pa <= pb && pa <= pc )
+            return a;
+
+        if( pb <= pc )
+            return b;
+
+        return c;
     }
 
     void dpbitmap_png__parsePixels__pearth( unsigned int bpp, uint8_t *c, uint8_t *c_a, uint8_t *c_b, uint8_t *c_c )
@@ -528,14 +522,15 @@ namespace dp
         dpbitmap_png__genIDAT_left( bpp, pc, pc_b );
     }
 
-    uint8_t dpbitmap_png__genIDAT_mean_x( uint8_t c, uint8_t a, uint8_t b )
+    uint8_t dpbitmap_png__genIDAT_mean_x( uint32_t c, uint32_t a, uint32_t b )
     {
-        unsigned int r;
+        uint32_t r;
 
         r = a + b;
         r = r >> 1;
+        r = c - r;
 
-        return c - (uint8_t)r;
+        return r;
     }
 
     void dpbitmap_png__genIDAT_mean( unsigned int bpp, uint8_t *pc, uint8_t *pc_a, uint8_t *pc_b )
@@ -546,39 +541,31 @@ namespace dp
             pc[ i ] = dpbitmap_png__genIDAT_mean_x( pc[ i ], pc_a[ i ], pc_b[ i ] );
     }
 
-    uint8_t dpbitmap_png__genIDAT_pearth_x( uint8_t a, uint8_t b, uint8_t c )
+    uint8_t dpbitmap_png__genIDAT_pearth_x( int32_t a, int32_t b, int32_t c )
     {
-        uint8_t p, pa, pb, pc, r;
+        int32_t p, pa, pb, pc;
 
         p = a + b - c;
 
-        r = a;
-        if( p > a )
-            pa = p - a;
-        else
-            pa = a - p;
+        pa = p - a;
+        if( pa < 0 )
+            pa *= -1;
 
-        if( p > b )
-            pb = p - b;
-        else
-            pb = b - p;
-        if( pb < pa )
-        {
-            pa = pb;
-            r = b;
-        }
+        pb = p - b;
+        if( pb < 0 )
+            pb *= -1;
 
-        if( p > c )
-            pc = p - c;
-        else
-            pc = c - p;
-        if( pc < pa )
-        {
-            pa = pc;
-            r = c;
-        }
+        pc = p - c;
+        if( pc < 0 )
+            pc *= -1;
 
-        return r;
+        if( pa <= pb && pa <= pc )
+            return a;
+
+        if( pb <= pc )
+            return b;
+
+        return c;
     }
 
     void dpbitmap_png__genIDAT_pearth( unsigned int bpp, uint8_t *pc, uint8_t *pc_a, uint8_t *pc_b, uint8_t *pc_c )

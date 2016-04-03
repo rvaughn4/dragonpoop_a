@@ -37,7 +37,7 @@ namespace dp
         //run filters
         unsigned int runFilters( char *b, unsigned int len, dpbitmap_position *pos_in, dpbitmap *dest_bmp );
         //draw line, return count of characters in line including line breaks and filters, 0 is failure
-        unsigned int drawLine( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap *dest_bmp, unsigned int *p_width );
+        unsigned int drawLine( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap *dest_bmp, unsigned int *p_width, unsigned int *p_height );
 
     protected:
 

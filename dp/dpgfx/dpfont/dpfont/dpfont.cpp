@@ -134,11 +134,8 @@ namespace dp
 
         if( rect_sz_out )
         {
-            rect_sz_out->x = 0;
-            rect_sz_out->y = 0;
             rect_sz_out->w = bm->getWidth();
             rect_sz_out->h = bm->getHeight();
-
             rect_sz_out->p = *pos_in;
         }
 
@@ -147,7 +144,7 @@ namespace dp
     }
 
     //draw line, return count of characters in line including line breaks and filters, 0 is failure
-    unsigned int dpfont::drawLine( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap *dest_bmp, unsigned int *lw )
+    unsigned int dpfont::drawLine( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap *dest_bmp, unsigned int *lw, unsigned int *lh )
     {
         unsigned int i, len_rem, r, last_sp;
         dpbitmap_position ip;
@@ -163,7 +160,8 @@ namespace dp
         {
             c = &b[ i ];
             len_rem = len - i;
-            *lw = ir.x;
+            if( lw )
+                *lw = ir.x;
 
             r = this->runFilters( c, len_rem, &ip, dest_bmp );
             if( r )
@@ -197,8 +195,10 @@ namespace dp
 
             if( !this->drawCharacter( (unsigned char)*c, &ip, &ir, dest_bmp ) )
                 return 0;
+            if( lh && ir.h > *lh )
+                *lh = ir.h;
 
-            ip.x += ir.w;
+            ip.x += ir.w + 1 + this->sz / 30;
         }
 
         return i;
@@ -207,7 +207,7 @@ namespace dp
     //draw a string
     bool dpfont::drawString( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap_rectangle *rect_sz_out, dpbitmap *dest_bmp )
     {
-        unsigned int i, r, len_rem, lw;
+        unsigned int i, r, len_rem, lw, lh;
         char *c;
         dpbitmap_rectangle ir;
 
@@ -224,17 +224,20 @@ namespace dp
         {
             c = &b[ i ];
             len_rem = len - i;
+            lh = this->sz * 7 / 6;
 
-            r = this->drawLine( c, len_rem, &ir, 0, &lw );
+            r = this->drawLine( c, len_rem, &ir, 0, &lw, &lh );
             if( !r )
                 return 0;
 
         //do centering
-            r = this->drawLine( c, r, &ir, dest_bmp, &lw );
+            r = this->drawLine( c, r, &ir, dest_bmp, &lw, &lh );
             if( !r )
                 return 0;
-            ir.y += this->sz;
-            ir.h -= this->sz;
+
+            //skip to next line
+            ir.y += lh;
+            ir.h -= lh;
 
             i += r;
         }

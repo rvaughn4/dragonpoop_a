@@ -5,6 +5,7 @@
 
 #include "dpbitmap.h"
 #include "../dpbitmap_uncompressed/dpbitmap_uncompressed.h"
+#include <math.h>
 
 namespace dp
 {
@@ -145,10 +146,44 @@ namespace dp
         this->copy( b, &p, p_dest );
     }
 
-    void dpbitmap__copy__pixel( dpbitmap *bsrc, dpbitmap *bdest, int dx, int dy, int sx, int sy )
+    void dpbitmap__copy__pixel_x( dpbitmap *bsrc, int sx, int sy, float fx, float fy, dpbitmap_color *c )
+    {
+        float mfx, mfy;
+        dpbitmap_color tl, tr, bl, br;
+
+        fx = fx - (float)sx;
+        fy = fy - (float)sy;
+        mfx = 1.0f - fx;
+        mfy = 1.0f - fy;
+
+        bsrc->getPixel( sx, sy, &tl );
+        bsrc->getPixel( sx + 1, sy, &tr );
+        bsrc->getPixel( sx, sy + 1, &bl );
+        bsrc->getPixel( sx + 1, sy + 1, &br );
+
+        c->r =  tl.r * mfx * mfy +
+                tr.r * fx * mfy +
+                bl.r * mfx * fy +
+                br.r * fx * fy;
+        c->g =  tl.g * mfx * mfy +
+                tr.g * fx * mfy +
+                bl.g * mfx * fy +
+                br.g * fx * fy;
+        c->b =  tl.b * mfx * mfy +
+                tr.b * fx * mfy +
+                bl.b * mfx * fy +
+                br.b * fx * fy;
+        c->a =  tl.a * mfx * mfy +
+                tr.a * fx * mfy +
+                bl.a * mfx * fy +
+                br.a * fx * fy;
+    }
+
+    void dpbitmap__copy__pixel( dpbitmap *bsrc, dpbitmap *bdest, int dx, int dy, int sx, int sy, float fx, float fy )
     {
         int dox, doy, sox, soy;
-        dpbitmap_color c;
+        dpbitmap_color c, dc;
+        float ca;
 
         bdest->getPixelOffset( &dox, &doy );
         bsrc->getPixelOffset( &sox, &soy );
@@ -158,7 +193,27 @@ namespace dp
         sx += dox;
         sy += doy;
 
-        bsrc->getPixel( sx, sy, &c );
+        if( (float)sx == fx && (float)sy == fy )
+            bsrc->getPixel( sx, sy, &c );
+        else
+            dpbitmap__copy__pixel_x( bsrc, sx, sy, fx, fy, &c );
+
+        if( c.a < 0.01f )
+            return;
+
+        bdest->getPixel( dx, dy, &dc );
+
+        ca = c.a;
+        if( ca > 0.2f )
+            ca = 1.0f;
+        else
+            ca = ca / 0.2f;
+
+        c.r = c.r * c.a + dc.r * (1.0f - c.a);
+        c.g = c.g * c.a + dc.g * (1.0f - c.a);
+        c.b = c.b * c.a + dc.b * (1.0f - c.a);
+        c.a = c.a * c.a + dc.a * (1.0f - c.a);
+
         bdest->setPixel( dx, dy, &c );
     }
 
@@ -183,7 +238,7 @@ namespace dp
                 dx = x + p_dest->x;
                 sx = (int)fx + p_src->x;
 
-                dpbitmap__copy__pixel( b, this, dx, dy, sx, sy );
+                dpbitmap__copy__pixel( b, this, dx, dy, sx, sy, fx + (float)p_src->x, fy + (float)p_src->y );
             }
         }
     }
@@ -211,7 +266,7 @@ namespace dp
                 dx = x + p_dest->x;
                 sx = x + p_src->x;
 
-                dpbitmap__copy__pixel( b, this, dx, dy, sx, sy );
+                dpbitmap__copy__pixel( b, this, dx, dy, sx, sy, sx, sy );
             }
         }
 
