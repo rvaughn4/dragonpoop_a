@@ -131,17 +131,15 @@ namespace dp
     //get pixel offset
     void dpfont_bitmap::getPixelOffset( int *x, int *y )
     {
-        int bh, by;
+        int by;
 
         this->dpbitmap_uncompressed::getPixelOffset( x, y );
 
         by = (int)this->fc->glyph->metrics.horiBearingY;
-        bh = (int)this->fc->glyph->metrics.height;
-        by = bh - by;
-        bh = (int)this->fnt_size - ( ( bh + by ) / 64 );
+        by = (int)this->fnt_size - by / 64;
 
         if( y )
-            *y += bh;
+            *y += by;
     }
 
 };

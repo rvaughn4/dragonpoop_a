@@ -10,6 +10,7 @@
 #include <thread>
 
 #include "dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
+#include "dp/dpgfx/dpbitmap/dpbitmap_loader/dpbitmap_loader.h"
 #include "dp/dpgfx/dpfont/dpfont/dpfont.h"
 
 int main()
@@ -45,12 +46,18 @@ int main()
 */
 
     dp::dpfont f;
-    dp::dpbitmap *bm = new dp::dpbitmap_32bit_uncompressed( 42, 42 );
+    dp::dpbitmap_loader bml;
+    dp::dpbitmap *bmf = bml.load( "picture.png" );
+    dp::dpbitmap *bm = new dp::dpbitmap_32bit_uncompressed( bmf->getWidth() / 2, bmf->getHeight() / 2 );
 
-    f.setSize( 42 );
+    bm->copy( bmf );
+    delete bmf;
+
+    f.setSize( 30 );
     f.openFont( "sans" );
+    std::string ss( "Hello, how are you? 1234567890 abcdefghijklmno pqrstuvwxyz" );
 
-    f.drawCharacter( *"H", 0, 0, bm );
+    f.drawString( &ss, 0, 0, bm );
 
     bm->save( "derp.bmp" );
     delete bm;

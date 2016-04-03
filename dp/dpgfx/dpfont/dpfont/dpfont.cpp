@@ -97,7 +97,7 @@ namespace dp
         h = nfc->size->metrics.ascender - nfc->size->metrics.descender;
         if( h < 0 )
             h *= -1;
-        this->sz = h / 115;
+        this->sz = h / 108;
 
         if( this->fc_loaded )
             FT_Done_Face( this->fc );
@@ -146,24 +146,24 @@ namespace dp
         return 1;
     }
 
-    //draw a string
-    bool dpfont::drawString( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap_rectangle *rect_sz_out, dpbitmap *dest_bmp )
+    //draw line, return count of characters in line including line breaks and filters, 0 is failure
+    unsigned int dpfont::drawLine( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap *dest_bmp, unsigned int *lw )
     {
-        unsigned int i, r, len_rem, lh;
-        char *c;
+        unsigned int i, len_rem, r, last_sp;
         dpbitmap_position ip;
+        char *c;
         dpbitmap_rectangle ir;
 
-        if( rect_in )
-            ip = rect_in->p;
-        else
-            ip.x = ip.y = 0;
-        lh = this->sz;
+        if( !rect_in )
+            return 0;
 
+        ip = rect_in->p;
+        last_sp = 0;
         for( i = 0; i < len; i++ )
         {
             c = &b[ i ];
             len_rem = len - i;
+            *lw = ir.x;
 
             r = this->runFilters( c, len_rem, &ip, dest_bmp );
             if( r )
@@ -171,31 +171,79 @@ namespace dp
                 i += r;
                 continue;
             }
-
-            if( rect_in )
+            if( c[ 0 ] == 32 )
             {
-                if( !this->drawCharacter( (unsigned char)*c, &ip, &ir, 0 ) )
-                    return 0;
-                if( ir.w + ir.x > rect_in->w + rect_in->x )
-                {
-                    ip.x = rect_in->x;
-                    ip.y += lh;
-                    lh = this->sz;
-                }
+                last_sp = i;
+                ip.x += this->sz / 4;
+                continue;
             }
+            if( c[ 0 ] == *"\r" )
+            {
+                ip.x = 0;
+                continue;
+            }
+            if( c[ 0 ] == *"\n" )
+                return i + 1;
+
+            if( !this->drawCharacter( (unsigned char)*c, &ip, &ir, 0 ) )
+                return 0;
+            if( ir.w + ir.x > rect_in->w + rect_in->x )
+            {
+                ip.x = rect_in->x;
+                if( last_sp )
+                    return last_sp + 1;
+                return i;
+            }
+
             if( !this->drawCharacter( (unsigned char)*c, &ip, &ir, dest_bmp ) )
                 return 0;
 
             ip.x += ir.w;
-            if( lh < ir.h )
-                lh = ir.h;
+        }
+
+        return i;
+    }
+
+    //draw a string
+    bool dpfont::drawString( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap_rectangle *rect_sz_out, dpbitmap *dest_bmp )
+    {
+        unsigned int i, r, len_rem, lw;
+        char *c;
+        dpbitmap_rectangle ir;
+
+        if( rect_in )
+            ir = *rect_in;
+        else
+        {
+            ir.x = ir.y = 0;
+            ir.w = dest_bmp->getWidth();
+            ir.h = dest_bmp->getHeight();
+        }
+
+        for( i = 0; i < len; )
+        {
+            c = &b[ i ];
+            len_rem = len - i;
+
+            r = this->drawLine( c, len_rem, &ir, 0, &lw );
+            if( !r )
+                return 0;
+
+        //do centering
+            r = this->drawLine( c, r, &ir, dest_bmp, &lw );
+            if( !r )
+                return 0;
+            ir.y += this->sz;
+            ir.h -= this->sz;
+
+            i += r;
         }
         if( rect_sz_out )
         {
             rect_sz_out->x = 0;
             rect_sz_out->y = 0;
-            rect_sz_out->h = ip.y + lh;
-            rect_sz_out->w = ip.x;
+            rect_sz_out->h = ir.y + this->sz;
+            rect_sz_out->w = ir.x;
 
             if( rect_in )
             {
@@ -232,7 +280,7 @@ namespace dp
 
         if( FT_Set_Pixel_Sizes( this->fc, s, 0 ) )
             return 0;
-        this->sz = this->fc->size->metrics.height >> 6;
+        this->sz = this->fc->size->metrics.height / 108;
 
         this->sz = s;
         return 1;
