@@ -8,6 +8,7 @@ freetype 2 font
 #include "../dpfont_bitmap/dpfont_bitmap.h"
 #include "../dpfont_filter_color/dpfont_filter_color.h"
 #include "../dpfont_filter_size/dpfont_filter_size.h"
+#include "../dpfont_filter_face/dpfont_filter_face.h"
 
 namespace dp
 {
@@ -26,6 +27,7 @@ namespace dp
 
         this->addFilter( new dpfont_filter_color() );
         this->addFilter( new dpfont_filter_size() );
+        this->addFilter( new dpfont_filter_face() );
     }
 
     //dtor
