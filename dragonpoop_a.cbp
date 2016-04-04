@@ -176,6 +176,14 @@
 		<Unit filename="dp/dpgfx/dpgui/dpgui_ref.h" />
 		<Unit filename="dp/dpgfx/dpgui/dpgui_writelock.cpp" />
 		<Unit filename="dp/dpgfx/dpgui/dpgui_writelock.h" />
+		<Unit filename="dp/dpgfx/dpgui_list/dpgui_list.cpp" />
+		<Unit filename="dp/dpgfx/dpgui_list/dpgui_list.h" />
+		<Unit filename="dp/dpgfx/dpgui_list/dpgui_list_readlock.cpp" />
+		<Unit filename="dp/dpgfx/dpgui_list/dpgui_list_readlock.h" />
+		<Unit filename="dp/dpgfx/dpgui_list/dpgui_list_ref.cpp" />
+		<Unit filename="dp/dpgfx/dpgui_list/dpgui_list_ref.h" />
+		<Unit filename="dp/dpgfx/dpgui_list/dpgui_list_writelock.cpp" />
+		<Unit filename="dp/dpgfx/dpgui_list/dpgui_list_writelock.h" />
 		<Unit filename="dp/dpgfx/dpvertex/dpindex.h" />
 		<Unit filename="dp/dpgfx/dpvertex/dpindexbuffer.cpp" />
 		<Unit filename="dp/dpgfx/dpvertex/dpindexbuffer.h" />

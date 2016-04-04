@@ -85,6 +85,96 @@ namespace dp
         this->zeroList( l, cnt );
     }
 
+    //add gui, starts task and takes ownership of gui, sets pointer to zero, use a ref to access
+    bool dpgui_list::addGui( dpgui **ngui, bool bMakeFront )
+    {
+        unsigned int i;
+        dpgui *p;
+
+        if( !ngui || !*ngui )
+            return 0;
+
+        for( i = 0; i < dpgui_list_max_gui; i++ )
+        {
+            p = this->glist[ i ];
+            if( p )
+                continue;
+
+            p = *ngui;
+            *ngui = 0;
+
+            this->glist[ i ] = p;
+            if( !bMakeFront && this->max_z > 0 )
+                p->setZ( this->max_z );
+            else
+                p->setZ( this->max_z - 1 );
+            if( bMakeFront )
+                this->max_z++;
+
+            this->addDynamicTask( p );
+            this->update();
+        }
+
+        delete *ngui;
+        *ngui = 0;
+        return 0;
+    }
+
+    //get list of unsorted gui, returns count, second arg is size of static list passed in arg 1
+    unsigned int dpgui_list::getGuis( dpgui **glist, unsigned int max_cnt )
+    {
+        unsigned int i, j;
+        dpgui *p;
+
+        if( !glist )
+            return 0;
+
+        for( j = 0, i = 0; i < dpgui_list_max_gui; i++ )
+        {
+            p = this->glist[ i ];
+            if( !p )
+                continue;
+
+            glist[ j ] = p;
+            j++;
+        }
+
+        return j;
+    }
+
+    //get list of gui sorted by z order, returns count, second arg is size of static list passed in arg 1
+    unsigned int dpgui_list::getGuisZSorted( dpgui **glist, unsigned int max_cnt, unsigned int &p_max_z, bool bInverted )
+    {
+        unsigned int i, j, h, z;
+        dpgui *p;
+
+        if( !glist )
+            return 0;
+
+        j = h = z = 0;
+
+        for( h = 0; h < this->max_z; h++ )
+        {
+            if( !bInverted )
+                z = this->max_z - h;
+            else
+                z = h;
+
+            for( i = 0; i < dpgui_list_max_gui; i++ )
+            {
+                p = this->glist[ i ];
+
+                if( !p || p->getZ() != z )
+                    continue;
+
+                glist[ j ] = p;
+                j++;
+            }
+        }
+
+        return j;
+    }
+
 }
 
 

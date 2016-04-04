@@ -32,6 +32,8 @@ namespace dp
         void getDimensions( unsigned int *w, unsigned int *h );
         //get position
         void getPosition( int *x, int *y );
+        //return z
+        unsigned int getZ( void );
 
     };
 

@@ -22,6 +22,7 @@ namespace dp
         dpbitmap_rectangle rc;
         dpbitmap_32bit_uncompressed *bm_bg, *bm_fg;
         bool bBgDrawn, bFgDrawn;
+        unsigned int z;
 
     protected:
 
@@ -70,6 +71,10 @@ namespace dp
         dpgui( int x, int y, unsigned w, unsigned h );
         //dtor
         virtual ~dpgui( void );
+        //return z
+        virtual unsigned int getZ( void );
+        //set z
+        virtual void setZ( unsigned int z );
 
         friend class dpgui_writelock;
         friend class dpgui_readlock;

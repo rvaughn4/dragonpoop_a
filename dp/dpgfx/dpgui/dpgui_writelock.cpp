@@ -56,6 +56,18 @@ namespace dp
         this->p->redrawFg();
     }
 
+    //return z
+    unsigned int dpgui_writelock::getZ( void )
+    {
+        return this->p->getZ();
+    }
+
+    //set z
+    void dpgui_writelock::setZ( unsigned int z )
+    {
+        this->p->setZ( z );
+    }
+
 }
 
 

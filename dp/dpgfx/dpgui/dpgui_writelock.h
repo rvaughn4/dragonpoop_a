@@ -40,6 +40,10 @@ namespace dp
         void redrawBg( void );
         //force fg to be redrawn
         void redrawFg( void );
+        //return z
+        unsigned int getZ( void );
+        //set z
+        void setZ( unsigned int z );
 
     };
 

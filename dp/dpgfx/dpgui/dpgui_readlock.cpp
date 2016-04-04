@@ -32,6 +32,12 @@ namespace dp
         this->p->getPosition( x, y );
     }
 
+    //return z
+    unsigned int dpgui_readlock::getZ( void )
+    {
+        return this->p->getZ();
+    }
+
 }
 
 

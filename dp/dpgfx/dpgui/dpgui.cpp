@@ -185,6 +185,18 @@ namespace dp
         this->bFgDrawn = 0;
     }
 
+    //return z
+    unsigned int dpgui::getZ( void )
+    {
+        return this->z;
+    }
+
+    //set z
+    void dpgui::setZ( unsigned int z )
+    {
+        this->z = z;
+    }
+
 }
 
 
