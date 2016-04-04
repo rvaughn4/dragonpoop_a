@@ -11,7 +11,7 @@ namespace dp
 {
 
     //ctor
-    dpgui::dpgui( int x, int y, unsigned w, unsigned h ) : dptask( "gui", 500 )
+    dpgui::dpgui( int x, int y, unsigned w, unsigned h ) : dpgui_list()
     {
         this->bBgDrawn = 0;
         this->bFgDrawn = 0;
@@ -82,19 +82,23 @@ namespace dp
             this->bFgDrawn = 1;
         }
 
-        return 1;
+        return this->dpgui_list::onTaskRun( tl );
     }
 
     //override to do task startup
     bool dpgui::onTaskStart( dptask_writelock *tl )
     {
-        return this->onGuiStart( (dpgui_writelock *)tl );
+        if( !this->onGuiStart( (dpgui_writelock *)tl ) )
+            return 0;
+        return this->dpgui_list::onTaskStart( tl );
     }
 
     //override to do task shutdown
     bool dpgui::onTaskStop( dptask_writelock *tl )
     {
-        return this->onGuiStop( (dpgui_writelock *)tl );
+        if( !this->onGuiStop( (dpgui_writelock *)tl ) )
+            return 0;
+        return this->dpgui_list::onTaskStop( tl );
     }
 
     //render first pass background image

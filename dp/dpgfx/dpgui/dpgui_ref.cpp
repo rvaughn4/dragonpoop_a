@@ -11,7 +11,7 @@ namespace dp
 {
 
     //ctor
-    dpgui_ref::dpgui_ref( dpgui *p, std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync ) : dptask_ref( p, k, t_sync )
+    dpgui_ref::dpgui_ref( dpgui *p, std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync ) : dpgui_list_ref( p, k, t_sync )
     {
         this->p = p;
     }

@@ -5,7 +5,7 @@
 #ifndef dpgui_h
 #define dpgui_h
 
-#include "../../dpcore/dptask/dptask.h"
+#include "../dpgui_list/dpgui_list.h"
 #include "../dpbitmap/dpbitmap/dpbitmap.h"
 #include "../dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
 
@@ -14,7 +14,7 @@ namespace dp
 
     class dpgui_writelock;
 
-    class dpgui : public dptask
+    class dpgui : public dpgui_list
     {
 
     private:

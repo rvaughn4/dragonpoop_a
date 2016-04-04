@@ -9,7 +9,7 @@ namespace dp
 {
 
     //ctor
-    dpgui_writelock::dpgui_writelock( dpgui *p, dpmutex_writelock *ml ) : dptask_writelock( p, ml )
+    dpgui_writelock::dpgui_writelock( dpgui *p, dpmutex_writelock *ml ) : dpgui_list_writelock( p, ml )
     {
         this->p = p;
     }

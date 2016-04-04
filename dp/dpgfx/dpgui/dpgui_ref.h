@@ -5,14 +5,14 @@
 #ifndef dpgui_ref_h
 #define dpgui_ref_h
 
-#include "../../dpcore/dptask/dptask_ref.h"
+#include "../dpgui_list/dpgui_list_ref.h"
 
 namespace dp
 {
 
     class dpgui;
 
-    class dpgui_ref : public dptask_ref
+    class dpgui_ref : public dpgui_list_ref
     {
 
     private:

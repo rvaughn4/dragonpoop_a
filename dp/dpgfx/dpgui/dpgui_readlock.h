@@ -5,14 +5,14 @@
 #ifndef dpgui_readlock_h
 #define dpgui_readlock_h
 
-#include "../../dpcore/dptask/dptask_readlock.h"
+#include "../dpgui_list/dpgui_list_readlock.h"
 
 namespace dp
 {
 
     class dpgui;
 
-    class dpgui_readlock : public dptask_readlock
+    class dpgui_readlock : public dpgui_list_readlock
     {
 
         dpgui *p;

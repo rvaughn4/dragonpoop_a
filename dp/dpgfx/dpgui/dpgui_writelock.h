@@ -5,14 +5,14 @@
 #ifndef dpgui_writelock_h
 #define dpgui_writelock_h
 
-#include "../../dpcore/dptask/dptask_writelock.h"
+#include "../dpgui_list/dpgui_list_writelock.h"
 
 namespace dp
 {
 
     class dpgui;
 
-    class dpgui_writelock : public dptask_writelock
+    class dpgui_writelock : public dpgui_list_writelock
     {
 
         dpgui *p;

@@ -9,7 +9,7 @@ namespace dp
 {
 
     //ctor
-    dpgui_readlock::dpgui_readlock( dpgui *p, dpmutex_readlock *ml ) : dptask_readlock( p, ml )
+    dpgui_readlock::dpgui_readlock( dpgui *p, dpmutex_readlock *ml ) : dpgui_list_readlock( p, ml )
     {
         this->p = p;
     }
