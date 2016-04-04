@@ -6,15 +6,22 @@
 #define dpgui_h
 
 #include "../../dpcore/dptask/dptask.h"
+#include "../dpbitmap/dpbitmap/dpbitmap.h"
+#include "../dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
 
 namespace dp
 {
-    class dpbitmap;
+
+    class dpgui_writelock;
 
     class dpgui : public dptask
     {
 
     private:
+
+        dpbitmap_rectangle rc;
+        dpbitmap_32bit_uncompressed *bm_bg, *bm_fg;
+        bool bBgDrawn, bFgDrawn;
 
     protected:
 
@@ -44,11 +51,23 @@ namespace dp
         virtual bool onGuiStart( dpgui_writelock *tl );
         //override to handle gui stop
         virtual bool onGuiStop( dpgui_writelock *tl );
+        //set dimensions
+        virtual void setDimensions( unsigned int w, unsigned int h );
+        //set position
+        virtual void setPosition( int x, int y );
+        //get dimensions
+        virtual void getDimensions( unsigned int *w, unsigned int *h );
+        //get position
+        virtual void getPosition( int *x, int *y );
+        //force bg to be redrawn
+        virtual void redrawBg( void );
+        //force fg to be redrawn
+        virtual void redrawFg( void );
 
     public:
 
         //ctor
-        dpgui( void );
+        dpgui( int x, int y, unsigned w, unsigned h );
         //dtor
         virtual ~dpgui( void );
 
