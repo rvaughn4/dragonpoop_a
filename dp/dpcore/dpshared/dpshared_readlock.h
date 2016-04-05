@@ -52,6 +52,8 @@ namespace dp
                     );
         //get reference
         dpshared_ref *getRef( void );
+        //override to test type for safe syncing, be sure to call base class first!
+        bool isSyncType( const char *ctypename );
 
 
         friend class dpshared_guard;

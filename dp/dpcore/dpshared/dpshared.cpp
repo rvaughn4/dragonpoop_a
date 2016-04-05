@@ -464,7 +464,7 @@ namespace dp
                 return;
 
             tt = *( this->t_sync.get() );
-            tr = *( this->t_sync.get() );
+            tr = *( this->rsync->t_sync.get() );
             if( tt == tr )
                 return;
 
@@ -473,6 +473,7 @@ namespace dp
                 return;
 
             this->onSync( l );
+            *( this->t_sync.get() ) = tr;
 
             delete l;
         }

@@ -12,6 +12,7 @@ namespace dp
 {
 
     class dprender_gui_writelock;
+    class dpgui;
 
     class dprender_gui : public dprender_gui_list
     {
@@ -37,11 +38,17 @@ namespace dp
         virtual void getDimensions( unsigned int *w, unsigned int *h );
         //get position
         virtual void getPosition( int *x, int *y );
+        //override to handle sync copy, be sure to call base class first!
+        virtual void onSync( dpshared_readlock *psync );
+        //override to test type for safe syncing, be sure to call base class first!
+        virtual bool isSyncType( const char *ctypename );
+        //override to handle processing
+        virtual void onRun( dpshared_writelock *wl );
 
     public:
 
         //ctor
-        dprender_gui( int x, int y, unsigned w, unsigned h );
+        dprender_gui( dpgui *g );
         //dtor
         virtual ~dprender_gui( void );
         //return z

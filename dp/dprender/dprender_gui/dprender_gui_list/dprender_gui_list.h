@@ -42,6 +42,12 @@ namespace dp
         virtual unsigned int getGuis( dprender_gui **glist, unsigned int max_cnt );
         //get list of gui sorted by z order, returns count, second arg is size of static list passed in arg 1
         virtual unsigned int getGuisZSorted( dprender_gui **glist, unsigned int max_cnt, unsigned int &p_max_z, bool bInverted );
+        //override to handle sync copy, be sure to call base class first!
+        virtual void onSync( dpshared_readlock *psync );
+        //override to test type for safe syncing, be sure to call base class first!
+        virtual bool isSyncType( const char *ctypename );
+        //override to handle processing
+        virtual void onRun( dpshared_writelock *wl );
 
     public:
 

@@ -56,6 +56,12 @@ namespace dp
             return this->p->getRef();
         }
 
+        //override to test type for safe syncing, be sure to call base class first!
+        bool dpshared_readlock::isSyncType( const char *ctypename )
+        {
+            return this->p->isSyncType( ctypename );
+        }
+
 }
 
 

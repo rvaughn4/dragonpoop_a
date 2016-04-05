@@ -95,7 +95,7 @@
 	<thread>
 	<chrono>
 
-1458505966 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared.cpp
+1459854056 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared.cpp
 	"dpshared.h"
 	"../dpmutex/dpmutex.h"
 	"../dpmutex/dpmutex_readlock.h"
@@ -116,7 +116,7 @@
 	"../../dpdefines.h"
 	"../dpmutex/dpmutexdefines.h"
 
-1456091122 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_readlock.h
+1459854466 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_readlock.h
 	"dpshareddefines.h"
 
 1457609610 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_writelock.h
@@ -136,7 +136,7 @@
 	"dpshared_readlock.h"
 	"dpshared_writelock.h"
 
-1455450701 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_readlock.cpp
+1459854493 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpshared/dpshared_readlock.cpp
 	"dpshared_readlock.h"
 	"dpshared.h"
 	"../dpmutex/dpmutex_readlock.h"
@@ -1916,11 +1916,13 @@
 	"dpgui_list_writelock.h"
 	"../dpgui/dpgui.h"
 
-1459816601 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui.cpp
+1459855415 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui.cpp
 	"dprender_gui.h"
 	"dprender_gui_ref.h"
 	"dprender_gui_readlock.h"
 	"dprender_gui_writelock.h"
+	"../../../dpgfx/dpgui/dpgui.h"
+	"../../../dpgfx/dpgui/dpgui_readlock.h"
 
 1459816501 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui_readlock.cpp
 	"dprender_gui_readlock.h"
@@ -1934,12 +1936,15 @@
 	"dprender_gui_writelock.h"
 	"dprender_gui.h"
 
-1459816069 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list.cpp
+1459856352 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list.cpp
 	"dprender_gui_list.h"
 	"dprender_gui_list_ref.h"
 	"dprender_gui_list_readlock.h"
 	"dprender_gui_list_writelock.h"
 	"../dprender_gui/dprender_gui.h"
+	"../dprender_gui/dprender_gui_writelock.h"
+	"../../../dpgfx/dpgui_list/dpgui_list_readlock.h"
+	"../../../dpgfx/dpgui/dpgui.h"
 
 1459815754 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_readlock.cpp
 	"dprender_gui_list_readlock.h"
@@ -1949,14 +1954,14 @@
 	"dprender_gui_list_ref.h"
 	"dprender_gui_list.h"
 
-1459815649 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_writelock.cpp
+1459816685 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_writelock.cpp
 	"dprender_gui_list_writelock.h"
 	"dprender_gui_list.h"
 
 1459816704 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_writelock.h
 	"../../../dpcore/dpshared/dpshared_writelock.h"
 
-1459816059 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list.h
+1459856185 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list.h
 	"../../../dpcore/dpshared/dpshared.h"
 
 1459815770 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_readlock.h
@@ -1965,7 +1970,7 @@
 1459815710 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_ref.h
 	"../../../dpcore/dpshared/dpshared_ref.h"
 
-1459816672 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui.h
+1459856401 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui.h
 	"../dprender_gui_list/dprender_gui_list.h"
 	"../../../dpgfx/dpbitmap/dpbitmap/dpbitmap.h"
 

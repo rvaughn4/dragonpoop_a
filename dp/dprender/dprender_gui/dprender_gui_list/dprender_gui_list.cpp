@@ -7,6 +7,9 @@
 #include "dprender_gui_list_readlock.h"
 #include "dprender_gui_list_writelock.h"
 #include "../dprender_gui/dprender_gui.h"
+#include "../dprender_gui/dprender_gui_writelock.h"
+#include "../../../dpgfx/dpgui_list/dpgui_list_readlock.h"
+#include "../../../dpgfx/dpgui/dpgui.h"
 
 namespace dp
 {
@@ -146,6 +149,75 @@ namespace dp
         }
 
         return j;
+    }
+
+    //override to handle sync copy, be sure to call base class first!
+    void dprender_gui_list::onSync( dpshared_readlock *psync )
+    {
+        dpgui_list_readlock *ll;
+        dpgui *g, *glist[ dprender_gui_list_max_gui ];
+        unsigned int i, m;
+        dprender_gui * ng;
+
+        this->dpshared::onSync( psync );
+
+        if( !psync->isSyncType( "dpgui_list" ) )
+            return;
+        ll = (dpgui_list_readlock *)psync;
+
+        m = ll->getGuis( glist, dprender_gui_list_max_gui );
+        if( !m )
+            return;
+
+        for( i = 0; i < m; i++ )
+        {
+            g = glist[ i ];
+            if( !g )
+                continue;
+
+            ng = new dprender_gui( g );
+            if( !ng )
+                continue;
+
+            this->addGui( &ng );
+        }
+    }
+
+    //override to test type for safe syncing, be sure to call base class first!
+    bool dprender_gui_list::isSyncType( const char *ctypename )
+    {
+        std::string s( ctypename );
+
+        if( s.compare( "dprender_gui_list" ) )
+            return 1;
+
+        return this->dpshared::isSyncType( ctypename );
+    }
+
+    //override to handle processing
+    void dprender_gui_list::onRun( dpshared_writelock *wl )
+    {
+        unsigned int i;
+        dprender_gui *p;
+        dprender_gui_writelock *pl;
+        dpshared_guard g;
+
+        this->dpshared::onRun( wl );
+
+        for( i = 0; i < dprender_gui_list_max_gui; i++ )
+        {
+            p = this->glist[ i ];
+            if( !p )
+                continue;
+
+            pl = (dprender_gui_writelock *)dpshared_guard_tryWriteLock_timeout( g, p, 30 );
+            if( !pl )
+                continue;
+
+            pl->run();
+
+            g.release( pl );
+        }
     }
 
 }

@@ -6,17 +6,26 @@
 #include "dprender_gui_ref.h"
 #include "dprender_gui_readlock.h"
 #include "dprender_gui_writelock.h"
+#include "../../../dpgfx/dpgui/dpgui.h"
+#include "../../../dpgfx/dpgui/dpgui_readlock.h"
 
 namespace dp
 {
 
     //ctor
-    dprender_gui::dprender_gui( int x, int y, unsigned w, unsigned h ) : dprender_gui_list()
+    dprender_gui::dprender_gui( dpgui *pg ) : dprender_gui_list()
     {
-        this->rc.x = x;
-        this->rc.y = y;
-        this->rc.w = w;
-        this->rc.h = h;
+        dpgui_readlock *gr;
+        dpshared_guard g;
+
+        this->setSync( pg );
+
+        gr = (dpgui_readlock *)dpshared_guard_tryReadLock_timeout( g, pg, 2000 );
+        if( !gr )
+            return;
+        gr->getDimensions( &this->rc.w, &this->rc.h );
+        gr->getPosition( &this->rc.x, &this->rc.y );
+        this->z = gr->getZ();
     }
 
     //dtor
@@ -80,6 +89,39 @@ namespace dp
     void dprender_gui::setZ( unsigned int z )
     {
         this->z = z;
+    }
+
+    //override to handle sync copy, be sure to call base class first!
+    void dprender_gui::onSync( dpshared_readlock *psync )
+    {
+        dpgui_readlock *gr;
+
+        this->dprender_gui_list::onSync( psync );
+
+        if( !psync->isSyncType( "dpgui" ) )
+            return;
+        gr = (dpgui_readlock *)psync;
+
+        gr->getDimensions( &this->rc.w, &this->rc.h );
+        gr->getPosition( &this->rc.x, &this->rc.y );
+        this->z = gr->getZ();
+    }
+
+    //override to test type for safe syncing, be sure to call base class first!
+    bool dprender_gui::isSyncType( const char *ctypename )
+    {
+        std::string s( ctypename );
+
+        if( s.compare( "dprender_gui" ) == 0 )
+            return 1;
+
+        return this->dprender_gui_list::isSyncType( ctypename );
+    }
+
+    //override to handle processing
+    void dprender_gui::onRun( dpshared_writelock *wl )
+    {
+        this->dprender_gui_list::onRun( wl );
     }
 
 }
