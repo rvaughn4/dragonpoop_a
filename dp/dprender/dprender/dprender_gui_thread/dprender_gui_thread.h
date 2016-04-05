@@ -10,21 +10,14 @@
 
 namespace dp
 {
-
-    class dpapi_vertexbuffer;
-    class dpapi_indexbuffer;
-    class dpapi_bundle;
-    class dpapi_texture;
+    class dprender_gui;
 
     class dprender_gui_thread : public dprender_scene_thread
     {
 
     private:
 
-        dpapi_vertexbuffer *vb;
-        dpapi_indexbuffer *ib;
-        dpapi_bundle *bdle;
-        dpapi_texture *t;
+        dprender_gui *root_gui;
 
     protected:
 

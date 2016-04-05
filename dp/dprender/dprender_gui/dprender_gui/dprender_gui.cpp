@@ -15,17 +15,11 @@ namespace dp
     //ctor
     dprender_gui::dprender_gui( dpgui *pg ) : dprender_gui_list()
     {
-        dpgui_readlock *gr;
-        dpshared_guard g;
-
         this->setSync( pg );
 
-        gr = (dpgui_readlock *)dpshared_guard_tryReadLock_timeout( g, pg, 2000 );
-        if( !gr )
-            return;
-        gr->getDimensions( &this->rc.w, &this->rc.h );
-        gr->getPosition( &this->rc.x, &this->rc.y );
-        this->z = gr->getZ();
+        this->t_bg = this->t_fg = 0;
+        this->vb = 0;
+        this->ib_bg = this->ib_fg = 0;
     }
 
     //dtor
@@ -102,6 +96,17 @@ namespace dp
             return;
         gr = (dpgui_readlock *)psync;
 
+        if( this->blde )
+            delete this->bdle;
+        if( this->ib_bg )
+            delete this->ib_bg;
+        if( this->ib_fg )
+            delete this->ib_fg;
+        if( this->vb )
+            //delete
+
+
+
         gr->getDimensions( &this->rc.w, &this->rc.h );
         gr->getPosition( &this->rc.x, &this->rc.y );
         this->z = gr->getZ();
@@ -122,6 +127,13 @@ namespace dp
     void dprender_gui::onRun( dpshared_writelock *wl )
     {
         this->dprender_gui_list::onRun( wl );
+    }
+
+    //pass in context
+    void dprender_gui::passContext( dpapi_context_writelock *ctx )
+    {
+        this->ctx = ctx;
+        this->dprender_gui_list::passContext( ctx );
     }
 
 }

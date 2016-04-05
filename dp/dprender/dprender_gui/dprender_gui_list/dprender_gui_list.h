@@ -12,6 +12,7 @@ namespace dp
 
     class dprender_gui_list_writelock;
     class dprender_gui;
+    class dpapi_context_writelock;
 
     #define dprender_gui_list_max_gui 512
 
@@ -22,6 +23,7 @@ namespace dp
 
         dprender_gui *glist[ dprender_gui_list_max_gui ];
         unsigned int max_z, min_z;
+        dpapi_context_writelock *ctx;
 
         //zero list
         void zeroList( dprender_gui **l, unsigned int cnt );
@@ -48,6 +50,8 @@ namespace dp
         virtual bool isSyncType( const char *ctypename );
         //override to handle processing
         virtual void onRun( dpshared_writelock *wl );
+        //pass in context
+        virtual void passContext( dpapi_context_writelock *ctx );
 
     public:
 

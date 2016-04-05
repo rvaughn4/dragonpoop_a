@@ -38,6 +38,12 @@ namespace dp
         return this->p->getGuisZSorted( glist, max_cnt, p_max_z, bInverted );
     }
 
+    //pass in context
+    void dprender_gui_list_writelock::passContext( dpapi_context_writelock *ctx )
+    {
+        this->p->passContext( ctx );
+    }
+
 }
 
 

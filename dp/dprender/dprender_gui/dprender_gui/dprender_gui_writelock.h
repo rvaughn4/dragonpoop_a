@@ -11,6 +11,7 @@ namespace dp
 {
 
     class dprender_gui;
+    class dpapi_context_writelock;
 
     class dprender_gui_writelock : public dprender_gui_list_writelock
     {
@@ -40,6 +41,8 @@ namespace dp
         unsigned int getZ( void );
         //set z
         void setZ( unsigned int z );
+        //pass in context
+        void passContext( dpapi_context_writelock *ctx );
 
     };
 

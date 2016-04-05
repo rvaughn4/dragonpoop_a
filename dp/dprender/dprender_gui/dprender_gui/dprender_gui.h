@@ -13,6 +13,11 @@ namespace dp
 
     class dprender_gui_writelock;
     class dpgui;
+    class dpapi_context_writelock;
+    class dpapi_texture;
+    class dpapi_vertexbuffer;
+    class dpapi_indexbuffer;
+    class dpapi_bundle;
 
     class dprender_gui : public dprender_gui_list
     {
@@ -21,6 +26,11 @@ namespace dp
 
         dpbitmap_rectangle rc;
         unsigned int z;
+        dpapi_context_writelock *ctx;
+        dpapi_texture *t_bg, *t_fg;
+        dpapi_vertexbuffer *vb;
+        dpapi_indexbuffer *ib_fg, *ib_bg;
+        dpapi_bundle *bdle;
 
     protected:
 
@@ -44,6 +54,8 @@ namespace dp
         virtual bool isSyncType( const char *ctypename );
         //override to handle processing
         virtual void onRun( dpshared_writelock *wl );
+        //pass in context
+        virtual void passContext( dpapi_context_writelock *ctx );
 
     public:
 

@@ -56,6 +56,12 @@ namespace dp
         this->p->setZ( z );
     }
 
+    //pass in context
+    void dprender_gui_writelock::passContext( dpapi_context_writelock *ctx )
+    {
+        this->p->passContext( ctx );
+    }
+
 }
 
 

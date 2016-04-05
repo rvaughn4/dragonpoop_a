@@ -214,10 +214,17 @@ namespace dp
             if( !pl )
                 continue;
 
+            pl->passContext( this->ctx );
             pl->run();
 
             g.release( pl );
         }
+    }
+
+    //pass in context
+    void dprender_gui_list::passContext( dpapi_context_writelock *ctx )
+    {
+        this->ctx = ctx;
     }
 
 }

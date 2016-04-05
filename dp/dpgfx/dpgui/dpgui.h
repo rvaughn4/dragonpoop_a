@@ -64,6 +64,10 @@ namespace dp
         virtual void redrawBg( void );
         //force fg to be redrawn
         virtual void redrawFg( void );
+        //override to handle sync copy, be sure to call base class first!
+        virtual void onSync( dpshared_readlock *psync );
+        //override to test type for safe syncing, be sure to call base class first!
+        virtual bool isSyncType( const char *ctypename );
 
     public:
 

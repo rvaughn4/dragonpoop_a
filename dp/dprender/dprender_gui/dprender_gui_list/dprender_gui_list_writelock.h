@@ -12,6 +12,7 @@ namespace dp
 
     class dprender_gui_list;
     class dprender_gui;
+    class dpapi_context_writelock;
 
     class dprender_gui_list_writelock : public dpshared_writelock
     {
@@ -35,6 +36,8 @@ namespace dp
         unsigned int getGuis( dprender_gui **glist, unsigned int max_cnt );
         //get list of gui sorted by z order, returns count, second arg is size of static list passed in arg 1
         unsigned int getGuisZSorted( dprender_gui **glist, unsigned int max_cnt, unsigned int &p_max_z, bool bInverted );
+        //pass in context
+        void passContext( dpapi_context_writelock *ctx );
 
     };
 

@@ -197,6 +197,23 @@ namespace dp
         this->z = z;
     }
 
+    //override to handle sync copy, be sure to call base class first!
+    void dpgui::onSync( dpshared_readlock *psync )
+    {
+        this->dpgui_list::onSync( psync );
+    }
+
+    //override to test type for safe syncing, be sure to call base class first!
+    bool dpgui::isSyncType( const char *ctypename )
+    {
+        std::string s( ctypename );
+
+        if( s.compare( "dpgui" ) == 0 )
+            return 1;
+
+        return this->dpgui_list::isSyncType( ctypename );
+    }
+
 }
 
 
