@@ -7,6 +7,7 @@
 
 #include "../dprender_gui_list/dprender_gui_list.h"
 #include "../../../dpgfx/dpbitmap/dpbitmap/dpbitmap.h"
+#include "../../../dpgfx/dpmatrix/dpmatrix.h"
 
 namespace dp
 {
@@ -31,6 +32,7 @@ namespace dp
         dpapi_vertexbuffer *vb;
         dpapi_indexbuffer *ib_fg, *ib_bg;
         dpapi_bundle *bdle;
+        dpmatrix mat, undo_mat;
 
         //create vertex buffer
         void makeVB( dpapi_context_writelock *ctx );

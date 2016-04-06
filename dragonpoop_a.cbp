@@ -184,6 +184,10 @@
 		<Unit filename="dp/dpgfx/dpgui_list/dpgui_list_ref.h" />
 		<Unit filename="dp/dpgfx/dpgui_list/dpgui_list_writelock.cpp" />
 		<Unit filename="dp/dpgfx/dpgui_list/dpgui_list_writelock.h" />
+		<Unit filename="dp/dpgfx/dpmatrix/dpmatrix.cpp" />
+		<Unit filename="dp/dpgfx/dpmatrix/dpmatrix.h" />
+		<Unit filename="dp/dpgfx/dpquaternion/dpquaternion.cpp" />
+		<Unit filename="dp/dpgfx/dpquaternion/dpquaternion.h" />
 		<Unit filename="dp/dpgfx/dpvertex/dpindex.h" />
 		<Unit filename="dp/dpgfx/dpvertex/dpindexbuffer.cpp" />
 		<Unit filename="dp/dpgfx/dpvertex/dpindexbuffer.h" />
