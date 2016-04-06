@@ -2000,3 +2000,26 @@
 	"../dpmatrix/dpmatrix.h"
 	<math.h>
 
+1459942330 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene.cpp
+	"dpscene.h"
+	"dpscene_ref.h"
+	"dpscene_readlock.h"
+	"dpscene_writelock.h"
+	<string>
+
+1459942346 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene.h
+	"../../dpcore/dptask/dptask.h"
+
+1459942363 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene_ref.h
+	"../../dpcore/dptask/dptask_ref.h"
+
+1459941615 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene_readlock.h
+	"../../dpcore/dptask/dptask_readlock.h"
+
+1459941639 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene_writelock.h
+	"../../dpcore/dptask/dptask_writelock.h"
+
+1459941816 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene_readlock.cpp
+	"dpscene_readlock.h"
+	"dpscene.h"
+
