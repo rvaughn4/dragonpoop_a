@@ -22,6 +22,12 @@ namespace dp
 
     }
 
+    //add scene
+    bool dpgfx_writelock::addScene( dpscene **s )
+    {
+        return this->p->addScene( s );
+    }
+
 }
 
 

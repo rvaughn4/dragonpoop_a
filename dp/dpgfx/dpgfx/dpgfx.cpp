@@ -7,6 +7,7 @@ gpgfx manages models and gui elements and scenes
 #include "dpgfx_ref.h"
 #include "dpgfx_readlock.h"
 #include "dpgfx_writelock.h"
+#include "../dpscene/dpscene.h"
 
 namespace dp
 {
@@ -14,13 +15,15 @@ namespace dp
    //ctor
     dpgfx::dpgfx( void ) : dptask( "Graphics", 100 )
     {
-
+        this->zeroScenes();
     }
 
     //dtor
     dpgfx::~dpgfx( void )
     {
+        this->unlink();
         this->waitForStop();
+        this->deleteScenes();
     }
 
     //generate readlock
@@ -42,21 +45,73 @@ namespace dp
     }
 
     //override to do task execution
-    void dpgfx::onTaskRun( dpthread_writelock *thd, dptask_writelock *tl )
+    bool dpgfx::onTaskRun( dptask_writelock *tl )
     {
-
+        return 1;
     }
 
     //override to do task startup
-    void dpgfx::onTaskStart( dpthread_writelock *thd, dptask_writelock *tl )
+    bool dpgfx::onTaskStart( dptask_writelock *tl )
     {
-
+        return 1;
     }
 
     //override to do task shutdown
-    void dpgfx::onTaskStop( dpthread_writelock *thd, dptask_writelock *tl )
+    bool dpgfx::onTaskStop( dptask_writelock *tl )
     {
+        this->deleteScenes();
+        return 1;
+    }
 
+    //zero scenes
+    void dpgfx::zeroScenes( void )
+    {
+        unsigned int i;
+
+        for( i = 0; i < dpgfx_max_scenes; i++ )
+            this->scenes[ i ] = 0;
+    }
+
+    //delete scenes
+    void dpgfx::deleteScenes( void )
+    {
+        unsigned int i;
+        dpscene *p;
+
+        for( i = 0; i < dpgfx_max_scenes; i++ )
+        {
+            p = this->scenes[ i ];
+            if( !p )
+                continue;
+            delete p;
+        }
+
+        this->zeroScenes();
+    }
+
+    //add scene
+    bool dpgfx::addScene( dpscene **s )
+    {
+        unsigned int i;
+        dpscene *p;
+
+        if( !s || !*s )
+            return 0;
+
+        for( i = 0; i < dpgfx_max_scenes; i++ )
+        {
+            p = this->scenes[ i ];
+            if( p )
+                continue;
+
+            p = *s;
+            this->scenes[ i ] = p;
+            this->addDynamicTask( p );
+            return 1;
+        }
+
+        delete *s;
+        return 0;
     }
 
 }

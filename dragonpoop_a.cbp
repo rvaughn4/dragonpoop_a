@@ -188,6 +188,14 @@
 		<Unit filename="dp/dpgfx/dpmatrix/dpmatrix.h" />
 		<Unit filename="dp/dpgfx/dpquaternion/dpquaternion.cpp" />
 		<Unit filename="dp/dpgfx/dpquaternion/dpquaternion.h" />
+		<Unit filename="dp/dpgfx/dpscene/dpscene.cpp" />
+		<Unit filename="dp/dpgfx/dpscene/dpscene.h" />
+		<Unit filename="dp/dpgfx/dpscene/dpscene_readlock.cpp" />
+		<Unit filename="dp/dpgfx/dpscene/dpscene_readlock.h" />
+		<Unit filename="dp/dpgfx/dpscene/dpscene_ref.cpp" />
+		<Unit filename="dp/dpgfx/dpscene/dpscene_ref.h" />
+		<Unit filename="dp/dpgfx/dpscene/dpscene_writelock.cpp" />
+		<Unit filename="dp/dpgfx/dpscene/dpscene_writelock.h" />
 		<Unit filename="dp/dpgfx/dpvertex/dpindex.h" />
 		<Unit filename="dp/dpgfx/dpvertex/dpindexbuffer.cpp" />
 		<Unit filename="dp/dpgfx/dpvertex/dpindexbuffer.h" />

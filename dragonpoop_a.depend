@@ -306,13 +306,14 @@
 	"dptaskmgr_writelock.h"
 	"dptaskmgr.h"
 
-1456665767 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx.cpp
+1459943921 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx.cpp
 	"dpgfx.h"
 	"dpgfx_ref.h"
 	"dpgfx_readlock.h"
 	"dpgfx_writelock.h"
+	"../dpscene/dpscene.h"
 
-1456665084 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx.h
+1459943707 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx.h
 	"../../dpcore/dptask/dptask.h"
 
 1456665091 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx_ref.h
@@ -321,7 +322,7 @@
 1456665110 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx_readlock.h
 	"../../dpcore/dptask/dptask_readlock.h"
 
-1456665102 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx_writelock.h
+1459943945 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx_writelock.h
 	"../../dpcore/dptask/dptask_writelock.h"
 
 1456665129 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx_readlock.cpp
@@ -2021,5 +2022,13 @@
 
 1459941816 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene_readlock.cpp
 	"dpscene_readlock.h"
+	"dpscene.h"
+
+1459941921 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene_ref.cpp
+	"dpscene_ref.h"
+	"dpscene.h"
+
+1459941838 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene_writelock.cpp
+	"dpscene_writelock.h"
 	"dpscene.h"
 

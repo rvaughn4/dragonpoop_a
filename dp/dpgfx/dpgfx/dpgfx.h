@@ -11,10 +11,20 @@ gpgfx manages models and gui elements and scenes
 namespace dp
 {
 
+    class dpscene;
+    #define dpgfx_max_scenes 128
+
     class dpgfx : public dptask
     {
 
     private:
+
+        dpscene *scenes[ dpgfx_max_scenes ];
+
+        //zero scenes
+        void zeroScenes( void );
+        //delete scenes
+        void deleteScenes( void );
 
     protected:
 
@@ -25,11 +35,13 @@ namespace dp
         //generate ref
         virtual dpshared_ref *genRef( std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync );
         //override to do task execution
-        virtual void onTaskRun( dpthread_writelock *thd, dptask_writelock *tl );
+        virtual bool onTaskRun( dptask_writelock *tl );
         //override to do task startup
-        virtual void onTaskStart( dpthread_writelock *thd, dptask_writelock *tl );
+        virtual bool onTaskStart( dptask_writelock *tl );
         //override to do task shutdown
-        virtual void onTaskStop( dpthread_writelock *thd, dptask_writelock *tl );
+        virtual bool onTaskStop( dptask_writelock *tl );
+        //add scene
+        bool addScene( dpscene **s );
 
     public:
 

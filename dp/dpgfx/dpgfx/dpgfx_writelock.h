@@ -13,6 +13,7 @@ namespace dp
 {
 
     class dpgfx;
+    class dpscene;
 
     class dpgfx_writelock : public dptask_writelock
     {
@@ -30,6 +31,8 @@ namespace dp
 
         //ctor
         dpgfx_writelock( dpgfx *p, dpmutex_writelock *ml );
+        //add scene
+        bool addScene( dpscene **s );
 
     };
 
