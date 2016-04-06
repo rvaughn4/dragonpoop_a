@@ -32,6 +32,13 @@ namespace dp
         dpapi_indexbuffer *ib_fg, *ib_bg;
         dpapi_bundle *bdle;
 
+        //create vertex buffer
+        void makeVB( dpapi_context_writelock *ctx );
+        //create bg index buffer
+        void makeBgIB( dpapi_context_writelock *ctx );
+        //create fg index buffer
+        void makeFgIB( dpapi_context_writelock *ctx );
+
     protected:
 
         //generate readlock

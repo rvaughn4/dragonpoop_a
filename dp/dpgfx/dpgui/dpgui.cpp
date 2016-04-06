@@ -214,6 +214,18 @@ namespace dp
         return this->dpgui_list::isSyncType( ctypename );
     }
 
+    //returns bg bitmap
+    dpbitmap *dpgui::getBg( void )
+    {
+        return this->bm_bg;
+    }
+
+    //returns fg bitmap
+    dpbitmap *dpgui::getFg( void )
+    {
+        return this->bm_fg;
+    }
+
 }
 
 

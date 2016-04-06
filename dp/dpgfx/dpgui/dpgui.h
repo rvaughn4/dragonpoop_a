@@ -68,6 +68,10 @@ namespace dp
         virtual void onSync( dpshared_readlock *psync );
         //override to test type for safe syncing, be sure to call base class first!
         virtual bool isSyncType( const char *ctypename );
+        //returns bg bitmap
+        virtual dpbitmap *getBg( void );
+        //returns fg bitmap
+        virtual dpbitmap *getFg( void );
 
     public:
 

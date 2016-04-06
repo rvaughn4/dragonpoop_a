@@ -11,6 +11,7 @@ namespace dp
 {
 
     class dpgui;
+    class dpbitmap;
 
     class dpgui_readlock : public dpgui_list_readlock
     {
@@ -34,6 +35,10 @@ namespace dp
         void getPosition( int *x, int *y );
         //return z
         unsigned int getZ( void );
+        //returns bg bitmap
+        dpbitmap *getBg( void );
+        //returns fg bitmap
+        dpbitmap *getFg( void );
 
     };
 

@@ -68,6 +68,18 @@ namespace dp
         this->p->setZ( z );
     }
 
+    //returns bg bitmap
+    dpbitmap *dpgui_writelock::getBg( void )
+    {
+        return this->p->getBg();
+    }
+
+    //returns fg bitmap
+    dpbitmap *dpgui_writelock::getFg( void )
+    {
+        return this->p->getFg();
+    }
+
 }
 
 

@@ -11,6 +11,7 @@ namespace dp
 {
 
     class dpgui;
+    class dpbitmap;
 
     class dpgui_writelock : public dpgui_list_writelock
     {
@@ -44,6 +45,10 @@ namespace dp
         unsigned int getZ( void );
         //set z
         void setZ( unsigned int z );
+        //returns bg bitmap
+        dpbitmap *getBg( void );
+        //returns fg bitmap
+        dpbitmap *getFg( void );
 
     };
 

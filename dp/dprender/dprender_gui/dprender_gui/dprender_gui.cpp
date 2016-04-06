@@ -9,6 +9,15 @@
 #include "../../../dpgfx/dpgui/dpgui.h"
 #include "../../../dpgfx/dpgui/dpgui_readlock.h"
 
+#include "../../dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer.h"
+#include "../../dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer.h"
+#include "../../dpapi/dpapi/dpapi_texture/dpapi_texture.h"
+#include "../../dpapi/dpapi/dpapi_bundle/dpapi_bundle.h"
+
+#include "../../../dpgfx/dpvertex/dpvertexbuffer.h"
+#include "../../../dpgfx/dpvertex/dpindexbuffer.h"
+#include "../../dpapi/dpapi/dpapi_context/dpapi_context_writelock.h"
+
 namespace dp
 {
 
@@ -20,11 +29,24 @@ namespace dp
         this->t_bg = this->t_fg = 0;
         this->vb = 0;
         this->ib_bg = this->ib_fg = 0;
+        this->bdle = 0;
     }
 
     //dtor
     dprender_gui::~dprender_gui( void )
     {
+        if( this->bdle )
+            delete this->bdle;
+        if( this->ib_bg )
+            delete this->ib_bg;
+        if( this->ib_fg )
+            delete this->ib_fg;
+        if( this->vb )
+            delete this->vb;
+        if( this->t_bg )
+            delete this->t_bg;
+        if( this->t_fg )
+            delete this->t_fg;
     }
 
     //generate readlock
@@ -89,6 +111,7 @@ namespace dp
     void dprender_gui::onSync( dpshared_readlock *psync )
     {
         dpgui_readlock *gr;
+        dpbitmap *bm;
 
         this->dprender_gui_list::onSync( psync );
 
@@ -96,20 +119,30 @@ namespace dp
             return;
         gr = (dpgui_readlock *)psync;
 
-        if( this->blde )
+        if( this->bdle )
             delete this->bdle;
-        if( this->ib_bg )
-            delete this->ib_bg;
-        if( this->ib_fg )
-            delete this->ib_fg;
-        if( this->vb )
-            //delete
-
-
+        this->bdle = 0;
+        if( this->t_bg )
+            delete this->t_bg;
+        this->t_bg = 0;
+        if( this->t_fg )
+            delete this->t_fg;
+        this->t_fg = 0;
 
         gr->getDimensions( &this->rc.w, &this->rc.h );
         gr->getPosition( &this->rc.x, &this->rc.y );
         this->z = gr->getZ();
+
+        this->makeVB( this->ctx );
+        this->makeBgIB( this->ctx );
+        this->makeFgIB( this->ctx );
+
+        bm = gr->getBg();
+        this->t_bg = ctx->makeTexture( bm );
+        bm = gr->getFg();
+        this->t_fg = ctx->makeTexture( bm );
+
+        this->bdle = ctx->makeBundle( this->vb, this->ib_bg, 0, this->t_bg, 0 );
     }
 
     //override to test type for safe syncing, be sure to call base class first!
@@ -134,6 +167,127 @@ namespace dp
     {
         this->ctx = ctx;
         this->dprender_gui_list::passContext( ctx );
+    }
+
+    //create vertex buffer
+    void dprender_gui::makeVB( dpapi_context_writelock *ctx )
+    {
+        dpvertexbuffer vb;
+        dpvertex v;
+
+        if( this->vb )
+            return;
+
+        v.vert.z = -1;
+        v.norm.x = 0;
+        v.norm.y = 0;
+        v.norm.z = 1;
+
+        //tl
+        v.vert.x = -1;
+        v.vert.y = 1;
+        v.texcoord[ 0 ].s = 0;
+        v.texcoord[ 0 ].t = 0;
+        v.texcoord[ 1 ] = v.texcoord[ 0 ];
+        vb.write( &v );
+
+        //tr
+        v.vert.x = 1;
+        v.vert.y = 1;
+        v.texcoord[ 0 ].s = 1;
+        v.texcoord[ 0 ].t = 0;
+        v.texcoord[ 1 ] = v.texcoord[ 0 ];
+        vb.write( &v );
+
+        //bl
+        v.vert.x = -1;
+        v.vert.y = -1;
+        v.texcoord[ 0 ].s = 0;
+        v.texcoord[ 0 ].t = 1;
+        v.texcoord[ 1 ] = v.texcoord[ 0 ];
+        vb.write( &v );
+
+        //br
+        v.vert.x = 1;
+        v.vert.y = -1;
+        v.texcoord[ 0 ].s = 1;
+        v.texcoord[ 0 ].t = 1;
+        v.texcoord[ 1 ] = v.texcoord[ 0 ];
+        vb.write( &v );
+
+        this->vb = ctx->makeVertexBuffer( &vb );
+    }
+
+    //create bg index buffer
+    void dprender_gui::makeBgIB( dpapi_context_writelock *ctx )
+    {
+        dpindexbuffer ib;
+        dpindex i;
+
+        if( this->ib_bg )
+            return;
+
+        //tl
+        i.i = 0;
+        ib.write( &i );
+
+        //bl
+        i.i = 2;
+        ib.write( &i );
+
+        //tr
+        i.i = 1;
+        ib.write( &i );
+
+        //tr
+        i.i = 1;
+        ib.write( &i );
+
+        //bl
+        i.i = 2;
+        ib.write( &i );
+
+        //br
+        i.i = 3;
+        ib.write( &i );
+
+        this->ib_bg = ctx->makeIndexBuffer( &ib );
+    }
+
+    //create fg index buffer
+    void dprender_gui::makeFgIB( dpapi_context_writelock *ctx )
+    {
+        dpindexbuffer ib;
+        dpindex i;
+
+        if( this->ib_bg )
+            return;
+
+        //tl
+        i.i = 0;
+        ib.write( &i );
+
+        //bl
+        i.i = 2;
+        ib.write( &i );
+
+        //tr
+        i.i = 1;
+        ib.write( &i );
+
+        //tr
+        i.i = 1;
+        ib.write( &i );
+
+        //bl
+        i.i = 2;
+        ib.write( &i );
+
+        //br
+        i.i = 3;
+        ib.write( &i );
+
+        this->ib_bg = ctx->makeIndexBuffer( &ib );
     }
 
 }
