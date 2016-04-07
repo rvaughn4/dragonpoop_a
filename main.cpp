@@ -7,17 +7,14 @@
 #include "dp/dprender/dprender/dprender/dprender_writelock.h"
 #include "dp/dprender/dprender/dprender_scene/dprender_scene.h"
 
-#include <thread>
+#include "dp/dpgfx/dpgfx/dpgfx.h"
+#include "dp/dpgfx/dpgfx/dpgfx_writelock.h"
+#include "dp/dpgfx/dpscene/dpscene.h"
 
-#include "dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
-#include "dp/dpgfx/dpbitmap/dpbitmap_16bit_uncompressed/dpbitmap_16bit_uncompressed.h"
-#include "dp/dpgfx/dpbitmap/dpbitmap_png/dpbitmap_png.h"
-#include "dp/dpgfx/dpbitmap/dpbitmap_loader/dpbitmap_loader.h"
-#include "dp/dpgfx/dpfont/dpfont/dpfont.h"
+#include <thread>
 
 int main()
 {
-/*
     dp::dptaskmgr *tmgr;
     dp::dpshared_guard g;
     dp::dprender *wt;
@@ -25,8 +22,24 @@ int main()
     dp::dptaskmgr_writelock *tmgrl;
     dp::dprender_scene *sc;
 
+    dp::dpgfx *gf;
+    dp::dpgfx_writelock *gfl;
+    dp::dpscene *scn;
+
     tmgr = new dp::dptaskmgr( 4 );
 
+    gf = new dp::dpgfx();
+
+    tmgrl = (dp::dptaskmgr_writelock *)dpshared_guard_writeLock_block( g, tmgr );
+    tmgrl->addStaticTask( gf, 1 );
+    g.release( tmgrl );
+/*
+    scn = new dp::dpscene();
+
+    gfl = (dp::dpgfx_writelock *)dpshared_guard_writeLock_block( g, gf );
+    gfl->addScene( &scn );
+    g.release( gfl );
+*/
     wt = new dp::dprender( new dp::dpapi_x11_opengl1o5_factory( 1000, 1000, "hello there!" ) );
 
     tmgrl = (dp::dptaskmgr_writelock *)dpshared_guard_writeLock_block( g, tmgr );
@@ -42,27 +55,10 @@ int main()
 
     std::this_thread::sleep_for( std::chrono::milliseconds( 4000 ) );
 
+    delete gf;
     delete sc;
     delete wt;
     delete tmgr;
-*/
-
-    dp::dpfont f;
-    dp::dpbitmap_loader bml;
-    dp::dpbitmap *bmf = bml.load( "picture.png" );
-    dp::dpbitmap *bm = new dp::dpbitmap_png( 300, 300 );
-
-    bm->copy( bmf );
-    delete bmf;
-
-    f.setSize( 40 );
-    f.openFont( "sans" );
-    std::string ss( "Hello, [color ff00ffff]how [size 50]are [face lcd]you? 12[size 30]3456[face mediaeval]7890 abcdefghijklmno pqrstuvwxyz" );
-
-    f.drawString( &ss, 0, 0, bm );
-
-    bm->save( "derp.png" );
-    delete bm;
 
     return 0;
 }

@@ -8,6 +8,7 @@
 #include "../dpgui_list/dpgui_list.h"
 #include "../dpbitmap/dpbitmap/dpbitmap.h"
 #include "../dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
+#include <string>
 
 namespace dp
 {
@@ -23,6 +24,7 @@ namespace dp
         dpbitmap_32bit_uncompressed *bm_bg, *bm_fg;
         bool bBgDrawn, bFgDrawn;
         unsigned int z;
+        std::string stxt;
 
     protected:
 
@@ -46,6 +48,8 @@ namespace dp
         virtual void renderForegroundPass0( dpbitmap *bm );
         //render second pass of foreground image
         virtual void renderForegroundPass1( dpbitmap *bm );
+        //render text
+        virtual void renderText( dpbitmap *bm );
         //override to handle gui ran
         virtual bool onGuiRun( dpgui_writelock *tl );
         //override to handle gui start
@@ -72,11 +76,15 @@ namespace dp
         virtual dpbitmap *getBg( void );
         //returns fg bitmap
         virtual dpbitmap *getFg( void );
+        //set text
+        virtual void setText( const char *ctxt );
+        //get text
+        virtual void getText( std::string *s );
 
     public:
 
         //ctor
-        dpgui( int x, int y, unsigned w, unsigned h );
+        dpgui( int x, int y, unsigned w, unsigned h, const char *ctxt );
         //dtor
         virtual ~dpgui( void );
         //return z

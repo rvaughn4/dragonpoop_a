@@ -6,12 +6,13 @@
 #include "dpgui_ref.h"
 #include "dpgui_readlock.h"
 #include "dpgui_writelock.h"
+#include "../dpfont/dpfont/dpfont.h"
 
 namespace dp
 {
 
     //ctor
-    dpgui::dpgui( int x, int y, unsigned w, unsigned h ) : dpgui_list()
+    dpgui::dpgui( int x, int y, unsigned w, unsigned h, const char *ctxt ) : dpgui_list()
     {
         this->bBgDrawn = 0;
         this->bFgDrawn = 0;
@@ -23,6 +24,8 @@ namespace dp
 
         this->bm_bg = 0;
         this->bm_fg = 0;
+
+        this->setText( ctxt );
     }
 
     //dtor
@@ -122,7 +125,18 @@ namespace dp
     //render second pass of foreground image
     void dpgui::renderForegroundPass1( dpbitmap *bm )
     {
+        this->renderText( bm );
+    }
 
+    //render text
+    void dpgui::renderText( dpbitmap *bm )
+    {
+        dpfont fnt;
+
+        fnt.setSize( 20 );
+        fnt.openFont( "sans" );
+
+        fnt.drawString( &this->stxt, 0, 0, bm );
     }
 
     //override to handle gui ran
@@ -224,6 +238,19 @@ namespace dp
     dpbitmap *dpgui::getFg( void )
     {
         return this->bm_fg;
+    }
+
+    //set text
+    void dpgui::setText( const char *ctxt )
+    {
+        this->stxt.assign( ctxt );
+        this->redrawFg();
+    }
+
+    //get text
+    void dpgui::getText( std::string *s )
+    {
+        s->assign( this->stxt );
     }
 
 }

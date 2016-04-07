@@ -8,6 +8,7 @@ gpgfx manages models and gui elements and scenes
 #include "dpgfx_readlock.h"
 #include "dpgfx_writelock.h"
 #include "../dpscene/dpscene.h"
+#include "../dpscene/dpscene_writelock.h"
 
 namespace dp
 {
@@ -59,7 +60,7 @@ namespace dp
     //override to do task shutdown
     bool dpgfx::onTaskStop( dptask_writelock *tl )
     {
-        this->deleteScenes();
+        this->stopScenes();
         return 1;
     }
 
@@ -87,6 +88,37 @@ namespace dp
         }
 
         this->zeroScenes();
+    }
+
+    //stop scenes
+    void dpgfx::stopScenes( void )
+    {
+        unsigned int i;
+        dpscene *p;
+        dpscene_writelock *pl;
+        dpshared_guard g;
+
+        for( i = 0; i < dpgfx_max_scenes; i++ )
+        {
+            p = this->scenes[ i ];
+            if( !p )
+                continue;
+
+            pl = (dpscene_writelock *)dpshared_guard_tryWriteLock_timeout( g, p, 100 );
+            if( !pl )
+                continue;
+            pl->stop();
+
+            if( pl->isRun() )
+            {
+                g.release( pl );
+                continue;
+            }
+
+            g.release( pl );
+            delete p;
+            this->scenes[ i ] = 0;
+        }
     }
 
     //add scene

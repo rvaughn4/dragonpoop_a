@@ -25,6 +25,8 @@ namespace dp
         void zeroScenes( void );
         //delete scenes
         void deleteScenes( void );
+        //stop scenes
+        void stopScenes( void );
 
     protected:
 
