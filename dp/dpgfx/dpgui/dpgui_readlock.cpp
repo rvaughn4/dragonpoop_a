@@ -50,6 +50,18 @@ namespace dp
         return this->p->getFg();
     }
 
+    //return bg time
+    unsigned int dpgui_readlock::getBgTime( void )
+    {
+        return this->p->getBgTime();
+    }
+
+    //return fg time
+    unsigned int dpgui_readlock::getFgTime( void )
+    {
+        return this->p->getFgTime();
+    }
+
 }
 
 

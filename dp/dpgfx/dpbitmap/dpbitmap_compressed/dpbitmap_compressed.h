@@ -79,6 +79,14 @@ namespace dp
         virtual void setColorClamp( dpbitmap_color *c );
         //set transparency mode
         virtual void setTransparencyMode( int m );
+        //draw colored rectangle
+        virtual void fill( dpbitmap_color *c );
+        //draw colored rectangle
+        virtual void fill( dpbitmap_color *c, dpbitmap_rectangle *rc );
+        //clear rectanlge
+        virtual void clear( void );
+        //clear rectanlge
+        virtual void clear( dpbitmap_rectangle *rc );
 
     };
 

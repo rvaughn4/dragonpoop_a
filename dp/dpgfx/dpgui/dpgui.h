@@ -23,7 +23,7 @@ namespace dp
         dpbitmap_rectangle rc;
         dpbitmap_32bit_uncompressed *bm_bg, *bm_fg;
         bool bBgDrawn, bFgDrawn;
-        unsigned int z;
+        unsigned int z, bg_time, fg_time;
         std::string stxt;
 
     protected:
@@ -80,6 +80,10 @@ namespace dp
         virtual void setText( const char *ctxt );
         //get text
         virtual void getText( std::string *s );
+        //return bg time
+        unsigned int getBgTime( void );
+        //return fg time
+        unsigned int getFgTime( void );
 
     public:
 

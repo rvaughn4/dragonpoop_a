@@ -6,6 +6,8 @@
 #include "dpscene_ref.h"
 #include "dpscene_readlock.h"
 #include "dpscene_writelock.h"
+#include "../dpgui/dpgui.h"
+#include "../dpgui/dpgui_writelock.h"
 #include <string>
 
 namespace dp
@@ -22,6 +24,8 @@ namespace dp
     {
         this->waitForStop();
         this->unlink();
+        if( this->root_gui )
+            delete this->root_gui;
     }
 
     //generate readlock
@@ -51,13 +55,26 @@ namespace dp
     //override to do task startup
     bool dpscene::onTaskStart( dptask_writelock *tl )
     {
+        this->root_gui = new dpgui( 20, 20, 300, 300, "hello!" );
+        this->addDynamicTask( this->root_gui );
+
         return this->onSceneStart( (dpscene_writelock *)tl );
     }
 
     //override to do task shutdown
     bool dpscene::onTaskStop( dptask_writelock *tl )
     {
-        return this->onSceneStop( (dpscene_writelock *)tl );
+        dpgui_writelock *l;
+        dpshared_guard g;
+
+        if( !this->onSceneStop( (dpscene_writelock *)tl ) )
+            return 0;
+
+        l = (dpgui_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->root_gui, 1000 );
+        if( l )
+            l->stop();
+
+        return 1;
     }
 
     //override to handle sync copy, be sure to call base class first!

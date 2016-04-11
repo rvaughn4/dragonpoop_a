@@ -275,6 +275,54 @@ namespace dp
             this->b->setTransparencyMode( m );
     }
 
+    //draw colored rectangle
+    void dpbitmap_compressed::fill( dpbitmap_color *c )
+    {
+        dpbitmap *nb;
+
+        nb = this->getUncompressed();
+        if( !nb )
+            return;
+
+        nb->fill( c );
+    }
+
+    //draw colored rectangle
+    void dpbitmap_compressed::fill( dpbitmap_color *c, dpbitmap_rectangle *rc )
+    {
+        dpbitmap *nb;
+
+        nb = this->getUncompressed();
+        if( !nb )
+            return;
+
+        nb->fill( c, rc );
+    }
+
+    //clear rectanlge
+    void dpbitmap_compressed::clear( void )
+    {
+        dpbitmap *nb;
+
+        nb = this->getUncompressed();
+        if( !nb )
+            return;
+
+        nb->clear();
+    }
+
+    //clear rectanlge
+    void dpbitmap_compressed::clear( dpbitmap_rectangle *rc )
+    {
+        dpbitmap *nb;
+
+        nb = this->getUncompressed();
+        if( !nb )
+            return;
+
+        nb->clear( rc );
+    }
+
 };
 
 

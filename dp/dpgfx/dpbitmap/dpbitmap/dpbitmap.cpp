@@ -6,6 +6,7 @@
 #include "dpbitmap.h"
 #include "../dpbitmap_uncompressed/dpbitmap_uncompressed.h"
 #include <math.h>
+#include <stdlib.h>
 
 namespace dp
 {
@@ -400,6 +401,143 @@ namespace dp
     int dpbitmap::getTransparencyMode( void )
     {
         return this->transparency_mode;
+    }
+
+    //draw colored rectangle
+    void dpbitmap::fill( dpbitmap_color *c )
+    {
+        dpbitmap_rectangle rc;
+
+        rc.x = rc.y = 0;
+        rc.w = this->getWidth();
+        rc.h = this->getHeight();
+
+        this->fill( c, &rc );
+    }
+
+    //draw colored rectangle
+    void dpbitmap::fill( dpbitmap_color *c, dpbitmap_rectangle *rc )
+    {
+        int x, xm, y, ym;
+
+        xm = rc->x + rc->w;
+        ym = rc->y + rc->h;
+
+        for( y = rc->y; y < ym; y++ )
+            for( x = rc->x; x < xm; x++ )
+                this->setPixel( x, y, c );
+    }
+
+    //clear rectanlge
+    void dpbitmap::clear( void )
+    {
+        dpbitmap_color c;
+        c.r = c.g = c.b = c.a = 0;
+        this->fill( &c );
+    }
+
+    //clear rectanlge
+    void dpbitmap::clear( dpbitmap_rectangle *rc )
+    {
+        dpbitmap_color c;
+        c.r = c.g = c.b = c.a = 0;
+        this->fill( &c, rc );
+    }
+
+    //draw rect with random noise
+    void dpbitmap::noise( void )
+    {
+        dpbitmap_rectangle rc;
+
+        rc.x = rc.y = 0;
+        rc.w = this->getWidth();
+        rc.h = this->getHeight();
+
+        this->noise( &rc );
+    }
+
+    //draw rect with random noise
+    void dpbitmap::noise( dpbitmap_rectangle *rc )
+    {
+        int x, xm, y, ym;
+        dpbitmap_color c;
+
+        xm = rc->x + rc->w;
+        ym = rc->y + rc->h;
+
+        for( y = rc->y; y < ym; y++ )
+        {
+            for( x = rc->x; x < xm; x++ )
+            {
+                c.r = (float)rand() / (float)RAND_MAX;
+                c.g = (float)rand() / (float)RAND_MAX;
+                c.b = (float)rand() / (float)RAND_MAX;
+                c.a = (float)rand() / (float)RAND_MAX;
+                this->setPixel( x, y, &c );
+            }
+        }
+    }
+
+    //alter rect with texture, pass in fineness in pixels
+    void dpbitmap::texturize( float sz, float intensity )
+    {
+        dpbitmap_rectangle rc;
+
+        rc.x = rc.y = 0;
+        rc.w = this->getWidth();
+        rc.h = this->getHeight();
+
+        this->texturize( sz, intensity, &rc );
+    }
+
+    //alter rect with texture, pass in fineness in pixels
+    void dpbitmap::texturize( float sz, float intensity, dpbitmap_rectangle *rc )
+    {
+        int x, xm, y, ym;
+        dpbitmap_color c;
+        float v, u, t;
+
+        xm = rc->x + rc->w;
+        ym = rc->y + rc->h;
+
+        for( y = rc->y; y < ym; y++ )
+        {
+            for( x = rc->x; x < xm; x++ )
+            {
+                this->getPixel( x, y, &c );
+
+                if( sz > 0.001f || sz < 0.001f )
+                {
+                    v = sin( (float)x / sz ) * sin( (float)y / sz );
+                    if( v < 0 )
+                        v *= -1.0f;
+                    v *= 0.4f;
+
+                    u = cos( (float)x / sz * 3 ) * cos( (float)y / sz * 11 );
+                    if( u < 0 )
+                        u *= -1.0f;
+                    u *= 0.35f;
+
+                    t = sin( (float)x / sz * 5 ) * sin( (float)y / sz * 7 );
+                    if( t < 0 )
+                        t *= -1.0f;
+                    t *= 0.25f;
+
+                    v = v + t + u;
+                    v *= 0.5f + 0.5f * (float)rand() / (float)RAND_MAX;
+                }
+                else
+                    v = 1;
+
+                v = v * intensity + ( 1.0f - intensity );
+
+                c.r *= v;
+                c.g *= v;
+                c.b *= v;
+
+                this->setPixel( x, y, &c );
+            }
+        }
     }
 
 };

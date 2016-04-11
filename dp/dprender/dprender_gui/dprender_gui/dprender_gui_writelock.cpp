@@ -62,6 +62,12 @@ namespace dp
         this->p->passContext( ctx );
     }
 
+    //render
+    void dprender_gui_writelock::render( dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
+    {
+        this->p->render( m_parent, ctx, cll );
+    }
+
 }
 
 

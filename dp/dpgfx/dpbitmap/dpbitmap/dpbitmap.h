@@ -112,6 +112,22 @@ namespace dp
         virtual void setTransparencyMode( int m );
         //get transparency mode
         virtual int getTransparencyMode( void );
+        //draw colored rectangle
+        virtual void fill( dpbitmap_color *c );
+        //draw colored rectangle
+        virtual void fill( dpbitmap_color *c, dpbitmap_rectangle *rc );
+        //clear rectanlge
+        virtual void clear( void );
+        //clear rectanlge
+        virtual void clear( dpbitmap_rectangle *rc );
+        //draw rect with random noise
+        virtual void noise( void );
+        //draw rect with random noise
+        virtual void noise( dpbitmap_rectangle *rc );
+        //alter rect with texture, pass in fineness in pixels
+        virtual void texturize( float sz, float intensity );
+        //alter rect with texture, pass in fineness in pixels
+        virtual void texturize( float sz, float intensity, dpbitmap_rectangle *rc );
 
     };
 };

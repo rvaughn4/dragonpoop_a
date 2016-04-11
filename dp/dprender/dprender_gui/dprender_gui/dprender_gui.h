@@ -19,6 +19,8 @@ namespace dp
     class dpapi_vertexbuffer;
     class dpapi_indexbuffer;
     class dpapi_bundle;
+    class dpapi_commandlist_writelock;
+    class dpgui_readlock;
 
     class dprender_gui : public dprender_gui_list
     {
@@ -26,12 +28,12 @@ namespace dp
     private:
 
         dpbitmap_rectangle rc;
-        unsigned int z;
+        unsigned int z, bg_time, fg_time;
         dpapi_context_writelock *ctx;
         dpapi_texture *t_bg, *t_fg;
         dpapi_vertexbuffer *vb;
         dpapi_indexbuffer *ib_fg, *ib_bg;
-        dpapi_bundle *bdle;
+        dpapi_bundle *bdle_bg, *bdle_fg;
         dpmatrix mat, undo_mat;
 
         //create vertex buffer
@@ -40,6 +42,10 @@ namespace dp
         void makeBgIB( dpapi_context_writelock *ctx );
         //create fg index buffer
         void makeFgIB( dpapi_context_writelock *ctx );
+        //make bg texture, return false if not remade/up-to-date
+        bool makeBgTex( dpapi_context_writelock *ctx, dpgui_readlock *g );
+        //make bg texture, return false if not remade/up-to-date
+        bool makeFgTex( dpapi_context_writelock *ctx, dpgui_readlock *g );
 
     protected:
 
@@ -65,6 +71,8 @@ namespace dp
         virtual void onRun( dpshared_writelock *wl );
         //pass in context
         virtual void passContext( dpapi_context_writelock *ctx );
+        //render
+        virtual void render( dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll );
 
     public:
 

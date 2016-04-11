@@ -39,6 +39,10 @@ namespace dp
         dpbitmap *getBg( void );
         //returns fg bitmap
         dpbitmap *getFg( void );
+        //return bg time
+        unsigned int getBgTime( void );
+        //return fg time
+        unsigned int getFgTime( void );
 
     };
 

@@ -7,6 +7,7 @@
 #include "dpgui_readlock.h"
 #include "dpgui_writelock.h"
 #include "../dpfont/dpfont/dpfont.h"
+#include "../dpbitmap/dpbitmap_loader/dpbitmap_loader.h"
 
 namespace dp
 {
@@ -24,6 +25,7 @@ namespace dp
 
         this->bm_bg = 0;
         this->bm_fg = 0;
+        this->bg_time = this->fg_time = 0;
 
         this->setText( ctxt );
     }
@@ -67,10 +69,14 @@ namespace dp
                 delete this->bm_bg;
             this->bm_bg = new dpbitmap_32bit_uncompressed( this->rc.w, this->rc.h );
 
+            this->bm_bg->clear();
+
             this->renderBackgroundPass0( this->bm_bg );
             this->renderBackgroundPass1( this->bm_bg );
 
+            this->bg_time++;
             this->bBgDrawn = 1;
+            this->update();
         }
 
         if( !this->bFgDrawn )
@@ -79,10 +85,22 @@ namespace dp
                 delete this->bm_fg;
             this->bm_fg = new dpbitmap_32bit_uncompressed( this->rc.w, this->rc.h );
 
+            this->bm_fg->clear();
+
+            dpbitmap_loader ldr;
+            dpbitmap *lbm = ldr.load( "picture.png" );
+            if( lbm )
+                this->bm_fg->copy( lbm );
+            delete lbm;
+
+            this->bm_fg->texturize( 1, 0.3f );
+
             this->renderForegroundPass0( this->bm_fg );
             this->renderForegroundPass1( this->bm_fg );
 
+            this->fg_time++;
             this->bFgDrawn = 1;
+            this->update();
         }
 
         return this->dpgui_list::onTaskRun( tl );
@@ -132,7 +150,14 @@ namespace dp
     void dpgui::renderText( dpbitmap *bm )
     {
         dpfont fnt;
+        dpbitmap_color c;
 
+        c.r = 1;
+        c.g = 1;
+        c.b = 0;
+        c.a = 1;
+
+        fnt.setColor( &c );
         fnt.setSize( 20 );
         fnt.openFont( "sans" );
 
@@ -251,6 +276,18 @@ namespace dp
     void dpgui::getText( std::string *s )
     {
         s->assign( this->stxt );
+    }
+
+    //return bg time
+    unsigned int dpgui::getBgTime( void )
+    {
+        return this->bg_time;
+    }
+
+    //return fg time
+    unsigned int dpgui::getFgTime( void )
+    {
+        return this->fg_time;
     }
 
 }

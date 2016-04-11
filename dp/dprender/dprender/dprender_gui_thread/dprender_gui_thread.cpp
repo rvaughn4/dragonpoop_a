@@ -121,8 +121,7 @@ namespace dp
         l = (dprender_gui_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->root_gui, 30 );
         if( !l )
             return;
-        l->passContext( ctx );
-        //l->
+        l->render( 0, ctx, cll );
     }
 
 }

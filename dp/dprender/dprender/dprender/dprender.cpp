@@ -386,7 +386,7 @@ namespace dp
                 continue;
             }
             g.release( pl );
-
+/*
             tl = (dprender_frame_thread_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->frametask, 10 );
             if( !tl )
                 continue;
@@ -395,6 +395,7 @@ namespace dp
 
             delete p;
             this->scenes[ i ] = 0;
+            */
         }
     }
 

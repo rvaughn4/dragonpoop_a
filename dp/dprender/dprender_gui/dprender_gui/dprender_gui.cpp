@@ -16,7 +16,10 @@
 
 #include "../../../dpgfx/dpvertex/dpvertexbuffer.h"
 #include "../../../dpgfx/dpvertex/dpindexbuffer.h"
+#include "../../../dpgfx/dpmatrix/dpmatrix.h"
 #include "../../dpapi/dpapi/dpapi_context/dpapi_context_writelock.h"
+#include "../../dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_writelock.h"
+
 
 namespace dp
 {
@@ -29,14 +32,17 @@ namespace dp
         this->t_bg = this->t_fg = 0;
         this->vb = 0;
         this->ib_bg = this->ib_fg = 0;
-        this->bdle = 0;
+        this->bdle_bg = 0;
+        this->bdle_fg = 0;
     }
 
     //dtor
     dprender_gui::~dprender_gui( void )
     {
-        if( this->bdle )
-            delete this->bdle;
+        if( this->bdle_fg )
+            delete this->bdle_fg;
+        if( this->bdle_bg )
+            delete this->bdle_bg;
         if( this->ib_bg )
             delete this->ib_bg;
         if( this->ib_fg )
@@ -111,23 +117,12 @@ namespace dp
     void dprender_gui::onSync( dpshared_readlock *psync )
     {
         dpgui_readlock *gr;
-        dpbitmap *bm;
 
         this->dprender_gui_list::onSync( psync );
 
         if( !psync->isSyncType( "dpgui" ) )
             return;
         gr = (dpgui_readlock *)psync;
-
-        if( this->bdle )
-            delete this->bdle;
-        this->bdle = 0;
-        if( this->t_bg )
-            delete this->t_bg;
-        this->t_bg = 0;
-        if( this->t_fg )
-            delete this->t_fg;
-        this->t_fg = 0;
 
         gr->getDimensions( &this->rc.w, &this->rc.h );
         gr->getPosition( &this->rc.x, &this->rc.y );
@@ -137,12 +132,19 @@ namespace dp
         this->makeBgIB( this->ctx );
         this->makeFgIB( this->ctx );
 
-        bm = gr->getBg();
-        this->t_bg = ctx->makeTexture( bm );
-        bm = gr->getFg();
-        this->t_fg = ctx->makeTexture( bm );
+        if( this->makeBgTex( this->ctx, gr ) || !this->bdle_bg )
+        {
+            if( this->bdle_bg )
+                delete this->bdle_bg;
+            this->bdle_bg = ctx->makeBundle( this->vb, this->ib_bg, 0, this->t_bg, 0 );
+        }
 
-        this->bdle = ctx->makeBundle( this->vb, this->ib_bg, 0, this->t_bg, 0 );
+        if( this->makeFgTex( this->ctx, gr ) || !this->bdle_fg )
+        {
+            if( this->bdle_fg )
+                delete this->bdle_fg;
+            this->bdle_fg = ctx->makeBundle( this->vb, this->ib_fg, 0, this->t_fg, 0 );
+        }
     }
 
     //override to test type for safe syncing, be sure to call base class first!
@@ -169,6 +171,47 @@ namespace dp
         this->dprender_gui_list::passContext( ctx );
     }
 
+    //render
+    void dprender_gui::render( dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
+    {
+//        dpmatrix m;
+
+        cll->addBundle( ctx, this->bdle_bg );
+        cll->addBundle( ctx, this->bdle_fg );
+    }
+
+    //make bg texture, return false if not remade/up-to-date
+    bool dprender_gui::makeBgTex( dpapi_context_writelock *ctx, dpgui_readlock *g )
+    {
+        dpbitmap *bm;
+
+        if( this->t_bg && g->getBgTime() == this->bg_time )
+            return 0;
+
+        if( this->t_bg )
+            delete this->t_bg;
+
+        bm = g->getBg();
+        this->t_bg = ctx->makeTexture( bm );
+        return 1;
+    }
+
+    //make bg texture, return false if not remade/up-to-date
+    bool dprender_gui::makeFgTex( dpapi_context_writelock *ctx, dpgui_readlock *g )
+    {
+        dpbitmap *bm;
+
+        if( this->t_fg && g->getFgTime() == this->fg_time )
+            return 0;
+
+        if( this->t_fg )
+            delete this->t_fg;
+
+        bm = g->getFg();
+        this->t_fg = ctx->makeTexture( bm );
+        return 1;
+    }
+
     //create vertex buffer
     void dprender_gui::makeVB( dpapi_context_writelock *ctx )
     {
@@ -187,7 +230,7 @@ namespace dp
         v.vert.x = -1;
         v.vert.y = 1;
         v.texcoord[ 0 ].s = 0;
-        v.texcoord[ 0 ].t = 0;
+        v.texcoord[ 0 ].t = 1;
         v.texcoord[ 1 ] = v.texcoord[ 0 ];
         vb.write( &v );
 
@@ -195,7 +238,7 @@ namespace dp
         v.vert.x = 1;
         v.vert.y = 1;
         v.texcoord[ 0 ].s = 1;
-        v.texcoord[ 0 ].t = 0;
+        v.texcoord[ 0 ].t = 1;
         v.texcoord[ 1 ] = v.texcoord[ 0 ];
         vb.write( &v );
 
@@ -203,7 +246,7 @@ namespace dp
         v.vert.x = -1;
         v.vert.y = -1;
         v.texcoord[ 0 ].s = 0;
-        v.texcoord[ 0 ].t = 1;
+        v.texcoord[ 0 ].t = 0;
         v.texcoord[ 1 ] = v.texcoord[ 0 ];
         vb.write( &v );
 
@@ -211,7 +254,7 @@ namespace dp
         v.vert.x = 1;
         v.vert.y = -1;
         v.texcoord[ 0 ].s = 1;
-        v.texcoord[ 0 ].t = 1;
+        v.texcoord[ 0 ].t = 0;
         v.texcoord[ 1 ] = v.texcoord[ 0 ];
         vb.write( &v );
 
@@ -260,7 +303,7 @@ namespace dp
         dpindexbuffer ib;
         dpindex i;
 
-        if( this->ib_bg )
+        if( this->ib_fg )
             return;
 
         //tl
@@ -287,7 +330,7 @@ namespace dp
         i.i = 3;
         ib.write( &i );
 
-        this->ib_bg = ctx->makeIndexBuffer( &ib );
+        this->ib_fg = ctx->makeIndexBuffer( &ib );
     }
 
 }

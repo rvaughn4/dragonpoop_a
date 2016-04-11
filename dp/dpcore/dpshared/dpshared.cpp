@@ -29,7 +29,7 @@ namespace dp
 
             std::shared_ptr<std::atomic<uint64_t>> tt( new std::atomic<uint64_t>() );
             this->t_sync = tt;
-            *( this->t_sync.get() ) = 0;
+            *( this->t_sync.get() ) = (uint64_t)this;
 
             std::shared_ptr<dpshared_ref_kernel> kk( new dpshared_ref_kernel() );
             this->k = kk;
@@ -481,7 +481,9 @@ namespace dp
         //update internal time to cause objects to sync
         void dpshared::update( void )
         {
-            *( this->t_sync.get() ) = this->m->getTicks();
+            uint64_t t = *( this->t_sync.get() );
+            t = t + 1;
+            *( this->t_sync.get() ) = t;
         }
 
         //override to handle sync copy, be sure to call base class first!
