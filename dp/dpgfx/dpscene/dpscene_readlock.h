@@ -10,6 +10,7 @@ namespace dp
 {
 
     class dpscene;
+    class dpgui;
 
     class dpscene_readlock : public dptask_readlock
     {
@@ -27,6 +28,8 @@ namespace dp
 
         //ctor
         dpscene_readlock( dpscene *p, dpmutex_readlock *ml );
+        //return root gui
+        dpgui *getGui( void );
 
     };
 

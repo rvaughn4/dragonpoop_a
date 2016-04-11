@@ -14,7 +14,7 @@ namespace dp
     //ctor
     dpscene::dpscene( void ) : dptask( "scene", 500 )
     {
-
+        this->root_gui = 0;
     }
 
     //dtor
@@ -93,6 +93,12 @@ namespace dp
     bool dpscene::onSceneRun( dpscene_writelock *sl )
     {
         return 1;
+    }
+
+    //return root gui
+    dpgui *dpscene::getGui( void )
+    {
+        return this->root_gui;
     }
 
 };

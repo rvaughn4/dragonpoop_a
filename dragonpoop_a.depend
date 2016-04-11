@@ -980,7 +980,7 @@
 
 1457266645 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_commandlist_command/dpapi_commandlist_command_cleardepth/dpapi_commandlist_command_cleardepth.cpp
 
-1459859938 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.cpp
+1460343161 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.cpp
 	"dprender_gui_thread.h"
 	"../../../dpcore/dpshared/dpshared_guard.h"
 	"../../dpapi/dpapi/dpapi/dpapi_factory.h"
@@ -991,6 +991,8 @@
 	"../../dpapi/dpapi/dpapi_commandlist/dpapi_commandlist.h"
 	"../../dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_writelock.h"
 	"../dprender/dprender.h"
+	"../../../dpgfx/dpscene/dpscene_readlock.h"
+	"../../../dpgfx/dpscene/dpscene_ref.h"
 	"../../../dpdefines.h"
 	"../../dprender_gui/dprender_gui/dprender_gui.h"
 	"../../dprender_gui/dprender_gui/dprender_gui_writelock.h"
@@ -1020,7 +1022,7 @@
 1457808185 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_scene/dpapi_scene_writelock.h
 	"../../../../dpcore/dpshared/dpshared_writelock.h"
 
-1460336980 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_scene/dprender_scene.cpp
+1460342886 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_scene/dprender_scene.cpp
 	"dprender_scene.h"
 	"dprender_scene_ref.h"
 	"dprender_scene_readlock.h"
@@ -1422,7 +1424,7 @@
 	"dpapi_opengl1o5_indexbuffer_writelock.h"
 	"dpapi_opengl1o5_indexbuffer.h"
 
-1459858630 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.h
+1460342922 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.h
 	"../dprender_scene_thread/dprender_scene_thread.h"
 
 1459007675 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dpbuffer/dpbuffer_concrete/dpbuffer_concrete.h
@@ -2018,26 +2020,26 @@
 	"../dpmatrix/dpmatrix.h"
 	<math.h>
 
-1460326857 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene.cpp
+1460342798 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene.cpp
 	"dpscene.h"
 	"dpscene_ref.h"
 	"dpscene_readlock.h"
 	"dpscene_writelock.h"
 	<string>
 
-1459942346 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene.h
+1460342853 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene.h
 	"../../dpcore/dptask/dptask.h"
 
 1459942363 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene_ref.h
 	"../../dpcore/dptask/dptask_ref.h"
 
-1459941615 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene_readlock.h
+1460342786 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene_readlock.h
 	"../../dpcore/dptask/dptask_readlock.h"
 
-1459941639 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene_writelock.h
+1460342870 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene_writelock.h
 	"../../dpcore/dptask/dptask_writelock.h"
 
-1459941816 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene_readlock.cpp
+1460342840 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene_readlock.cpp
 	"dpscene_readlock.h"
 	"dpscene.h"
 
@@ -2045,7 +2047,7 @@
 	"dpscene_ref.h"
 	"dpscene.h"
 
-1459941838 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene_writelock.cpp
+1460342834 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpscene/dpscene_writelock.cpp
 	"dpscene_writelock.h"
 	"dpscene.h"
 

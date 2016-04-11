@@ -10,11 +10,14 @@
 namespace dp
 {
     class dpscene_writelock;
+    class dpgui;
 
     class dpscene : public dptask
     {
 
     private:
+
+        dpgui *root_gui;
 
     protected:
 
@@ -40,6 +43,8 @@ namespace dp
         virtual bool onSceneStop( dpscene_writelock *sl );
         //override to handle scene run
         virtual bool onSceneRun( dpscene_writelock *sl );
+        //return root gui
+        dpgui *getGui( void );
 
     public:
 

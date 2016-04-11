@@ -19,6 +19,11 @@ namespace dp
 
     }
 
+    //return root gui
+    dpgui *dpscene_readlock::getGui( void )
+    {
+        return this->p->getGui();
+    }
 }
 
 

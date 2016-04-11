@@ -10,6 +10,7 @@ namespace dp
 {
 
     class dpscene;
+    class dpgui;
 
     class dpscene_writelock : public dptask_writelock
     {
@@ -27,6 +28,8 @@ namespace dp
 
         //ctor
         dpscene_writelock( dpscene *p, dpmutex_writelock *ml );
+        //return root gui
+        dpgui *getGui( void );
 
     };
 

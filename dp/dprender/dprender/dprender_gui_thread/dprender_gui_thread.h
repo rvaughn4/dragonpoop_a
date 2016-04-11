@@ -11,13 +11,26 @@
 namespace dp
 {
     class dprender_gui;
+    class dpscene_ref;
+    class dpgui;
 
     class dprender_gui_thread : public dprender_scene_thread
     {
 
     private:
 
+        dpscene_ref *scn;
         dprender_gui *root_gui;
+        dpshared_guard g;
+
+        //delete gui
+        void deleteGui( void );
+        //sync gui
+        void syncGui( void );
+        //run gui
+        void runGui( dpapi_context_writelock *ctx );
+        //render gui
+        void renderGui( dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll );
 
     protected:
 
@@ -31,7 +44,7 @@ namespace dp
     public:
 
         //ctor
-        dprender_gui_thread( dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b );
+        dprender_gui_thread( dpscene_ref *scn, dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b );
         //dtor
         virtual ~dprender_gui_thread( void );
 
