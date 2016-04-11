@@ -19,7 +19,12 @@
 #include "../../dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_writelock.h"
 #include "../dprender_frame_thread/dprender_frame_thread.h"
 #include "../dprender_frame_thread/dprender_frame_thread_writelock.h"
+#include "../dprender_scene/dprender_scene.h"
+#include "../dprender_scene/dprender_scene_readlock.h"
+#include "../dprender_scene/dprender_scene_writelock.h"
 #include "../../../dpdefines.h"
+#include "../../../dpgfx/dpgfx/dpgfx.h"
+#include "../../../dpgfx/dpgfx/dpgfx_readlock.h"
 
 #if defined dprender_debug
 #include <iostream>
@@ -29,8 +34,9 @@ namespace dp
 {
 
     //ctor
-    dprender::dprender( dpapi_factory *wf ) : dptask( "Renderer Main", 3 )
+    dprender::dprender( dpgfx *gfx, dpapi_factory *wf ) : dptask( "Renderer Main", 3 )
     {
+        this->gfx = gfx;
         this->apifactory = wf;
         this->api = 0;
         this->main_ctx = this->frame_ctx = 0;
@@ -40,11 +46,14 @@ namespace dp
         this->fps = 0;
         this->f_last_t = 0;
         this->t_last_f = 0;
+        this->zeroScenes();
     }
 
     //dtor
     dprender::~dprender( void )
     {
+        this->deleteScenes();
+
         this->waitForStop();
         this->unlink();
 
@@ -139,6 +148,13 @@ namespace dp
         std::cout << "Render Main: Primary command buffer executed. Frame presented. " << this->fps <<" FPS\r\n";
 #endif // defined
 
+        if( tn - this->t_last_clone > 500 )
+        {
+            this->cloneScenes();
+            this->removeOldScenes();
+            this->t_last_clone = tn;
+        }
+
         return 1;
     }
 
@@ -203,6 +219,7 @@ namespace dp
     //override to do task shutdown
     bool dprender::onTaskStop( dptask_writelock *tl )
     {
+        this->stopScenes();
 
         if( !dptask::stopAndDelete( (dptask **)&this->frametask ) )
             return 0;
@@ -254,34 +271,186 @@ namespace dp
         return 0;
     }
 
-    //add scene
-    bool dprender::addScene( dprender_scene *s, dprender_writelock *rl )
+    //clone new scenes
+    void dprender::cloneScenes( void )
     {
+        dpscene *gscenes[ dprender_max_scenes ];
+        dpscene *s;
+        dpgfx_readlock *gl;
         dpshared_guard g;
-        dpapi_writelock *apil;
-        dprender_frame_thread_writelock *tl;
+        unsigned int i, e;
 
-        apil = (dpapi_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->api, 1000 );
-        if( !apil )
-            return 0;
-        tl = (dprender_frame_thread_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->frametask, 1000 );
-        if( !tl )
-            return 0;
-
-        return tl->addScene( s, apil, rl );
-    }
-
-    //remove scene
-    void dprender::removeScene( dprender_scene *s, dprender_writelock *rl )
-    {
-        dpshared_guard g;
-        dprender_frame_thread_writelock *tl;
-
-        tl = (dprender_frame_thread_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->frametask, 1000 );
-        if( !tl )
+        gl = (dpgfx_readlock *)dpshared_guard_tryReadLock_timeout( g, this->gfx, 100 );
+        if( !gl )
             return;
 
-        tl->removeScene( s, rl );
+        e = gl->getScenes( gscenes, dprender_max_scenes );
+        g.release( gl );
+
+        for( i = 0; i < e; i++ )
+        {
+            s = gscenes[ i ];
+            if( !s )
+                continue;
+            if( this->findScene( s ) )
+                continue;
+            this->addScene( s );
+        }
+    }
+
+    //look for scene
+    dprender_scene *dprender::findScene( dpscene *s )
+    {
+        unsigned int i;
+        dprender_scene *p;
+        dprender_scene_readlock *pl;
+        dpshared_guard g;
+
+        for( i = 0; i < dprender_max_scenes; i++ )
+        {
+            p = this->scenes[ i ];
+            if( !p )
+                continue;
+            pl = (dprender_scene_readlock *)dpshared_guard_tryReadLock_timeout( g, p, 1000 );
+            if( !pl )
+                continue;
+            if( pl->hasScene( s ) )
+                return p;
+            g.release( pl );
+        }
+
+        return 0;
+    }
+
+    //add new scene
+    dprender_scene *dprender::addScene( dpscene *s )
+    {
+        unsigned int i;
+        dprender_scene *p;
+        dpshared_guard g;
+        dprender_frame_thread_writelock *tl;
+
+        for( i = 0; i < dprender_max_scenes; i++ )
+        {
+            p = this->scenes[ i ];
+            if( p )
+                continue;
+            p = new dprender_scene( s, this->api, this );
+            if( !p )
+                return 0;
+
+            tl = (dprender_frame_thread_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->frametask, 1000 );
+            if( !tl )
+            {
+                delete p;
+                return 0;
+            }
+
+            if( !tl->addScene( p ) )
+            {
+                delete p;
+                return 0;
+            }
+
+            g.release( tl );
+
+            this->scenes[ i ] = p;
+            this->addStaticTask( p, 1 );
+
+            return p;
+        }
+
+        return 0;
+    }
+
+    //remove old scenes
+    void dprender::removeOldScenes( void )
+    {
+        unsigned int i;
+        dprender_scene *p;
+        dprender_scene_writelock *pl;
+        dpshared_guard g;
+        dprender_frame_thread_writelock *tl;
+
+        for( i = 0; i < dprender_max_scenes; i++ )
+        {
+            p = this->scenes[ i ];
+            if( !p )
+                continue;
+            pl = (dprender_scene_writelock *)dpshared_guard_tryWriteLock_timeout( g, p, 10 );
+            if( !pl )
+                continue;
+            if( pl->isRun() )
+            {
+                g.release( pl );
+                continue;
+            }
+            g.release( pl );
+
+            tl = (dprender_frame_thread_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->frametask, 10 );
+            if( !tl )
+                continue;
+            tl->removeScene( p );
+            g.release( tl );
+
+            delete p;
+            this->scenes[ i ] = 0;
+        }
+    }
+
+    //stop scenes
+    void dprender::stopScenes( void )
+    {
+        unsigned int i;
+        dprender_scene *p;
+        dprender_scene_writelock *pl;
+        dpshared_guard g;
+        dprender_frame_thread_writelock *tl;
+
+        for( i = 0; i < dprender_max_scenes; i++ )
+        {
+            p = this->scenes[ i ];
+            if( !p )
+                continue;
+
+            tl = (dprender_frame_thread_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->frametask, 10 );
+            if( tl )
+                tl->removeScene( p );
+            g.release( tl );
+
+            pl = (dprender_scene_writelock *)dpshared_guard_tryWriteLock_timeout( g, p, 10 );
+            if( !pl )
+                continue;
+            pl->stop();
+
+            g.release( pl );
+        }
+    }
+
+    //delete scenes
+    void dprender::deleteScenes( void )
+    {
+        unsigned int i;
+        dprender_scene *p;
+
+        for( i = 0; i < dprender_max_scenes; i++ )
+        {
+            p = this->scenes[ i ];
+            if( !p )
+                continue;
+            delete p;
+        }
+
+        this->zeroScenes();
+    }
+
+    //zero scenes
+    void dprender::zeroScenes( void )
+    {
+        unsigned int i;
+
+        for( i = 0; i < dprender_max_scenes; i++ )
+            this->scenes[ i ] = 0;
     }
 
 }

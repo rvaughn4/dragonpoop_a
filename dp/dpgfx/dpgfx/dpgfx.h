@@ -12,6 +12,7 @@ namespace dp
 {
 
     class dpscene;
+    class dprender;
     #define dpgfx_max_scenes 128
 
     class dpgfx : public dptask
@@ -20,6 +21,7 @@ namespace dp
     private:
 
         dpscene *scenes[ dpgfx_max_scenes ];
+        dprender *renderer;
 
         //zero scenes
         void zeroScenes( void );
@@ -27,6 +29,8 @@ namespace dp
         void deleteScenes( void );
         //stop scenes
         void stopScenes( void );
+        //load a renderer
+        void initAnyRenderer( void );
 
     protected:
 
@@ -44,6 +48,8 @@ namespace dp
         virtual bool onTaskStop( dptask_writelock *tl );
         //add scene
         bool addScene( dpscene **s );
+        //get all scenes
+        unsigned int getScenes( dpscene **lst, unsigned int max_sz );
 
     public:
 

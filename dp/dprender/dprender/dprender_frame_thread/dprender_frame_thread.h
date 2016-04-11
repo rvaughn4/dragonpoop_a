@@ -41,10 +41,6 @@ namespace dp
         void deleteScenes( void );
         //draw scenes
         void drawScenes( dpapi_context_writelock *ctxl, dpapi_primary_commandlist_writelock *cll );
-        //add scene
-        bool _addScene( dprender_scene *s );
-        //stop all scenes or return zero if not stopped
-        bool stopScenes( void );
 
     protected:
 
@@ -61,9 +57,9 @@ namespace dp
         //override to do task shutdown
         virtual bool onTaskStop( dptask_writelock *tl );
         //add scene
-        bool addScene( dprender_scene *s, dpapi_writelock *apil, dprender_writelock *rl, dprender_frame_thread_writelock *tl );
+        bool addScene( dprender_scene *s );
         //remove scene
-        void removeScene( dprender_scene *s, dprender_writelock *rl, dprender_frame_thread_writelock *tl );
+        bool removeScene( dprender_scene *s );
 
     public:
 

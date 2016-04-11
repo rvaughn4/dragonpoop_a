@@ -22,6 +22,12 @@ namespace dp
 
     }
 
+    //get all scenes
+    unsigned int dpgfx_readlock::getScenes( dpscene **lst, unsigned int max_sz )
+    {
+        return this->p->getScenes( lst, max_sz );
+    }
+
 }
 
 

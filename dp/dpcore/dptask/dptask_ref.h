@@ -9,6 +9,7 @@ object can be deleted while refs are still held
 
 #include "dptask_defines.h"
 #include "../dpshared/dpshared_ref.h"
+#include <string>
 
 namespace dp
 {
@@ -23,6 +24,7 @@ namespace dp
     private:
 
         dptask *p;
+        char cname[ 256 ];
 
     protected:
 
@@ -33,6 +35,10 @@ namespace dp
 
         //ctor
         dptask_ref( dptask *p, std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync );
+        //get name
+        void getName( std::string *s );
+        //set name
+        void setName( char *cname, unsigned int sz );
 
         friend class dptask;
     };

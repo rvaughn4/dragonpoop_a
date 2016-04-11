@@ -29,6 +29,12 @@ namespace dp
         return new dpapi_x11_opengl1o5( this->w, this->h, this->sname.c_str() );
     }
 
+    //clones factory
+    dpapi_factory *dpapi_x11_opengl1o5_factory::clone( void )
+    {
+        return new dpapi_x11_opengl1o5_factory( this->w, this->h, this->sname.c_str() );
+    }
+
 }
 
 

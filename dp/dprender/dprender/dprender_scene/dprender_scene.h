@@ -25,6 +25,11 @@ namespace dp
     class dprender_ref;
     class dpapi_context_writelock;
     class dpapi_primary_commandlist_writelock;
+    class dpscene_ref;
+    class dpscene;
+    class dpapi;
+    class dprender_frame_thread;
+    class dprender;
 
     struct dprender_scene_task_inner
     {
@@ -47,6 +52,7 @@ namespace dp
         dpapi_ref *apir;
         dpshared_guard g;
         dprender_ref *rr;
+        dpscene_ref *scn;
 
         struct
         {
@@ -73,8 +79,6 @@ namespace dp
 
     protected:
 
-        //attach scene to renderer
-        bool attach( dpapi_writelock *apil, dprender_writelock *rl, dprender_frame_thread_writelock *tl );
         //generate readlock
         virtual dpshared_readlock *genReadLock( dpmutex_readlock *ml );
         //generate writelock
@@ -93,11 +97,13 @@ namespace dp
         bool draw( dprender_scene_writelock *rl, dpapi_context_writelock *ctxl, dpapi_primary_commandlist_writelock *cll );
         //purge tasks and all api stuff so that api can be deleted
         void purgeAll( void );
+        //returns true if belongs to scene
+        bool hasScene( dpscene *scn );
 
     public:
 
         //ctor
-        dprender_scene( void );
+        dprender_scene( dpscene *scn, dpapi *api, dprender *r );
         //dtor
         virtual ~dprender_scene( void );
 

@@ -13,6 +13,7 @@ namespace dp
 {
 
     class dpgfx;
+    class dpscene;
 
     class dpgfx_readlock : public dptask_readlock
     {
@@ -30,6 +31,8 @@ namespace dp
 
         //ctor
         dpgfx_readlock( dpgfx *p, dpmutex_readlock *ml );
+        //get all scenes
+        unsigned int getScenes( dpscene **lst, unsigned int max_sz );
 
     };
 

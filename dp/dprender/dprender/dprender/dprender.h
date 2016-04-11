@@ -19,8 +19,10 @@ namespace dp
     class dpapi_primary_commandlist;
     class dprender_frame_thread;
     class dprender_scene;
+    class dpgfx;
+    class dpscene;
 
-    #define dprender_max_scenes
+    #define dprender_max_scenes 64
 
     class dprender : public dptask
     {
@@ -33,9 +35,26 @@ namespace dp
         dpapi_primary_commandlist *cl_a, *cl_b, *cl_next, *cl_prev;
         std::atomic<bool> flag_a, flag_b, *flag_next, *flag_prev;
         dprender_frame_thread *frametask;
-        uint64_t t_last_f;
+        uint64_t t_last_f, t_last_clone;
         unsigned int fps, f_last_t;
         dpshared_guard clg;
+        dpgfx *gfx;
+        dprender_scene *scenes[ dprender_max_scenes ];
+
+        //clone new scenes
+        void cloneScenes( void );
+        //look for scene
+        dprender_scene *findScene( dpscene *s );
+        //add new scene
+        dprender_scene *addScene( dpscene *s );
+        //remove old scenes
+        void removeOldScenes( void );
+        //stop scenes
+        void stopScenes( void );
+        //delete scenes
+        void deleteScenes( void );
+        //zero scenes
+        void zeroScenes( void );
 
     protected:
 
@@ -51,15 +70,11 @@ namespace dp
         virtual bool onTaskStart( dptask_writelock *tl );
         //override to do task shutdown
         virtual bool onTaskStop( dptask_writelock *tl );
-        //add scene
-        bool addScene( dprender_scene *s, dprender_writelock *rl );
-        //remove scene
-        void removeScene( dprender_scene *s, dprender_writelock *rl );
 
     public:
 
         //ctor
-        dprender( dpapi_factory *wf );
+        dprender( dpgfx *gfx, dpapi_factory *wf );
         //dtor
         virtual ~dprender( void );
         //wait for flag to set or unset

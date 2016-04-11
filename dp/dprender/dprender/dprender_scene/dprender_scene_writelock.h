@@ -35,8 +35,6 @@ namespace dp
 
         //ctor
         dprender_scene_writelock( dprender_scene *p, dpmutex_writelock *ml );
-        //attach scene to renderer
-        bool attach( dpapi_writelock *apil, dprender_writelock *rl, dprender_frame_thread_writelock *tl );
         //draw scene
         bool draw( dpapi_context_writelock *ctxl, dpapi_primary_commandlist_writelock *cll );
         //purge tasks and all api stuff so that api can be deleted

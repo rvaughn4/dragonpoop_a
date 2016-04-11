@@ -22,12 +22,6 @@ namespace dp
 
     }
 
-    //attach scene to renderer
-    bool dprender_scene_writelock::attach( dpapi_writelock *apil, dprender_writelock *rl, dprender_frame_thread_writelock *tl )
-    {
-        return this->p->attach( apil, rl, tl );
-    }
-
     //draw scene
     bool dprender_scene_writelock::draw( dpapi_context_writelock *ctxl, dpapi_primary_commandlist_writelock *cll )
     {

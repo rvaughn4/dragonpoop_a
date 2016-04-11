@@ -13,13 +13,19 @@ namespace dp
     //ctor
     dprender_scene_readlock::dprender_scene_readlock( dprender_scene *p, dpmutex_readlock *ml ) : dptask_readlock( p, ml )
     {
-
+        this->p = p;
     }
 
     //dtor
     dprender_scene_readlock::~dprender_scene_readlock( void )
     {
 
+    }
+
+    //returns true if belongs to scene
+    bool dprender_scene_readlock::hasScene( dpscene *scn )
+    {
+        return this->p->hasScene( scn );
     }
 
 }

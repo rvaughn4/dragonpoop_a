@@ -16,7 +16,7 @@ deleting the readlock or writelock object unlocks the shared
 #include "../dptask/dptask_writelock.h"
 #include "../../dpdefines.h"
 
-#if defined dpthread_debug
+#if defined dpthread_debug || defined dptask_debug
     #include <iostream>
 #endif
 
@@ -264,6 +264,7 @@ namespace dp
         dpshared_guard g;
         dptask_writelock *tl;
         uint64_t tstart, tdone, telasped;
+        dptask_ref *tr;
 
         if( !t->tsk )
             return 0;
@@ -274,7 +275,24 @@ namespace dp
 
         tl = (dptask_writelock *)dpshared_guard_tryWriteLock_timeout( g, t->tsk, 10 );
         if( !tl )
+        {
+
+    #if defined dpthread_debug || defined dptask_debug
+            std::string s;
+            tr = t->tsk;
+            tr->getName( &s );
+            std::cout << "Unable to lock task " << s << "\r\n";
+    #endif
+            if( !tr->isLinked() )
+            {
+                g.release( tl );
+                this->tg.release( t->tsk );
+                t->tsk = 0;
+                tlist->cnt--;
+            }
+
             return 0;
+        }
 
         tl->run();
 

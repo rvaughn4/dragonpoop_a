@@ -28,6 +28,12 @@ namespace dp
         return new dpapi_opengl1o5( new dpwindow_factory() );
     }
 
+    //clones factory
+    dpapi_factory *dpapi_opengl1o5_factory::clone( void )
+    {
+        return new dpapi_opengl1o5_factory();
+    }
+
 }
 
 

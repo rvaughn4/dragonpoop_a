@@ -23,15 +23,15 @@ namespace dp
     }
 
     //add scene
-    bool dprender_frame_thread_writelock::addScene( dprender_scene *s, dpapi_writelock *apil, dprender_writelock *rl )
+    bool dprender_frame_thread_writelock::addScene( dprender_scene *s )
     {
-        return this->p->addScene( s, apil, rl, this );
+        return this->p->addScene( s );
     }
 
     //remove scene
-    void dprender_frame_thread_writelock::removeScene( dprender_scene *s, dprender_writelock *rl )
+    bool dprender_frame_thread_writelock::removeScene( dprender_scene *s )
     {
-        this->p->removeScene( s, rl, this );
+        return this->p->removeScene( s );
     }
 
 }

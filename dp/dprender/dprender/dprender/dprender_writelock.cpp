@@ -22,18 +22,6 @@ namespace dp
 
     }
 
-    //add scene
-    bool dprender_writelock::addScene( dprender_scene *s )
-    {
-        return this->p->addScene( s, this );
-    }
-
-    //remove scene
-    void dprender_writelock::removeScene( dprender_scene *s )
-    {
-        this->p->removeScene( s, this );
-    }
-
 }
 
 

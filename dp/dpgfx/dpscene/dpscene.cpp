@@ -20,7 +20,8 @@ namespace dp
     //dtor
     dpscene::~dpscene( void )
     {
-
+        this->waitForStop();
+        this->unlink();
     }
 
     //generate readlock

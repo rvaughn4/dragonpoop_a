@@ -13,11 +13,15 @@
 #include "../../dpapi/dpapi/dpapi_context/dpapi_context_writelock.h"
 #include "../../dpapi/dpapi/dpapi/dpapi_writelock.h"
 #include "../../dpapi/dpapi/dpapi/dpapi_ref.h"
+#include "../../dpapi/dpapi/dpapi/dpapi.h"
 #include "../dprender/dprender_writelock.h"
 #include "../dprender/dprender_ref.h"
+#include "../dprender/dprender.h"
 #include "../dprender_scene_thread/dprender_scene_thread.h"
 #include "../dprender_gui_thread/dprender_gui_thread.h"
 #include "../dprender_hello_triangle_scene_thread/dprender_hello_triangle_scene_thread.h"
+#include "../../../dpgfx/dpscene/dpscene.h"
+#include "../../../dpgfx/dpscene/dpscene_ref.h"
 
 #include <string.h>
 
@@ -25,40 +29,20 @@ namespace dp
 {
 
     //ctor
-    dprender_scene::dprender_scene( void ) : dptask( "Scene", 1000 )
+    dprender_scene::dprender_scene( dpscene *scn, dpapi *api, dprender *r ) : dptask( "Render Scene", 1000 )
     {
-        this->apir = 0;
-        this->rr = 0;
+        this->apir = (dpapi_ref *)this->g.getRef( api );
+        this->rr = (dprender_ref *)this->g.getRef( r );
+        this->scn = (dpscene_ref *)this->g.getRef( scn );
         this->zeroTasks();
     }
 
     //dtor
     dprender_scene::~dprender_scene( void )
     {
-        dprender_writelock *rl;
-        dpshared_guard g;
-
-        rl = (dprender_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->rr, 1000 );
-        if( rl )
-            rl->removeScene( this );
-        g.release( rl );
-
         this->waitForStop();
         this->unlink();
         this->deleteTasksAndContexts();
-    }
-
-    //attach scene to renderer
-    bool dprender_scene::attach( dpapi_writelock *apil, dprender_writelock *rl, dprender_frame_thread_writelock *tl )
-    {
-        this->apir = (dpapi_ref *)this->g.getRef( apil );
-        if( !this->apir )
-            return 0;
-        this->rr = (dprender_ref *)this->g.getRef( rl );
-        if( !this->rr )
-            return 0;
-
-        return 1;
     }
 
     //generate readlock
@@ -265,6 +249,14 @@ namespace dp
         }
 
         return r;
+    }
+
+    //returns true if belongs to scene
+    bool dprender_scene::hasScene( dpscene *scn )
+    {
+        if( !this->scn )
+            return 0;
+        return this->scn->isParent( scn );
     }
 
 }

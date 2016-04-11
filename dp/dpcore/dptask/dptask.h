@@ -130,6 +130,8 @@ namespace dp
         virtual ~dptask( void );
         //ask task to stop and returns true if stopped
         static bool stopAndDelete( dptask **t );
+        //get name
+        void getName( std::string *s );
 
         friend class dptask_writelock;
         friend class dptask_readlock;

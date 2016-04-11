@@ -34,9 +34,9 @@ namespace dp
         //ctor
         dprender_frame_thread_writelock( dprender_frame_thread *p, dpmutex_writelock *ml );
         //add scene
-        bool addScene( dprender_scene *s, dpapi_writelock *apil, dprender_writelock *rl );
+        bool addScene( dprender_scene *s );
         //remove scene
-        void removeScene( dprender_scene *s, dprender_writelock *rl );
+        bool removeScene( dprender_scene *s );
 
     };
 

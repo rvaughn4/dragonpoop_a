@@ -9,6 +9,10 @@ gpgfx manages models and gui elements and scenes
 #include "dpgfx_writelock.h"
 #include "../dpscene/dpscene.h"
 #include "../dpscene/dpscene_writelock.h"
+#include "../../dprender/dprender/dprender/dprender.h"
+#include "../../dprender/dprender/dprender/dprender_writelock.h"
+
+#include "../../dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h"
 
 namespace dp
 {
@@ -17,13 +21,16 @@ namespace dp
     dpgfx::dpgfx( void ) : dptask( "Graphics", 100 )
     {
         this->zeroScenes();
+        this->renderer = 0;
     }
 
     //dtor
     dpgfx::~dpgfx( void )
     {
-        this->unlink();
+        if( this->renderer )
+            delete this->renderer;
         this->waitForStop();
+        this->unlink();
         this->deleteScenes();
     }
 
@@ -48,6 +55,9 @@ namespace dp
     //override to do task execution
     bool dpgfx::onTaskRun( dptask_writelock *tl )
     {
+        if( !this->renderer )
+            this->initAnyRenderer();
+
         return 1;
     }
 
@@ -60,6 +70,17 @@ namespace dp
     //override to do task shutdown
     bool dpgfx::onTaskStop( dptask_writelock *tl )
     {
+        dprender_writelock *l;
+        dpshared_guard g;
+
+        if( this->renderer )
+        {
+            l = (dprender_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->renderer, 1000 );
+            if( l )
+                l->stop();
+            g.release( l );
+        }
+
         this->stopScenes();
         return 1;
     }
@@ -139,11 +160,48 @@ namespace dp
             p = *s;
             this->scenes[ i ] = p;
             this->addDynamicTask( p );
+            *s = 0;
             return 1;
         }
 
+        *s = 0;
         delete *s;
         return 0;
+    }
+
+    //load a renderer
+    void dpgfx::initAnyRenderer( void )
+    {
+        if( this->renderer )
+            delete this->renderer;
+        this->renderer = new dprender( this, new dpapi_x11_opengl1o5_factory( 640, 480, "render" ) );
+
+        if( this->renderer )
+            this->addStaticTask( this->renderer, 1 );
+    }
+
+    //get all scenes
+    unsigned int dpgfx::getScenes( dpscene **lst, unsigned int max_sz )
+    {
+        unsigned int i, j;
+        dpscene *p;
+
+        for( j = i = 0; i < dpgfx_max_scenes; i++ )
+        {
+            p = this->scenes[ i ];
+            if( !p )
+                continue;
+
+            if( j >= max_sz )
+                continue;
+
+            lst[ j ] = p;
+            j++;
+        }
+        for( i = j; i < max_sz; i++ )
+            lst[ i ] = 0;
+
+        return j;
     }
 
 }

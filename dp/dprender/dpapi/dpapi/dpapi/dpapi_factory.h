@@ -27,6 +27,8 @@ namespace dp
         virtual ~dpapi_factory( void );
         //creates window
         virtual dpapi *makeApi( void );
+        //clones factory
+        virtual dpapi_factory *clone( void );
 
     };
 

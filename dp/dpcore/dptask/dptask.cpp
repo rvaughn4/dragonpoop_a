@@ -72,7 +72,6 @@ namespace dp
 #if defined dptask_debug
         std::cout << "Task " << this->cname << " .\r\n";
 #endif
-
         return new dptask_ref( this, k, t_sync );
     }
 
@@ -391,6 +390,12 @@ namespace dp
         *t = 0;
 
         return 1;
+    }
+
+    //get name
+    void dptask::getName( std::string *s )
+    {
+        s->assign( this->cname );
     }
 
 }

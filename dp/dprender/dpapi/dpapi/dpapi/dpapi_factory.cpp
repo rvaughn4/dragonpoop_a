@@ -28,6 +28,12 @@ namespace dp
         return new dpapi( new dpwindow_factory() );
     }
 
+    //clones factory
+    dpapi_factory *dpapi_factory::clone( void )
+    {
+        return new dpapi_factory();
+    }
+
 }
 
 

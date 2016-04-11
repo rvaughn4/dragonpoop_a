@@ -31,10 +31,6 @@ namespace dp
 
         //ctor
         dprender_writelock( dprender *p, dpmutex_writelock *ml );
-        //add scene
-        bool addScene( dprender_scene *s );
-        //remove scene
-        void removeScene( dprender_scene *s );
 
     };
 

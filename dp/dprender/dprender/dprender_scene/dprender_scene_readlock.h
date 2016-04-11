@@ -13,6 +13,7 @@ namespace dp
 {
 
     class dprender_scene;
+    class dpscene;
 
     class dprender_scene_readlock : public dptask_readlock
     {
@@ -30,6 +31,8 @@ namespace dp
 
         //ctor
         dprender_scene_readlock( dprender_scene *p, dpmutex_readlock *ml );
+        //returns true if belongs to scene
+        bool hasScene( dpscene *scn );
 
     };
 
