@@ -18,6 +18,7 @@ namespace dp
     class dprender_frame_thread_writelock;
     class dpapi_context_writelock;
     class dpapi_primary_commandlist_writelock;
+    class dpscene;
 
     class dprender_scene_writelock : public dptask_writelock
     {
@@ -37,8 +38,10 @@ namespace dp
         dprender_scene_writelock( dprender_scene *p, dpmutex_writelock *ml );
         //draw scene
         bool draw( dpapi_context_writelock *ctxl, dpapi_primary_commandlist_writelock *cll );
-        //purge tasks and all api stuff so that api can be deleted
-        void purgeAll( void );
+        //returns true if belongs to scene
+        bool hasScene( dpscene *scn );
+        //returns true if scene is ready
+        bool isReady( void );
 
     };
 

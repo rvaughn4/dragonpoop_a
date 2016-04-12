@@ -28,10 +28,16 @@ namespace dp
         return this->p->draw( this, ctxl, cll );
     }
 
-    //purge tasks and all api stuff so that api can be deleted
-    void dprender_scene_writelock::purgeAll( void )
+    //returns true if belongs to scene
+    bool dprender_scene_writelock::hasScene( dpscene *scn )
     {
-        this->p->purgeAll();
+        return this->p->hasScene( scn );
+    }
+
+    //returns true if scene is ready
+    bool dprender_scene_writelock::isReady( void )
+    {
+        return this->p->isReady();
     }
 
 }

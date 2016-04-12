@@ -95,8 +95,8 @@ namespace dp
         virtual dprender_scene_thread *makeGuiTask( dprender_scene_writelock *l, dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b );
         //draw scene
         bool draw( dprender_scene_writelock *rl, dpapi_context_writelock *ctxl, dpapi_primary_commandlist_writelock *cll );
-        //purge tasks and all api stuff so that api can be deleted
-        void purgeAll( void );
+        //returns true if scene is ready
+        bool isReady( void );
         //returns true if belongs to scene
         bool hasScene( dpscene *scn );
 

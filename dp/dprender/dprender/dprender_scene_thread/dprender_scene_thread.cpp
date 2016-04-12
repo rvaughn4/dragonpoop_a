@@ -92,7 +92,6 @@ namespace dp
 #endif // defined
         if( !this->onSceneRender( (dprender_scene_thread_writelock *)tl, ctxl, cll ) )
             return 0;
-/////////
 
         if( !cll->compile( ctxl ) )
             return 1;

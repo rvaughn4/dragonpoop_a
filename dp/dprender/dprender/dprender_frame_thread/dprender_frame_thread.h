@@ -41,6 +41,8 @@ namespace dp
         void deleteScenes( void );
         //draw scenes
         void drawScenes( dpapi_context_writelock *ctxl, dpapi_primary_commandlist_writelock *cll );
+        //returns true if scenes are ready
+        bool scenesReady( void );
 
     protected:
 

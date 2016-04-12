@@ -18,6 +18,7 @@
 #include "../dprender/dprender.h"
 #include "../../../dpdefines.h"
 #include "../dprender_scene/dprender_scene_writelock.h"
+#include "../dprender_scene/dprender_scene_readlock.h"
 #include "../dprender_scene/dprender_scene.h"
 #include "../dprender_scene/dprender_scene_ref.h"
 
@@ -80,6 +81,8 @@ namespace dp
         dpshared_guard g;
 
         if( ( *this->flag_next ) )
+            return 1;
+        if( !this->scenesReady() )
             return 1;
 
         ctxl = (dpapi_context_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->ctx, 30 );
@@ -192,6 +195,33 @@ namespace dp
             pl->draw( ctxl, cll );
             g.release( pl );
         }
+    }
+
+    //returns true if scenes are ready
+    bool dprender_frame_thread::scenesReady( void )
+    {
+        unsigned int i;
+        dprender_scene_ref *p;
+        dprender_scene_readlock *pl;
+        dpshared_guard g;
+
+        for( i = 0; i < dprender_frame_thread_MAX_scenes; i++ )
+        {
+            p = this->scenes[ i ];
+            if( !p )
+                continue;
+
+            pl = (dprender_scene_readlock *)dpshared_guard_tryReadLock_timeout( g, p, 10 );
+            if( !pl )
+                continue;
+
+            if( !pl->isReady() )
+                return 0;
+
+            g.release( pl );
+        }
+
+        return 1;
     }
 
     //add scene

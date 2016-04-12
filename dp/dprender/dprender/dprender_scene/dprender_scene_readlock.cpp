@@ -28,6 +28,12 @@ namespace dp
         return this->p->hasScene( scn );
     }
 
+    //returns true if scene is ready
+    bool dprender_scene_readlock::isReady( void )
+    {
+        return this->p->isReady();
+    }
+
 }
 
 

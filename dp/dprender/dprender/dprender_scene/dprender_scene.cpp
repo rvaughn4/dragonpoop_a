@@ -211,10 +211,16 @@ namespace dp
         return 1;
     }
 
-    //purge tasks and all api stuff so that api can be deleted
-    void dprender_scene::purgeAll( void )
+    //returns true if scene is ready
+    bool dprender_scene::isReady( void )
     {
-        this->deleteTasksAndContexts();
+        dprender_scene_task *t;
+
+        t = &this->tasks.tskname.gui_task;
+        if( !t->pnext->b )
+            return 0;
+
+        return 1;
     }
 
     //stop tasks, or return zero if task not stopped

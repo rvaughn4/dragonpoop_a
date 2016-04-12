@@ -33,6 +33,8 @@ namespace dp
         dprender_scene_readlock( dprender_scene *p, dpmutex_readlock *ml );
         //returns true if belongs to scene
         bool hasScene( dpscene *scn );
+        //returns true if scene is ready
+        bool isReady( void );
 
     };
 

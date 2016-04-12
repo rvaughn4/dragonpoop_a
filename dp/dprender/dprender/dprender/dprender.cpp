@@ -219,7 +219,8 @@ namespace dp
     //override to do task shutdown
     bool dprender::onTaskStop( dptask_writelock *tl )
     {
-        this->stopScenes();
+        if( !this->stopScenes() )
+            return 0;
 
         if( !dptask::stopAndDelete( (dptask **)&this->frametask ) )
             return 0;
@@ -400,14 +401,16 @@ namespace dp
     }
 
     //stop scenes
-    void dprender::stopScenes( void )
+    bool dprender::stopScenes( void )
     {
         unsigned int i;
         dprender_scene *p;
         dprender_scene_writelock *pl;
         dpshared_guard g;
         dprender_frame_thread_writelock *tl;
+        bool r;
 
+        r = 0;
         for( i = 0; i < dprender_max_scenes; i++ )
         {
             p = this->scenes[ i ];
@@ -422,10 +425,13 @@ namespace dp
             pl = (dprender_scene_writelock *)dpshared_guard_tryWriteLock_timeout( g, p, 10 );
             if( !pl )
                 continue;
+            r |= pl->isRun();
             pl->stop();
 
             g.release( pl );
         }
+
+        return !r;
     }
 
     //delete scenes

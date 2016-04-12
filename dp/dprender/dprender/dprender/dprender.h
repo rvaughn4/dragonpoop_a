@@ -50,7 +50,7 @@ namespace dp
         //remove old scenes
         void removeOldScenes( void );
         //stop scenes
-        void stopScenes( void );
+        bool stopScenes( void );
         //delete scenes
         void deleteScenes( void );
         //zero scenes
