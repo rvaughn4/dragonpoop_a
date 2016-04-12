@@ -25,7 +25,7 @@ namespace dp
         dpshared::dpshared( void )
         {
             this->m = new dpmutex();
-            this->rsync = 0;
+            this->zeroSyncs();
 
             std::shared_ptr<std::atomic<uint64_t>> tt( new std::atomic<uint64_t>() );
             this->t_sync = tt;
@@ -48,8 +48,7 @@ namespace dp
         {
             delete this->m;
             ( *this->k ).unlink();
-            if( this->rsync )
-                delete this->rsync;
+            this->deleteSyncs();
         }
 
         //generate readlock
@@ -411,71 +410,112 @@ namespace dp
         //set shared object to sync by
         void dpshared::setSync( dpshared *psync )
         {
-            dpshared_readlock *l;
-
-            l = dpshared_tryReadLock_timeout( psync, 3000 );
-            if( !l )
-                return;
-
-            this->setSync( l );
-
-            delete l;
+            this->addSync( psync->getRef() );
         }
 
         //set shared object to sync by
         void dpshared::setSync( dpshared_ref *psync )
         {
-            dpshared_readlock *l;
-
-            l = dpshared_tryReadLock_timeout( psync, 3000 );
-            if( !l )
-                return;
-
-            this->setSync( l );
-
-            delete l;
+            this->addSync( psync->getRef() );
         }
 
         //set shared object to sync by
         void dpshared::setSync( dpshared_readlock *psync )
         {
-            if( this->rsync )
-                delete this->rsync;
-
-            this->rsync = psync->getRef();
+            this->addSync( psync->getRef() );
         }
 
         //set shared object to sync by
         void dpshared::setSync( dpshared_writelock *psync )
         {
-            if( this->rsync )
-                delete this->rsync;
+            this->addSync( psync->getRef() );
+        }
 
-            this->rsync = psync->getRef();
+        //zero sync
+        void dpshared::zeroSyncs( void )
+        {
+            unsigned int i;
+            dpshared_sync *p;
+
+            for( i = 0; i < dpshared_max_sync; i++ )
+            {
+                p = &this->rsync[ i ];
+                p->p = 0;
+                p->t = 0;
+            }
+        }
+
+        //delete syncs
+        void dpshared::deleteSyncs( void )
+        {
+            unsigned int i;
+            dpshared_sync *p;
+
+            for( i = 0; i < dpshared_max_sync; i++ )
+            {
+                p = &this->rsync[ i ];
+                if( !p->p )
+                    continue;
+                delete p->p;
+            }
+
+            this->zeroSyncs();
+        }
+
+        //add sync
+        void dpshared::addSync( dpshared_ref *r )
+        {
+            unsigned int i;
+            dpshared_sync *p;
+
+            for( i = 0; i < dpshared_max_sync; i++ )
+            {
+                p = &this->rsync[ i ];
+                if( p->p )
+                    continue;
+                p->p = r;
+                p->t = 0;
+                return;
+            }
+
+            delete r;
+        }
+
+        //sync with shared object
+        void dpshared::sync( dpshared_sync *r )
+        {
+            dpshared_readlock *l;
+            uint64_t tr, tt;
+
+            if( !r->p )
+                return;
+
+            tt = r->t;
+            tr = *( r->p->t_sync.get() );
+            if( tt == tr )
+                return;
+
+            l = dpshared_tryReadLock_timeout( r->p, 30 );
+            if( !l )
+                return;
+
+            this->onSync( l );
+            r->t = tr;
+
+            delete l;
         }
 
         //sync with shared object stored inside if internal time mismatched
         void dpshared::sync( void )
         {
-            dpshared_readlock *l;
-            uint64_t tr, tt;
+            unsigned int i;
+            dpshared_sync *p;
 
-            if( !this->rsync )
-                return;
-
-            tt = *( this->t_sync.get() );
-            tr = *( this->rsync->t_sync.get() );
-            if( tt == tr )
-                return;
-
-            l = dpshared_tryReadLock_timeout( this->rsync, 30 );
-            if( !l )
-                return;
-
-            this->onSync( l );
-            *( this->t_sync.get() ) = tr;
-
-            delete l;
+            for( i = 0; i < dpshared_max_sync; i++ )
+            {
+                p = &this->rsync[ i ];
+                this->sync( p );
+            }
         }
 
         //update internal time to cause objects to sync

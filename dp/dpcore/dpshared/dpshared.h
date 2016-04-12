@@ -22,6 +22,13 @@ namespace dp
     class dpmutex;
     class dpmutex_readlock;
     class dpmutex_writelock;
+    #define dpshared_max_sync 32
+
+    struct dpshared_sync
+    {
+        dpshared_ref *p;
+        uint64_t t;
+    };
 
     class dpshared
     {
@@ -29,7 +36,7 @@ namespace dp
     private:
 
         dpmutex *m;
-        dpshared_ref *rsync;
+        dpshared_sync rsync[ dpshared_max_sync ];
         std::shared_ptr< std::atomic<uint64_t> > t_sync;
         std::shared_ptr<dpshared_ref_kernel> k;
 #ifdef dpshared_debug
@@ -39,6 +46,15 @@ namespace dp
         unsigned int line_macro;
         const char *cfunc_macro;
 #endif
+
+        //zero sync
+        void zeroSyncs( void );
+        //delete syncs
+        void deleteSyncs( void );
+        //add sync
+        void addSync( dpshared_ref *r );
+        //sync with shared object
+        void sync( dpshared_sync *r );
 
     protected:
 

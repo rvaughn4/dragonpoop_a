@@ -370,7 +370,7 @@ namespace dp
         dprender_scene *p;
         dprender_scene_writelock *pl;
         dpshared_guard g;
-        dprender_frame_thread_writelock *tl;
+//        dprender_frame_thread_writelock *tl;
 
         for( i = 0; i < dprender_max_scenes; i++ )
         {

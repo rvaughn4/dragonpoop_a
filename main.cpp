@@ -36,10 +36,7 @@ int main()
     gfl->addScene( &scn );
     g.release( gfl );
 
-    std::this_thread::sleep_for( std::chrono::milliseconds( 2000 ) );
-
-
-    std::this_thread::sleep_for( std::chrono::milliseconds( 4000 ) );
+    std::this_thread::sleep_for( std::chrono::milliseconds( 6000 ) );
 
     delete gf;
     delete tmgr;

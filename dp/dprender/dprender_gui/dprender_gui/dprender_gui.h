@@ -73,6 +73,8 @@ namespace dp
         virtual void passContext( dpapi_context_writelock *ctx );
         //render
         virtual void render( dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll );
+        //make matrix
+        virtual void calcMatrix( dpmatrix *mparent );
 
     public:
 

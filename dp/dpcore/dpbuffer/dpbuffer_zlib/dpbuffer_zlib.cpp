@@ -92,7 +92,7 @@ namespace dp
         int r;
         static unsigned int b_max = 60000;
         char b_out[ b_max ], *pb, *b_in;
-        unsigned int i, sz, szi, j, z;
+        unsigned int i, sz, szi;
 
         pb = src->getBuffer();
         sz = src->getWriteByteCursor();

@@ -175,9 +175,17 @@ namespace dp
     void dprender_gui::render( dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
     {
 //        dpmatrix m;
+        if( !this->bdle_bg || !this->bdle_fg )
+            return;
 
         cll->addBundle( ctx, this->bdle_bg );
         cll->addBundle( ctx, this->bdle_fg );
+    }
+
+    //make matrix
+    void dprender_gui::calcMatrix( dpmatrix *mparent )
+    {
+
     }
 
     //make bg texture, return false if not remade/up-to-date
