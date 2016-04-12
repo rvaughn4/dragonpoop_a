@@ -18,7 +18,7 @@
 1454887924 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpspinlock.h
 	<atomic>
 
-1460433900 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
+1460497901 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/main.cpp
 	"dp/dpcore/dptaskmgr/dptaskmgr.h"
 	"dp/dpcore/dptaskmgr/dptaskmgr_writelock.h"
 	"dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h"
@@ -306,7 +306,7 @@
 	"dptaskmgr_writelock.h"
 	"dptaskmgr.h"
 
-1460340160 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx.cpp
+1460497782 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx.cpp
 	"dpgfx.h"
 	"dpgfx_ref.h"
 	"dpgfx_readlock.h"
@@ -315,9 +315,10 @@
 	"../dpscene/dpscene_writelock.h"
 	"../../dprender/dprender/dprender/dprender.h"
 	"../../dprender/dprender/dprender/dprender_writelock.h"
+	"../../dprender/dprender/dprender/dprender_readlock.h"
 	"../../dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h"
 
-1460334952 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx.h
+1460497720 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx.h
 	"../../dpcore/dptask/dptask.h"
 
 1456665091 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgfx/dpgfx_ref.h
@@ -755,7 +756,7 @@
 
 1457346334 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command.h
 
-1460470005 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender.cpp
+1460500315 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender.cpp
 	"dprender.h"
 	"dprender_ref.h"
 	"dprender_readlock.h"
@@ -1932,7 +1933,7 @@
 	"dpgui_list_writelock.h"
 	"../dpgui/dpgui.h"
 
-1460433830 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui.cpp
+1460505168 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui.cpp
 	"dprender_gui.h"
 	"dprender_gui_ref.h"
 	"dprender_gui_readlock.h"

@@ -36,7 +36,16 @@ int main()
     gfl->addScene( &scn );
     g.release( gfl );
 
-    std::this_thread::sleep_for( std::chrono::milliseconds( 6000 ) );
+    bool b = 1;
+    while( b )
+    {
+        std::this_thread::sleep_for( std::chrono::milliseconds( 1000 ) );
+        gfl = (dp::dpgfx_writelock *)dpshared_guard_tryWriteLock_timeout( g, gf, 10 );
+        if( !gfl )
+            continue;
+        b &= gfl->isRun();
+        g.release( gfl );
+    }
 
     delete gf;
     delete tmgr;

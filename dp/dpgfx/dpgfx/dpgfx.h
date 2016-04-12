@@ -22,6 +22,7 @@ namespace dp
 
         dpscene *scenes[ dpgfx_max_scenes ];
         dprender *renderer;
+        bool bd;
 
         //zero scenes
         void zeroScenes( void );

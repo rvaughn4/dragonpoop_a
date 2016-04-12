@@ -11,6 +11,7 @@ gpgfx manages models and gui elements and scenes
 #include "../dpscene/dpscene_writelock.h"
 #include "../../dprender/dprender/dprender/dprender.h"
 #include "../../dprender/dprender/dprender/dprender_writelock.h"
+#include "../../dprender/dprender/dprender/dprender_readlock.h"
 
 #include "../../dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h"
 
@@ -22,6 +23,7 @@ namespace dp
     {
         this->zeroScenes();
         this->renderer = 0;
+        this->bd = 0;
     }
 
     //dtor
@@ -55,8 +57,23 @@ namespace dp
     //override to do task execution
     bool dpgfx::onTaskRun( dptask_writelock *tl )
     {
+        dprender_readlock *rl;
+        dpshared_guard g;
+
         if( !this->renderer )
             this->initAnyRenderer();
+
+        rl = (dprender_readlock *)dpshared_guard_tryReadLock_timeout( g, this->renderer, 10 );
+        if( rl )
+        {
+            if( !rl->isRun() )
+            {
+                if( this->bd )
+                    this->stop();
+            }
+            else
+                this->bd = 1;
+        }
 
         return 1;
     }

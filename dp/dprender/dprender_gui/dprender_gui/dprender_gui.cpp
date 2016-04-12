@@ -201,6 +201,7 @@ namespace dp
 
         bm = g->getBg();
         this->t_bg = ctx->makeTexture( bm );
+        this->bg_time = g->getBgTime();
         return 1;
     }
 
@@ -217,6 +218,7 @@ namespace dp
 
         bm = g->getFg();
         this->t_fg = ctx->makeTexture( bm );
+        this->fg_time = g->getFgTime();
         return 1;
     }
 

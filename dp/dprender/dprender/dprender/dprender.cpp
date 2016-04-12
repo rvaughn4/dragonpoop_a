@@ -108,7 +108,10 @@ namespace dp
         {
             apil->run();
             if( !apil->isOpen() )
-                return 0;
+            {
+                this->stop();
+                return 1;
+            }
             g.release( apil );
         }
 
@@ -239,9 +242,9 @@ namespace dp
             delete this->frame_ctx;
         this->frame_ctx = 0;
 
-        if( this->api )
-            delete this->api;
-        this->api = 0;
+//        if( this->api )
+  //          delete this->api;
+    //    this->api = 0;
 
 #if defined dprender_debug
         std::cout << "Render Main: Stopped.\r\n";
