@@ -15,6 +15,7 @@ namespace dp
     class dpapi_commandlist;
     class dpapi_context_writelock;
     class dpapi_bundle;
+    class dpmatrix;
 
     class dpapi_commandlist_writelock : public dpshared_writelock
     {
@@ -39,7 +40,7 @@ namespace dp
         //execute list
         bool execute( dpapi_context_writelock *ctx );
         //add bundle to commandlist
-        bool addBundle( dpapi_context_writelock *ctx, dpapi_bundle *bdle );
+        bool addBundle( dpapi_context_writelock *ctx, dpmatrix *mx, dpapi_bundle *bdle );
 
     };
 

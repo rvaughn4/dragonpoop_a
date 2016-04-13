@@ -62,6 +62,12 @@ namespace dp
         return this->p->getFgTime();
     }
 
+    //return size time
+    unsigned int dpgui_readlock::getSzTime( void )
+    {
+        return this->p->getSzTime();
+    }
+
 }
 
 

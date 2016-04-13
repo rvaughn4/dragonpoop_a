@@ -40,9 +40,9 @@ namespace dp
         //generate vertex buffer
         virtual dpapi_indexbuffer *makeIndexBuffer( dpapi_context_writelock *l, dpindexbuffer *vb );
         //generate bundle
-        virtual dpapi_bundle *makeBundle( dpapi_context_writelock *ctx, dpapi_vertexbuffer *vb, dpapi_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1 );
+        virtual dpapi_bundle *makeBundle( dpapi_context_writelock *ctx, dpmatrix *mx, dpapi_vertexbuffer *vb, dpapi_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1 );
         //generate bundle
-        virtual dpapi_bundle *makeBundle( dpapi_context_writelock *ctx, dpapi_bundle *bdle );
+        virtual dpapi_bundle *makeBundle( dpapi_context_writelock *ctx, dpmatrix *mx, dpapi_bundle *bdle );
         //generate texture
         virtual dpapi_texture *makeTexture( dpapi_context_writelock *l, dpbitmap *bm );
 

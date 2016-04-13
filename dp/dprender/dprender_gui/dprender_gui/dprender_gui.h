@@ -28,7 +28,7 @@ namespace dp
     private:
 
         dpbitmap_rectangle rc;
-        unsigned int z, bg_time, fg_time;
+        unsigned int z, bg_time, fg_time, sz_time;
         dpapi_context_writelock *ctx;
         dpapi_texture *t_bg, *t_fg;
         dpapi_vertexbuffer *vb;
@@ -37,7 +37,7 @@ namespace dp
         dpmatrix mat, undo_mat;
 
         //create vertex buffer
-        void makeVB( dpapi_context_writelock *ctx );
+        bool makeVB( dpapi_context_writelock *ctx, dpgui_readlock *g );
         //create bg index buffer
         void makeBgIB( dpapi_context_writelock *ctx );
         //create fg index buffer

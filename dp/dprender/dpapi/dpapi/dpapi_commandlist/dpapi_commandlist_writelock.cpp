@@ -41,9 +41,9 @@ namespace dp
     }
 
     //add bundle to commandlist
-    bool dpapi_commandlist_writelock::addBundle( dpapi_context_writelock *ctx, dpapi_bundle *bdle )
+    bool dpapi_commandlist_writelock::addBundle( dpapi_context_writelock *ctx, dpmatrix *mx, dpapi_bundle *bdle )
     {
-        return this->p->addBundle( ctx, this, bdle );
+        return this->p->addBundle( ctx, this, mx, bdle );
     }
 
 }

@@ -13,9 +13,9 @@ namespace dp
 {
 
     //ctor
-    dpapi_commandlist_command_bundle::dpapi_commandlist_command_bundle( dpapi_commandlist_writelock *p, dpapi_context_writelock *ctxl, dpapi_bundle *bdle ) : dpapi_commandlist_command( p, ctxl )
+    dpapi_commandlist_command_bundle::dpapi_commandlist_command_bundle( dpapi_commandlist_writelock *p, dpapi_context_writelock *ctxl, dpmatrix *mx, dpapi_bundle *bdle ) : dpapi_commandlist_command( p, ctxl )
     {
-        this->bdle = ctxl->makeBundle( bdle );
+        this->bdle = ctxl->makeBundle( mx, bdle );
     }
 
     //dtor

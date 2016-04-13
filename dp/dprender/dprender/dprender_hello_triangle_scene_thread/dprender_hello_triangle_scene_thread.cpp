@@ -75,7 +75,7 @@ namespace dp
 
         this->ib = ctx->makeIndexBuffer( &ib );
         this->vb = ctx->makeVertexBuffer( &vb );
-        this->bdle = ctx->makeBundle( this->vb, this->ib, 0, 0, 0 );
+        this->bdle = ctx->makeBundle( 0, this->vb, this->ib, 0, 0, 0 );
 
         return 1;
     }
@@ -92,7 +92,7 @@ namespace dp
     //override to handle scene render
     bool dprender_hello_triangle_scene_thread::onSceneRender( dprender_scene_thread_writelock *l, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
     {
-        cll->addBundle( ctx, this->bdle );
+        cll->addBundle( ctx, 0, this->bdle );
         return 1;
     }
 

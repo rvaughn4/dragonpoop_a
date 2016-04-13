@@ -25,7 +25,7 @@ namespace dp
 
         this->bm_bg = 0;
         this->bm_fg = 0;
-        this->bg_time = this->fg_time = 0;
+        this->sz_time = this->bg_time = this->fg_time = 0;
 
         this->setText( ctxt );
     }
@@ -187,6 +187,7 @@ namespace dp
     {
         this->rc.w = w;
         this->rc.h = h;
+        this->sz_time++;
         this->update();
     }
 
@@ -288,6 +289,12 @@ namespace dp
     unsigned int dpgui::getFgTime( void )
     {
         return this->fg_time;
+    }
+
+    //return size time
+    unsigned int dpgui::getSzTime( void )
+    {
+        return this->sz_time;
     }
 
 }

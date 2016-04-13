@@ -12,13 +12,13 @@ namespace dp
 {
 
     //ctor
-    dpapi_bundle::dpapi_bundle( dpapi_context_writelock *ctx, dpapi_vertexbuffer *vb, dpapi_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1 )
+    dpapi_bundle::dpapi_bundle( dpapi_context_writelock *ctx, dpmatrix *mx, dpapi_vertexbuffer *vb, dpapi_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1 )
     {
 
     }
 
     //ctor
-    dpapi_bundle::dpapi_bundle( dpapi_context_writelock *ctx, dpapi_bundle *bdle )
+    dpapi_bundle::dpapi_bundle( dpapi_context_writelock *ctx, dpmatrix *mx, dpapi_bundle *bdle )
     {
 
     }

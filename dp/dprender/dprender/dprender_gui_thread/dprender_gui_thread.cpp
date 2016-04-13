@@ -13,15 +13,12 @@
 #include "../../dpapi/dpapi/dpapi_commandlist/dpapi_commandlist.h"
 #include "../../dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_writelock.h"
 #include "../dprender/dprender.h"
-
 #include "../../../dpgfx/dpscene/dpscene_readlock.h"
 #include "../../../dpgfx/dpscene/dpscene_ref.h"
-
-#include "../../../dpdefines.h"
-
 #include "../../dprender_gui/dprender_gui/dprender_gui.h"
 #include "../../dprender_gui/dprender_gui/dprender_gui_writelock.h"
-
+#include "../../../dpdefines.h"
+#include <math.h>
 
 namespace dp
 {
@@ -125,13 +122,38 @@ namespace dp
         l = (dprender_gui_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->root_gui, 30 );
         if( !l )
             return;
-        l->render( 0, ctx, cll );
+        this->calcMatrix();
+        l->render( &this->mat, ctx, cll );
     }
 
     //compute matrix
     void dprender_gui_thread::calcMatrix( void )
     {
+        float sw, sh, rw, rh, r, dw, dh, ss, w, h;
 
+        w = this->w;
+        h = this->h;
+        sw = 1920.0f;
+        sh = 1080.0f;
+
+        ss = sw * sw + sh * sh;
+        ss = sqrtf( ss );
+
+        rw = sw / w;
+        rh = sh / h;
+
+        r = rw;
+        if( r < rh )
+            r = rh;
+        w = w * r;
+        h = h * r;
+        dw = w - sw;
+        dh = h - sh;
+        dw *= 0.5f;
+        dh *= 0.5f;
+
+        this->mat.setOrtho( -dw, sh + dh, 0.0f, sw + dw, -dh, ss );
+        this->undo_mat.inverse( &this->mat );
     }
 
 }

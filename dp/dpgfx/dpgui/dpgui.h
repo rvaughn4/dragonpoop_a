@@ -23,7 +23,7 @@ namespace dp
         dpbitmap_rectangle rc;
         dpbitmap_32bit_uncompressed *bm_bg, *bm_fg;
         bool bBgDrawn, bFgDrawn;
-        unsigned int z, bg_time, fg_time;
+        unsigned int z, bg_time, fg_time, sz_time;
         std::string stxt;
 
     protected:
@@ -84,6 +84,8 @@ namespace dp
         unsigned int getBgTime( void );
         //return fg time
         unsigned int getFgTime( void );
+        //return size time
+        unsigned int getSzTime( void );
 
     public:
 

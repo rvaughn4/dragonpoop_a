@@ -17,7 +17,7 @@ namespace dp
 {
 
     //ctor
-    dpapi_opengl1o5_bundle::dpapi_opengl1o5_bundle( dpapi_opengl1o5_context_writelock *ctx, dpapi_opengl1o5_vertexbuffer *vb, dpapi_opengl1o5_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1, opengl1o5_lib_functions *gl ) : dpapi_bundle( ctx, vb, ib, m, t0, t1 )
+    dpapi_opengl1o5_bundle::dpapi_opengl1o5_bundle( dpapi_opengl1o5_context_writelock *ctx, dpmatrix *mx, dpapi_opengl1o5_vertexbuffer *vb, dpapi_opengl1o5_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1, opengl1o5_lib_functions *gl ) : dpapi_bundle( ctx, mx, vb, ib, m, t0, t1 )
     {
         dpshared_guard g;
         dpapi_opengl1o5_vertexbuffer_writelock *vbl;
@@ -30,6 +30,8 @@ namespace dp
         this->ibo = 0;
         this->t0 = 0;
         this->t1 = 0;
+        if( mx )
+            this->m.copy( mx );
 
         vbl = (dpapi_opengl1o5_vertexbuffer_writelock *)dpshared_guard_tryWriteLock_timeout( g, vb, 1000 );
         if( vbl )
@@ -55,7 +57,7 @@ namespace dp
     }
 
     //ctor
-    dpapi_opengl1o5_bundle::dpapi_opengl1o5_bundle( dpapi_opengl1o5_context_writelock *ctx, dpapi_opengl1o5_bundle *bdle ) : dpapi_bundle( ctx, bdle )
+    dpapi_opengl1o5_bundle::dpapi_opengl1o5_bundle( dpapi_opengl1o5_context_writelock *ctx, dpmatrix *mx, dpapi_opengl1o5_bundle *bdle ) : dpapi_bundle( ctx, mx, bdle )
     {
         this->gl = bdle->gl;
         this->vb.copy( &bdle->vb );
@@ -65,6 +67,8 @@ namespace dp
         this->cnt = bdle->cnt;
         this->t0 = bdle->t0;
         this->t1 = bdle->t1;
+        if( mx )
+            this->m.copy( mx );
     }
 
     //dtor
@@ -91,6 +95,10 @@ namespace dp
         i = (dpindex *)this->ib.getBuffer();
 
         c->makeActive();
+
+        this->gl->glPushMatrix();
+        this->gl->glMultMatrixf( this->m.getRaw4by4() );
+
         this->gl->glEnableClientState( opengl1o5_lib_NORMAL_ARRAY );
         this->gl->glEnableClientState( opengl1o5_lib_TEXTURE_COORD_ARRAY );
         this->gl->glEnableClientState( opengl1o5_lib_VERTEX_ARRAY );
@@ -128,6 +136,8 @@ namespace dp
             this->gl->glBindBuffer( opengl1o5_lib_ARRAY_BUFFER, 0 );
             this->gl->glBindBuffer( opengl1o5_lib_ELEMENT_ARRAY_BUFFER, 0 );
         }
+
+        this->gl->glPopMatrix();
 
         return 1;
     }

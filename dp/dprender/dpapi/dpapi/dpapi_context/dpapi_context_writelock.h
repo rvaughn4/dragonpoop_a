@@ -28,6 +28,7 @@ namespace dp
     class dpindexbuffer;
     class dpapi_texture;
     class dpbitmap;
+    class dpmatrix;
 
     class dpapi_context_writelock : public dpshared_writelock
     {
@@ -54,9 +55,9 @@ namespace dp
         //generate vertex buffer
         dpapi_vertexbuffer *makeVertexBuffer( dpvertexbuffer *vb );
         //generate bundle
-        dpapi_bundle *makeBundle( dpapi_vertexbuffer *vb, dpapi_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1 );
+        dpapi_bundle *makeBundle( dpmatrix *mx, dpapi_vertexbuffer *vb, dpapi_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1 );
         //generate bundle
-        dpapi_bundle *makeBundle( dpapi_bundle *bdle );
+        dpapi_bundle *makeBundle( dpmatrix *mx, dpapi_bundle *bdle );
         //generate index buffer
         dpapi_indexbuffer *makeIndexBuffer( dpindexbuffer *ib );
         //generate texture

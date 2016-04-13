@@ -12,6 +12,7 @@ namespace dp
 {
 
     class dpapi_bundle;
+    class dpmatrix;
 
     class dpapi_commandlist_command_bundle : public dpapi_commandlist_command
     {
@@ -28,7 +29,7 @@ namespace dp
     public:
 
         //ctor
-        dpapi_commandlist_command_bundle( dpapi_commandlist_writelock *p, dpapi_context_writelock *ctxl, dpapi_bundle *bdle );
+        dpapi_commandlist_command_bundle( dpapi_commandlist_writelock *p, dpapi_context_writelock *ctxl, dpmatrix *mx, dpapi_bundle *bdle );
         //dtor
         virtual ~dpapi_commandlist_command_bundle( void );
         //compile command

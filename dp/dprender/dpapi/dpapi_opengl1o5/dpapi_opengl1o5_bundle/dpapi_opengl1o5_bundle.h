@@ -10,6 +10,7 @@
 #include "../../../../dpgfx/dpvertex/dpvertexbuffer.h"
 #include "../../../../dpgfx/dpvertex/dpindexbuffer.h"
 #include "../dpapi_opengl1o5/dpapi_opengl1o5_functions.h"
+#include "../../../../dpgfx/dpmatrix/dpmatrix.h"
 
 namespace dp
 {
@@ -31,6 +32,7 @@ namespace dp
         dpindexbuffer ib;
         opengl1o5_lib_functions *gl;
         unsigned int vbo, ibo, cnt, t1, t0;
+        dpmatrix m;
 
     protected:
 
@@ -42,9 +44,9 @@ namespace dp
     public:
 
         //ctor
-        dpapi_opengl1o5_bundle( dpapi_opengl1o5_context_writelock *ctx, dpapi_opengl1o5_vertexbuffer *vb, dpapi_opengl1o5_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1, opengl1o5_lib_functions *gl );
+        dpapi_opengl1o5_bundle( dpapi_opengl1o5_context_writelock *ctx, dpmatrix *mx, dpapi_opengl1o5_vertexbuffer *vb, dpapi_opengl1o5_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1, opengl1o5_lib_functions *gl );
         //ctor
-        dpapi_opengl1o5_bundle( dpapi_opengl1o5_context_writelock *ctx, dpapi_opengl1o5_bundle *bdle );
+        dpapi_opengl1o5_bundle( dpapi_opengl1o5_context_writelock *ctx, dpmatrix *mx, dpapi_opengl1o5_bundle *bdle );
         //dtor
         virtual ~dpapi_opengl1o5_bundle( void );
 

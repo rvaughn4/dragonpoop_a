@@ -43,6 +43,8 @@ namespace dp
         unsigned int getBgTime( void );
         //return fg time
         unsigned int getFgTime( void );
+        //return size time
+        unsigned int getSzTime( void );
 
     };
 

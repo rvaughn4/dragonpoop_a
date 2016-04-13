@@ -139,17 +139,17 @@ namespace dp
     }
 
     //override to generate bundle command
-    dpapi_commandlist_command *dpapi_commandlist::genBundleCommand( dpapi_context_writelock *ctx, dpapi_commandlist_writelock *wl, dpapi_bundle *bdle )
+    dpapi_commandlist_command *dpapi_commandlist::genBundleCommand( dpapi_context_writelock *ctx, dpapi_commandlist_writelock *wl, dpmatrix *mx, dpapi_bundle *bdle )
     {
-        return new dpapi_commandlist_command_bundle( wl, ctx, bdle );
+        return new dpapi_commandlist_command_bundle( wl, ctx, mx, bdle );
     }
 
     //add bundle to commandlist
-    bool dpapi_commandlist::addBundle( dpapi_context_writelock *ctx, dpapi_commandlist_writelock *wl, dpapi_bundle *bdle )
+    bool dpapi_commandlist::addBundle( dpapi_context_writelock *ctx, dpapi_commandlist_writelock *wl, dpmatrix *mx, dpapi_bundle *bdle )
     {
         dpapi_commandlist_command *nc;
 
-        nc = this->genBundleCommand( ctx, wl, bdle );
+        nc = this->genBundleCommand( ctx, wl, mx, bdle );
         if( !nc )
             return 0;
 

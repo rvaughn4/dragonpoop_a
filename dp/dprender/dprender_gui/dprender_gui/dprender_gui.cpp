@@ -128,7 +128,7 @@ namespace dp
         gr->getPosition( &this->rc.x, &this->rc.y );
         this->z = gr->getZ();
 
-        this->makeVB( this->ctx );
+        this->makeVB( this->ctx, gr );
         this->makeBgIB( this->ctx );
         this->makeFgIB( this->ctx );
 
@@ -136,14 +136,14 @@ namespace dp
         {
             if( this->bdle_bg )
                 delete this->bdle_bg;
-            this->bdle_bg = ctx->makeBundle( this->vb, this->ib_bg, 0, this->t_bg, 0 );
+            this->bdle_bg = ctx->makeBundle( &this->mat, this->vb, this->ib_bg, 0, this->t_bg, 0 );
         }
 
         if( this->makeFgTex( this->ctx, gr ) || !this->bdle_fg )
         {
             if( this->bdle_fg )
                 delete this->bdle_fg;
-            this->bdle_fg = ctx->makeBundle( this->vb, this->ib_fg, 0, this->t_fg, 0 );
+            this->bdle_fg = ctx->makeBundle( &this->mat, this->vb, this->ib_fg, 0, this->t_fg, 0 );
         }
     }
 
@@ -177,15 +177,24 @@ namespace dp
 //        dpmatrix m;
         if( !this->bdle_bg || !this->bdle_fg )
             return;
+        this->calcMatrix( m_parent );
 
-        cll->addBundle( ctx, this->bdle_bg );
-        cll->addBundle( ctx, this->bdle_fg );
+        cll->addBundle( ctx, &this->mat, this->bdle_bg );
+        cll->addBundle( ctx, &this->mat, this->bdle_fg );
     }
 
     //make matrix
     void dprender_gui::calcMatrix( dpmatrix *mparent )
     {
+        float z;
 
+        if( mparent )
+            this->mat.copy( mparent );
+        else
+            this->mat.setIdentity();
+
+        z = (float)this->z / -8.0f;
+        this->mat.translate( this->rc.x, this->rc.y, z );
     }
 
     //make bg texture, return false if not remade/up-to-date
@@ -223,52 +232,62 @@ namespace dp
     }
 
     //create vertex buffer
-    void dprender_gui::makeVB( dpapi_context_writelock *ctx )
+    bool dprender_gui::makeVB( dpapi_context_writelock *ctx, dpgui_readlock *g )
     {
         dpvertexbuffer vb;
         dpvertex v;
+        float w, h;
+
+        if( this->vb && g->getSzTime() == this->sz_time )
+            return 0;
 
         if( this->vb )
-            return;
+            delete this->vb;
 
-        v.vert.z = -1;
+        w = (float)this->rc.w;
+        h = (float)this->rc.h;
+
+        v.vert.z = 0;
         v.norm.x = 0;
         v.norm.y = 0;
         v.norm.z = 1;
 
         //tl
-        v.vert.x = -1;
-        v.vert.y = 1;
+        v.vert.x = 0;
+        v.vert.y = 0;
         v.texcoord[ 0 ].s = 0;
         v.texcoord[ 0 ].t = 1;
         v.texcoord[ 1 ] = v.texcoord[ 0 ];
         vb.write( &v );
 
         //tr
-        v.vert.x = 1;
-        v.vert.y = 1;
+        v.vert.x = w;
+        v.vert.y = 0;
         v.texcoord[ 0 ].s = 1;
         v.texcoord[ 0 ].t = 1;
         v.texcoord[ 1 ] = v.texcoord[ 0 ];
         vb.write( &v );
 
         //bl
-        v.vert.x = -1;
-        v.vert.y = -1;
+        v.vert.x = 0;
+        v.vert.y = h;
         v.texcoord[ 0 ].s = 0;
         v.texcoord[ 0 ].t = 0;
         v.texcoord[ 1 ] = v.texcoord[ 0 ];
         vb.write( &v );
 
         //br
-        v.vert.x = 1;
-        v.vert.y = -1;
+        v.vert.x = w;
+        v.vert.y = h;
         v.texcoord[ 0 ].s = 1;
         v.texcoord[ 0 ].t = 0;
         v.texcoord[ 1 ] = v.texcoord[ 0 ];
         vb.write( &v );
 
         this->vb = ctx->makeVertexBuffer( &vb );
+        this->sz_time = g->getSzTime();
+
+        return 1;
     }
 
     //create bg index buffer
