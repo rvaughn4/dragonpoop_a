@@ -28,6 +28,18 @@ namespace dp
         return this->p->isOpen();
     }
 
+    //return width
+    unsigned int dpwindow_writelock::getWidth( void )
+    {
+        return this->p->getWidth();
+    }
+
+    //return height
+    unsigned int dpwindow_writelock::getHeight( void )
+    {
+        return this->p->getHeight();
+    }
+
 }
 
 

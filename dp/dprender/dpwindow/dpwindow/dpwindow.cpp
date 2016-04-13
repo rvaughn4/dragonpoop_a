@@ -72,6 +72,18 @@ namespace dp
         return 1;
     }
 
+    //return width
+    unsigned int dpwindow::getWidth( void )
+    {
+        return 0;
+    }
+
+    //return height
+    unsigned int dpwindow::getHeight( void )
+    {
+        return 0;
+    }
+
 }
 
 

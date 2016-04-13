@@ -27,6 +27,7 @@ namespace dp
         dpwindow *w;
         dpwindow_factory *wf;
         bool bIsStarted, bIsOpen;
+        unsigned int width, height;
 
     protected:
 
@@ -54,6 +55,8 @@ namespace dp
         virtual void onFrameEnd( void );
         //override to handle start of frame
         virtual void onFrameStart( void );
+        //get dimensions
+        virtual void getDimensions( unsigned int **w, unsigned int **h );
 
     public:
 

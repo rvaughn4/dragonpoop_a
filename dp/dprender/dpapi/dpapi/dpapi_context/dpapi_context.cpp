@@ -14,6 +14,7 @@
 #include "../dpapi_bundle/dpapi_bundle.h"
 #include "../dpapi_indexbuffer/dpapi_indexbuffer.h"
 #include "../dpapi_texture/dpapi_texture.h"
+#include "../dpapi/dpapi_writelock.h"
 
 namespace dp
 {
@@ -21,7 +22,8 @@ namespace dp
     //ctor
     dpapi_context::dpapi_context( dpapi_writelock *awl ) : dpshared()
     {
-
+        this->w = this->h = (unsigned int *)this;
+        awl->getDimensions( &this->w, &this->h );
     }
 
     //dtor
@@ -94,6 +96,18 @@ namespace dp
     dpapi_texture *dpapi_context::makeTexture( dpapi_context_writelock *l, dpbitmap *bm )
     {
         return new dpapi_texture( l, bm );
+    }
+
+    //return screen width
+    unsigned int dpapi_context::getWidth( void )
+    {
+        return *this->w;
+    }
+
+    //return screen height
+    unsigned int dpapi_context::getHeight( void )
+    {
+        return *this->h;
     }
 
 }

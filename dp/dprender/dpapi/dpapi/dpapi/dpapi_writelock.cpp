@@ -34,6 +34,12 @@ namespace dp
         return this->p->makeContext( this );
     }
 
+    //get dimensions
+    void dpapi_writelock::getDimensions( unsigned int **w, unsigned int **h )
+    {
+        this->p->getDimensions( w, h );
+    }
+
 }
 
 

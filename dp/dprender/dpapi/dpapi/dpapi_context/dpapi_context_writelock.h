@@ -61,6 +61,10 @@ namespace dp
         dpapi_indexbuffer *makeIndexBuffer( dpindexbuffer *ib );
         //generate texture
         dpapi_texture *makeTexture( dpbitmap *bm );
+        //return screen width
+        unsigned int getWidth( void );
+        //return screen height
+        unsigned int getHeight( void );
 
     };
 

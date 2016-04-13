@@ -44,6 +44,8 @@ namespace dp
     //override to handle scene start
     bool dprender_gui_thread::onSceneStart( dprender_scene_thread_writelock *l, dpapi_context_writelock *ctx )
     {
+        this->w = ctx->getWidth();
+        this->h = ctx->getHeight();
         this->syncGui();
         return 1;
     }
@@ -58,6 +60,8 @@ namespace dp
     //override to handle scene render
     bool dprender_gui_thread::onSceneRender( dprender_scene_thread_writelock *l, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
     {
+        this->w = ctx->getWidth();
+        this->h = ctx->getHeight();
         this->syncGui();
         this->runGui( ctx );
         this->renderGui( ctx, cll );
@@ -122,6 +126,12 @@ namespace dp
         if( !l )
             return;
         l->render( 0, ctx, cll );
+    }
+
+    //compute matrix
+    void dprender_gui_thread::calcMatrix( void )
+    {
+
     }
 
 }

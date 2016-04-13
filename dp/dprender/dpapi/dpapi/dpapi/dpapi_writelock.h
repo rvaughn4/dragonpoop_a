@@ -37,6 +37,8 @@ namespace dp
         bool isOpen( void );
         //override to generate rendering context
         dpapi_context *makeContext( void );
+        //get dimensions
+        void getDimensions( unsigned int **w, unsigned int **h );
 
     };
 

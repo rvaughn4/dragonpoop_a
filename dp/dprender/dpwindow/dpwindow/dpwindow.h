@@ -36,6 +36,10 @@ namespace dp
         virtual void onRun( dpshared_writelock *wl );
         //returns true if open
         virtual bool isOpen( void );
+        //return width
+        virtual unsigned int getWidth( void );
+        //return height
+        virtual unsigned int getHeight( void );
 
     public:
 

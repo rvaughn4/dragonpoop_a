@@ -149,6 +149,10 @@ namespace dp
         x11_window_Window *getWindow( void );
         //return visual
         x11_window_XVisualInfo *getVisual( void );
+        //return width
+        virtual unsigned int getWidth( void );
+        //return height
+        virtual unsigned int getHeight( void );
 
     public:
 

@@ -81,6 +81,8 @@ namespace dp
         {
             wndl->run();
             b = wndl->isOpen();
+            this->width = wndl->getWidth();
+            this->height = wndl->getHeight();
 
             if( !this->bIsStarted && b )
                 this->bIsStarted = this->bIsOpen = this->initApi( wndl, (dpapi_writelock *)wl );
@@ -129,6 +131,13 @@ namespace dp
     void dpapi::onFrameStart( void )
     {
 
+    }
+
+    //get dimensions
+    void dpapi::getDimensions( unsigned int **w, unsigned int **h )
+    {
+        *w = &this->width;
+        *h = &this->height;
     }
 
 }

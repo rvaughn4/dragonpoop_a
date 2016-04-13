@@ -7,6 +7,7 @@
 #define dprender_gui_thread_h
 
 #include "../dprender_scene_thread/dprender_scene_thread.h"
+#include "../../../dpgfx/dpmatrix/dpmatrix.h"
 
 namespace dp
 {
@@ -22,6 +23,8 @@ namespace dp
         dpscene_ref *scn;
         dprender_gui *root_gui;
         dpshared_guard g;
+        unsigned int w, h;
+        dpmatrix mat, undo_mat;
 
         //delete gui
         void deleteGui( void );
@@ -31,6 +34,8 @@ namespace dp
         void runGui( dpapi_context_writelock *ctx );
         //render gui
         void renderGui( dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll );
+        //compute matrix
+        void calcMatrix( void );
 
     protected:
 

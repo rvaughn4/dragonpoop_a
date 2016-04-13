@@ -562,6 +562,18 @@ namespace dp
         return this->vi;
     }
 
+    //return width
+    unsigned int dpwindow_x11::getWidth( void )
+    {
+        return this->w;
+    }
+
+    //return height
+    unsigned int dpwindow_x11::getHeight( void )
+    {
+        return this->h;
+    }
+
 }
 
 

@@ -70,6 +70,18 @@ namespace dp
         return this->p->makeTexture( this, bm );
     }
 
+    //return screen width
+    unsigned int dpapi_context_writelock::getWidth( void )
+    {
+        return this->p->getWidth();
+    }
+
+    //return screen height
+    unsigned int dpapi_context_writelock::getHeight( void )
+    {
+        return this->p->getHeight();
+    }
+
 }
 
 

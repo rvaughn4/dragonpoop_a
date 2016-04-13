@@ -22,6 +22,18 @@ namespace dp
 
     }
 
+    //return screen width
+    unsigned int dpapi_context_readlock::getWidth( void )
+    {
+        return this->p->getWidth();
+    }
+
+    //return screen height
+    unsigned int dpapi_context_readlock::getHeight( void )
+    {
+        return this->p->getHeight();
+    }
+
 }
 
 

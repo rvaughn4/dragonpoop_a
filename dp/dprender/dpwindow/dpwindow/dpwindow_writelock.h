@@ -34,6 +34,10 @@ namespace dp
         dpwindow_writelock( dpwindow *p, dpmutex_writelock *ml );
         //returns true if open
         bool isOpen( void );
+        //return width
+        unsigned int getWidth( void );
+        //return height
+        unsigned int getHeight( void );
 
     };
 

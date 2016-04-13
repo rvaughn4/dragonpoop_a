@@ -32,6 +32,10 @@ namespace dp
 
         //ctor
         dpapi_context_readlock( dpapi_context *p, dpmutex_readlock *ml );
+        //return screen width
+        unsigned int getWidth( void );
+        //return screen height
+        unsigned int getHeight( void );
 
     };
 

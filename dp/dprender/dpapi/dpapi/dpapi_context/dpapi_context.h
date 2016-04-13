@@ -34,6 +34,7 @@ namespace dp
 
     private:
 
+        unsigned int *w, *h;
 
     protected:
 
@@ -59,6 +60,10 @@ namespace dp
         virtual dpapi_indexbuffer *makeIndexBuffer( dpapi_context_writelock *l, dpindexbuffer *ib );
         //generate texture
         virtual dpapi_texture *makeTexture( dpapi_context_writelock *l, dpbitmap *bm );
+        //return screen width
+        virtual unsigned int getWidth( void );
+        //return screen height
+        virtual unsigned int getHeight( void );
 
     public:
 
