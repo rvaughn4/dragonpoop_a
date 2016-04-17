@@ -37,7 +37,7 @@ namespace dp
         //get list of unsorted gui, returns count, second arg is size of static list passed in arg 1
         unsigned int getGuis( dprender_gui **glist, unsigned int max_cnt );
         //get list of gui sorted by z order, returns count, second arg is size of static list passed in arg 1
-        unsigned int getGuisZSorted( dprender_gui **glist, unsigned int max_cnt, unsigned int &p_max_z, bool bInverted );
+        unsigned int getGuisZSorted( dprender_gui **glist, unsigned int max_cnt, unsigned int *p_max_z, bool bInverted );
         //pass in context
         void passContext( dpapi_context_writelock *ctx );
         //render

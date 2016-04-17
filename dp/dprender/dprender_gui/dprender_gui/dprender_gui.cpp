@@ -35,6 +35,7 @@ namespace dp
         this->ib_bg = this->ib_fg = 0;
         this->bdle_bg = 0;
         this->bdle_fg = 0;
+        this->z = pg->getZ();
     }
 
     //dtor
@@ -127,10 +128,6 @@ namespace dp
 
         gr->getDimensions( &this->rc.w, &this->rc.h );
         gr->getPosition( &this->rc.x, &this->rc.y );
-        this->rc.w = 1920;
-        this->rc.h = 1080;
-        this->rc.x = 0;
-        this->rc.y = 0;
         this->z = gr->getZ();
 
         this->makeVB( this->ctx, gr );
@@ -187,7 +184,7 @@ namespace dp
         cll->addBundle( ctx, &this->mat, this->bdle_bg );
         cll->addBundle( ctx, &this->mat, this->bdle_fg );
 
-        this->dprender_gui_list::render( wl, m_parent, ctx, cll );
+        this->dprender_gui_list::render( wl, &this->mat, ctx, cll );
     }
 
     //make matrix

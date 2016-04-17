@@ -14,7 +14,12 @@ namespace dp
     //ctor
     dpgui_list::dpgui_list( void ) : dptask( "gui", 500 )
     {
+        uint64_t i;
         this->zeroList( this->glist, dpgui_list_max_gui );
+
+        i = (uint64_t)this;
+        this->max_z = i;
+        this->min_z = i;
     }
 
     //dtor
@@ -113,6 +118,7 @@ namespace dp
 
             this->addDynamicTask( p );
             this->update();
+            return 1;
         }
 
         delete *ngui;
@@ -135,6 +141,8 @@ namespace dp
             if( !p )
                 continue;
 
+            if( j >= max_cnt )
+                continue;
             glist[ j ] = p;
             j++;
         }

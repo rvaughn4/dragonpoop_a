@@ -55,8 +55,20 @@ namespace dp
     //override to do task startup
     bool dpscene::onTaskStart( dptask_writelock *tl )
     {
+        dpgui *ng;
+        dpgui_writelock *ngl;
+        dpshared_guard g;
+
         this->root_gui = new dpgui( 20, 20, 300, 300, "hello!" );
         this->addDynamicTask( this->root_gui );
+
+        ng = new dpgui( 50, 50, 100, 100, "there" );
+        ngl = (dpgui_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->root_gui, 1000 );
+        if( ngl )
+        {
+            ngl->addGui( &ng, 1 );
+            g.release( ngl );
+        }
 
         return this->onSceneStart( (dpscene_writelock *)tl );
     }

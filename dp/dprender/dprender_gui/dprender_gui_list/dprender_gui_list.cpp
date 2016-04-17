@@ -119,7 +119,7 @@ namespace dp
     }
 
     //get list of gui sorted by z order, returns count, second arg is size of static list passed in arg 1
-    unsigned int dprender_gui_list::getGuisZSorted( dprender_gui **glist, unsigned int max_cnt, unsigned int &p_max_z, bool bInverted )
+    unsigned int dprender_gui_list::getGuisZSorted( dprender_gui **glist, unsigned int max_cnt, unsigned int *p_max_z, bool bInverted )
     {
         unsigned int i, j, h, z;
         dprender_gui *p;
@@ -129,10 +129,29 @@ namespace dp
 
         j = h = z = 0;
 
-        for( h = 0; h < this->max_z; h++ )
+        this->max_z = 0;
+        this->min_z = 0 - 1;
+        for( i = 0; i < dprender_gui_list_max_gui; i++ )
+        {
+            p = this->glist[ i ];
+
+            if( !p )
+                continue;
+            z = p->getZ();
+
+            if( this->max_z < z );
+                this->max_z = z;
+            if( this->min_z > z );
+                this->min_z = z;
+        }
+
+        if( p_max_z )
+            *p_max_z = this->max_z;
+
+        for( h = this->min_z; h <= this->max_z; h++ )
         {
             if( !bInverted )
-                z = this->max_z - h;
+                z = this->max_z - h + this->min_z;
             else
                 z = h;
 
@@ -143,6 +162,8 @@ namespace dp
                 if( !p || p->getZ() != z )
                     continue;
 
+                if( j >= max_cnt )
+                    continue;
                 glist[ j ] = p;
                 j++;
             }
@@ -230,14 +251,16 @@ namespace dp
     //render
     void dprender_gui_list::render( dprender_gui_list_writelock *wl, dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
     {
-        unsigned int i;
-        dprender_gui *p;
+        unsigned int i, j;
+        dprender_gui *p, *plist[ dprender_gui_list_max_gui ];
         dprender_gui_writelock *pl;
         dpshared_guard g;
 
-        for( i = 0; i < dprender_gui_list_max_gui; i++ )
+        j = this->getGuisZSorted( plist, dprender_gui_list_max_gui, 0, 0 );
+
+        for( i = 0; i < j; i++ )
         {
-            p = this->glist[ i ];
+            p = plist[ i ];
             if( !p )
                 continue;
 
