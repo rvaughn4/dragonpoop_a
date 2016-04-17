@@ -34,6 +34,10 @@ namespace dp
         dpapi_readlock( dpapi *p, dpmutex_readlock *ml );
         //returns true if open
         bool isOpen( void );
+        //returns true if window is shown
+        bool isShown( void );
+        //returns true if window is fullscreen
+        bool isFullscreen( void );
 
     };
 

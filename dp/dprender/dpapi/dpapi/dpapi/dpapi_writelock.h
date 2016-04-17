@@ -39,6 +39,18 @@ namespace dp
         dpapi_context *makeContext( void );
         //get dimensions
         void getDimensions( unsigned int **w, unsigned int **h );
+        //show window
+        bool show( void );
+        //hide window
+        bool hide( void );
+        //returns true if window is shown
+        bool isShown( void );
+        //make window fullscreen
+        bool fullscreen( void );
+        //make window windowed
+        bool windowed( void );
+        //returns true if window is fullscreen
+        bool isFullscreen( void );
 
     };
 

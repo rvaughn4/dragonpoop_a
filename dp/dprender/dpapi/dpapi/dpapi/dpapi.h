@@ -26,7 +26,7 @@ namespace dp
 
         dpwindow *w;
         dpwindow_factory *wf;
-        bool bIsStarted, bIsOpen;
+        bool bIsStarted, bIsOpen, bIsFs, bIsShown, bDoFs, bDoShown;
         unsigned int width, height;
 
     protected:
@@ -57,6 +57,18 @@ namespace dp
         virtual void onFrameStart( void );
         //get dimensions
         virtual void getDimensions( unsigned int **w, unsigned int **h );
+        //show window
+        virtual bool show( void );
+        //hide window
+        virtual bool hide( void );
+        //returns true if window is shown
+        virtual bool isShown( void );
+        //make window fullscreen
+        virtual bool fullscreen( void );
+        //make window windowed
+        virtual bool windowed( void );
+        //returns true if window is fullscreen
+        virtual bool isFullscreen( void );
 
     public:
 

@@ -32,6 +32,10 @@ namespace dp
         this->bctrl = 0;
         this->bdocut = 0;
         this->bshift = 0;
+        this->bfs = 0;
+        this->bdo_fs = 0;
+        this->bshown = 1;
+        this->bdo_shown = 1;
 
         if( !this->loadFunctions() )
             return;
@@ -162,6 +166,7 @@ namespace dp
         r &= ( this->x11.XSetWMProtocols = (x11_window_functions_XSetWMProtocols)dlsym( this->dlX11, "XSetWMProtocols" ) ) != 0;
         r &= ( this->x11.XSetStandardProperties = (x11_window_functions_XSetStandardProperties)dlsym( this->dlX11, "XSetStandardProperties" ) ) != 0;
         r &= ( this->x11.XMapRaised = (x11_window_functions_XMapRaised)dlsym( this->dlX11, "XMapRaised" ) ) != 0;
+        r &= ( this->x11.XWithdrawWindow = (x11_window_functions_XWithdrawWindow)dlsym( this->dlX11, "XWithdrawWindow" ) ) != 0;
         r &= ( this->x11.XDestroyWindow = (x11_window_functions_XDestroyWindow)dlsym( this->dlX11, "XDestroyWindow" ) ) != 0;
         r &= ( this->x11.XPending = (x11_window_functions_XPending)dlsym( this->dlX11, "XPending" ) ) != 0;
         r &= ( this->x11.XNextEvent = (x11_window_functions_XNextEvent)dlsym( this->dlX11, "XNextEvent" ) ) != 0;
@@ -183,6 +188,25 @@ namespace dp
 
         this->dpwindow::onRun( wl );
 
+        if( !this->bshown && this->bdo_shown )
+        {
+            this->x11.XMapRaised( this->dpy, this->win );
+            this->bshown = 1;
+        }
+        if( this->bshown && !this->bdo_shown )
+        {
+            this->x11.XWithdrawWindow( this->dpy, this->win, this->screen );
+            this->bshown = 0;
+        }
+        if( !this->bfs && this->bdo_fs )
+        {
+            this->bfs = 1;
+        }
+        if( this->bfs && !this->bdo_fs )
+        {
+            this->bfs = 0;
+        }
+
         while( this->x11.XPending( this->dpy ) >= 1 )
         {
             this->x11.XNextEvent( this->dpy, &event );
@@ -197,6 +221,7 @@ namespace dp
                     {
                         this->w = event.xconfigure.width;
                         this->h = event.xconfigure.height;
+
                     }
                     break;
                 case MotionNotify:
@@ -216,7 +241,10 @@ namespace dp
                     break;
                 case ClientMessage:
                     if( (Atom)event.xclient.data.l[0] == this->wm_delete_window )
+                    {
                         this->bIsOpen = 0;
+                        this->x11.XWithdrawWindow( this->dpy, this->win, this->screen );
+                    }
                     break;
                 case SelectionRequest:
                 {
@@ -572,6 +600,46 @@ namespace dp
     unsigned int dpwindow_x11::getHeight( void )
     {
         return this->h;
+    }
+
+    //show window
+    bool dpwindow_x11::show( void )
+    {
+        this->bdo_shown = 1;
+        return 1;
+    }
+
+    //hide window
+    bool dpwindow_x11::hide( void )
+    {
+        this->bdo_shown = 0;
+        return 1;
+    }
+
+    //returns true if window is shown
+    bool dpwindow_x11::isShown( void )
+    {
+        return this->bshown;
+    }
+
+    //make window fullscreen
+    bool dpwindow_x11::fullscreen( void )
+    {
+        this->bdo_fs = 1;
+        return 1;
+    }
+
+    //make window windowed
+    bool dpwindow_x11::windowed( void )
+    {
+        this->bdo_fs = 0;
+        return 1;
+    }
+
+    //returns true if window is fullscreen
+    bool dpwindow_x11::isFullscreen( void )
+    {
+        return this->bfs;
     }
 
 }

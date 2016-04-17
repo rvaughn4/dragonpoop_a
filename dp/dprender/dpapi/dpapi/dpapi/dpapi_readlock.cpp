@@ -28,6 +28,18 @@ namespace dp
         return this->p->isOpen();
     }
 
+    //returns true if window is shown
+    bool dpapi_readlock::isShown( void )
+    {
+        return this->p->isShown();
+    }
+
+    //returns true if window is fullscreen
+    bool dpapi_readlock::isFullscreen( void )
+    {
+        return this->p->isFullscreen();
+    }
+
 }
 
 

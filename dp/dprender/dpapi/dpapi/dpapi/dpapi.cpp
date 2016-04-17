@@ -23,6 +23,10 @@ namespace dp
         this->bIsOpen = 0;
         this->wf = wf;
         this->w = wf->makeWindow();
+        this->bDoFs = 0;
+        this->bIsFs = 0;
+        this->bIsShown = 1;
+        this->bDoShown = 1;
     }
 
     //dtor
@@ -89,6 +93,22 @@ namespace dp
 
             this->bIsOpen &= b;
 
+            if( b )
+            {
+                this->bIsFs = wndl->isFullscreen();
+                this->bIsShown = wndl->isShown();
+
+                if( !this->bIsFs && this->bDoFs )
+                    wndl->fullscreen();
+                if( this->bIsFs && !this->bDoFs )
+                    wndl->windowed();
+
+                if( !this->bIsShown && this->bDoShown )
+                    wndl->show();
+                if( this->bIsShown && !this->bDoShown )
+                    wndl->hide();
+            }
+
             g.release( wndl );
         }
 
@@ -138,6 +158,46 @@ namespace dp
     {
         *w = &this->width;
         *h = &this->height;
+    }
+
+    //show window
+    bool dpapi::show( void )
+    {
+        this->bDoShown = 1;
+        return 1;
+    }
+
+    //hide window
+    bool dpapi::hide( void )
+    {
+        this->bDoShown = 0;
+        return 1;
+    }
+
+    //returns true if window is shown
+    bool dpapi::isShown( void )
+    {
+        return this->bIsShown;
+    }
+
+    //make window fullscreen
+    bool dpapi::fullscreen( void )
+    {
+        this->bDoFs = 1;
+        return 1;
+    }
+
+    //make window windowed
+    bool dpapi::windowed( void )
+    {
+        this->bDoFs = 0;
+        return 1;
+    }
+
+    //returns true if window is fullscreen
+    bool dpapi::isFullscreen( void )
+    {
+        return this->bIsFs;
     }
 
 }

@@ -40,6 +40,42 @@ namespace dp
         this->p->getDimensions( w, h );
     }
 
+    //show window
+    bool dpapi_writelock::show( void )
+    {
+        return this->p->show();
+    }
+
+    //hide window
+    bool dpapi_writelock::hide( void )
+    {
+        return this->p->hide();
+    }
+
+    //returns true if window is shown
+    bool dpapi_writelock::isShown( void )
+    {
+        return this->p->isShown();
+    }
+
+    //make window fullscreen
+    bool dpapi_writelock::fullscreen( void )
+    {
+        return this->p->fullscreen();
+    }
+
+    //make window windowed
+    bool dpapi_writelock::windowed( void )
+    {
+        return this->p->windowed();
+    }
+
+    //returns true if window is fullscreen
+    bool dpapi_writelock::isFullscreen( void )
+    {
+        return this->p->isFullscreen();
+    }
+
 }
 
 

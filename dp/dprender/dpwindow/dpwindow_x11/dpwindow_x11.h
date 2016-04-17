@@ -72,6 +72,7 @@ namespace dp
     typedef int (* x11_window_functions_XSetWMProtocols )( x11_window_Display *dpy, x11_window_Window w, x11_window_Atom *protocols, int count );
     typedef void (* x11_window_functions_XSetStandardProperties )( x11_window_Display *dpy, x11_window_Window w, char *window_name, char *icon_name, x11_window_Pixmap ico, char **argv, int argc, x11_window_XSizeHints *hints );
     typedef void (* x11_window_functions_XMapRaised )( x11_window_Display *dpy, x11_window_Window w );
+    typedef void (* x11_window_functions_XWithdrawWindow )( x11_window_Display *dpy, x11_window_Window w, int screen );
     typedef void (* x11_window_functions_XDestroyWindow )( x11_window_Display *dpy, x11_window_Window w );
     typedef int (* x11_window_functions_XPending )( x11_window_Display *dpy );
     typedef void (* x11_window_functions_XNextEvent )( x11_window_Display *dpy, x11_window_XEvent *event_return );
@@ -97,6 +98,7 @@ namespace dp
         x11_window_functions_XSetWMProtocols XSetWMProtocols;
         x11_window_functions_XSetStandardProperties XSetStandardProperties;
         x11_window_functions_XMapRaised XMapRaised;
+        x11_window_functions_XWithdrawWindow XWithdrawWindow;
         x11_window_functions_XDestroyWindow XDestroyWindow;
         x11_window_functions_XPending XPending;
         x11_window_functions_XNextEvent XNextEvent;
@@ -120,7 +122,7 @@ namespace dp
         x11_window_XSetWindowAttributes attr;
         x11_window_Atom wm_delete_window, selprop, a_targets, a_clipboard, a_string, a_primary;
         int w, h;
-        bool lb, rb, bIsOpen, bctrl, bdocut, bshift, bcaps;
+        bool lb, rb, bIsOpen, bctrl, bdocut, bshift, bcaps, bfs, bshown, bdo_fs, bdo_shown;
         x11_window_XVisualInfo *vi;
 
         x11_window_functions x11;
@@ -153,6 +155,18 @@ namespace dp
         virtual unsigned int getWidth( void );
         //return height
         virtual unsigned int getHeight( void );
+        //show window
+        virtual bool show( void );
+        //hide window
+        virtual bool hide( void );
+        //returns true if window is shown
+        virtual bool isShown( void );
+        //make window fullscreen
+        virtual bool fullscreen( void );
+        //make window windowed
+        virtual bool windowed( void );
+        //returns true if window is fullscreen
+        virtual bool isFullscreen( void );
 
     public:
 
