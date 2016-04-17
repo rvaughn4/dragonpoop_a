@@ -31,7 +31,14 @@ namespace dp
     //load identity
     void dpmatrix::setIdentity( void )
     {
-        this->setScaling( 1, 1, 1 );
+        int i;
+        for( i = 0; i < 16; i++ )
+            this->values.fv[ i ] = 0;
+
+        this->values.col._1.row._1 = 1;
+        this->values.col._2.row._2 = 1;
+        this->values.col._3.row._3 = 1;
+        this->values.col._4.row._4 = 1;
     }
 
     //load raw matrix from pointer
@@ -140,9 +147,7 @@ namespace dp
     //set ortho matrix
     void dpmatrix::setOrtho( float x0, float y0, float z0, float x1, float y1, float z1 )
     {
-        unsigned int i;
-        for( i = 0; i < 16; i++ )
-            this->values.fv[ i ] = 0;
+        this->setIdentity();
 
         this->values.col._1.row._1 = 2.0f / ( x1 - x0 );
         this->values.col._2.row._2 = 2.0f / ( y1 - y0 );
@@ -156,11 +161,9 @@ namespace dp
     //set perspective matrix
     void dpmatrix::setPerspective( float x0, float y0, float z0, float x1, float y1, float z1, float fov )
     {
-        unsigned int i;
         float aspect;
 
-        for( i = 0; i < 16; i++ )
-            this->values.fv[ i ] = 0;
+        this->setIdentity();
 
         fov = fov * 3.14f / 180.0f;
         fov = 1.0f / tan( fov * 0.5f );
@@ -176,17 +179,11 @@ namespace dp
     //set tranlation matrix
     void dpmatrix::setTranslation( float x, float y, float z )
     {
-        unsigned int i;
-        for( i = 0; i < 16; i++ )
-            this->values.fv[ i ] = 0;
+        this->setIdentity();
 
         this->values.col._4.row._1 = x;
         this->values.col._4.row._2 = y;
         this->values.col._4.row._3 = z;
-        this->values.col._1.row._1 = 1;
-        this->values.col._2.row._2 = 1;
-        this->values.col._3.row._3 = 1;
-        this->values.col._4.row._4 = 1;
     }
 
     //set rotation matrix
@@ -243,10 +240,7 @@ namespace dp
     //set scaling matrix
     void dpmatrix::setScaling( float x, float y, float z )
     {
-        unsigned int i;
-        for( i = 0; i < 16; i++ )
-            this->values.fv[ i ] = 0;
-
+        this->setIdentity();
         this->values.col._1.row._1 = x;
         this->values.col._2.row._2 = y;
         this->values.col._3.row._3 = z;
@@ -368,11 +362,9 @@ namespace dp
     //set angle (radians) and position
     void dpmatrix::setAngleRadAndPosition( dpxyzw *angles, dpxyzw *pos )
     {
-        unsigned int i;
         float sr, sp, sy, cr, cp, cy;
 
-        for( i = 0; i < 16; i++ )
-            this->values.fv[ i ] = 0;
+        this->setIdentity();
 
         sy = sin( angles->z );
         cy = cos( angles->z );

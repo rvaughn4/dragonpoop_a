@@ -9,7 +9,7 @@
 //#define dpshared_debugout_all
 //#define dpshared_debug_lock_fails
 
-#define dptask_debug
+//#define dptask_debug
 //#define dpthread_debug
 //#define dprender_debug
 

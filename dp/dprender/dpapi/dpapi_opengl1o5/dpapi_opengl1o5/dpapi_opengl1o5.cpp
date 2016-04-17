@@ -141,7 +141,7 @@ namespace dp
 
         this->gl.bUseVB = this->gl.glGenBuffers != 0 && this->gl.glDeleteBuffers != 0 && this->gl.glBindBuffer != 0 && this->gl.glBufferData != 0;
 
-        p0 = this->sext.find( "GL_ARB_vertex_buffer_object" );
+        p0 = this->sext.find( "GL_ARB_vertex_buffer_object_DERP" );
         if( p0 < this->sext.size() )
             this->gl.bUseVB &= 1;
         else

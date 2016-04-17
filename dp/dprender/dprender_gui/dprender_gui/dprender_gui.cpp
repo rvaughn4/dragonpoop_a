@@ -187,14 +187,18 @@ namespace dp
     void dprender_gui::calcMatrix( dpmatrix *mparent )
     {
         float z;
-
-        if( mparent )
-            this->mat.copy( mparent );
-        else
-            this->mat.setIdentity();
-
+        dpmatrix m;
+static float rr;
+rr++;
         z = (float)this->z / -8.0f;
-        this->mat.translate( this->rc.x, this->rc.y, z );
+        m.translate( this->rc.x, this->rc.y, z );
+        m.rotateX( rr );
+        m.rotateZ( rr * 0.3f );
+
+        this->mat.setIdentity();
+        if( mparent )
+            this->mat.multiply( mparent );
+        this->mat.multiply( &m );
     }
 
     //make bg texture, return false if not remade/up-to-date
@@ -250,7 +254,7 @@ namespace dp
         v.vert.z = 0;
         v.norm.x = 0;
         v.norm.y = 0;
-        v.norm.z = 1;
+        v.norm.z = -1;
 
         //tl
         v.vert.x = 0;

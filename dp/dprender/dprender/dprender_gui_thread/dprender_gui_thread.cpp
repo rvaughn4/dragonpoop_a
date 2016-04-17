@@ -133,7 +133,7 @@ namespace dp
 
         w = this->w;
         h = this->h;
-        sw = 1920.0f;
+        sw = 1920.0f + 20.0f * (float)rand() / RAND_MAX;
         sh = 1080.0f;
 
         ss = sw * sw + sh * sh;
@@ -145,6 +145,7 @@ namespace dp
         r = rw;
         if( r < rh )
             r = rh;
+
         w = w * r;
         h = h * r;
         dw = w - sw;

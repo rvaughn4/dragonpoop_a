@@ -1,869 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="452" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow/dpwindow_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="484" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6636" topLine="90" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_compress/dpbuffer_compress.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="39" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="451" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="607" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_uncompressed/dpbitmap_uncompressed.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="7146" topLine="166" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_primary_commandlist/dpapi_x11_opengl1o5_primary_commandlist.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="654" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="466" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpthread/dpthread.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3849" topLine="77" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_loader/dpbitmap_loader.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4056" topLine="111" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_bundle/dpapi_bundle.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="221" topLine="9" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptaskmgr/dptaskmgr_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1244" topLine="22" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="571" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender/dprender_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="268" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_commandlist/dpapi_primary_commandlist_command_commandlist.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="719" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="532" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpscene/dpscene_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="172" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptask/dptask_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="451" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="672" topLine="12" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_primary_commandlist/dpapi_x11_opengl1o5_primary_commandlist.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="457" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6058" topLine="207" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_png_bitmap/dpbitmap_png_bitmap.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="389" topLine="12" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgui_list/dpgui_list_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="518" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3260" topLine="91" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_scene/dprender_scene_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="751" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2346" topLine="44" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="456" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_material/dpapi_material_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="566" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpfont/dpfont/dpfont.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2186" topLine="43" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="521" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="475" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpthread/dpthread_writelock.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2242" topLine="55" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptask/dptask_writelock.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1825" topLine="52" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="115" topLine="11" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender/dprender_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="434" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpmatrix/dpmatrix.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="72" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_swapbuffers/dpapi_opengl1o5_primary_commandlist_command_swapbuffers.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="945" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="zlib/gzwrite.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="16109" topLine="113" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="889" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="516" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgfx/dpgfx_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="448" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_bundle/dpapi_bundle_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="420" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="525" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="772" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpdefines.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="220" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_bundle/dpapi_bundle_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="828" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3795" topLine="102" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="472" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_hello_triangle_scene_thread/dprender_hello_triangle_scene_thread.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="426" topLine="7" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="285" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="407" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="429" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgui_list/dpgui_list_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="295" topLine="10" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_clearcolor/dpapi_primary_commandlist_command_clearcolor.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="339" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender_gui/dprender_gui/dprender_gui_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="476" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_16bit_uncompressed/dpbitmap_16bit_uncompressed.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1032" topLine="33" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpmutex/dpmutex_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="264" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="982" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_shader/dpapi_shader.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="321" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow_task/dpwindow_task.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="257" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow/dpwindow.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1481" topLine="39" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="494" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpquaternion/dpquaternion.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="102" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="468" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptask/dptask.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="9597" topLine="365" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="380" topLine="5" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_compress/dpbuffer_compress.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="151" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_1bit_palette/dpbitmap_1bit_palette.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="319" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1956" topLine="21" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_shader/dpapi_shader_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="459" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1884" topLine="33" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_factory.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="281" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1090" topLine="18" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="7618" topLine="117" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpfont/dpfont_filter_face/dpfont_filter_face.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="229" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="849" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow/dpwindow_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="461" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="532" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpfont/dpfont/dpfont.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1760" topLine="68" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_context/dpapi_x11_opengl1o5_context_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1011" topLine="10" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_cleardepth/dpapi_opengl1o5_primary_commandlist_command_cleardepth.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="596" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="540" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="269" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi_factory.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="500" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="541" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpmutex/dpmutex.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="453" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpscene/dpscene_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="480" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_16bit_uncompressed/dpbitmap_16bit_uncompressed.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="607" topLine="9" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgui/dpgui_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1278" topLine="51" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgui/dpgui.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3046" topLine="111" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_concrete/dpbuffer_concrete.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1190" topLine="53" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpthread/dpthread_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="866" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="393" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow/dpwindow.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="256" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1009" topLine="15" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="718" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_scene_thread/dprender_scene_thread_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="456" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="510" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow/dpwindow_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="587" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="507" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_material/dpapi_material_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="543" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_compressed/dpbitmap_compressed.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2953" topLine="46" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="454" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="331" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="184" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="476" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist_command/dpapi_commandlist_command_bundle/dpapi_commandlist_command_bundle.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="237" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="296" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptaskmgr/dptaskmgr_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="296" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1048" topLine="2" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_factory.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="600" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgui_list/dpgui_list_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="237" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="139" topLine="4" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist_command/dpapi_commandlist_command/dpapi_commandlist_command.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="228" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="670" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender_gui/dprender_gui/dprender_gui_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="150" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_task/dpapi_task.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="488" topLine="9" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="444" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_material/dpapi_material_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="532" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_context/dpapi_x11_opengl1o5_context_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="346" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpmutex/dpmutex.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="623" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_uncompressed_palette/dpbitmap_uncompressed_palette.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="943" topLine="15" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="131" topLine="7" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="606" topLine="5" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="293" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_cleardepth/dpapi_primary_commandlist_command_cleardepth.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="326" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="478" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist/dpapi_opengl1o5_primary_commandlist.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="935" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="498" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="692" topLine="8" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="916" topLine="8" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="205" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_loader/dpbitmap_loader.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="624" topLine="7" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshared.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4758" topLine="112" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_material/dpapi_material_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="446" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender/dprender_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="395" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_scene/dprender_scene_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="257" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="822" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshared_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="711" topLine="24" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="289" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="842" topLine="5" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_png/dpbitmap_png.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1261" topLine="43" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="454" topLine="4" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpthread/dpthread.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="7830" topLine="249" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="891" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2127" topLine="36" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="423" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgui_list/dpgui_list.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1733" topLine="21" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="400" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgui/dpgui_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="485" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshared_guard.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="397" topLine="13" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="496" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_scene_thread/dprender_scene_thread_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="470" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender/dprender_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="416" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="725" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_bundle/dpapi_bundle_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="433" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender_gui/dprender_gui/dprender_gui_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="341" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1092" topLine="9" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="275" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptaskmgr/dptaskmgr_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="279" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_material/dpapi_material_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="490" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptaskmgr/dptaskmgr_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="406" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpfont/dpfont_filter_color/dpfont_filter_color.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="204" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_scene/dprender_scene_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1132" topLine="12" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_scene_thread/dprender_scene_thread_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="517" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_bundle/dpapi_bundle_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="596" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_cleardepth/dpapi_opengl1o5_primary_commandlist_command_cleardepth.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="580" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1150" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_shader/dpapi_shader.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="642" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow_task/dpwindow_task.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1190" topLine="24" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender_gui/dprender_gui/dprender_gui.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4785" topLine="153" />
+			<Cursor1 position="265" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="dp/dpcore/dpshared/dpshared_ref_kernel.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -871,234 +11,14 @@
 			<Cursor1 position="383" topLine="5" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpgfx/dpquaternion/dpquaternion.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="504" topLine="0" />
+			<Cursor1 position="102" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_4bit_palette/dpbitmap_4bit_palette.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="273" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgui/dpgui_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="209" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_scene/dprender_scene.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5962" topLine="195" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpthread/dpthread_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="469" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="544" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_swapbuffers/dpapi_opengl1o5_primary_commandlist_command_swapbuffers.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="295" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender/dprender.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6350" topLine="210" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="389" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="521" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="85" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="539" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgfx/dpgfx_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="229" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap/dpbitmap.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5741" topLine="212" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="483" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_zlib/dpbuffer_zlib.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="110" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpfont/dpfont_filter_face/dpfont_filter_face.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="584" topLine="20" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow/dpwindow_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="552" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_clearcolor/dpapi_opengl1o5_primary_commandlist_command_clearcolor.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="105" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="277" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptaskmgr/dptaskmgr_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1745" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_scene_thread/dprender_scene_thread.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1685" topLine="13" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="467" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="528" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="204" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="817" topLine="24" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_functions.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1120" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshared_ref.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3408" topLine="77" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshared_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6010" topLine="161" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="490" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_uncompressed/dpbitmap_uncompressed.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3776" topLine="116" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender/dprender_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="449" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_primary_commandlist_command/dpapi_x11_opengl1o5_primary_commandlist_command_swapbuffers/dpapi_x11_opengl1o5_primary_commandlist_command_swapbuffers.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1254" topLine="4" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3800" topLine="66" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="637" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgui_list/dpgui_list_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="207" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="265" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="552" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpfont/dpfont_filter_size/dpfont_filter_size.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="425" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpmutex/dpspinlock.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1774" topLine="43" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgui/dpgui.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1582" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpmutex/dpmutexdefines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="224" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow/dpwindow_factory.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="147" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3366" topLine="186" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="423" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_shader/dpapi_shader_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="514" topLine="0" />
+			<Cursor1 position="498" topLine="6" />
 		</Cursor>
 	</File>
 	<File name="dp/dpcore/dpbuffer/dpbuffer_deflate/dpbuffer_deflate.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -1106,74 +26,94 @@
 			<Cursor1 position="371" topLine="9" />
 		</Cursor>
 	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="868" topLine="19" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="376" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_bundle/dpapi_bundle.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="533" topLine="27" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpthread/dpthread_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="574" topLine="4" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpfont/dpfont_filter_color/dpfont_filter_color.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1308" topLine="32" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_functions.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2058" topLine="21" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer/dpbuffer.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="160" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_context/dpapi_x11_opengl1o5_context_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="339" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="564" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_scene_thread/dprender_scene_thread_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="610" topLine="0" />
-		</Cursor>
-	</File>
 	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1831" topLine="15" />
+			<Cursor1 position="1722" topLine="15" />
 		</Cursor>
 	</File>
-	<File name="dp/dpgfx/dpquaternion/dpquaternion.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpdefines.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1808" topLine="86" />
+			<Cursor1 position="220" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_shader/dpapi_shader_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_context/dpapi_x11_opengl1o5_context.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="421" topLine="0" />
+			<Cursor1 position="2631" topLine="61" />
 		</Cursor>
 	</File>
-	<File name="dp/dpgfx/dpscene/dpscene_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpcore/dpthread/dpthread.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="408" topLine="0" />
+			<Cursor1 position="3849" topLine="77" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_16bit_uncompressed/dpbitmap_16bit_uncompressed.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="607" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="516" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpfont/dpfont_filter_color/dpfont_filter_color.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="204" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="574" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow/dpwindow_factory.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="147" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="528" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_png_bitmap/dpbitmap_png_bitmap.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="669" topLine="22" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow/dpwindow_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="839" topLine="5" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_uncompressed/dpbitmap_uncompressed.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3776" topLine="116" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="474" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_bundle/dpapi_opengl1o5_bundle.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="852" topLine="18" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="578" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpfont/dpfont_filter/dpfont_filter.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="711" topLine="11" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="201" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -1181,49 +121,14 @@
 			<Cursor1 position="538" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dpcore/dpthread/dpthread_defines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="137" topLine="0" />
+			<Cursor1 position="653" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap/dpbitmap.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpgfx/dpfont/dpfont_filter_size/dpfont_filter_size.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="679" topLine="30" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_8bit_palette/dpbitmap_8bit_palette.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="258" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender/dprender_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="556" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptask/dptask.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4620" topLine="102" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_scene_thread/dprender_scene_thread_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="506" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptaskmgr/dptaskmgr_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="265" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="360" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender/dprender_scenelink.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="575" topLine="9" />
+			<Cursor1 position="425" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist_command/dpapi_commandlist_command/dpapi_commandlist_command.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -1231,84 +136,39 @@
 			<Cursor1 position="302" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_shader/dpapi_shader_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpcore/dpmutex/dpmutexdefines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="560" topLine="0" />
+			<Cursor1 position="224" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_context/dpapi_x11_opengl1o5_context.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1878" topLine="16" />
+			<Cursor1 position="1539" topLine="18" />
 		</Cursor>
 	</File>
-	<File name="dp/dpcore/dpshared/dpshared_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpgfx/dpgfx/dpgfx_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="285" topLine="0" />
+			<Cursor1 position="448" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpwindow/dpwindow/dpwindow_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist_command/dpapi_commandlist_command_bundle/dpapi_commandlist_command_bundle.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="419" topLine="0" />
+			<Cursor1 position="570" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_bundle/dpapi_opengl1o5_bundle.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dpapi/dpapi/dpapi_shader/dpapi_shader_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="743" topLine="15" />
+			<Cursor1 position="528" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dprender/dprender_scene_thread/dprender_scene_thread_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="523" topLine="0" />
+			<Cursor1 position="506" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dpgfx/dpscene/dpscene_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="415" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_task/dpapi_task.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="999" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="269" topLine="5" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="702" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_png/dpbitmap_png.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="17200" topLine="470" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2785" topLine="69" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpmatrix/dpmatrix.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="81" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptask/dptask_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="458" topLine="7" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptaskmgr/dptaskmgr.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1196" topLine="37" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpscene/dpscene.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="201" topLine="1" />
+			<Cursor1 position="2346" topLine="44" />
 		</Cursor>
 	</File>
 	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -1316,22 +176,312 @@
 			<Cursor1 position="662" topLine="6" />
 		</Cursor>
 	</File>
-	<File name="dp/dpcore/dpshared/dpshared_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpgfx/dpvertex/dpvertex.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1874" topLine="42" />
+			<Cursor1 position="102" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7618" topLine="117" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_swapbuffers/dpapi_opengl1o5_primary_commandlist_command_swapbuffers.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="295" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_material/dpapi_material_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="532" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpmutex/dpmutex.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="623" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.cpp" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3416" topLine="117" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_scene_thread/dprender_scene_thread_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="517" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpscene/dpscene_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="82" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow/dpwindow.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1671" topLine="49" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_1bit_palette/dpbitmap_1bit_palette.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="302" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_context/dpapi_x11_opengl1o5_context_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="273" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptaskmgr/dptaskmgr_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="279" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="490" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_png/dpbitmap_png.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1261" topLine="43" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpscene/dpscene_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="172" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="507" topLine="1" />
 		</Cursor>
 	</File>
-	<File name="dp/dpgfx/dpfont/dpfont_bitmap/dpfont_bitmap.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpgfx/dpgui/dpgui_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2286" topLine="110" />
+			<Cursor1 position="1138" topLine="33" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_cleardepth/dpapi_primary_commandlist_command_cleardepth.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpcore/dptaskmgr/dptaskmgr_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="296" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptask/dptask.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="9597" topLine="365" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="289" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_material/dpapi_material_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="566" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_16bit_uncompressed/dpbitmap_16bit_uncompressed.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1032" topLine="33" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptaskmgr/dptaskmgr.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1196" topLine="37" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_shader/dpapi_shader.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="321" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="388" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared_ref_kernel.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="482" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="467" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_material/dpapi_material_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="446" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptask/dptask_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="910" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_compress/dpbuffer_compress.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="39" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_bundle/dpapi_opengl1o5_bundle.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3762" topLine="96" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpscene/dpscene_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="408" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="956" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpfont/dpfont_filter_face/dpfont_filter_face.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="584" topLine="20" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_context/dpapi_x11_opengl1o5_context_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="527" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="385" topLine="21" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="475" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptaskmgr/dptaskmgr_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="406" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender/dprender_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="449" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="795" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1870" topLine="27" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="521" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_scene_thread/dprender_scene_thread.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1685" topLine="13" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptask/dptask.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4620" topLine="102" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_scene/dprender_scene_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="751" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="847" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared_ref.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3408" topLine="77" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_4bit_palette/dpbitmap_4bit_palette.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="273" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="285" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="571" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_bundle/dpapi_bundle.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="351" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="456" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptaskmgr/dptaskmgr_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1745" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="760" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="678" topLine="18" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgui/dpgui_factory.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="135" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="692" topLine="8" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="532" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="499" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptask/dptask_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="767" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist_command/dpapi_commandlist_command/dpapi_commandlist_command.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="228" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_clearcolor/dpapi_primary_commandlist_command_clearcolor.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="339" topLine="0" />
 		</Cursor>
@@ -1341,409 +491,9 @@
 			<Cursor1 position="585" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dpcore/dptask/dptask_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpgfx/dpgui/dpgui_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="910" topLine="15" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="578" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="562" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="636" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="590" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpthread/dpthread_writelock.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="933" topLine="25" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshareddefines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2377" topLine="10" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_material/dpapi_material.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="343" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgfx/dpgfx_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="503" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptask/dptask_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="767" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_clearcolor/dpapi_primary_commandlist_command_clearcolor.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="346" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_shader/dpapi_shader_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="528" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="499" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_bundle/dpapi_opengl1o5_bundle.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3151" topLine="44" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgui_list/dpgui_list.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="323" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="206" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_material/dpapi_material_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="542" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_hello_triangle_scene_thread/dprender_hello_triangle_scene_thread.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="867" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="501" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist_command/dpapi_commandlist_command_bundle/dpapi_commandlist_command_bundle.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="348" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptask/dptask_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="462" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="265" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_1bit_palette/dpbitmap_1bit_palette.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="302" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="963" topLine="8" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="760" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="654" topLine="9" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_scene_thread/dprender_scene_thread_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="498" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1112" topLine="30" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_swapbuffers/dpapi_primary_commandlist_command_swapbuffers.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="640" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_context/dpapi_x11_opengl1o5_context_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="788" topLine="12" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="253" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_scene/dprender_scene_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="824" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_clearcolor/dpapi_opengl1o5_primary_commandlist_command_clearcolor.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="140" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_8bit_palette/dpbitmap_8bit_palette.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="185" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_zlib/dpbuffer_zlib.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2096" topLine="81" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="605" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_material/dpapi_material.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="650" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpthread/dpthread_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="785" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_primary_commandlist_command/dpapi_x11_opengl1o5_primary_commandlist_command_swapbuffers/dpapi_x11_opengl1o5_primary_commandlist_command_swapbuffers.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="564" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshared_ref_kernel.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="482" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="348" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpscene/dpscene.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2214" topLine="67" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_concrete/dpbuffer_concrete.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4710" topLine="71" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="539" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1039" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_bundle/dpapi_bundle_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="512" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpfont/dpfont_filter_size/dpfont_filter_size.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="496" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="724" topLine="12" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_deflate/dpbuffer_deflate.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="572" topLine="14" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptask/dptask_defines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="129" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_factory.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="535" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgfx/dpgfx_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="441" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="286" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="548" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshared_guard.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1694" topLine="46" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgfx/dpgfx_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="598" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="555" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpscene/dpscene_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="166" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender_gui/dprender_gui/dprender_gui_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="296" topLine="4" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_4bit_palette/dpbitmap_4bit_palette.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="312" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_commandlist/dpapi_primary_commandlist_command_commandlist.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="231" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgui_list/dpgui_list_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="133" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_scene/dprender_scene.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2960" topLine="67" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgui/dpgui_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="162" topLine="4" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi_factory.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="357" topLine="2" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dptaskmgr/dptaskmgr.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5687" topLine="74" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgui/dpgui_factory.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="135" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpfont/dpfont_filter/dpfont_filter.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="138" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist/dpapi_opengl1o5_primary_commandlist.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1247" topLine="12" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgfx/dpgfx.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="345" topLine="9" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="349" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_png_bitmap/dpbitmap_png_bitmap.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="669" topLine="22" />
-		</Cursor>
-	</File>
-	<File name="zlib/gzlib.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6807" topLine="194" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender_gui/dprender_gui/dprender_gui_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="840" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="463" topLine="48" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="469" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="392" topLine="14" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpmutex/dpmutex_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_context/dpapi_x11_opengl1o5_context.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2392" topLine="59" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpscene/dpscene_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="82" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="474" topLine="0" />
+			<Cursor1 position="1278" topLine="51" />
 		</Cursor>
 	</File>
 	<File name="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -1751,9 +501,29 @@
 			<Cursor1 position="366" topLine="8" />
 		</Cursor>
 	</File>
-	<File name="dp/dpgfx/dpgui/dpgui_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_clearcolor/dpapi_opengl1o5_primary_commandlist_command_clearcolor.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="159" topLine="3" />
+			<Cursor1 position="140" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_bundle/dpapi_bundle_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="420" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshareddefines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2377" topLine="10" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_loader/dpbitmap_loader.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="624" topLine="7" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4133" topLine="124" />
 		</Cursor>
 	</File>
 	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -1761,59 +531,119 @@
 			<Cursor1 position="524" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_swapbuffers/dpapi_primary_commandlist_command_swapbuffers.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpcore/dpthread/dpthread_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="342" topLine="0" />
+			<Cursor1 position="469" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer/dpbuffer.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpcore/dpbuffer/dpbuffer/dpbuffer.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3610" topLine="63" />
+			<Cursor1 position="160" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dpcore/dpshared/dpshared.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dpapi/dpapi/dpapi_shader/dpapi_shader.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="9299" topLine="233" />
+			<Cursor1 position="642" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpgfx/dpscene/dpscene_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1055" topLine="6" />
+			<Cursor1 position="415" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_bundle/dpapi_bundle_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="231" topLine="0" />
+			<Cursor1 position="541" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_context/dpapi_x11_opengl1o5_context.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1539" topLine="18" />
+			<Cursor1 position="552" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dprender/dprender_scene/dprender_scene.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="246" topLine="0" />
+			<Cursor1 position="2960" topLine="67" />
 		</Cursor>
 	</File>
-	<File name="dp/dpgfx/dpgui/dpgui_factory.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_factory.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="327" topLine="0" />
+			<Cursor1 position="600" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1550" topLine="20" />
+			<Cursor1 position="504" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpcore/dpshared/dpshared_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="956" topLine="4" />
+			<Cursor1 position="6010" topLine="161" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_context/dpapi_x11_opengl1o5_context_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="527" topLine="0" />
+			<Cursor1 position="590" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="525" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgui_list/dpgui_list.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="323" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2267" topLine="33" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow/dpwindow_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="461" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpscene/dpscene_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="166" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="286" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="494" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender_gui/dprender_gui/dprender_gui_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="296" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_scene_thread/dprender_scene_thread_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="498" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="889" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_8bit_palette/dpbitmap_8bit_palette.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="185" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_concrete/dpbuffer_concrete.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1190" topLine="53" />
 		</Cursor>
 	</File>
 	<File name="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -1821,154 +651,29 @@
 			<Cursor1 position="562" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dprender/dprender_scene/dprender_scene_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="795" topLine="0" />
+			<Cursor1 position="1132" topLine="12" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpcore/dptask/dptask_defines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="592" topLine="0" />
+			<Cursor1 position="129" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_context/dpapi_x11_opengl1o5_context_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="522" topLine="0" />
+			<Cursor1 position="346" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_factory.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="505" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpfont/dpfont_filter/dpfont_filter.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="711" topLine="11" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1992" topLine="38" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="388" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="385" topLine="21" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpgui_list/dpgui_list_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="804" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="main.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="747" topLine="5" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender_gui/dprender_gui/dprender_gui.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2202" topLine="36" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_shader/dpapi_shader_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="522" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpshared/dpshared_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1352" topLine="24" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow/dpwindow_factory.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="341" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender/dprender.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="432" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpfont/dpfont_bitmap/dpfont_bitmap.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1439" topLine="21" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="407" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dprender_gui/dprender_gui/dprender_gui_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpgfx/dpgfx/dpgfx_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="264" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_scene/dprender_scene_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="411" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpvertex/dpvertex.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="102" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_scene/dprender_scene_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1016" topLine="4" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="398" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dprender/dprender_scene_thread/dprender_scene_thread.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3011" topLine="114" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_uncompressed_palette/dpbitmap_uncompressed_palette.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4671" topLine="313" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="389" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="574" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpgfx/dpbitmap/dpbitmap_compressed/dpbitmap_compressed.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1887" topLine="244" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_context/dpapi_x11_opengl1o5_context_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="273" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="481" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="254" topLine="6" />
+			<Cursor1 position="229" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="dp/dpgfx/dpgfx/dpgfx.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -1976,14 +681,1309 @@
 			<Cursor1 position="1790" topLine="48" />
 		</Cursor>
 	</File>
-	<File name="dp/dpgfx/dpgui/dpgui_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dpgfx/dpgui_list/dpgui_list_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="780" topLine="0" />
+			<Cursor1 position="295" topLine="10" />
 		</Cursor>
 	</File>
-	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_cleardepth/dpapi_opengl1o5_primary_commandlist_command_cleardepth.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="201" topLine="0" />
+			<Cursor1 position="596" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_hello_triangle_scene_thread/dprender_hello_triangle_scene_thread.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2914" topLine="69" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender/dprender_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="268" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_primary_commandlist_command/dpapi_x11_opengl1o5_primary_commandlist_command_swapbuffers/dpapi_x11_opengl1o5_primary_commandlist_command_swapbuffers.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="564" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2099" topLine="37" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="349" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="478" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpfont/dpfont/dpfont.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2186" topLine="43" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_context/dpapi_x11_opengl1o5_context_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="788" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_bundle/dpapi_bundle_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="231" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="532" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_primary_commandlist/dpapi_x11_opengl1o5_primary_commandlist.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="654" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_hello_triangle_scene_thread/dprender_hello_triangle_scene_thread.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="426" topLine="7" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_scene/dprender_scene_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="257" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgui_list/dpgui_list_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="804" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3800" topLine="66" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgui/dpgui.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="553" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="670" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpmutex/dpmutex_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpfont/dpfont_filter_color/dpfont_filter_color.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1308" topLine="32" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist/dpapi_opengl1o5_primary_commandlist.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="935" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptask/dptask_writelock.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1825" topLine="52" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_task/dpapi_task.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="999" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow_task/dpwindow_task.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1190" topLine="24" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender/dprender_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="416" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_cleardepth/dpapi_opengl1o5_primary_commandlist_command_cleardepth.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="580" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="555" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_wrapper/dpbuffer_wrapper.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6058" topLine="207" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="269" topLine="5" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="206" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1112" topLine="30" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpfont/dpfont_bitmap/dpfont_bitmap.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2286" topLine="110" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender_gui/dprender_gui/dprender_gui_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="476" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1055" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="521" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow/dpwindow_factory.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="341" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgui/dpgui_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="943" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender/dprender.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3359" topLine="88" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="269" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="389" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="849" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="275" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpthread/dpthread_defines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="137" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_zlib/dpbuffer_zlib.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="110" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgui/dpgui.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3120" topLine="54" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_png/dpbitmap_png.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="17200" topLine="470" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="792" topLine="18" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpthread/dpthread.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7830" topLine="249" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="376" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="184" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgfx/dpgfx.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="345" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptask/dptask_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="458" topLine="7" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow/dpwindow_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="738" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpmutex/dpspinlock.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1774" topLine="43" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_scene_thread/dprender_scene_thread_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="610" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpmutex/dpmutex_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="264" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgui_list/dpgui_list_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="237" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_functions.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6245" topLine="90" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender_gui/dprender_gui/dprender_gui_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="341" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_material/dpapi_material_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="542" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_cleardepth/dpapi_primary_commandlist_command_cleardepth.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="326" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="zlib/gzlib.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6807" topLine="194" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_zlib/dpbuffer_zlib.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2096" topLine="81" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow_task/dpwindow_task.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="257" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="466" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_shader/dpapi_shader_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="459" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="672" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpmutex/dpmutex.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="453" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_functions.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1120" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_deflate/dpbuffer_deflate.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="572" topLine="14" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgfx/dpgfx_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="441" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1009" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_shader/dpapi_shader_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="560" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_loader/dpbitmap_loader.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4056" topLine="111" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="724" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_scene_thread/dprender_scene_thread_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="470" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_bundle/dpapi_bundle_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="433" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="139" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptaskmgr/dptaskmgr_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="265" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="982" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="451" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_uncompressed_palette/dpbitmap_uncompressed_palette.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4671" topLine="313" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_primary_commandlist/dpapi_x11_opengl1o5_primary_commandlist.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="457" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="454" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_8bit_palette/dpbitmap_8bit_palette.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="258" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgui/dpgui_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1087" topLine="16" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow/dpwindow_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="419" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="592" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="463" topLine="48" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpfont/dpfont_bitmap/dpfont_bitmap.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1439" topLine="21" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="702" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="469" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptask/dptask_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="451" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="711" topLine="24" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="871" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="817" topLine="24" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_scene/dprender_scene_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="411" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_uncompressed/dpbitmap_uncompressed.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7146" topLine="166" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender_gui/dprender_gui/dprender_gui_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="264" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="444" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3083" topLine="69" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1727" topLine="33" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_png_bitmap/dpbitmap_png_bitmap.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="389" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_uncompressed_palette/dpbitmap_uncompressed_palette.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="943" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="476" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist_command/dpapi_commandlist_command_bundle/dpapi_commandlist_command_bundle.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="655" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="483" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="393" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_factory.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="505" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_context/dpapi_x11_opengl1o5_context_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="339" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpmatrix/dpmatrix.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="949" topLine="34" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="21577" topLine="539" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_material/dpapi_material_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="490" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared_guard.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="397" topLine="13" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="360" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1090" topLine="18" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="507" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender/dprender_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="434" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="900" topLine="14" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1629" topLine="37" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow/dpwindow.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1029" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpscene/dpscene.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="201" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_scene/dprender_scene_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="824" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="293" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="467" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="246" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist/dpapi_opengl1o5_primary_commandlist.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1247" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3366" topLine="186" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="891" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpscene/dpscene.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2214" topLine="67" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_material/dpapi_material.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="650" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi_factory.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="357" topLine="2" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="548" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="539" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1878" topLine="16" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="9299" topLine="233" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_compressed/dpbitmap_compressed.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1887" topLine="244" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="607" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_bundle/dpapi_bundle_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="512" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgui_list/dpgui_list_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="133" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="277" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptask/dptask_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="462" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_material/dpapi_material_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="543" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpquaternion/dpquaternion.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1808" topLine="86" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptaskmgr/dptaskmgr_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1244" topLine="22" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="868" topLine="19" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3253" topLine="104" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="254" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="654" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="131" topLine="7" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1550" topLine="20" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpmatrix/dpmatrix.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="72" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="204" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_shader/dpapi_shader_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="514" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="265" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgui/dpgui_factory.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="327" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="772" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="380" topLine="5" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgui_list/dpgui_list_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="518" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpscene/dpscene_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="480" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_clearcolor/dpapi_primary_commandlist_command_clearcolor.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="346" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_primary_commandlist_command/dpapi_x11_opengl1o5_primary_commandlist_command_swapbuffers/dpapi_x11_opengl1o5_primary_commandlist_command_swapbuffers.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1254" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_scene/dprender_scene.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5962" topLine="195" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgfx/dpgfx_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="503" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="496" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgui_list/dpgui_list.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1733" topLine="21" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="510" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1874" topLine="42" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_material/dpapi_material.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="343" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap/dpbitmap.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5741" topLine="212" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="481" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender/dprender.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="432" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_1bit_palette/dpbitmap_1bit_palette.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="319" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpthread/dpthread_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="574" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3473" topLine="67" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_dynamic/dpbuffer_dynamic.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="115" topLine="11" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_scene/dprender_scene_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1016" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_cleardepth/dpapi_primary_commandlist_command_cleardepth.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="339" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_24bit_uncompressed/dpbitmap_24bit_uncompressed.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="540" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_task/dpapi_task.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="488" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="562" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1150" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgui/dpgui_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="485" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpfont/dpfont_filter/dpfont_filter.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="138" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpthread/dpthread_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="785" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="407" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_shader/dpapi_shader_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="421" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared_guard.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1694" topLine="46" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="606" topLine="5" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_bundle/dpapi_bundle.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1270" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi/dpapi_factory.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="500" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_factory.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="535" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_compressed/dpbitmap_compressed.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2953" topLine="46" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="544" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="389" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_compress/dpbuffer_compress.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="151" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender_gui/dprender_gui/dprender_gui_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="150" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="963" topLine="8" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="423" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow/dpwindow_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="587" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_concrete/dpbuffer_concrete.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4710" topLine="71" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender_gui/dprender_gui/dprender_gui.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4845" topLine="153" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_swapbuffers/dpapi_primary_commandlist_command_swapbuffers.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="640" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_shader/dpapi_shader_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="522" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_factory.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="281" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpfont/dpfont/dpfont.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1760" topLine="68" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="348" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_clearcolor/dpapi_opengl1o5_primary_commandlist_command_clearcolor.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="105" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="331" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgui/dpgui_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="209" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="85" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="472" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="454" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap/dpbitmap.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="679" topLine="30" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="8047" topLine="126" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender_gui/dprender_gui/dprender_gui.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="636" topLine="21" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="636" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender/dprender_scenelink.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="575" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_commandlist/dpapi_primary_commandlist_command_commandlist.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="231" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender/dprender_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="556" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpthread/dpthread_writelock.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2242" topLine="55" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="822" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="452" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgfx/dpgfx_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="598" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="718" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="916" topLine="8" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1058" topLine="14" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_context/dpapi_x11_opengl1o5_context_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1011" topLine="10" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2620" topLine="60" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_swapbuffers/dpapi_opengl1o5_primary_commandlist_command_swapbuffers.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="945" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_scene_thread/dprender_scene_thread.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3011" topLine="114" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="522" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_shared/dpbuffer_shared_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="400" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_commandlist/dpapi_primary_commandlist_command_commandlist.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="719" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpthread/dpthread_readlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="866" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpbitmap/dpbitmap_4bit_palette/dpbitmap_4bit_palette.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="312" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="398" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dptaskmgr/dptaskmgr.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5687" topLine="74" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender_gui/dprender_gui/dprender_gui_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="840" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="468" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpfont/dpfont_filter_face/dpfont_filter_face.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="229" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer_static/dpbuffer_static.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="842" topLine="5" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="285" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="253" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_ref.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="564" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpbuffer/dpbuffer/dpbuffer.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3610" topLine="63" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_bundle/dpapi_bundle_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="828" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpgui_list/dpgui_list_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="207" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_bundle/dpapi_bundle_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="596" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender/dprender_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="395" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpgfx/dpfont/dpfont_filter_size/dpfont_filter_size.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="496" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpthread/dpthread_writelock.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="933" topLine="25" />
+		</Cursor>
+	</File>
+	<File name="dp/dpcore/dpshared/dpshared_readlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1352" topLine="24" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1048" topLine="2" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer_writelock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1039" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="zlib/gzwrite.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="16109" topLine="113" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_writelock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1092" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_swapbuffers/dpapi_primary_commandlist_command_swapbuffers.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="342" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="dp/dprender/dprender/dprender_scene_thread/dprender_scene_thread_ref.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="456" topLine="6" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

@@ -276,10 +276,10 @@ namespace dp
         tl = (dptask_writelock *)dpshared_guard_tryWriteLock_timeout( g, t->tsk, 10 );
         if( !tl )
         {
+            tr = t->tsk;
 
     #if defined dpthread_debug || defined dptask_debug
             std::string s;
-            tr = t->tsk;
             tr->getName( &s );
             std::cout << "Unable to lock task " << s << "\r\n";
     #endif
