@@ -51,6 +51,8 @@ namespace dp
         bool addCommandList( dpapi_context_writelock *ctxl, dpapi_commandlist *cl );
         //add swap buffers
         bool swapBuffers( dpapi_context_writelock *ctxl );
+        //add viewport command
+        bool viewport( dpapi_context_writelock *ctxl, float x, float y, float w, float h );
 
     };
 

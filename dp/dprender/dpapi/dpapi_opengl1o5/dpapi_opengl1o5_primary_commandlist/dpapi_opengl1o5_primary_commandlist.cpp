@@ -7,6 +7,7 @@
 #include "../dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_clearcolor/dpapi_opengl1o5_primary_commandlist_command_clearcolor.h"
 #include "../dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_cleardepth/dpapi_opengl1o5_primary_commandlist_command_cleardepth.h"
 #include "../dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_swapbuffers/dpapi_opengl1o5_primary_commandlist_command_swapbuffers.h"
+#include "../dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_viewport/dpapi_opengl1o5_primary_commandlist_command_viewport.h"
 
 namespace dp
 {
@@ -51,6 +52,12 @@ namespace dp
     dpapi_primary_commandlist_command *dpapi_opengl1o5_primary_commandlist::genCommandSwapBuffers( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl )
     {
         return new dpapi_opengl1o5_primary_commandlist_command_swapbuffers( l, ctxl, this->gl );
+    }
+
+    //generate viewport command
+    dpapi_primary_commandlist_command *dpapi_opengl1o5_primary_commandlist::genCommandViewport( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, float x, float y, float w, float h )
+    {
+        return new dpapi_opengl1o5_primary_commandlist_command_viewport( l, ctxl, x, y, w, h, this->gl );
     }
 
 }

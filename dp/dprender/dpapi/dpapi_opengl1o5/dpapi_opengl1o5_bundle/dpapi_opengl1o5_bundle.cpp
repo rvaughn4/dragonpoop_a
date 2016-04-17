@@ -69,6 +69,8 @@ namespace dp
         this->t1 = bdle->t1;
         if( mx )
             this->m.copy( mx );
+        else
+            this->m.copy( &bdle->m );
     }
 
     //dtor

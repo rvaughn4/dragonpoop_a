@@ -100,6 +100,7 @@ namespace dp
         std::cout << "Render Frame: Primary command buffer cleared.\r\n";
 #endif // defined
 
+        cll->viewport( ctxl, 0, 0, ctxl->getWidth(), ctxl->getHeight() );
         cll->clearColor( ctxl, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX );
         cll->clearDepth( ctxl, 1 );
 

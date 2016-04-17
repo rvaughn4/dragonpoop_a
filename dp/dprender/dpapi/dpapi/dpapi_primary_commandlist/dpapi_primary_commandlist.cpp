@@ -12,6 +12,7 @@
 #include "../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_cleardepth/dpapi_primary_commandlist_command_cleardepth.h"
 #include "../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_swapbuffers/dpapi_primary_commandlist_command_swapbuffers.h"
 #include "../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_commandlist/dpapi_primary_commandlist_command_commandlist.h"
+#include "../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_viewport/dpapi_primary_commandlist_command_viewport.h"
 
 namespace dp
 {
@@ -158,6 +159,12 @@ namespace dp
         return new dpapi_primary_commandlist_command_swapbuffers( l, ctxl );
     }
 
+    //generate viewport command
+    dpapi_primary_commandlist_command *dpapi_primary_commandlist::genCommandViewport( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, float x, float y, float w, float h )
+    {
+        return new dpapi_primary_commandlist_command_viewport( l, ctxl, x, y, w, h );
+    }
+
     //clear commandlist and make ready for new commands / record mode
     bool dpapi_primary_commandlist::clearAndRecord( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl )
     {
@@ -222,6 +229,14 @@ namespace dp
     {
         dpapi_primary_commandlist_command *c;
         c = this->genCommandSwapBuffers( l, ctxl );
+        return this->addCommand( c );
+    }
+
+    //add viewport command
+    bool dpapi_primary_commandlist::viewport( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, float x, float y, float w, float h )
+    {
+        dpapi_primary_commandlist_command *c;
+        c = this->genCommandViewport( l, ctxl, x, y, w, h );
         return this->addCommand( c );
     }
 

@@ -191,9 +191,9 @@ namespace dp
 static float rr;
 rr++;
         z = (float)this->z / -8.0f;
-        m.translate( this->rc.x, this->rc.y, z );
-        m.rotateX( rr );
-        m.rotateZ( rr * 0.3f );
+        //m.translate( this->rc.x, this->rc.y, z );
+        //m.rotateX( rr );
+        //m.rotateZ( rr * 0.3f );
 
         this->mat.setIdentity();
         if( mparent )
@@ -248,8 +248,8 @@ rr++;
         if( this->vb )
             delete this->vb;
 
-        w = (float)this->rc.w;
-        h = (float)this->rc.h;
+        w = 1920;//(float)this->rc.w;
+        h = 1080;//(float)this->rc.h;
 
         v.vert.z = 0;
         v.norm.x = 0;

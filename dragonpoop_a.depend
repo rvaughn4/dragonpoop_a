@@ -690,7 +690,7 @@
 	"dpapi_scene_writelock.h"
 	"dpapi_scene.h"
 
-1458503585 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist.cpp
+1460915382 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist.cpp
 	"dpapi_primary_commandlist.h"
 	"dpapi_primary_commandlist_ref.h"
 	"dpapi_primary_commandlist_readlock.h"
@@ -700,6 +700,7 @@
 	"../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_cleardepth/dpapi_primary_commandlist_command_cleardepth.h"
 	"../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_swapbuffers/dpapi_primary_commandlist_command_swapbuffers.h"
 	"../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_commandlist/dpapi_primary_commandlist_command_commandlist.h"
+	"../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_viewport/dpapi_primary_commandlist_command_viewport.h"
 
 1457343790 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_readlock.cpp
 	"dpapi_primary_commandlist_readlock.h"
@@ -709,7 +710,7 @@
 	"dpapi_primary_commandlist_ref.h"
 	"dpapi_primary_commandlist.h"
 
-1457657470 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_writelock.cpp
+1460915490 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_writelock.cpp
 	"dpapi_primary_commandlist_writelock.h"
 	"dpapi_primary_commandlist.h"
 
@@ -740,7 +741,7 @@
 1460516379 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_writelock.h
 	"../../../../dpcore/dpshared/dpshared_writelock.h"
 
-1457657231 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist.h
+1460915267 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist.h
 	"../../../../dpcore/dpshared/dpshared.h"
 
 1457343558 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_ref.h
@@ -749,7 +750,7 @@
 1457343495 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_readlock.h
 	"../../../../dpcore/dpshared/dpshared_readlock.h"
 
-1457657421 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_writelock.h
+1460915459 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist_writelock.h
 	"../../../../dpcore/dpshared/dpshared_writelock.h"
 
 1457346422 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command.cpp
@@ -807,7 +808,7 @@
 1460332940 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_writelock.h
 	"../../../dpcore/dptask/dptask_writelock.h"
 
-1460472186 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.cpp
+1460915566 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.cpp
 	"dprender_frame_thread.h"
 	"dprender_frame_thread_ref.h"
 	"dprender_frame_thread_readlock.h"
@@ -876,13 +877,14 @@
 1457656652 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_swapbuffers/dpapi_primary_commandlist_command_swapbuffers.h
 	"../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command.h"
 
-1458503688 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist/dpapi_opengl1o5_primary_commandlist.cpp
+1460915913 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist/dpapi_opengl1o5_primary_commandlist.cpp
 	"dpapi_opengl1o5_primary_commandlist.h"
 	"../dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_clearcolor/dpapi_opengl1o5_primary_commandlist_command_clearcolor.h"
 	"../dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_cleardepth/dpapi_opengl1o5_primary_commandlist_command_cleardepth.h"
 	"../dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_swapbuffers/dpapi_opengl1o5_primary_commandlist_command_swapbuffers.h"
+	"../dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_viewport/dpapi_opengl1o5_primary_commandlist_command_viewport.h"
 
-1457780652 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist/dpapi_opengl1o5_primary_commandlist.h
+1460915855 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist/dpapi_opengl1o5_primary_commandlist.h
 	"../../dpapi/dpapi_primary_commandlist/dpapi_primary_commandlist.h"
 	"../dpapi_opengl1o5/dpapi_opengl1o5_functions.h"
 
@@ -983,7 +985,7 @@
 
 1457266645 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_commandlist_command/dpapi_commandlist_command_cleardepth/dpapi_commandlist_command_cleardepth.cpp
 
-1460913062 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.cpp
+1460914967 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.cpp
 	"dprender_gui_thread.h"
 	"../../../dpcore/dpshared/dpshared_guard.h"
 	"../../dpapi/dpapi/dpapi/dpapi_factory.h"
@@ -1376,7 +1378,7 @@
 	"dpapi_opengl1o5_vertexbuffer_writelock.h"
 	"dpapi_opengl1o5_vertexbuffer.h"
 
-1460908263 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_bundle/dpapi_opengl1o5_bundle.cpp
+1460914657 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_bundle/dpapi_opengl1o5_bundle.cpp
 	"dpapi_opengl1o5_bundle.h"
 	"../dpapi_opengl1o5_context/dpapi_opengl1o5_context_writelock.h"
 	"../dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.h"
@@ -1937,7 +1939,7 @@
 	"dpgui_list_writelock.h"
 	"../dpgui/dpgui.h"
 
-1460913369 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui.cpp
+1460914760 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui.cpp
 	"dprender_gui.h"
 	"dprender_gui_ref.h"
 	"dprender_gui_readlock.h"
@@ -2014,7 +2016,7 @@
 1460375855 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui_writelock.h
 	"../dprender_gui_list/dprender_gui_list_writelock.h"
 
-1460913255 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpmatrix/dpmatrix.cpp
+1460913552 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpmatrix/dpmatrix.cpp
 	"dpmatrix.h"
 	"../dpquaternion/dpquaternion.h"
 	<math.h>
@@ -2064,4 +2066,17 @@
 	"dpscene.h"
 
 1460027247 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_factory.h
+
+1460915184 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_viewport/dpapi_primary_commandlist_command_viewport.cpp
+	"dpapi_primary_commandlist_command_viewport.h"
+
+1460915155 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_viewport/dpapi_primary_commandlist_command_viewport.h
+	"../dpapi_primary_commandlist_command/dpapi_primary_commandlist_command.h"
+
+1460915810 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_viewport/dpapi_opengl1o5_primary_commandlist_command_viewport.cpp
+	"dpapi_opengl1o5_primary_commandlist_command_viewport.h"
+
+1460915685 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_viewport/dpapi_opengl1o5_primary_commandlist_command_viewport.h
+	"../../../dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_viewport/dpapi_primary_commandlist_command_viewport.h"
+	"../../dpapi_opengl1o5/dpapi_opengl1o5_functions.h"
 

@@ -59,6 +59,8 @@ namespace dp
         virtual dpapi_primary_commandlist_command *genCommandCommandList( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, dpapi_commandlist *cl );
         //generate swap buffers command
         virtual dpapi_primary_commandlist_command *genCommandSwapBuffers( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl );
+        //generate viewport command
+        virtual dpapi_primary_commandlist_command *genCommandViewport( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, float x, float y, float w, float h );
 
         //clear commandlist and make ready for new commands / record mode
         virtual bool clearAndRecord( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl );
@@ -79,6 +81,8 @@ namespace dp
         virtual bool addCommandList( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, dpapi_commandlist *cl );
         //add swap buffers
         virtual bool swapBuffers( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl );
+        //add viewport command
+        virtual bool viewport( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, float x, float y, float w, float h );
 
     public:
 

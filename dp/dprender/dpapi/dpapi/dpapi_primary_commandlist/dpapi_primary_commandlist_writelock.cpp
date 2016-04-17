@@ -76,6 +76,12 @@ namespace dp
         return this->p->swapBuffers( this, ctxl );
     }
 
+    //add viewport command
+    bool dpapi_primary_commandlist_writelock::viewport( dpapi_context_writelock *ctxl, float x, float y, float w, float h )
+    {
+        return this->p->viewport( this, ctxl, x, y, w, h );
+    }
+
 }
 
 

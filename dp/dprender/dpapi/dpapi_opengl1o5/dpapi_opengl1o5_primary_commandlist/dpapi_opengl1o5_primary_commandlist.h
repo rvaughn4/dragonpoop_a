@@ -31,6 +31,8 @@ namespace dp
         virtual dpapi_primary_commandlist_command *genCommandRenderpassEnd( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl );
         //generate swap buffers command
         virtual dpapi_primary_commandlist_command *genCommandSwapBuffers( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl );
+        //generate viewport command
+        virtual dpapi_primary_commandlist_command *genCommandViewport( dpapi_primary_commandlist_writelock *l, dpapi_context_writelock *ctxl, float x, float y, float w, float h );
 
     public:
 
