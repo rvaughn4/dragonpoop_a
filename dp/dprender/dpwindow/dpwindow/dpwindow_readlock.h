@@ -34,6 +34,14 @@ namespace dp
         dpwindow_readlock( dpwindow *p, dpmutex_readlock *ml );
         //returns true if open
         bool isOpen( void );
+        //return width
+        unsigned int getWidth( void );
+        //return height
+        unsigned int getHeight( void );
+        //returns true if window is shown
+        bool isShown( void );
+        //returns true if window is fullscreen
+        bool isFullscreen( void );
 
     };
 

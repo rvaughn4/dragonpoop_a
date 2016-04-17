@@ -27,6 +27,31 @@ namespace dp
     {
         return this->p->isOpen();
     }
+
+    //return width
+    unsigned int dpwindow_readlock::getWidth( void )
+    {
+        return this->p->getWidth();
+    }
+
+    //return height
+    unsigned int dpwindow_readlock::getHeight( void )
+    {
+        return this->p->getHeight();
+    }
+
+    //returns true if window is shown
+    bool dpwindow_readlock::isShown( void )
+    {
+        return this->p->isShown();
+    }
+
+    //returns true if window is fullscreen
+    bool dpwindow_readlock::isFullscreen( void )
+    {
+        return this->p->isFullscreen();
+    }
+
 }
 
 

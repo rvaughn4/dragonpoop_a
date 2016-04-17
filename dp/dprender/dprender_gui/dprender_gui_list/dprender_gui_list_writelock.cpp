@@ -41,7 +41,13 @@ namespace dp
     //pass in context
     void dprender_gui_list_writelock::passContext( dpapi_context_writelock *ctx )
     {
-        this->p->passContext( ctx );
+        this->p->passContext( this, ctx );
+    }
+
+    //render
+    void dprender_gui_list_writelock::render( dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
+    {
+        this->p->render( this, m_parent, ctx, cll );
     }
 
 }

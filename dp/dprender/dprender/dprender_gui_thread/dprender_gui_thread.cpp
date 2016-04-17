@@ -154,6 +154,7 @@ namespace dp
         dh *= 0.5f;
 
         this->mat.setOrtho( -dw, sh + dh, 0.0f, sw + dw, -dh, ss );
+        this->mat.translate( 0.0f, 0.0f, -0.5f * ss );
         this->undo_mat.inverse( &this->mat );
     }
 

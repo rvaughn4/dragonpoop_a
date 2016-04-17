@@ -171,9 +171,12 @@ namespace dp
 
         this->values.col._1.row._1 = fov / aspect;
         this->values.col._2.row._2 = fov;
-        this->values.col._3.row._3 = ( z1 + z0 ) / ( z0 - z1 );
-        this->values.col._4.row._3 = ( 2.0f * z1 * z0 ) / ( z0 - z1 );
+        this->values.col._3.row._3 = -( z1 + z0 ) / ( z0 - z1 );
+        this->values.col._4.row._3 = -( 2.0f * z1 * z0 ) / ( z0 - z1 );
         this->values.col._3.row._4 = -1.0f;
+
+        this->values.col._4.row._1 = -( x1 + x0 ) / ( x1 - x0 );
+        this->values.col._4.row._2 = -( y1 + y0 ) / ( y1 - y0 );
     }
 
     //set tranlation matrix

@@ -84,6 +84,42 @@ namespace dp
         return 0;
     }
 
+    //show window
+    bool dpwindow::show( void )
+    {
+        return 0;
+    }
+
+    //hide window
+    bool dpwindow::hide( void )
+    {
+        return 0;
+    }
+
+    //returns true if window is shown
+    bool dpwindow::isShown( void )
+    {
+        return 0;
+    }
+
+    //make window fullscreen
+    bool dpwindow::fullscreen( void )
+    {
+        return 0;
+    }
+
+    //make window windowed
+    bool dpwindow::windowed( void )
+    {
+        return 0;
+    }
+
+    //returns true if window is fullscreen
+    bool dpwindow::isFullscreen( void )
+    {
+        return 0;
+    }
+
 }
 
 

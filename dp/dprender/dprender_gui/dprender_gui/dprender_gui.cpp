@@ -14,6 +14,7 @@
 #include "../../dpapi/dpapi/dpapi_texture/dpapi_texture.h"
 #include "../../dpapi/dpapi/dpapi_bundle/dpapi_bundle.h"
 
+#include "../../../dpgfx/dpvertex/dpvertex.h"
 #include "../../../dpgfx/dpvertex/dpvertexbuffer.h"
 #include "../../../dpgfx/dpvertex/dpindexbuffer.h"
 #include "../../../dpgfx/dpmatrix/dpmatrix.h"
@@ -126,6 +127,10 @@ namespace dp
 
         gr->getDimensions( &this->rc.w, &this->rc.h );
         gr->getPosition( &this->rc.x, &this->rc.y );
+        this->rc.w = 1920;
+        this->rc.h = 1080;
+        this->rc.x = 0;
+        this->rc.y = 0;
         this->z = gr->getZ();
 
         this->makeVB( this->ctx, gr );
@@ -165,14 +170,14 @@ namespace dp
     }
 
     //pass in context
-    void dprender_gui::passContext( dpapi_context_writelock *ctx )
+    void dprender_gui::passContext( dprender_gui_writelock *wl, dpapi_context_writelock *ctx )
     {
         this->ctx = ctx;
-        this->dprender_gui_list::passContext( ctx );
+        this->dprender_gui_list::passContext( wl, ctx );
     }
 
     //render
-    void dprender_gui::render( dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
+    void dprender_gui::render( dprender_gui_writelock *wl, dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
     {
 //        dpmatrix m;
         if( !this->bdle_bg || !this->bdle_fg )
@@ -181,19 +186,33 @@ namespace dp
 
         cll->addBundle( ctx, &this->mat, this->bdle_bg );
         cll->addBundle( ctx, &this->mat, this->bdle_fg );
+
+        this->dprender_gui_list::render( wl, m_parent, ctx, cll );
     }
 
     //make matrix
     void dprender_gui::calcMatrix( dpmatrix *mparent )
     {
-        float z;
         dpmatrix m;
+        dpxyzw p, sz;
+
 static float rr;
 rr++;
-        z = (float)this->z / -8.0f;
-        //m.translate( this->rc.x, this->rc.y, z );
-        //m.rotateX( rr );
-        //m.rotateZ( rr * 0.3f );
+        p.x = this->rc.x;
+        p.y = this->rc.y;
+        p.z = 16.0f + (float)this->z / -8.0f;
+        if( p.z < 0.01f )
+            p.z = 0.01f;
+        sz.x = this->rc.w;
+        sz.y = this->rc.h;
+        sz.z = 0;
+
+        m.translate( p.x, p.y, p.z );
+
+        m.translate( sz.x * 0.5f, sz.y * 0.5f, sz.z * 0.5f );
+        m.rotateX( rr );
+        m.rotateZ( rr * 0.3f );
+        m.translate( sz.x * -0.5f, sz.y * -0.5f, sz.z * -0.5f );
 
         this->mat.setIdentity();
         if( mparent )
@@ -248,8 +267,8 @@ rr++;
         if( this->vb )
             delete this->vb;
 
-        w = 1920;//(float)this->rc.w;
-        h = 1080;//(float)this->rc.h;
+        w = (float)this->rc.w;
+        h = (float)this->rc.h;
 
         v.vert.z = 0;
         v.norm.x = 0;
@@ -326,6 +345,33 @@ rr++;
         //br
         i.i = 3;
         ib.write( &i );
+
+//reverse side
+
+        //tl
+        i.i = 0;
+        ib.write( &i );
+
+        //bl //tr
+        i.i = 1;
+        ib.write( &i );
+
+        //tr //bl
+        i.i = 2;
+        ib.write( &i );
+
+        //tr
+        i.i = 1;
+        ib.write( &i );
+
+        //bl //br
+        i.i = 3;
+        ib.write( &i );
+
+        //br //bl
+        i.i = 2;
+        ib.write( &i );
+
 
         this->ib_bg = ctx->makeIndexBuffer( &ib );
     }

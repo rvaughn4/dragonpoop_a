@@ -13,6 +13,8 @@ namespace dp
     class dprender_gui_list;
     class dprender_gui;
     class dpapi_context_writelock;
+    class dpmatrix;
+    class dpapi_commandlist_writelock;
 
     class dprender_gui_list_writelock : public dpshared_writelock
     {
@@ -38,6 +40,8 @@ namespace dp
         unsigned int getGuisZSorted( dprender_gui **glist, unsigned int max_cnt, unsigned int &p_max_z, bool bInverted );
         //pass in context
         void passContext( dpapi_context_writelock *ctx );
+        //render
+        void render( dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll );
 
     };
 

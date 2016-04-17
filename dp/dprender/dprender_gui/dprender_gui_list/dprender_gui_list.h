@@ -13,6 +13,8 @@ namespace dp
     class dprender_gui_list_writelock;
     class dprender_gui;
     class dpapi_context_writelock;
+    class dpmatrix;
+    class dpapi_commandlist_writelock;
 
     #define dprender_gui_list_max_gui 512
 
@@ -51,7 +53,9 @@ namespace dp
         //override to handle processing
         virtual void onRun( dpshared_writelock *wl );
         //pass in context
-        virtual void passContext( dpapi_context_writelock *ctx );
+        virtual void passContext( dprender_gui_list_writelock *wl, dpapi_context_writelock *ctx );
+        //render
+        virtual void render( dprender_gui_list_writelock *wl, dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll );
 
     public:
 

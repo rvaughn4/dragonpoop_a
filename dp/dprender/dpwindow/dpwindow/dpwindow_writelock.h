@@ -38,6 +38,18 @@ namespace dp
         unsigned int getWidth( void );
         //return height
         unsigned int getHeight( void );
+        //show window
+        bool show( void );
+        //hide window
+        bool hide( void );
+        //returns true if window is shown
+        bool isShown( void );
+        //make window fullscreen
+        bool fullscreen( void );
+        //make window windowed
+        bool windowed( void );
+        //returns true if window is fullscreen
+        bool isFullscreen( void );
 
     };
 

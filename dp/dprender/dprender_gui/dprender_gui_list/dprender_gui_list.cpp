@@ -222,9 +222,32 @@ namespace dp
     }
 
     //pass in context
-    void dprender_gui_list::passContext( dpapi_context_writelock *ctx )
+    void dprender_gui_list::passContext( dprender_gui_list_writelock *wl, dpapi_context_writelock *ctx )
     {
         this->ctx = ctx;
+    }
+
+    //render
+    void dprender_gui_list::render( dprender_gui_list_writelock *wl, dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
+    {
+        unsigned int i;
+        dprender_gui *p;
+        dprender_gui_writelock *pl;
+        dpshared_guard g;
+
+        for( i = 0; i < dprender_gui_list_max_gui; i++ )
+        {
+            p = this->glist[ i ];
+            if( !p )
+                continue;
+
+            pl = (dprender_gui_writelock *)dpshared_guard_tryWriteLock_timeout( g, p, 30 );
+            if( !pl )
+                continue;
+            pl->render( m_parent, ctx, cll );
+
+            g.release( pl );
+        }
     }
 
 }
