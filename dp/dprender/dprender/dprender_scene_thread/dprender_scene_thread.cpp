@@ -26,7 +26,7 @@ namespace dp
 {
 
     //ctor
-    dprender_scene_thread::dprender_scene_thread( dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b ) : dptask( "Renderer scene", 3 )
+    dprender_scene_thread::dprender_scene_thread( dpapi_ref *api, dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b ) : dptask( "Renderer scene", 3 )
     {
         this->ctx = ctx;
         this->cl_a = cl_a;
@@ -168,6 +168,23 @@ namespace dp
     bool dprender_scene_thread::onSceneRender( dprender_scene_thread_writelock *l, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
     {
         return 1;
+    }
+
+    //override to handle sync copy, be sure to call base class first!
+    void dprender_scene_thread::onSync( dpshared_readlock *psync )
+    {
+        this->dptask::onSync( psync );
+    }
+
+    //override to test type for safe syncing, be sure to call base class first!
+    bool dprender_scene_thread::isSyncType( const char *ctypename )
+    {
+        std::string s( ctypename );
+
+        if( s.compare( "dprender_scene_thread" ) == 0 )
+            return 1;
+
+        return this->dptask::isSyncType( ctypename );
     }
 
 }

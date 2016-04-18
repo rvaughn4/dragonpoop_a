@@ -45,11 +45,15 @@ namespace dp
         virtual bool onSceneStop( dprender_scene_thread_writelock *l, dpapi_context_writelock *ctx );
         //override to handle scene render
         virtual bool onSceneRender( dprender_scene_thread_writelock *l, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll );
+        //override to handle sync copy, be sure to call base class first!
+        virtual void onSync( dpshared_readlock *psync );
+        //override to test type for safe syncing, be sure to call base class first!
+        virtual bool isSyncType( const char *ctypename );
 
     public:
 
         //ctor
-        dprender_gui_thread( dpscene_ref *scn, dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b );
+        dprender_gui_thread( dpapi_ref *api, dpscene_ref *scn, dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b );
         //dtor
         virtual ~dprender_gui_thread( void );
 

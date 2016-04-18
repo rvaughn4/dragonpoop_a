@@ -100,7 +100,7 @@ namespace dp
     //generate gui task
     dprender_scene_thread *dprender_scene::makeGuiTask( dprender_scene_writelock *l, dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b )
     {
-        return new dprender_gui_thread( this->scn, ctx, cl_a, cl_b, flag_a, flag_b );
+        return new dprender_gui_thread( this->apir, this->scn, ctx, cl_a, cl_b, flag_a, flag_b );
     }
 
     //zero tasks

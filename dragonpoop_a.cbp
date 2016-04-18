@@ -152,6 +152,8 @@
 		<Unit filename="dp/dpgfx/dpfont/dpfont_bitmap/dpfont_bitmap.h" />
 		<Unit filename="dp/dpgfx/dpfont/dpfont_filter/dpfont_filter.cpp" />
 		<Unit filename="dp/dpgfx/dpfont/dpfont_filter/dpfont_filter.h" />
+		<Unit filename="dp/dpgfx/dpfont/dpfont_filter_align/dpfont_filter_align.cpp" />
+		<Unit filename="dp/dpgfx/dpfont/dpfont_filter_align/dpfont_filter_align.h" />
 		<Unit filename="dp/dpgfx/dpfont/dpfont_filter_color/dpfont_filter_color.cpp" />
 		<Unit filename="dp/dpgfx/dpfont/dpfont_filter_color/dpfont_filter_color.h" />
 		<Unit filename="dp/dpgfx/dpfont/dpfont_filter_face/dpfont_filter_face.cpp" />
@@ -204,6 +206,12 @@
 		<Unit filename="dp/dpgfx/dpvertex/dpvertex.h" />
 		<Unit filename="dp/dpgfx/dpvertex/dpvertexbuffer.cpp" />
 		<Unit filename="dp/dpgfx/dpvertex/dpvertexbuffer.h" />
+		<Unit filename="dp/dpinit/dpinit/dpinit.cpp" />
+		<Unit filename="dp/dpinit/dpinit/dpinit.h" />
+		<Unit filename="dp/dpinit/dploader_scene/dploader_root_gui/dploader_root_gui.cpp" />
+		<Unit filename="dp/dpinit/dploader_scene/dploader_root_gui/dploader_root_gui.h" />
+		<Unit filename="dp/dpinit/dploader_scene/dploader_scene/dploader_scene.cpp" />
+		<Unit filename="dp/dpinit/dploader_scene/dploader_scene/dploader_scene.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi/dpapi.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi/dpapi.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi/dpapi_factory.cpp" />
@@ -276,6 +284,8 @@
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_commandlist/dpapi_primary_commandlist_command_commandlist.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_swapbuffers/dpapi_primary_commandlist_command_swapbuffers.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_swapbuffers/dpapi_primary_commandlist_command_swapbuffers.h" />
+		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_viewport/dpapi_primary_commandlist_command_viewport.cpp" />
+		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_primary_commandlist_command/dpapi_primary_commandlist_command_viewport/dpapi_primary_commandlist_command_viewport.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi/dpapi_renderpass/dpapi_renderpass_readlock.cpp" />
@@ -345,6 +355,8 @@
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_cleardepth/dpapi_opengl1o5_primary_commandlist_command_cleardepth.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_swapbuffers/dpapi_opengl1o5_primary_commandlist_command_swapbuffers.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_swapbuffers/dpapi_opengl1o5_primary_commandlist_command_swapbuffers.h" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_viewport/dpapi_opengl1o5_primary_commandlist_command_viewport.cpp" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_primary_commandlist_command/dpapi_opengl1o5_primary_commandlist_command_viewport/dpapi_opengl1o5_primary_commandlist_command_viewport.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_readlock.cpp" />
@@ -382,6 +394,14 @@
 		<Unit filename="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_primary_commandlist/dpapi_x11_opengl1o5_primary_commandlist.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_primary_commandlist_command/dpapi_x11_opengl1o5_primary_commandlist_command_swapbuffers/dpapi_x11_opengl1o5_primary_commandlist_command_swapbuffers.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_primary_commandlist_command/dpapi_x11_opengl1o5_primary_commandlist_command_swapbuffers/dpapi_x11_opengl1o5_primary_commandlist_command_swapbuffers.h" />
+		<Unit filename="dp/dprender/dpinput/dpinput.cpp" />
+		<Unit filename="dp/dprender/dpinput/dpinput.h" />
+		<Unit filename="dp/dprender/dpinput/dpinput_readlock.cpp" />
+		<Unit filename="dp/dprender/dpinput/dpinput_readlock.h" />
+		<Unit filename="dp/dprender/dpinput/dpinput_ref.cpp" />
+		<Unit filename="dp/dprender/dpinput/dpinput_ref.h" />
+		<Unit filename="dp/dprender/dpinput/dpinput_writelock.cpp" />
+		<Unit filename="dp/dprender/dpinput/dpinput_writelock.h" />
 		<Unit filename="dp/dprender/dprender/dprender/dprender.cpp" />
 		<Unit filename="dp/dprender/dprender/dprender/dprender.h" />
 		<Unit filename="dp/dprender/dprender/dprender/dprender_readlock.cpp" />
@@ -401,8 +421,6 @@
 		<Unit filename="dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread_writelock.h" />
 		<Unit filename="dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.cpp" />
 		<Unit filename="dp/dprender/dprender/dprender_gui_thread/dprender_gui_thread.h" />
-		<Unit filename="dp/dprender/dprender/dprender_hello_triangle_scene_thread/dprender_hello_triangle_scene_thread.cpp" />
-		<Unit filename="dp/dprender/dprender/dprender_hello_triangle_scene_thread/dprender_hello_triangle_scene_thread.h" />
 		<Unit filename="dp/dprender/dprender/dprender_scene/dprender_scene.cpp" />
 		<Unit filename="dp/dprender/dprender/dprender_scene/dprender_scene.h" />
 		<Unit filename="dp/dprender/dprender/dprender_scene/dprender_scene_readlock.cpp" />

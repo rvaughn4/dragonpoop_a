@@ -16,6 +16,8 @@ namespace dp
     class dpmutex_writelock;
     class dpapi_ref;
     class dpapi_context;
+    class dpwindow_ref;
+    class dpshared_guard;
 
     class dpapi_writelock : public dpshared_writelock
     {
@@ -51,6 +53,8 @@ namespace dp
         bool windowed( void );
         //returns true if window is fullscreen
         bool isFullscreen( void );
+        //create window ref
+        dpwindow_ref *getWindow( dpshared_guard *g );
 
     };
 

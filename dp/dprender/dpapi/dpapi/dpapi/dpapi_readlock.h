@@ -15,6 +15,8 @@ namespace dp
     class dpapi;
     class dpmutex_readlock;
     class dpapi_ref;
+    class dpwindow_ref;
+    class dpshared_guard;
 
     class dpapi_readlock : public dpshared_readlock
     {
@@ -38,6 +40,8 @@ namespace dp
         bool isShown( void );
         //returns true if window is fullscreen
         bool isFullscreen( void );
+        //create window ref
+        dpwindow_ref *getWindow( dpshared_guard *g );
 
     };
 

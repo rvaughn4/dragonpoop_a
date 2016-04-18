@@ -5,8 +5,11 @@
 
 #include "dprender_gui_thread.h"
 #include "../../../dpcore/dpshared/dpshared_guard.h"
+#include "../../dpwindow/dpwindow/dpwindow_ref.h"
 #include "../../dpapi/dpapi/dpapi/dpapi_factory.h"
 #include "../../dpapi/dpapi/dpapi/dpapi.h"
+#include "../../dpapi/dpapi/dpapi/dpapi_ref.h"
+#include "../../dpapi/dpapi/dpapi/dpapi_readlock.h"
 #include "../../dpapi/dpapi/dpapi/dpapi_writelock.h"
 #include "../../dpapi/dpapi/dpapi_context/dpapi_context.h"
 #include "../../dpapi/dpapi/dpapi_context/dpapi_context_writelock.h"
@@ -24,10 +27,22 @@ namespace dp
 {
 
     //ctor
-    dprender_gui_thread::dprender_gui_thread( dpscene_ref *scn, dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b ) : dprender_scene_thread( ctx, cl_a, cl_b, flag_a, flag_b )
+    dprender_gui_thread::dprender_gui_thread( dpapi_ref *api, dpscene_ref *scn, dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b ) : dprender_scene_thread( api, ctx, cl_a, cl_b, flag_a, flag_b )
     {
+        dpapi_readlock *al;
+        dpshared_guard g;
+        dpwindow_ref *wr;
+
         this->root_gui = 0;
         this->scn = (dpscene_ref *)this->g.getRef( scn );
+
+        al = (dpapi_readlock *)dpshared_guard_tryReadLock_timeout( g, api, 2000 );
+        if( al )
+        {
+            wr = al->getWindow( &g );
+            if( wr )
+                this->setSync( wr );
+        }
     }
 
     //dtor
@@ -156,6 +171,26 @@ namespace dp
         this->mat.setOrtho( -dw, sh + dh, 0.0f, sw + dw, -dh, ss );
         this->mat.translate( 0.0f, 0.0f, -0.5f * ss );
         this->undo_mat.inverse( &this->mat );
+    }
+
+    //override to handle sync copy, be sure to call base class first!
+    void dprender_gui_thread::onSync( dpshared_readlock *psync )
+    {
+        this->dprender_scene_thread::onSync( psync );
+
+        if( !psync->isSyncType( "dpwindow" ) )
+            return;
+    }
+
+    //override to test type for safe syncing, be sure to call base class first!
+    bool dprender_gui_thread::isSyncType( const char *ctypename )
+    {
+        std::string s( ctypename );
+
+        if( s.compare( "dprender_gui_thread" ) == 0 )
+            return 1;
+
+        return this->dptask::isSyncType( ctypename );
     }
 
 }

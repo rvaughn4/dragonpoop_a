@@ -76,6 +76,12 @@ namespace dp
         return this->p->isFullscreen();
     }
 
+    //create window ref
+    dpwindow_ref *dpapi_writelock::getWindow( dpshared_guard *g )
+    {
+        return this->p->getWindow( g );
+    }
+
 }
 
 

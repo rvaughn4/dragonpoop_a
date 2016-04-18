@@ -200,6 +200,14 @@ namespace dp
         return this->bIsFs;
     }
 
+    //create window ref
+    dpwindow_ref *dpapi::getWindow( dpshared_guard *g )
+    {
+        if( !this->w )
+            return 0;
+        return (dpwindow_ref *)g->getRef( this->w );
+    }
+
 }
 
 

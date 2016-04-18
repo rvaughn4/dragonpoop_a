@@ -18,6 +18,8 @@ namespace dp
     class dpwindow_factory;
     class dpwindow_writelock;
     class dpapi_context;
+    class dpwindow_ref;
+    class dpshared_guard;
 
     class dpapi : public dpshared
     {
@@ -69,6 +71,8 @@ namespace dp
         virtual bool windowed( void );
         //returns true if window is fullscreen
         virtual bool isFullscreen( void );
+        //create window ref
+        virtual dpwindow_ref *getWindow( dpshared_guard *g );
 
     public:
 
