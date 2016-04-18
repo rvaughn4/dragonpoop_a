@@ -71,6 +71,8 @@ namespace dp
         void setAlignment( int a );
         //get alignment
         int getAlignment( void );
+        //set alignment
+        void setAlignment( const char *c );
         //get font name
         void getName( std::string *s );
         //add filter

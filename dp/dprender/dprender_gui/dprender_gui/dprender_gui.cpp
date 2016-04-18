@@ -193,8 +193,8 @@ namespace dp
         dpmatrix m;
         dpxyzw p, sz;
 
-static float rr;
-rr++;
+//static float rr;
+//rr++;
         p.x = this->rc.x;
         p.y = this->rc.y;
         p.z = 16.0f + (float)this->z / -8.0f;
@@ -206,10 +206,10 @@ rr++;
 
         m.translate( p.x, p.y, p.z );
 
-        m.translate( sz.x * 0.5f, sz.y * 0.5f, sz.z * 0.5f );
-        m.rotateX( rr );
-        m.rotateZ( rr * 0.3f );
-        m.translate( sz.x * -0.5f, sz.y * -0.5f, sz.z * -0.5f );
+      //  m.translate( sz.x * 0.5f, sz.y * 0.5f, sz.z * 0.5f );
+//        m.rotateX( rr );
+  //      m.rotateZ( rr * 0.3f );
+    //    m.translate( sz.x * -0.5f, sz.y * -0.5f, sz.z * -0.5f );
 
         this->mat.setIdentity();
         if( mparent )

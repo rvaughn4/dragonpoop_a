@@ -53,8 +53,16 @@ namespace dp
     typedef void (* opengl1o5_lib_functions_glClear )( opengl1o5_lib_GLbitfield mask );
 
     typedef void (* opengl1o5_lib_functions_glViewport )( opengl1o5_lib_GLint x, opengl1o5_lib_GLint y, opengl1o5_lib_GLsizei w, opengl1o5_lib_GLsizei h );
+
+    #define opengl1o5_lib_LIGHTING				0x0B50
+    #define opengl1o5_lib_DEPTH_TEST				0x0B71
+    #define opengl1o5_lib_BLEND				0x0BE2
+    #define opengl1o5_lib_SRC_ALPHA				0x0302
+    #define opengl1o5_lib_ONE_MINUS_SRC_ALPHA			0x0303
+
     typedef void (* opengl1o5_lib_functions_glDisable )( opengl1o5_lib_GLenum cap );
     typedef void (* opengl1o5_lib_functions_glEnable )( opengl1o5_lib_GLenum cap );
+
     typedef void (* opengl1o5_lib_functions_glPushMatrix )( void );
     typedef void (* opengl1o5_lib_functions_glPopMatrix )( void );
     typedef void (* opengl1o5_lib_functions_glMultMatrixf )( const opengl1o5_lib_GLfloat *fv );
@@ -63,13 +71,14 @@ namespace dp
     typedef void (* opengl1o5_lib_functions_glDepthFunc )( opengl1o5_lib_GLenum func );
     typedef void (* opengl1o5_lib_functions_glBlendFunc )( opengl1o5_lib_GLenum sfactor, opengl1o5_lib_GLenum dfactor );
 
-#define opengl1o5_lib_TRIANGLES				0x0004
-#define opengl1o5_lib_UNSIGNED_SHORT			0x1403
-#define opengl1o5_lib_UNSIGNED_INT				0x1405
-#define opengl1o5_lib_FLOAT				0x1406
-#define opengl1o5_lib_ARRAY_BUFFER                   0x8892
-#define opengl1o5_lib_ELEMENT_ARRAY_BUFFER           0x8893
-#define opengl1o5_lib_STATIC_DRAW                    0x88E4
+    #define opengl1o5_lib_TRIANGLES				0x0004
+    #define opengl1o5_lib_UNSIGNED_SHORT			0x1403
+    #define opengl1o5_lib_UNSIGNED_INT				0x1405
+    #define opengl1o5_lib_FLOAT				0x1406
+    #define opengl1o5_lib_ARRAY_BUFFER                   0x8892
+    #define opengl1o5_lib_ELEMENT_ARRAY_BUFFER           0x8893
+    #define opengl1o5_lib_STATIC_DRAW                    0x88E4
+
     typedef void (* opengl1o5_lib_functions_glGenBuffers )( opengl1o5_lib_GLsizei n, opengl1o5_lib_GLuint *buffers );
     typedef void (* opengl1o5_lib_functions_glBindBuffer )( opengl1o5_lib_GLenum target, opengl1o5_lib_GLuint buffer );
     typedef void (* opengl1o5_lib_functions_glBufferData )( opengl1o5_lib_GLenum target, opengl1o5_lib_GLsizei size, const opengl1o5_lib_GLvoid *data, opengl1o5_lib_GLenum usage );

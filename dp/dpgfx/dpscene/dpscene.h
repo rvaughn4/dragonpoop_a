@@ -45,6 +45,8 @@ namespace dp
         virtual bool onSceneRun( dpscene_writelock *sl );
         //return root gui
         dpgui *getGui( void );
+        //generate root gui
+        virtual dpgui *genRootGui( dpscene_writelock *sl );
 
     public:
 

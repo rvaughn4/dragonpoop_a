@@ -98,6 +98,12 @@ namespace dp
 
         c->makeActive();
 
+        this->gl->glDisable( opengl1o5_lib_LIGHTING );
+        this->gl->glDisable( opengl1o5_lib_DEPTH_TEST );
+        this->gl->glEnable( opengl1o5_lib_TEXTURE_2D );
+        this->gl->glEnable( opengl1o5_lib_BLEND );
+        this->gl->glBlendFunc( opengl1o5_lib_SRC_ALPHA, opengl1o5_lib_ONE_MINUS_SRC_ALPHA );
+
         this->gl->glPushMatrix();
         this->gl->glMultMatrixf( this->m.getRaw4by4() );
 

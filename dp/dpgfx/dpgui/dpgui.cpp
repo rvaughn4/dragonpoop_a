@@ -7,7 +7,6 @@
 #include "dpgui_readlock.h"
 #include "dpgui_writelock.h"
 #include "../dpfont/dpfont/dpfont.h"
-#include "../dpbitmap/dpbitmap_loader/dpbitmap_loader.h"
 
 namespace dp
 {
@@ -87,14 +86,6 @@ namespace dp
 
             this->bm_fg->clear();
 
-            dpbitmap_loader ldr;
-            dpbitmap *lbm = ldr.load( "picture.png" );
-            if( lbm )
-                this->bm_fg->copy( lbm );
-            delete lbm;
-
-            this->bm_fg->texturize( 1, 0.3f );
-
             this->renderForegroundPass0( this->bm_fg );
             this->renderForegroundPass1( this->bm_fg );
 
@@ -152,13 +143,13 @@ namespace dp
         dpfont fnt;
         dpbitmap_color c;
 
-        c.r = 1;
-        c.g = 1;
+        c.r = 0;
+        c.g = 0;
         c.b = 0;
         c.a = 1;
 
         fnt.setColor( &c );
-        fnt.setSize( 20 );
+        fnt.setSize( 100 );
         fnt.openFont( "sans" );
 
         fnt.drawString( &this->stxt, 0, 0, bm );

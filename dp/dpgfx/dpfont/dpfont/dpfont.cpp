@@ -9,6 +9,7 @@ freetype 2 font
 #include "../dpfont_filter_color/dpfont_filter_color.h"
 #include "../dpfont_filter_size/dpfont_filter_size.h"
 #include "../dpfont_filter_face/dpfont_filter_face.h"
+#include "../dpfont_filter_align/dpfont_filter_align.h"
 
 namespace dp
 {
@@ -28,6 +29,7 @@ namespace dp
         this->addFilter( new dpfont_filter_color() );
         this->addFilter( new dpfont_filter_size() );
         this->addFilter( new dpfont_filter_face() );
+        this->addFilter( new dpfont_filter_align() );
     }
 
     //dtor
@@ -241,6 +243,7 @@ namespace dp
         dpbitmap_rectangle ir, irp;
         std::string o_name;
         dpbitmap_color o_clr;
+        int o_align;
 
         if( rect_in )
             irp = *rect_in;
@@ -262,6 +265,7 @@ namespace dp
             o_name.assign( this->sfname );
             o_sz = this->sz;
             o_clr = this->clr;
+            o_align = this->alignment;
 
             r = this->drawLine( c, len_rem, &ir, 0, &lw, &lh );
             if( !r )
@@ -284,6 +288,7 @@ namespace dp
             if( o_sz != this->sz )
                 this->setSize( o_sz );
             this->clr = o_clr;
+            this->alignment = o_align;
 
         //do centering
             r = this->drawLine( c, r, &ir, dest_bmp, &lw, &lh );
@@ -406,6 +411,19 @@ namespace dp
     int dpfont::getAlignment( void )
     {
         return this->alignment;
+    }
+
+    //set alignment
+    void dpfont::setAlignment( const char *c )
+    {
+        std::string s( c );
+
+        if( s.compare( "center" ) == 0 )
+            return this->setAlignment( dpfont_align_center );
+        if( s.compare( "left" ) == 0 )
+            return this->setAlignment( dpfont_align_left );
+        if( s.compare( "right" ) == 0 )
+            return this->setAlignment( dpfont_align_right );
     }
 
     //get font name
