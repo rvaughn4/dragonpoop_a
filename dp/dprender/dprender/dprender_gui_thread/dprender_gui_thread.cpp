@@ -21,6 +21,9 @@
 #include "../../dprender_gui/dprender_gui/dprender_gui.h"
 #include "../../dprender_gui/dprender_gui/dprender_gui_writelock.h"
 #include "../../../dpdefines.h"
+#include "../../dpinput/dpinput.h"
+#include "../../dpinput/dpinput_writelock.h"
+
 #include <math.h>
 
 namespace dp
@@ -32,6 +35,9 @@ namespace dp
         dpapi_readlock *al;
         dpshared_guard g;
         dpwindow_ref *wr;
+        dpinput_writelock *inpl;
+
+        this->inp = new dpinput();
 
         this->root_gui = 0;
         this->scn = (dpscene_ref *)this->g.getRef( scn );
@@ -42,6 +48,10 @@ namespace dp
             wr = al->getWindow( &g );
             if( wr )
                 this->setSync( wr );
+
+            inpl = (dpinput_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->inp, 2000 );
+            if( inpl && wr )
+                inpl->setSync( wr );
         }
     }
 
@@ -51,6 +61,8 @@ namespace dp
         this->waitForStop();
         this->deleteGui();
         this->unlink();
+
+        delete this->inp;
     }
 
     //override to handle scene start

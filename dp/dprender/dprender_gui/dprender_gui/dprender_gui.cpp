@@ -191,7 +191,7 @@ namespace dp
     void dprender_gui::calcMatrix( dpmatrix *mparent )
     {
         dpmatrix m;
-        dpxyzw p, sz;
+        dpxyzw p;//, sz;
 
 //static float rr;
 //rr++;
@@ -200,9 +200,9 @@ namespace dp
         p.z = 16.0f + (float)this->z / -8.0f;
         if( p.z < 0.01f )
             p.z = 0.01f;
-        sz.x = this->rc.w;
-        sz.y = this->rc.h;
-        sz.z = 0;
+//        sz.x = this->rc.w;
+//        sz.y = this->rc.h;
+//        sz.z = 0;
 
         m.translate( p.x, p.y, p.z );
 

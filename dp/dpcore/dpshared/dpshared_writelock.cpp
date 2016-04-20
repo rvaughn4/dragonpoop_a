@@ -75,6 +75,30 @@ namespace dp
             return this->p->getTicks();
         }
 
+        //set shared object to sync by
+        void dpshared_writelock::setSync( dpshared *psync )
+        {
+            this->p->setSync( psync );
+        }
+
+        //set shared object to sync by
+        void dpshared_writelock::setSync( dpshared_ref *psync )
+        {
+            this->p->setSync( psync );
+        }
+
+        //set shared object to sync by
+        void dpshared_writelock::setSync( dpshared_readlock *psync )
+        {
+            this->p->setSync( psync );
+        }
+
+        //set shared object to sync by
+        void dpshared_writelock::setSync( dpshared_writelock *psync )
+        {
+            this->p->setSync( psync );
+        }
+
 }
 
 

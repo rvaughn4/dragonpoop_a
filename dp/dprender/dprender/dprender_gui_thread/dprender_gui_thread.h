@@ -14,6 +14,7 @@ namespace dp
     class dprender_gui;
     class dpscene_ref;
     class dpgui;
+    class dpinput;
 
     class dprender_gui_thread : public dprender_scene_thread
     {
@@ -25,6 +26,7 @@ namespace dp
         dpshared_guard g;
         unsigned int w, h;
         dpmatrix mat, undo_mat;
+        dpinput *inp;
 
         //delete gui
         void deleteGui( void );

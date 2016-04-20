@@ -16,6 +16,8 @@ namespace dp
     class dpshared;
     class dpmutex_writelock;
     class dpshared_ref;
+    class dpshared_readlock;
+    class dpshared_writelock;
 
     class dpshared_writelock
     {
@@ -59,6 +61,14 @@ namespace dp
         uint64_t getEpoch( void );
         //returns tickcount in ms
         uint64_t getTicks( void );
+        //set shared object to sync by
+        void setSync( dpshared *psync );
+        //set shared object to sync by
+        void setSync( dpshared_ref *psync );
+        //set shared object to sync by
+        void setSync( dpshared_readlock *psync );
+        //set shared object to sync by
+        void setSync( dpshared_writelock *psync );
 
         friend class dpshared;
         friend class dpshared_guard;
