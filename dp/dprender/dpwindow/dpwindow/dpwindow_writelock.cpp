@@ -11,7 +11,7 @@ namespace dp
 {
 
     //ctor
-    dpwindow_writelock::dpwindow_writelock( dpwindow *p, dpmutex_writelock *ml ) : dpshared_writelock( p, ml )
+    dpwindow_writelock::dpwindow_writelock( dpwindow *p, dpmutex_writelock *ml ) : dpinput_writelock( p, ml )
     {
         this->p = p;
     }

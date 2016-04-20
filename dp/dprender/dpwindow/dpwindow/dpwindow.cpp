@@ -14,7 +14,7 @@ namespace dp
 {
 
     //ctor
-    dpwindow::dpwindow( void ) : dpshared()
+    dpwindow::dpwindow( void ) : dpinput()
     {
 
     }
@@ -46,7 +46,7 @@ namespace dp
     //override to handle sync copy, be sure to call base class first!
     void dpwindow::onSync( dpshared_readlock *psync )
     {
-        this->dpshared::onSync( psync );
+        this->dpinput::onSync( psync );
     }
 
     //override to test type for safe syncing, be sure to call base class first!
@@ -54,7 +54,7 @@ namespace dp
     {
         std::string s( ctypename );
 
-        if( this->dpshared::isSyncType( ctypename ) )
+        if( this->dpinput::isSyncType( ctypename ) )
             return 1;
 
         return s.compare( "dpwindow" ) == 0;
@@ -63,7 +63,7 @@ namespace dp
     //override to handle processing
     void dpwindow::onRun( dpshared_writelock *wl )
     {
-
+        this->dpinput::onRun( wl );
     }
 
     //returns true if open

@@ -7,16 +7,14 @@ deleting this object releases the readlock on the dpwindow
 #ifndef dpwindow_readlock_h
 #define dpwindow_readlock_h
 
-#include "../../../dpcore/dpshared/dpshared_readlock.h"
+#include "../../dpinput/dpinput_readlock.h"
 
 namespace dp
 {
 
     class dpwindow;
-    class dpmutex_readlock;
-    class dpwindow_ref;
 
-    class dpwindow_readlock : public dpshared_readlock
+    class dpwindow_readlock : public dpinput_readlock
     {
 
         dpwindow *p;

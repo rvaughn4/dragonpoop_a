@@ -6,7 +6,7 @@
 #ifndef dpwindow_h
 #define dpwindow_h
 
-#include "../../../dpcore/dpshared/dpshared.h"
+#include "../../dpinput/dpinput.h"
 
 namespace dp
 {
@@ -15,7 +15,7 @@ namespace dp
     class dpmutex_writelock;
     class dpwindow_writelock;
 
-    class dpwindow : public dpshared
+    class dpwindow : public dpinput
     {
 
     private:

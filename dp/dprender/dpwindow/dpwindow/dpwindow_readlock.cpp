@@ -11,7 +11,7 @@ namespace dp
 {
 
     //ctor
-    dpwindow_readlock::dpwindow_readlock( dpwindow *p, dpmutex_readlock *ml ) : dpshared_readlock( p, ml )
+    dpwindow_readlock::dpwindow_readlock( dpwindow *p, dpmutex_readlock *ml ) : dpinput_readlock( p, ml )
     {
         this->p = p;
     }

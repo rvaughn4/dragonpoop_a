@@ -225,13 +225,34 @@ namespace dp
                     }
                     break;
                 case MotionNotify:
-                    //this->addMouseInput( t, event.xbutton.x, event.xbutton.y, 0, 0, 0 );
+
+                    this->addMouseEvent( event.xbutton.x, event.xbutton.y, 0, this->lb );
+                    this->update();
+
                     break;
                 case ButtonPress:
-                    //this->addMouseInput( t, event.xbutton.x, event.xbutton.y, (event.xbutton.button == x11_window_Button1), (event.xbutton.button == x11_window_Button2), 1 );
+
+                    if( event.xbutton.button == x11_window_Button1 && !this->lb )
+                        this->addMouseEvent( event.xbutton.x, event.xbutton.y, 0, 1 );
+                    if( event.xbutton.button == x11_window_Button2 && !this->rb )
+                        this->addMouseEvent( event.xbutton.x, event.xbutton.y, 1, 1 );
+
+                    this->lb |= (event.xbutton.button == x11_window_Button1);
+                    this->rb |= (event.xbutton.button == x11_window_Button2);
+
+                    this->update();
                     break;
                 case ButtonRelease:
-                    //this->addMouseInput( t, event.xbutton.x, event.xbutton.y, (event.xbutton.button == x11_window_Button1), (event.xbutton.button == x11_window_Button2), 0 );
+
+                    if( event.xbutton.button == x11_window_Button1 && this->lb )
+                        this->addMouseEvent( event.xbutton.x, event.xbutton.y, 0, 0 );
+                    if( event.xbutton.button == x11_window_Button2 && this->rb )
+                        this->addMouseEvent( event.xbutton.x, event.xbutton.y, 1, 0 );
+
+                    this->lb &= !(event.xbutton.button == x11_window_Button1);
+                    this->rb &= !(event.xbutton.button == x11_window_Button2);
+
+                    this->update();
                     break;
                 case KeyPress:
                     this->processKb( this->x11.XLookupKeysym( &event.xkey, 0 ), 1 );
@@ -563,7 +584,11 @@ namespace dp
 
         if( s.size() < 1 )
             return;
-        //this->addKBInput( t, &s, isDown );
+
+        this->addKeyPressEvent( isDown, &s );
+        if( isDown )
+            this->addTextEvent( &s );
+        this->update();
     }
 
     //returns true if open

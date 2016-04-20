@@ -7,16 +7,14 @@ object can be deleted while refs are still held
 #ifndef dpwindow_ref_h
 #define dpwindow_ref_h
 
-#include "../../../dpcore/dpshared/dpshared_ref.h"
+#include "../../dpinput/dpinput_ref.h"
 
 namespace dp
 {
 
     class dpwindow;
-    class dpwindow_readlock;
-    class dpwindow_writelock;
 
-    class dpwindow_ref : public dpshared_ref
+    class dpwindow_ref : public dpinput_ref
     {
 
     private:

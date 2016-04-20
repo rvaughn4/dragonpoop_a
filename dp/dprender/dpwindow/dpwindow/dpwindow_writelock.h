@@ -7,16 +7,14 @@ deleting this object releases the writelock on the dpwindow
 #ifndef dpwindow_writelock_h
 #define dpwindow_writelock_h
 
-#include "../../../dpcore/dpshared/dpshared_writelock.h"
+#include "../../dpinput/dpinput_writelock.h"
 
 namespace dp
 {
 
     class dpwindow;
-    class dpmutex_writelock;
-    class dpwindow_ref;
 
-    class dpwindow_writelock : public dpshared_writelock
+    class dpwindow_writelock : public dpinput_writelock
     {
 
     private:
