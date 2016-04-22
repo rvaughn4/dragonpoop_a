@@ -28,9 +28,9 @@ namespace dp
     }
 
     //add mouse event
-    void dpinput_writelock::addMouseEvent( float x, float y, bool bIsRight, bool bIsDown )
+    void dpinput_writelock::addMouseEvent( float x, float y, float sx, float sy, bool bIsRight, bool bIsDown )
     {
-        this->p->addMouseEvent( x, y, bIsRight, bIsDown );
+        this->p->addMouseEvent( x, y, sx, sy, bIsRight, bIsDown );
     }
 
     //add keypress event

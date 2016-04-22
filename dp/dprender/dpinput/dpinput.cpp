@@ -14,7 +14,14 @@ namespace dp
     //ctor
     dpinput::dpinput( void ) : dpshared()
     {
+        unsigned int i;
+        dpinput_event *p;
 
+        for( i = 0; i < dpinput_events_max; i++ )
+        {
+            p = &this->events[ i ];
+            p->h.t = 0;
+        }
     }
 
     //dtor
@@ -92,16 +99,35 @@ namespace dp
     //override to handle sync copy, be sure to call base class first!
     void dpinput::onSync( dpshared_readlock *psync )
     {
+        dpinput_event *elist[ dpinput_events_max ];
+        uint64_t t;
+        unsigned int i, j;
+        dpinput_readlock *p;
+
         this->dpshared::onSync( psync );
+
+        if( !psync->isSyncType( "dpinput" ) )
+            return;
+
+        p = (dpinput_readlock *)psync;
+
+        t = this->getNewestTime();
+        j = p->getEvents( elist, dpinput_events_max, t );
+
+        for( i = 0; i < j; i++ )
+            this->addEvent( elist[ i ] );
+        this->update();
     }
 
     //override to test type for safe syncing, be sure to call base class first!
     bool dpinput::isSyncType( const char *ctypename )
     {
+        std::string s( ctypename );
+
         if( this->dpshared::isSyncType( ctypename ) )
             return 1;
 
-        return 0;
+        return s.compare( "dpinput" ) == 0;
     }
 
     //override to handle processing
@@ -111,7 +137,7 @@ namespace dp
     }
 
     //add mouse event
-    void dpinput::addMouseEvent( float x, float y, bool bIsRight, bool bIsDown )
+    void dpinput::addMouseEvent( float x, float y, float sx, float sy, bool bIsRight, bool bIsDown )
     {
         dpinput_event e;
 
@@ -119,6 +145,8 @@ namespace dp
         e.mse.h.t = this->getTicks();
         e.mse.x = x;
         e.mse.y = y;
+        e.mse.sx = sx;
+        e.mse.sy = sy;
         e.mse.isRight = bIsRight;
         e.mse.isDown = bIsDown;
 
@@ -170,7 +198,7 @@ namespace dp
         {
             p = &this->events[ i ];
 
-            if( p->h.t < t )
+            if( p->h.t < t || !p->h.t )
                 continue;
 
             if( j >= max_sz )

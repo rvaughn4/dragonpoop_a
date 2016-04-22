@@ -185,6 +185,7 @@ namespace dp
     void dpwindow_x11::onRun( dpshared_writelock *wl )
     {
         x11_window_XEvent event;
+        float x, y;
 
         this->dpwindow::onRun( wl );
 
@@ -226,16 +227,22 @@ namespace dp
                     break;
                 case MotionNotify:
 
-                    this->addMouseEvent( event.xbutton.x, event.xbutton.y, 0, this->lb );
+                    x = (float)event.xbutton.x / (float)this->w;
+                    y = (float)event.xbutton.y / (float)this->h;
+
+                    this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, 0, this->lb );
                     this->update();
 
                     break;
                 case ButtonPress:
 
+                    x = (float)event.xbutton.x / (float)this->w;
+                    y = (float)event.xbutton.y / (float)this->h;
+
                     if( event.xbutton.button == x11_window_Button1 && !this->lb )
-                        this->addMouseEvent( event.xbutton.x, event.xbutton.y, 0, 1 );
+                        this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, 0, 1 );
                     if( event.xbutton.button == x11_window_Button2 && !this->rb )
-                        this->addMouseEvent( event.xbutton.x, event.xbutton.y, 1, 1 );
+                        this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, 1, 1 );
 
                     this->lb |= (event.xbutton.button == x11_window_Button1);
                     this->rb |= (event.xbutton.button == x11_window_Button2);
@@ -244,10 +251,13 @@ namespace dp
                     break;
                 case ButtonRelease:
 
+                    x = (float)event.xbutton.x / (float)this->w;
+                    y = (float)event.xbutton.y / (float)this->h;
+
                     if( event.xbutton.button == x11_window_Button1 && this->lb )
-                        this->addMouseEvent( event.xbutton.x, event.xbutton.y, 0, 0 );
+                        this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, 0, 0 );
                     if( event.xbutton.button == x11_window_Button2 && this->rb )
-                        this->addMouseEvent( event.xbutton.x, event.xbutton.y, 1, 0 );
+                        this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, 1, 0 );
 
                     this->lb &= !(event.xbutton.button == x11_window_Button1);
                     this->rb &= !(event.xbutton.button == x11_window_Button2);

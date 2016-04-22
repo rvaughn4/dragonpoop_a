@@ -35,7 +35,7 @@ namespace dp
         //get events newer than time
         unsigned int getEvents( dpinput_event **elist, unsigned int max_sz, uint64_t t );
         //add mouse event
-        void addMouseEvent( float x, float y, bool bIsRight, bool bIsDown );
+        void addMouseEvent( float x, float y, float sx, float sy, bool bIsRight, bool bIsDown );
         //add keypress event
         void addKeyPressEvent( bool bIsDown, std::string *sname );
         //add text event

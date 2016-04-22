@@ -28,6 +28,7 @@ namespace dp
         dpmatrix mat, undo_mat;
         dpinput *inp;
         uint64_t t_last_inp;
+        dpapi_ref *apir;
 
         //delete gui
         void deleteGui( void );

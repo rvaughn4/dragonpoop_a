@@ -23,6 +23,7 @@
 
 #include "../../dpinput/dpinput.h"
 
+#include <iostream>
 
 namespace dp
 {
@@ -192,25 +193,54 @@ namespace dp
     //process input event
     bool dprender_gui::processEvent( dprender_gui_list_writelock *l, dpinput_event *e )
     {
+        dpinput_event me;
+        dpxyzw xx;
+
         if( this->dprender_gui_list::processEvent( l, e ) )
             return 1;
 
-        if( e->h.etype == dpinput_event_type_mouse )
+        if( e->h.etype != dpinput_event_type_mouse )
         {
-            if( e->mse.x < this->rc.x || e->mse.y < this->rc.y )
-                return 0;
-            if( e->mse.x > this->rc.x + this->rc.w || e->mse.y > this->rc.y + this->rc.h )
-                return 0;
+            this->onEvent( (dprender_gui_writelock *)l, e );
+            return 1;
         }
 
-        this->onEvent( (dprender_gui_writelock *)l, e );
+        me = *e;
+        xx.x = e->mse.x;
+        xx.y = e->mse.y;
+        xx.z = 0;
+        xx.w = 0;
+        this->undo_mat.transform( &xx );
+        me.mse.x = xx.x;
+        me.mse.y = xx.y;
+
+       // if( me.mse.x < this->rc.x || me.mse.y < this->rc.y )
+         //   return 0;
+        //me.mse.x -= this->rc.x;
+        //me.mse.y -= this->rc.y;
+
+        //if( me.mse.x > this->rc.w || me.mse.y > this->rc.h )
+          //      return 0;
+
+        this->onEvent( (dprender_gui_writelock *)l, &me );
         return 1;
     }
 
     //handle event
     void dprender_gui::onEvent( dprender_gui_writelock *l, dpinput_event *e )
     {
-
+        switch( e->h.etype )
+        {
+        case dpinput_event_type_mouse:
+            std::cout << "mouse clicked at " << e->mse.x << " " << e->mse.y << " " << e->mse.isRight << " " << e->mse.isDown << "\r\n";
+            break;
+        case dpinput_event_type_keypress:
+            std::cout << "keypress " << e->keyp.keyName << " " << e->keyp.bIsDown << "\r\n";
+            break;
+        case dpinput_event_type_text:
+            std::cout << "text " << e->txt.txt << "\r\n";
+            break;
+        }
     }
 
     //make matrix
@@ -241,6 +271,7 @@ namespace dp
         if( mparent )
             this->mat.multiply( mparent );
         this->mat.multiply( &m );
+        this->undo_mat.inverse( &this->mat );
     }
 
     //make bg texture, return false if not remade/up-to-date

@@ -32,27 +32,10 @@ namespace dp
     //ctor
     dprender_gui_thread::dprender_gui_thread( dpapi_ref *api, dpscene_ref *scn, dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b ) : dprender_scene_thread( api, ctx, cl_a, cl_b, flag_a, flag_b )
     {
-        dpapi_readlock *al;
-        dpshared_guard g;
-        dpwindow_ref *wr;
-        dpinput_writelock *inpl;
-
-        this->inp = new dpinput();
-
+        this->inp = 0;
         this->root_gui = 0;
         this->scn = (dpscene_ref *)this->g.getRef( scn );
-
-        al = (dpapi_readlock *)dpshared_guard_tryReadLock_timeout( g, api, 2000 );
-        if( al )
-        {
-            wr = al->getWindow( &g );
-            if( wr )
-                this->setSync( wr );
-
-            inpl = (dpinput_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->inp, 2000 );
-            if( inpl && wr )
-                inpl->setSync( wr );
-        }
+        this->apir = (dpapi_ref *)this->g.getRef( api );
     }
 
     //dtor
@@ -146,8 +129,31 @@ namespace dp
         dpinput_writelock *il;
         dpinput_event *elist[ 256 ];
         unsigned int j, i;
+        dpapi_readlock *al;
+        dpwindow_ref *wr;
 
-        if( !this->root_gui )
+        if( !this->inp )
+        {
+            this->inp = new dpinput();
+
+            al = (dpapi_readlock *)dpshared_guard_tryReadLock_timeout( g, this->apir, 2000 );
+            if( al )
+            {
+                wr = al->getWindow( &g );
+                if( wr )
+                    this->setSync( wr );
+
+                il = (dpinput_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->inp, 2000 );
+                if( il && wr )
+                    il->setSync( wr );
+
+                g.release( wr );
+                g.release( al );
+                g.release( il );
+            }
+        }
+
+        if( !this->root_gui || !this->inp )
             return;
 
         l = (dprender_gui_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->root_gui, 30 );
