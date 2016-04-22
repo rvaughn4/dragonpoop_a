@@ -273,6 +273,34 @@ namespace dp
         }
     }
 
+    //process input event
+    bool dprender_gui_list::processEvent( dprender_gui_list_writelock *l, dpinput_event *e )
+    {
+        unsigned int i, j;
+        dprender_gui *p, *plist[ dprender_gui_list_max_gui ];
+        dprender_gui_writelock *pl;
+        dpshared_guard g;
+
+        j = this->getGuisZSorted( plist, dprender_gui_list_max_gui, 0, 1 );
+
+        for( i = 0; i < j; i++ )
+        {
+            p = plist[ i ];
+            if( !p )
+                continue;
+
+            pl = (dprender_gui_writelock *)dpshared_guard_tryWriteLock_timeout( g, p, 30 );
+            if( !pl )
+                continue;
+            if( pl->processEvent( e ) )
+                return 1;
+
+            g.release( pl );
+        }
+
+        return 0;
+    }
+
 }
 
 

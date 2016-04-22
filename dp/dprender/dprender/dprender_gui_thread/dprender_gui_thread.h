@@ -27,6 +27,7 @@ namespace dp
         unsigned int w, h;
         dpmatrix mat, undo_mat;
         dpinput *inp;
+        uint64_t t_last_inp;
 
         //delete gui
         void deleteGui( void );
@@ -38,6 +39,8 @@ namespace dp
         void renderGui( dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll );
         //compute matrix
         void calcMatrix( void );
+        //run input
+        void runInput( void );
 
     protected:
 

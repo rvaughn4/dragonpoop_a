@@ -15,6 +15,7 @@ namespace dp
     class dpapi_context_writelock;
     class dpmatrix;
     class dpapi_commandlist_writelock;
+    struct dpinput_event;
 
     #define dprender_gui_list_max_gui 512
 
@@ -56,6 +57,8 @@ namespace dp
         virtual void passContext( dprender_gui_list_writelock *wl, dpapi_context_writelock *ctx );
         //render
         virtual void render( dprender_gui_list_writelock *wl, dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll );
+        //process input event
+        virtual bool processEvent( dprender_gui_list_writelock *l, dpinput_event *e );
 
     public:
 

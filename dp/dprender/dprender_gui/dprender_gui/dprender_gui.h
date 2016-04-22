@@ -21,6 +21,7 @@ namespace dp
     class dpapi_bundle;
     class dpapi_commandlist_writelock;
     class dpgui_readlock;
+    struct dpinput_event;
 
     class dprender_gui : public dprender_gui_list
     {
@@ -75,6 +76,10 @@ namespace dp
         virtual void passContext( dprender_gui_writelock *wl, dpapi_context_writelock *ctx );
         //render
         virtual void render( dprender_gui_writelock *wl, dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll );
+        //process input event
+        virtual bool processEvent( dprender_gui_list_writelock *l, dpinput_event *e );
+        //handle event
+        virtual void onEvent( dprender_gui_writelock *l, dpinput_event *e );
 
     public:
 

@@ -87,6 +87,7 @@ namespace dp
         this->w = ctx->getWidth();
         this->h = ctx->getHeight();
         this->syncGui();
+        this->runInput();
         this->runGui( ctx );
         this->renderGui( ctx, cll );
         return 1;
@@ -135,6 +136,34 @@ namespace dp
             return;
         l->passContext( ctx );
         l->run();
+    }
+
+    //run input
+    void dprender_gui_thread::runInput( void )
+    {
+        dprender_gui_writelock *l;
+        dpshared_guard g;
+        dpinput_writelock *il;
+        dpinput_event *elist[ 256 ];
+        unsigned int j, i;
+
+        if( !this->root_gui )
+            return;
+
+        l = (dprender_gui_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->root_gui, 30 );
+        if( !l )
+            return;
+
+        il = (dpinput_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->inp, 30 );
+        if( !il )
+            return;
+        il->run();
+
+        j = il->getEvents( elist, 256, this->t_last_inp );
+        this->t_last_inp = this->getTicks();
+
+        for( i = 0; i < j; i++ )
+            l->processEvent( elist[ i ] );
     }
 
     //render gui

@@ -21,6 +21,8 @@
 #include "../../dpapi/dpapi/dpapi_context/dpapi_context_writelock.h"
 #include "../../dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_writelock.h"
 
+#include "../../dpinput/dpinput.h"
+
 
 namespace dp
 {
@@ -185,6 +187,30 @@ namespace dp
         cll->addBundle( ctx, &this->mat, this->bdle_fg );
 
         this->dprender_gui_list::render( wl, &this->mat, ctx, cll );
+    }
+
+    //process input event
+    bool dprender_gui::processEvent( dprender_gui_list_writelock *l, dpinput_event *e )
+    {
+        if( this->dprender_gui_list::processEvent( l, e ) )
+            return 1;
+
+        if( e->h.etype == dpinput_event_type_mouse )
+        {
+            if( e->mse.x < this->rc.x || e->mse.y < this->rc.y )
+                return 0;
+            if( e->mse.x > this->rc.x + this->rc.w || e->mse.y > this->rc.y + this->rc.h )
+                return 0;
+        }
+
+        this->onEvent( (dprender_gui_writelock *)l, e );
+        return 1;
+    }
+
+    //handle event
+    void dprender_gui::onEvent( dprender_gui_writelock *l, dpinput_event *e )
+    {
+
     }
 
     //make matrix

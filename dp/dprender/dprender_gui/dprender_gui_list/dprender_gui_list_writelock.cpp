@@ -50,6 +50,12 @@ namespace dp
         this->p->render( this, m_parent, ctx, cll );
     }
 
+    //process input event
+    bool dprender_gui_list_writelock::processEvent( dpinput_event *e )
+    {
+        return this->p->processEvent( this, e );
+    }
+
 }
 
 

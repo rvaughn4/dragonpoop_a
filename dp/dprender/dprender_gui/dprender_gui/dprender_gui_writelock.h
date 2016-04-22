@@ -14,6 +14,7 @@ namespace dp
     class dpapi_context_writelock;
     class dpapi_commandlist_writelock;
     class dpmatrix;
+    struct dpinput_event;
 
     class dprender_gui_writelock : public dprender_gui_list_writelock
     {
@@ -47,6 +48,8 @@ namespace dp
         void passContext( dpapi_context_writelock *ctx );
         //render
         void render( dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll );
+        //process input event
+        bool processEvent( dpinput_event *e );
 
     };
 
