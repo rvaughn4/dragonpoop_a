@@ -137,14 +137,16 @@ namespace dp
     }
 
     //add mouse event
-    void dpinput::addMouseEvent( float x, float y, float sx, float sy, bool bIsRight, bool bIsDown )
+    void dpinput::addMouseEvent( float x, float y, float sx, float sy, float w, float h, bool bIsRight, bool bIsDown )
     {
         dpinput_event e;
 
-        e.mse.h.etype = dpinput_event_type_mouse;
-        e.mse.h.t = this->getTicks();
+        e.mse.hdr.etype = dpinput_event_type_mouse;
+        e.mse.hdr.t = this->getTicks();
         e.mse.x = x;
         e.mse.y = y;
+        e.mse.w = w;
+        e.mse.h = h;
         e.mse.sx = sx;
         e.mse.sy = sy;
         e.mse.isRight = bIsRight;

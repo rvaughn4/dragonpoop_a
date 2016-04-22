@@ -23,8 +23,8 @@ namespace dp
 
     struct dpinput_event_mouse
     {
-        dpinput_event_header h;
-        float x, y, sx, sy;
+        dpinput_event_header hdr;
+        float x, y, sx, sy, w, h;
         bool isRight, isDown;
     };
 
@@ -85,7 +85,7 @@ namespace dp
         //override to handle processing
         virtual void onRun( dpshared_writelock *wl );
         //add mouse event
-        virtual void addMouseEvent( float x, float y, float sx, float sy, bool bIsRight, bool bIsDown );
+        virtual void addMouseEvent( float x, float y, float sx, float sy, float w, float h, bool bIsRight, bool bIsDown );
         //add keypress event
         virtual void addKeyPressEvent( bool bIsDown, std::string *sname );
         //add text event

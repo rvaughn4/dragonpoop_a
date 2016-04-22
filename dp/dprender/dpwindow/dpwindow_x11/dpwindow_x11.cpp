@@ -233,7 +233,7 @@ namespace dp
                     y = y * 2.0f - 1.0f;
                     y = -y;
 
-                    this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, 0, this->lb );
+                    this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, this->w, this->h, 0, this->lb );
                     this->update();
 
                     break;
@@ -246,9 +246,9 @@ namespace dp
                     y = -y;
 
                     if( event.xbutton.button == x11_window_Button1 && !this->lb )
-                        this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, 0, 1 );
+                        this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, this->w, this->h, 0, 1 );
                     if( event.xbutton.button == x11_window_Button2 && !this->rb )
-                        this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, 1, 1 );
+                        this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, this->w, this->h, 1, 1 );
 
                     this->lb |= (event.xbutton.button == x11_window_Button1);
                     this->rb |= (event.xbutton.button == x11_window_Button2);
@@ -264,9 +264,9 @@ namespace dp
                     y = -y;
 
                     if( event.xbutton.button == x11_window_Button1 && this->lb )
-                        this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, 0, 0 );
+                        this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, this->w, this->h, 0, 0 );
                     if( event.xbutton.button == x11_window_Button2 && this->rb )
-                        this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, 1, 0 );
+                        this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, this->w, this->h, 1, 0 );
 
                     this->lb &= !(event.xbutton.button == x11_window_Button1);
                     this->rb &= !(event.xbutton.button == x11_window_Button2);
