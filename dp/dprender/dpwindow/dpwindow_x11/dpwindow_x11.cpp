@@ -229,6 +229,9 @@ namespace dp
 
                     x = (float)event.xbutton.x / (float)this->w;
                     y = (float)event.xbutton.y / (float)this->h;
+                    x = x * 2.0f - 1.0f;
+                    y = y * 2.0f - 1.0f;
+                    y = -y;
 
                     this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, 0, this->lb );
                     this->update();
@@ -238,6 +241,9 @@ namespace dp
 
                     x = (float)event.xbutton.x / (float)this->w;
                     y = (float)event.xbutton.y / (float)this->h;
+                    x = x * 2.0f - 1.0f;
+                    y = y * 2.0f - 1.0f;
+                    y = -y;
 
                     if( event.xbutton.button == x11_window_Button1 && !this->lb )
                         this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, 0, 1 );
@@ -253,6 +259,9 @@ namespace dp
 
                     x = (float)event.xbutton.x / (float)this->w;
                     y = (float)event.xbutton.y / (float)this->h;
+                    x = x * 2.0f - 1.0f;
+                    y = y * 2.0f - 1.0f;
+                    y = -y;
 
                     if( event.xbutton.button == x11_window_Button1 && this->lb )
                         this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, 0, 0 );

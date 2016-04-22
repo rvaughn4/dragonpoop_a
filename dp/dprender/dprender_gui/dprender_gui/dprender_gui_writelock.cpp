@@ -63,9 +63,9 @@ namespace dp
     }
 
     //render
-    void dprender_gui_writelock::render( dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
+    void dprender_gui_writelock::render( dpmatrix *mworld, dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
     {
-        this->p->render( this, m_parent, ctx, cll );
+        this->p->render( this, mworld, m_parent, ctx, cll );
     }
 
     //process input event

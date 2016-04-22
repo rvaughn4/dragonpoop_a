@@ -177,17 +177,17 @@ namespace dp
     }
 
     //render
-    void dprender_gui::render( dprender_gui_writelock *wl, dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
+    void dprender_gui::render( dprender_gui_writelock *wl, dpmatrix *mworld, dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
     {
 //        dpmatrix m;
         if( !this->bdle_bg || !this->bdle_fg )
             return;
-        this->calcMatrix( m_parent );
+        this->calcMatrix( mworld, m_parent );
 
         cll->addBundle( ctx, &this->mat, this->bdle_bg );
         cll->addBundle( ctx, &this->mat, this->bdle_fg );
 
-        this->dprender_gui_list::render( wl, &this->mat, ctx, cll );
+        this->dprender_gui_list::render( wl, mworld, &this->mat, ctx, cll );
     }
 
     //process input event
@@ -244,34 +244,36 @@ namespace dp
     }
 
     //make matrix
-    void dprender_gui::calcMatrix( dpmatrix *mparent )
+    void dprender_gui::calcMatrix( dpmatrix *mworld, dpmatrix *mparent )
     {
-        dpmatrix m;
-        dpxyzw p;//, sz;
+        dpmatrix m, mp;
+        dpxyzw p, sz;
 
-//static float rr;
-//rr++;
+static float rr;
+rr++;
         p.x = this->rc.x;
         p.y = this->rc.y;
         p.z = 16.0f + (float)this->z / -8.0f;
         if( p.z < 0.01f )
             p.z = 0.01f;
-//        sz.x = this->rc.w;
-//        sz.y = this->rc.h;
-//        sz.z = 0;
+        sz.x = this->rc.w;
+        sz.y = this->rc.h;
+        sz.z = 0;
 
         m.translate( p.x, p.y, p.z );
 
-      //  m.translate( sz.x * 0.5f, sz.y * 0.5f, sz.z * 0.5f );
+        m.translate( sz.x * 0.5f, sz.y * 0.5f, sz.z * 0.5f );
 //        m.rotateX( rr );
-  //      m.rotateZ( rr * 0.3f );
-    //    m.translate( sz.x * -0.5f, sz.y * -0.5f, sz.z * -0.5f );
+//        m.rotateZ( rr * 0.3f );
+        m.translate( sz.x * -0.5f, sz.y * -0.5f, sz.z * -0.5f );
 
-        this->mat.setIdentity();
+        mp.setIdentity();
         if( mparent )
-            this->mat.multiply( mparent );
-        this->mat.multiply( &m );
-        this->undo_mat.inverse( &this->mat );
+            mp.multiply( mparent );
+        mp.multiply( &m );
+        this->undo_mat.inverse( &mp );
+        this->mat.copy( mworld );
+        this->mat.multiply( &mp );
     }
 
     //make bg texture, return false if not remade/up-to-date

@@ -127,10 +127,11 @@ namespace dp
         dprender_gui_writelock *l;
         dpshared_guard g;
         dpinput_writelock *il;
-        dpinput_event *elist[ 256 ];
+        dpinput_event *elist[ 256 ], *pe;
         unsigned int j, i;
         dpapi_readlock *al;
         dpwindow_ref *wr;
+        dpxyzw xx;
 
         if( !this->inp )
         {
@@ -169,7 +170,22 @@ namespace dp
         this->t_last_inp = this->getTicks();
 
         for( i = 0; i < j; i++ )
-            l->processEvent( elist[ i ] );
+        {
+            pe = elist[ i ];
+
+            if( pe->h.etype == dpinput_event_type_mouse )
+            {
+                xx.x = pe->mse.x;
+                xx.y = pe->mse.y;
+                xx.z = 0;
+                xx.w = 1;
+                this->undo_mat.transform( &xx );
+                pe->mse.x = xx.x;
+                pe->mse.y = xx.y;
+            }
+
+            l->processEvent( pe );
+        }
     }
 
     //render gui
@@ -185,7 +201,7 @@ namespace dp
         if( !l )
             return;
         this->calcMatrix();
-        l->render( &this->mat, ctx, cll );
+        l->render( &this->mat, 0, ctx, cll );
     }
 
     //compute matrix

@@ -48,7 +48,7 @@ namespace dp
         //make bg texture, return false if not remade/up-to-date
         bool makeFgTex( dpapi_context_writelock *ctx, dpgui_readlock *g );
         //make matrix
-        void calcMatrix( dpmatrix *mparent );
+        void calcMatrix( dpmatrix *mworld, dpmatrix *mparent );
 
     protected:
 
@@ -75,7 +75,7 @@ namespace dp
         //pass in context
         virtual void passContext( dprender_gui_writelock *wl, dpapi_context_writelock *ctx );
         //render
-        virtual void render( dprender_gui_writelock *wl, dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll );
+        virtual void render( dprender_gui_writelock *wl, dpmatrix *mworld, dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll );
         //process input event
         virtual bool processEvent( dprender_gui_list_writelock *l, dpinput_event *e );
         //handle event

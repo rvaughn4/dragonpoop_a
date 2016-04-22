@@ -47,7 +47,7 @@ namespace dp
         //pass in context
         void passContext( dpapi_context_writelock *ctx );
         //render
-        void render( dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll );
+        void render( dpmatrix *mworld, dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll );
         //process input event
         bool processEvent( dpinput_event *e );
 
