@@ -24,7 +24,7 @@ namespace dp
         dpscene_ref *scn;
         dprender_gui *root_gui;
         dpshared_guard g;
-        unsigned int w, h;
+        unsigned int w, h, lw, lh, mw, mh;
         dpmatrix mat, undo_mat;
         dpinput *inp;
         uint64_t t_last_inp;

@@ -59,6 +59,7 @@ namespace dp
     #define opengl1o5_lib_BLEND				0x0BE2
     #define opengl1o5_lib_SRC_ALPHA				0x0302
     #define opengl1o5_lib_ONE_MINUS_SRC_ALPHA			0x0303
+    #define opengl1o5_lib_CULL_FACE				0x0B44
 
     typedef void (* opengl1o5_lib_functions_glDisable )( opengl1o5_lib_GLenum cap );
     typedef void (* opengl1o5_lib_functions_glEnable )( opengl1o5_lib_GLenum cap );

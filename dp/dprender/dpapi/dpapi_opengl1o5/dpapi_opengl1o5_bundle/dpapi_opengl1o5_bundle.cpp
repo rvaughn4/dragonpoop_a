@@ -98,6 +98,7 @@ namespace dp
 
         c->makeActive();
 
+        this->gl->glDisable( opengl1o5_lib_CULL_FACE );
         this->gl->glDisable( opengl1o5_lib_LIGHTING );
         this->gl->glDisable( opengl1o5_lib_DEPTH_TEST );
         this->gl->glEnable( opengl1o5_lib_TEXTURE_2D );

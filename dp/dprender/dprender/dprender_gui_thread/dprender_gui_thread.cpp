@@ -23,6 +23,7 @@
 #include "../../../dpdefines.h"
 #include "../../dpinput/dpinput.h"
 #include "../../dpinput/dpinput_writelock.h"
+#include "../../../dpgfx/dpbitmap/dpbitmap/dpbitmap.h"
 
 #include <math.h>
 
@@ -131,7 +132,6 @@ namespace dp
         unsigned int j, i;
         dpapi_readlock *al;
         dpwindow_ref *wr;
-        dpxyzw xx;
 
         if( !this->inp )
         {
@@ -172,18 +172,13 @@ namespace dp
         for( i = 0; i < j; i++ )
         {
             pe = elist[ i ];
-
-            if( pe->h.etype == dpinput_event_type_mouse )
+            if( pe->h.etype == dpinput_event_type_mouse || pe->h.etype == dpinput_event_type_leftclick || pe->h.etype == dpinput_event_type_rightclick )
             {
-                xx.x = pe->mse.x;
-                xx.y = pe->mse.y;
-                xx.z = 0;
-                xx.w = 1;
-                this->undo_mat.transform( &xx );
-                pe->mse.x = xx.x;
-                pe->mse.y = xx.y;
+                pe->mse.sw = this->lw - this->mw - this->mw;
+                pe->mse.sh = this->lh - this->mh - this->mh;
+                pe->mse.sx = pe->mse.x / pe->mse.w * this->lw - this->mw;
+                pe->mse.sy = pe->mse.y / pe->mse.h * this->lh - this->mh;
             }
-
             l->processEvent( pe );
         }
     }
@@ -193,6 +188,7 @@ namespace dp
     {
         dprender_gui_writelock *l;
         dpshared_guard g;
+        dpbitmap_rectangle rc;
 
         if( !this->root_gui )
             return;
@@ -201,7 +197,13 @@ namespace dp
         if( !l )
             return;
         this->calcMatrix();
-        l->render( &this->mat, 0, ctx, cll );
+
+        rc.x = this->mw;
+        rc.y = this->mh;
+        rc.w = this->lw - this->mw - this->mw;
+        rc.h = this->lh - this->mh - this->mh;
+
+        l->render( &this->mat, &rc, &this->mat, &rc, ctx, cll );
     }
 
     //compute matrix
@@ -230,6 +232,11 @@ namespace dp
         dh = h - sh;
         dw *= 0.5f;
         dh *= 0.5f;
+
+        this->lw = sw + dw + dw;
+        this->lh = sh + dh + dh;
+        this->mw = dw;
+        this->mh = dh;
 
         this->mat.setOrtho( -dw, sh + dh, 0.0f, sw + dw, -dh, ss );
         this->mat.translate( 0.0f, 0.0f, -0.5f * ss );

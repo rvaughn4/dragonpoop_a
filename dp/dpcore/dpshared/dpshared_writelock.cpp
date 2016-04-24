@@ -99,6 +99,12 @@ namespace dp
             this->p->setSync( psync );
         }
 
+        //update internal time to cause objects to sync
+        void dpshared_writelock::update( void )
+        {
+            this->p->update();
+        }
+
 }
 
 

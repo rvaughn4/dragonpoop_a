@@ -16,6 +16,7 @@ namespace dp
     {
         unsigned int i;
         dpinput_event *p;
+        this->lb = this->rb = 0;
 
         for( i = 0; i < dpinput_events_max; i++ )
         {
@@ -153,6 +154,22 @@ namespace dp
         e.mse.isDown = bIsDown;
 
         this->addEvent( &e );
+
+        if( !bIsRight && bIsDown && !this->lb )
+        {
+            e.mse.hdr.etype = dpinput_event_type_leftclick;
+            this->addEvent( &e );
+        }
+        if( bIsRight && bIsDown && !this->rb )
+        {
+            e.mse.hdr.etype = dpinput_event_type_rightclick;
+            this->addEvent( &e );
+        }
+
+        if( !bIsRight )
+            this->lb = bIsDown;
+        else
+            this->rb = bIsDown;
     }
 
     //add keypress event

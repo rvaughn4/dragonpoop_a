@@ -12,8 +12,10 @@ namespace dp
 {
 
     #define dpinput_event_type_mouse 0
-    #define dpinput_event_type_keypress 1
-    #define dpinput_event_type_text 2
+    #define dpinput_event_type_leftclick 1
+    #define dpinput_event_type_rightclick 2
+    #define dpinput_event_type_keypress 3
+    #define dpinput_event_type_text 4
 
     struct dpinput_event_header
     {
@@ -24,7 +26,7 @@ namespace dp
     struct dpinput_event_mouse
     {
         dpinput_event_header hdr;
-        float x, y, sx, sy, w, h;
+        float x, y, sx, sy, w, h, sw, sh;
         bool isRight, isDown;
     };
 
@@ -63,6 +65,7 @@ namespace dp
 
     private:
 
+        bool lb, rb;
         dpinput_event events[ dpinput_events_max ];
 
         //returns next free event or oldest event

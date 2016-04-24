@@ -69,6 +69,8 @@ namespace dp
         void setSync( dpshared_readlock *psync );
         //set shared object to sync by
         void setSync( dpshared_writelock *psync );
+        //update internal time to cause objects to sync
+        void update( void );
 
         friend class dpshared;
         friend class dpshared_guard;

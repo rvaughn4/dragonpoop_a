@@ -227,49 +227,39 @@ namespace dp
                     break;
                 case MotionNotify:
 
-                    x = (float)event.xbutton.x / (float)this->w;
-                    y = (float)event.xbutton.y / (float)this->h;
-                    x = x * 2.0f - 1.0f;
-                    y = y * 2.0f - 1.0f;
-                    y = -y;
+                    x = (float)event.xbutton.x;
+                    y = (float)event.xbutton.y;
 
-                    this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, this->w, this->h, 0, this->lb );
+                    this->addMouseEvent( x, y, x, y, this->w, this->h, 0, this->lb );
                     this->update();
-
                     break;
                 case ButtonPress:
 
-                    x = (float)event.xbutton.x / (float)this->w;
-                    y = (float)event.xbutton.y / (float)this->h;
-                    x = x * 2.0f - 1.0f;
-                    y = y * 2.0f - 1.0f;
-                    y = -y;
+                    x = (float)event.xbutton.x;
+                    y = (float)event.xbutton.y;
 
                     if( event.xbutton.button == x11_window_Button1 && !this->lb )
-                        this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, this->w, this->h, 0, 1 );
-                    if( event.xbutton.button == x11_window_Button2 && !this->rb )
-                        this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, this->w, this->h, 1, 1 );
+                        this->addMouseEvent( x, y, x, y, this->w, this->h, 0, 1 );
+                    if( event.xbutton.button == x11_window_Button3 && !this->rb )
+                        this->addMouseEvent( x, y, x, y, this->w, this->h, 1, 1 );
 
                     this->lb |= (event.xbutton.button == x11_window_Button1);
-                    this->rb |= (event.xbutton.button == x11_window_Button2);
+                    this->rb |= (event.xbutton.button == x11_window_Button3);
 
                     this->update();
                     break;
                 case ButtonRelease:
 
-                    x = (float)event.xbutton.x / (float)this->w;
-                    y = (float)event.xbutton.y / (float)this->h;
-                    x = x * 2.0f - 1.0f;
-                    y = y * 2.0f - 1.0f;
-                    y = -y;
+                    x = (float)event.xbutton.x;
+                    y = (float)event.xbutton.y;
 
                     if( event.xbutton.button == x11_window_Button1 && this->lb )
-                        this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, this->w, this->h, 0, 0 );
-                    if( event.xbutton.button == x11_window_Button2 && this->rb )
-                        this->addMouseEvent( x, y, event.xbutton.x, event.xbutton.y, this->w, this->h, 1, 0 );
+                        this->addMouseEvent( x, y, x, y, this->w, this->h, 0, 0 );
+                    if( event.xbutton.button == x11_window_Button3 && this->rb )
+                        this->addMouseEvent( x, y, x, y, this->w, this->h, 1, 0 );
 
                     this->lb &= !(event.xbutton.button == x11_window_Button1);
-                    this->rb &= !(event.xbutton.button == x11_window_Button2);
+                    this->rb &= !(event.xbutton.button == x11_window_Button3);
 
                     this->update();
                     break;

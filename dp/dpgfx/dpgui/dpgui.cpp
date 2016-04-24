@@ -7,6 +7,11 @@
 #include "dpgui_readlock.h"
 #include "dpgui_writelock.h"
 #include "../dpfont/dpfont/dpfont.h"
+#include "../../dprender/dpinput/dpinput.h"
+#include "../../dprender/dpinput/dpinput_readlock.h"
+#include "../../dprender/dpinput/dpinput_writelock.h"
+
+#include <iostream>
 
 namespace dp
 {
@@ -27,6 +32,9 @@ namespace dp
         this->sz_time = this->bg_time = this->fg_time = 0;
 
         this->setText( ctxt );
+
+        this->t_input = 0;
+        this->inp = new dpinput();
     }
 
     //dtor
@@ -36,6 +44,8 @@ namespace dp
             delete this->bm_bg;
         if( this->bm_fg )
             delete this->bm_fg;
+        if( this->inp )
+            delete this->inp;
     }
 
     //generate readlock
@@ -56,11 +66,57 @@ namespace dp
         return new dpgui_ref( this, k, t_sync );
     }
 
+    //run input
+    void dpgui::runInput( void )
+    {
+        dpinput_readlock *irl;
+        dpinput_writelock *iwl;
+        dpshared_guard g;
+        dpinput_event *elist[ 100 ], *p;
+        unsigned int i, j;
+
+        iwl = (dpinput_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->inp, 30 );
+        if( !iwl )
+            return;
+        iwl->run();
+        g.release( iwl );
+
+        irl = (dpinput_readlock *)dpshared_guard_tryReadLock_timeout( g, this->inp, 30 );
+        if( !irl )
+            return;
+
+        j = irl->getEvents( elist, 100, this->t_input );
+        this->t_input = this->getTicks();
+
+        for( i = 0; i < j; i++ )
+        {
+            p = elist[ i ];
+            this->onInput( p );
+        }
+
+        g.release( irl );
+    }
+
+    //attach renderer input
+    void dpgui::attachInput( dpinput *i )
+    {
+        dpinput_writelock *iwl;
+        dpshared_guard g;
+
+        iwl = (dpinput_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->inp, 3000 );
+        if( !iwl )
+            return;
+
+        iwl->setSync( i );
+    }
+
     //override to do task execution
     bool dpgui::onTaskRun( dptask_writelock *tl )
     {
         if( !this->onGuiRun( (dpgui_writelock *)tl ) )
             return 0;
+
+        this->runInput();
 
         if( !this->bBgDrawn )
         {
@@ -286,6 +342,68 @@ namespace dp
     unsigned int dpgui::getSzTime( void )
     {
         return this->sz_time;
+    }
+
+    //override to handle input events
+    void dpgui::onInput( dpinput_event *e )
+    {
+        switch( e->h.etype )
+        {
+        case dpinput_event_type_mouse:
+            this->onMouseMove( &e->mse );
+            break;
+        case dpinput_event_type_leftclick:
+            this->onLeftClick( &e->mse );
+            break;
+        case dpinput_event_type_rightclick:
+            this->onRightClick( &e->mse );
+            break;
+        case dpinput_event_type_keypress:
+            if( e->keyp.bIsDown )
+                this->onKeyDown( &e->keyp );
+            else
+                this->onKeyUp( &e->keyp );
+            break;
+        case dpinput_event_type_text:
+            this->onText( &e->txt );
+            break;
+        }
+    }
+
+    //override to handle left clicks
+    void dpgui::onLeftClick( dpinput_event_mouse *e )
+    {
+        std::cout << "left click\r\n";
+    }
+
+    //override to handle right clicks
+    void dpgui::onRightClick( dpinput_event_mouse *e )
+    {
+        std::cout << "right click\r\n";
+    }
+
+    //override to handle mouse movement
+    void dpgui::onMouseMove( dpinput_event_mouse *e )
+    {
+        std::cout << "mouse moved at " << e->x << " " << e->y << "\r\n";
+    }
+
+    //override to handle key press down
+    void dpgui::onKeyDown( dpinput_event_keypress *e )
+    {
+        std::cout << "key down " << e->keyName << "\r\n";
+    }
+
+    //override to handle key press up
+    void dpgui::onKeyUp( dpinput_event_keypress *e )
+    {
+        std::cout << "key up " << e->keyName << "\r\n";
+    }
+
+    //override to handle text input
+    void dpgui::onText( dpinput_event_text *e )
+    {
+        std::cout << "text " << e->txt << "\r\n";
     }
 
 }

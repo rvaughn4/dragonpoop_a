@@ -80,6 +80,12 @@ namespace dp
         return this->p->getFg();
     }
 
+    //attach renderer input
+    void dpgui_writelock::attachInput( dpinput *i )
+    {
+        this->p->attachInput( i );
+    }
+
 }
 
 

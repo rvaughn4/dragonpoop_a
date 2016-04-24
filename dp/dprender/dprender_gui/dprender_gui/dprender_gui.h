@@ -8,12 +8,14 @@
 #include "../dprender_gui_list/dprender_gui_list.h"
 #include "../../../dpgfx/dpbitmap/dpbitmap/dpbitmap.h"
 #include "../../../dpgfx/dpmatrix/dpmatrix.h"
+#include "../../../dpcore/dpshared/dpshared_guard.h"
 
 namespace dp
 {
 
     class dprender_gui_writelock;
     class dpgui;
+    class dpgui_ref;
     class dpapi_context_writelock;
     class dpapi_texture;
     class dpapi_vertexbuffer;
@@ -22,12 +24,14 @@ namespace dp
     class dpapi_commandlist_writelock;
     class dpgui_readlock;
     struct dpinput_event;
+    class dpinput;
 
     class dprender_gui : public dprender_gui_list
     {
 
     private:
 
+        dpshared_guard g;
         dpbitmap_rectangle rc;
         unsigned int z, bg_time, fg_time, sz_time;
         dpapi_context_writelock *ctx;
@@ -35,7 +39,18 @@ namespace dp
         dpapi_vertexbuffer *vb;
         dpapi_indexbuffer *ib_fg, *ib_bg;
         dpapi_bundle *bdle_bg, *bdle_fg;
-        dpmatrix mat, undo_mat;
+        dpmatrix mat, mat_bg, undo_mat;
+        dpinput *inp;
+        dpgui_ref *pgui;
+        struct
+        {
+            float x, y;
+        } mousepos;
+        float fhover;
+        dpxyzw rot, spin;
+        uint64_t t_spin;
+
+        bool bIsCentered, bIsFloating, bFollowCursor, bIsMouseOver, bIsMouseDown;
 
         //create vertex buffer
         bool makeVB( dpapi_context_writelock *ctx, dpgui_readlock *g );
@@ -48,7 +63,7 @@ namespace dp
         //make bg texture, return false if not remade/up-to-date
         bool makeFgTex( dpapi_context_writelock *ctx, dpgui_readlock *g );
         //make matrix
-        void calcMatrix( dpmatrix *mworld, dpmatrix *mparent );
+        void calcMatrix( dpmatrix *m_world, dpbitmap_rectangle *rc_world, dpmatrix *mparent, dpbitmap_rectangle *rc_parent );
 
     protected:
 
@@ -75,7 +90,7 @@ namespace dp
         //pass in context
         virtual void passContext( dprender_gui_writelock *wl, dpapi_context_writelock *ctx );
         //render
-        virtual void render( dprender_gui_writelock *wl, dpmatrix *mworld, dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll );
+        virtual void render( dprender_gui_writelock *wl, dpmatrix *m_world, dpbitmap_rectangle *rc_world, dpmatrix *m_parent, dpbitmap_rectangle *rc_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll );
         //process input event
         virtual bool processEvent( dprender_gui_list_writelock *l, dpinput_event *e );
         //handle event

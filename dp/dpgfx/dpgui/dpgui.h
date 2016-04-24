@@ -14,6 +14,11 @@ namespace dp
 {
 
     class dpgui_writelock;
+    class dpinput;
+    struct dpinput_event;
+    struct dpinput_event_mouse;
+    struct dpinput_event_keypress;
+    struct dpinput_event_text;
 
     class dpgui : public dpgui_list
     {
@@ -25,6 +30,13 @@ namespace dp
         bool bBgDrawn, bFgDrawn;
         unsigned int z, bg_time, fg_time, sz_time;
         std::string stxt;
+        uint64_t t_input;
+        dpinput *inp;
+
+        bool bIsCentered, bIsFloating, bFollowCursor;
+
+        //run input
+        void runInput( void );
 
     protected:
 
@@ -86,6 +98,22 @@ namespace dp
         unsigned int getFgTime( void );
         //return size time
         unsigned int getSzTime( void );
+        //attach renderer input
+        void attachInput( dpinput *i );
+        //override to handle input events
+        virtual void onInput( dpinput_event *e );
+        //override to handle left clicks
+        virtual void onLeftClick( dpinput_event_mouse *e );
+        //override to handle right clicks
+        virtual void onRightClick( dpinput_event_mouse *e );
+        //override to handle mouse movement
+        virtual void onMouseMove( dpinput_event_mouse *e );
+        //override to handle key press down
+        virtual void onKeyDown( dpinput_event_keypress *e );
+        //override to handle key press up
+        virtual void onKeyUp( dpinput_event_keypress *e );
+        //override to handle text input
+        virtual void onText( dpinput_event_text *e );
 
     public:
 

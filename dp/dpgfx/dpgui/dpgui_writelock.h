@@ -12,6 +12,7 @@ namespace dp
 
     class dpgui;
     class dpbitmap;
+    class dpinput;
 
     class dpgui_writelock : public dpgui_list_writelock
     {
@@ -49,6 +50,8 @@ namespace dp
         dpbitmap *getBg( void );
         //returns fg bitmap
         dpbitmap *getFg( void );
+        //attach renderer input
+        void attachInput( dpinput *i );
 
     };
 

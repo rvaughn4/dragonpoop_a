@@ -6,8 +6,11 @@
 #include "dprender_gui_ref.h"
 #include "dprender_gui_readlock.h"
 #include "dprender_gui_writelock.h"
+
 #include "../../../dpgfx/dpgui/dpgui.h"
+#include "../../../dpgfx/dpgui/dpgui_ref.h"
 #include "../../../dpgfx/dpgui/dpgui_readlock.h"
+#include "../../../dpgfx/dpgui/dpgui_writelock.h"
 
 #include "../../dpapi/dpapi/dpapi_vertexbuffer/dpapi_vertexbuffer.h"
 #include "../../dpapi/dpapi/dpapi_indexbuffer/dpapi_indexbuffer.h"
@@ -22,8 +25,7 @@
 #include "../../dpapi/dpapi/dpapi_commandlist/dpapi_commandlist_writelock.h"
 
 #include "../../dpinput/dpinput.h"
-
-#include <iostream>
+#include "../../dpinput/dpinput_writelock.h"
 
 namespace dp
 {
@@ -32,6 +34,7 @@ namespace dp
     dprender_gui::dprender_gui( dpgui *pg ) : dprender_gui_list()
     {
         this->setSync( pg );
+        this->pgui = (dpgui_ref *)this->g.getRef( pg );
 
         this->t_bg = this->t_fg = 0;
         this->vb = 0;
@@ -39,6 +42,9 @@ namespace dp
         this->bdle_bg = 0;
         this->bdle_fg = 0;
         this->z = pg->getZ();
+        this->bIsMouseOver = 0;
+
+        this->inp = 0;
     }
 
     //dtor
@@ -58,6 +64,8 @@ namespace dp
             delete this->t_bg;
         if( this->t_fg )
             delete this->t_fg;
+        if( this->inp )
+            delete this->inp;
     }
 
     //generate readlock
@@ -133,6 +141,15 @@ namespace dp
         gr->getPosition( &this->rc.x, &this->rc.y );
         this->z = gr->getZ();
 
+        this->bIsCentered = 0;
+        this->bIsFloating = 0;
+        this->bFollowCursor = 0;
+
+        this->rot.x = this->rot.y = this->rot.z = 0;
+        this->spin.x = this->spin.y = 0;
+        this->spin.z = 45;
+        this->t_spin = this->getTicks();
+
         this->makeVB( this->ctx, gr );
         this->makeBgIB( this->ctx );
         this->makeFgIB( this->ctx );
@@ -166,7 +183,19 @@ namespace dp
     //override to handle processing
     void dprender_gui::onRun( dpshared_writelock *wl )
     {
+        dpshared_guard g;
+        dpgui_writelock *l;
+
         this->dprender_gui_list::onRun( wl );
+
+        if( !this->inp )
+        {
+            this->inp = new dpinput();
+
+            l = (dpgui_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->pgui, 2000 );
+            if( l )
+                l->attachInput( this->inp );
+        }
     }
 
     //pass in context
@@ -177,103 +206,151 @@ namespace dp
     }
 
     //render
-    void dprender_gui::render( dprender_gui_writelock *wl, dpmatrix *mworld, dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
+    void dprender_gui::render( dprender_gui_writelock *wl, dpmatrix *m_world, dpbitmap_rectangle *rc_world, dpmatrix *m_parent, dpbitmap_rectangle *rc_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
     {
-//        dpmatrix m;
         if( !this->bdle_bg || !this->bdle_fg )
             return;
-        this->calcMatrix( mworld, m_parent );
+        this->calcMatrix( m_world, rc_world, m_parent, rc_parent );
 
-        cll->addBundle( ctx, &this->mat, this->bdle_bg );
+        cll->addBundle( ctx, &this->mat_bg, this->bdle_bg );
         cll->addBundle( ctx, &this->mat, this->bdle_fg );
 
-        this->dprender_gui_list::render( wl, mworld, &this->mat, ctx, cll );
+        this->dprender_gui_list::render( wl, m_world, rc_world, &this->mat, &this->rc, ctx, cll );
     }
 
     //process input event
     bool dprender_gui::processEvent( dprender_gui_list_writelock *l, dpinput_event *e )
     {
-        dpinput_event me;
-        dpxyzw xx;
-
         if( this->dprender_gui_list::processEvent( l, e ) )
             return 1;
 
-        if( e->h.etype != dpinput_event_type_mouse )
+        switch( e->h.etype )
         {
-            this->onEvent( (dprender_gui_writelock *)l, e );
-            return 1;
+            case dpinput_event_type_mouse:
+            case dpinput_event_type_leftclick:
+            case dpinput_event_type_rightclick:
+
+                e->mse.x = ( e->mse.x / e->mse.w ) * 2.0f - 1.0f;
+                e->mse.y = -( ( e->mse.y / e->mse.h ) * 2.0f - 1.0f );
+                this->mousepos.x = e->mse.sx;
+                this->mousepos.y = e->mse.sy;
+
+                this->undo_mat.transform( &e->mse.x, &e->mse.y, 0, 0 );
+
+                this->bIsMouseOver = 0;
+                this->bIsMouseDown = e->mse.isDown;
+                if( e->mse.x < 0 || e->mse.y < 0 )
+                    return 0;
+                if( e->mse.x > this->rc.w || e->mse.y > this->rc.h )
+                    return 0;
+                this->bIsMouseOver = 1;
+
+                break;
         }
 
-        me = *e;
-        xx.x = e->mse.x;
-        xx.y = e->mse.y;
-        xx.z = 0;
-        xx.w = 0;
-        this->undo_mat.transform( &xx );
-        me.mse.x = xx.x;
-        me.mse.y = xx.y;
-
-       // if( me.mse.x < this->rc.x || me.mse.y < this->rc.y )
-         //   return 0;
-        //me.mse.x -= this->rc.x;
-        //me.mse.y -= this->rc.y;
-
-        //if( me.mse.x > this->rc.w || me.mse.y > this->rc.h )
-          //      return 0;
-
-        this->onEvent( (dprender_gui_writelock *)l, &me );
+        this->onEvent( (dprender_gui_writelock *)l, e );
         return 1;
     }
 
     //handle event
     void dprender_gui::onEvent( dprender_gui_writelock *l, dpinput_event *e )
     {
-        switch( e->h.etype )
-        {
-        case dpinput_event_type_mouse:
-            std::cout << "mouse clicked at " << e->mse.x << " " << e->mse.y << " " << e->mse.isRight << " " << e->mse.isDown << "\r\n";
-            break;
-        case dpinput_event_type_keypress:
-            std::cout << "keypress " << e->keyp.keyName << " " << e->keyp.bIsDown << "\r\n";
-            break;
-        case dpinput_event_type_text:
-            std::cout << "text " << e->txt.txt << "\r\n";
-            break;
-        }
+        dpinput_writelock *il;
+        dpshared_guard g;
+
+        if( !this->inp )
+            return;
+
+        il = (dpinput_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->inp, 1000 );
+        if( !il )
+            return;
+
+        il->addEvent( e );
+        il->update();
     }
 
     //make matrix
-    void dprender_gui::calcMatrix( dpmatrix *mworld, dpmatrix *mparent )
+    void dprender_gui::calcMatrix( dpmatrix *m_world, dpbitmap_rectangle *rc_world, dpmatrix *m_parent, dpbitmap_rectangle *rc_parent )
     {
-        dpmatrix m, mp;
-        dpxyzw p, sz;
+        dpxyzw pos, sz, rot, sc;
+        dpmatrix m;
+        uint64_t t;
+        float ft;
 
 static float rr;
 rr++;
-        p.x = this->rc.x;
-        p.y = this->rc.y;
-        p.z = 16.0f + (float)this->z / -8.0f;
-        if( p.z < 0.01f )
-            p.z = 0.01f;
+        pos.x = this->rc.x;
+        pos.y = this->rc.y;
+        pos.z = 16.0f + (float)this->z / -8.0f;
+        if( pos.z < 0.01f )
+            pos.z = 0.01f;
         sz.x = this->rc.w;
         sz.y = this->rc.h;
         sz.z = 0;
 
-        m.translate( p.x, p.y, p.z );
+        if( this->bIsMouseOver && !this->bIsMouseDown )
+            this->fhover += (30.0f - this->fhover) * 0.3f;
+        else
+            this->fhover += (0.0f - this->fhover) * 0.3f;
 
-        m.translate( sz.x * 0.5f, sz.y * 0.5f, sz.z * 0.5f );
-//        m.rotateX( rr );
-//        m.rotateZ( rr * 0.3f );
-        m.translate( sz.x * -0.5f, sz.y * -0.5f, sz.z * -0.5f );
+//        bool bIsCentered, bIsFloating, bFollowCursor;
+        if( this->bIsFloating || this->bFollowCursor )
+        {
+            m_parent = m_world;
+            rc_parent = rc_world;
+        }
+        if( this->bFollowCursor )
+        {
+            pos.x = this->mousepos.x;
+            pos.y = this->mousepos.y;
+        }
 
-        mp.setIdentity();
-        if( mparent )
-            mp.multiply( mparent );
-        mp.multiply( &m );
-        this->undo_mat.inverse( &mp );
-        this->mat.copy( mworld );
-        this->mat.multiply( &mp );
+        pos.x -= this->fhover;
+        pos.y -= this->fhover;
+        sz.x += this->fhover + this->fhover;
+        sz.y += this->fhover + this->fhover;
+
+        sc.x = sz.x / this->rc.w;
+        sc.y = sz.y / this->rc.h;
+        sc.z = 1.0f;
+
+        if( m_parent )
+            this->mat.copy( m_parent );
+        else
+            this->mat.setIdentity();
+
+        if( this->bIsCentered && !this->bFollowCursor )
+        {
+            pos.x = ( rc_parent->w - sz.x ) * 0.5f;
+            pos.y = ( rc_parent->h - sz.y ) * 0.5f;
+        }
+
+        t = this->getTicks();
+        t -= this->t_spin;
+        ft = (float)t / 1000.0f;
+
+        rot = this->rot;
+        rot.x += this->spin.x * ft;
+        rot.y += this->spin.y * ft;
+        rot.z += this->spin.z * ft;
+
+        this->mat.translate( pos.x, pos.y, pos.z );
+
+        this->mat.translate( sz.x * 0.5f, sz.y * 0.5f, sz.z * 0.5f );
+        this->mat.rotateX( rot.x );
+        this->mat.rotateY( rot.y );
+        this->mat.rotateZ( rot.z );
+
+        this->mat_bg.copy( &this->mat );
+        if( this->bIsMouseDown && this->bIsMouseOver )
+            this->mat_bg.scale( -1.0f, -1.0f, 1.0f );
+
+        this->mat.translate( sz.x * -0.5f, sz.y * -0.5f, sz.z * -0.5f );
+        this->mat.scale( sc.x, sc.y, sc.z );
+        this->mat_bg.translate( sz.x * -0.5f, sz.y * -0.5f, sz.z * -0.5f );
+        this->mat_bg.scale( sc.x, sc.y, sc.z );
+
+        this->undo_mat.inverse( &this->mat );
     }
 
     //make bg texture, return false if not remade/up-to-date

@@ -54,6 +54,7 @@ namespace dp
     #define x11_window_CWColormap		(1L<<13)
     #define x11_window_Button1			1
     #define x11_window_Button2			2
+    #define x11_window_Button3			3
     #define x11_window_SelectionNotify		31
     #define x11_window_PropModeReplace         0
     #define x11_window_PropertyChangeMask		(1L<<22)

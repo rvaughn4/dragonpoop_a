@@ -249,7 +249,7 @@ namespace dp
     }
 
     //render
-    void dprender_gui_list::render( dprender_gui_list_writelock *wl, dpmatrix *mworld, dpmatrix *m_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
+    void dprender_gui_list::render( dprender_gui_list_writelock *wl, dpmatrix *m_world, dpbitmap_rectangle *rc_world, dpmatrix *m_parent, dpbitmap_rectangle *rc_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll )
     {
         unsigned int i, j;
         dprender_gui *p, *plist[ dprender_gui_list_max_gui ];
@@ -267,7 +267,7 @@ namespace dp
             pl = (dprender_gui_writelock *)dpshared_guard_tryWriteLock_timeout( g, p, 30 );
             if( !pl )
                 continue;
-            pl->render( mworld, m_parent, ctx, cll );
+            pl->render( m_world, rc_world, m_parent, rc_parent, ctx, cll );
 
             g.release( pl );
         }

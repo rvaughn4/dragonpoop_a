@@ -9,7 +9,7 @@ namespace dp
 {
 
     //ctor
-    dploader_root_gui::dploader_root_gui( void ) : dpgui( (1920 - 1000) / 2, (1080 - 300) / 2, 1000, 300, "[align center][size 100]\r\nDragon Poop" )
+    dploader_root_gui::dploader_root_gui( void ) : dpgui( 0, 0, /*(1920 - 1000) / 2, (1080 - 300) / 2,*/ 1000, 300, "[align center][size 100]\r\nDragon Poop" )
     {
 
     }
