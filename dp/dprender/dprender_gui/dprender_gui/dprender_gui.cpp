@@ -43,6 +43,7 @@ namespace dp
         this->bdle_fg = 0;
         this->z = pg->getZ();
         this->bIsMouseOver = 0;
+        this->t_spin = this->getTicks();
 
         this->inp = 0;
     }
@@ -141,14 +142,13 @@ namespace dp
         gr->getPosition( &this->rc.x, &this->rc.y );
         this->z = gr->getZ();
 
-        this->bIsCentered = 0;
-        this->bIsFloating = 0;
-        this->bFollowCursor = 0;
+        this->bIsCentered = gr->isCentered();
+        this->bIsFloating = gr->isFloating();
+        this->bFollowCursor = gr->isFollowingCursor();
+        this->bGrows = gr->doesGrow();
 
-        this->rot.x = this->rot.y = this->rot.z = 0;
-        this->spin.x = this->spin.y = 0;
-        this->spin.z = 45;
-        this->t_spin = this->getTicks();
+        gr->getRotation( &this->rot );
+        gr->getSpin( &this->rot );
 
         this->makeVB( this->ctx, gr );
         this->makeBgIB( this->ctx );
@@ -277,8 +277,6 @@ namespace dp
         uint64_t t;
         float ft;
 
-static float rr;
-rr++;
         pos.x = this->rc.x;
         pos.y = this->rc.y;
         pos.z = 16.0f + (float)this->z / -8.0f;
@@ -288,12 +286,11 @@ rr++;
         sz.y = this->rc.h;
         sz.z = 0;
 
-        if( this->bIsMouseOver && !this->bIsMouseDown )
+        if( this->bIsMouseOver && !this->bIsMouseDown && this->bGrows )
             this->fhover += (30.0f - this->fhover) * 0.3f;
         else
             this->fhover += (0.0f - this->fhover) * 0.3f;
 
-//        bool bIsCentered, bIsFloating, bFollowCursor;
         if( this->bIsFloating || this->bFollowCursor )
         {
             m_parent = m_world;
@@ -310,9 +307,12 @@ rr++;
         sz.x += this->fhover + this->fhover;
         sz.y += this->fhover + this->fhover;
 
-        sc.x = sz.x / this->rc.w;
-        sc.y = sz.y / this->rc.h;
-        sc.z = 1.0f;
+        if( this->bGrows )
+        {
+            sc.x = sz.x / this->rc.w;
+            sc.y = sz.y / this->rc.h;
+            sc.z = 1.0f;
+        }
 
         if( m_parent )
             this->mat.copy( m_parent );
@@ -336,19 +336,29 @@ rr++;
 
         this->mat.translate( pos.x, pos.y, pos.z );
 
-        this->mat.translate( sz.x * 0.5f, sz.y * 0.5f, sz.z * 0.5f );
-        this->mat.rotateX( rot.x );
-        this->mat.rotateY( rot.y );
-        this->mat.rotateZ( rot.z );
+        if( abs( rot.x + rot.y + rot.z ) > 0.001f || ( this->bIsMouseOver && this->bGrows ) )
+        {
+            this->mat.translate( sz.x * 0.5f, sz.y * 0.5f, sz.z * 0.5f );
 
-        this->mat_bg.copy( &this->mat );
-        if( this->bIsMouseDown && this->bIsMouseOver )
-            this->mat_bg.scale( -1.0f, -1.0f, 1.0f );
+            this->mat.rotateX( rot.x );
+            this->mat.rotateY( rot.y );
+            this->mat.rotateZ( rot.z );
 
-        this->mat.translate( sz.x * -0.5f, sz.y * -0.5f, sz.z * -0.5f );
-        this->mat.scale( sc.x, sc.y, sc.z );
-        this->mat_bg.translate( sz.x * -0.5f, sz.y * -0.5f, sz.z * -0.5f );
-        this->mat_bg.scale( sc.x, sc.y, sc.z );
+            this->mat_bg.copy( &this->mat );
+            if( this->bIsMouseDown && this->bIsMouseOver && this->bGrows )
+                this->mat_bg.scale( -1.0f, -1.0f, 1.0f );
+
+            this->mat.translate( sz.x * -0.5f, sz.y * -0.5f, sz.z * -0.5f );
+            this->mat_bg.translate( sz.x * -0.5f, sz.y * -0.5f, sz.z * -0.5f );
+
+            if( this->bGrows )
+            {
+                this->mat.scale( sc.x, sc.y, sc.z );
+                this->mat_bg.scale( sc.x, sc.y, sc.z );
+            }
+        }
+        else
+            this->mat_bg.copy( &this->mat );
 
         this->undo_mat.inverse( &this->mat );
     }

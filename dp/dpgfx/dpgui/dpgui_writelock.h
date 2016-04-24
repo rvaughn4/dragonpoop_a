@@ -13,6 +13,7 @@ namespace dp
     class dpgui;
     class dpbitmap;
     class dpinput;
+    struct dpxyzw;
 
     class dpgui_writelock : public dpgui_list_writelock
     {
@@ -52,6 +53,30 @@ namespace dp
         dpbitmap *getFg( void );
         //attach renderer input
         void attachInput( dpinput *i );
+        //return true if centered
+        bool isCentered( void );
+        //set centered mode
+        void setCentered( bool b );
+        //return true if floating
+        bool isFloating( void );
+        //set floating mode
+        void setFloating( bool b );
+        //return true if follows cursor
+        bool isFollowingCursor( void );
+        //set cursor following mode
+        void setFollowingCursor( bool b );
+        //get rotation
+        void getRotation( dpxyzw *p );
+        //set rotation
+        void setRotation( dpxyzw *p );
+        //get spin
+        void getSpin( dpxyzw *p );
+        //set spin
+        void setSpin( dpxyzw *p );
+        //returns true if grows when mouse hovers over
+        bool doesGrow( void );
+        //set mouse hover mode
+        void setGrow( bool b );
 
     };
 

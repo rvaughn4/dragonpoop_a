@@ -86,6 +86,78 @@ namespace dp
         this->p->attachInput( i );
     }
 
+    //return true if centered
+    bool dpgui_writelock::isCentered( void )
+    {
+        return this->p->isCentered();
+    }
+
+    //set centered mode
+    void dpgui_writelock::setCentered( bool b )
+    {
+        this->p->setCentered( b );
+    }
+
+    //return true if floating
+    bool dpgui_writelock::isFloating( void )
+    {
+        return this->p->isFloating();
+    }
+
+    //set floating mode
+    void dpgui_writelock::setFloating( bool b )
+    {
+        this->p->setFloating( b );
+    }
+
+    //return true if follows cursor
+    bool dpgui_writelock::isFollowingCursor( void )
+    {
+        return this->p->isFollowingCursor();
+    }
+
+    //set cursor following mode
+    void dpgui_writelock::setFollowingCursor( bool b )
+    {
+        this->p->setFollowingCursor( b );
+    }
+
+    //get rotation
+    void dpgui_writelock::getRotation( dpxyzw *p )
+    {
+        this->p->getRotation( p );
+    }
+
+    //set rotation
+    void dpgui_writelock::setRotation( dpxyzw *p )
+    {
+        this->p->setRotation( p );
+    }
+
+    //get spin
+    void dpgui_writelock::getSpin( dpxyzw *p )
+    {
+        this->p->getSpin( p );
+    }
+
+    //set spin
+    void dpgui_writelock::setSpin( dpxyzw *p )
+    {
+        this->p->setSpin( p );
+    }
+
+    //returns true if grows when mouse hovers over
+    bool dpgui_writelock::doesGrow( void )
+    {
+        return this->p->doesGrow();
+    }
+
+    //set mouse hover mode
+    void dpgui_writelock::setGrow( bool b )
+    {
+        this->p->setGrow( b );
+    }
+
 }
 
 

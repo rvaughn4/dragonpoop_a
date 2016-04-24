@@ -35,6 +35,14 @@ namespace dp
 
         this->t_input = 0;
         this->inp = new dpinput();
+
+        this->bFollowCursor = 0;
+        this->bIsCentered = 1;
+        this->bIsFloating = 0;
+        this->bGrows = 1;
+
+        this->rot.x = this->rot.y = this->rot.z = 0;
+        this->spin = this->rot;
     }
 
     //dtor
@@ -373,37 +381,109 @@ namespace dp
     //override to handle left clicks
     void dpgui::onLeftClick( dpinput_event_mouse *e )
     {
-        std::cout << "left click\r\n";
+
     }
 
     //override to handle right clicks
     void dpgui::onRightClick( dpinput_event_mouse *e )
     {
-        std::cout << "right click\r\n";
+
     }
 
     //override to handle mouse movement
     void dpgui::onMouseMove( dpinput_event_mouse *e )
     {
-        std::cout << "mouse moved at " << e->x << " " << e->y << "\r\n";
+
     }
 
     //override to handle key press down
     void dpgui::onKeyDown( dpinput_event_keypress *e )
     {
-        std::cout << "key down " << e->keyName << "\r\n";
+
     }
 
     //override to handle key press up
     void dpgui::onKeyUp( dpinput_event_keypress *e )
     {
-        std::cout << "key up " << e->keyName << "\r\n";
+
     }
 
     //override to handle text input
     void dpgui::onText( dpinput_event_text *e )
     {
-        std::cout << "text " << e->txt << "\r\n";
+
+    }
+
+    //return true if centered
+    bool dpgui::isCentered( void )
+    {
+        return this->bIsCentered;
+    }
+
+    //set centered mode
+    void dpgui::setCentered( bool b )
+    {
+        this->bIsCentered = b;
+    }
+
+    //return true if floating
+    bool dpgui::isFloating( void )
+    {
+        return this->bIsFloating;
+    }
+
+    //set floating mode
+    void dpgui::setFloating( bool b )
+    {
+        this->bIsFloating = b;
+    }
+
+    //return true if follows cursor
+    bool dpgui::isFollowingCursor( void )
+    {
+        return this->bFollowCursor;
+    }
+
+    //set cursor following mode
+    void dpgui::setFollowingCursor( bool b )
+    {
+        this->bFollowCursor = b;
+    }
+
+    //get rotation
+    void dpgui::getRotation( dpxyzw *p )
+    {
+        *p = this->rot;
+    }
+
+    //set rotation
+    void dpgui::setRotation( dpxyzw *p )
+    {
+        this->rot = *p;
+    }
+
+    //get spin
+    void dpgui::getSpin( dpxyzw *p )
+    {
+        *p = this->spin;
+    }
+
+    //set spin
+    void dpgui::setSpin( dpxyzw *p )
+    {
+        this->spin = *p;
+    }
+
+    //returns true if grows when mouse hovers over
+    bool dpgui::doesGrow( void )
+    {
+        return this->bGrows;
+    }
+
+    //set mouse hover mode
+    void dpgui::setGrow( bool b )
+    {
+        this->bGrows = b;
     }
 
 }

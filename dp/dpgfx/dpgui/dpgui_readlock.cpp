@@ -68,6 +68,42 @@ namespace dp
         return this->p->getSzTime();
     }
 
+    //return true if centered
+    bool dpgui_readlock::isCentered( void )
+    {
+        return this->p->isCentered();
+    }
+
+    //return true if floating
+    bool dpgui_readlock::isFloating( void )
+    {
+        return this->p->isFloating();
+    }
+
+    //return true if follows cursor
+    bool dpgui_readlock::isFollowingCursor( void )
+    {
+        return this->p->isFollowingCursor();
+    }
+
+    //get rotation
+    void dpgui_readlock::getRotation( dpxyzw *p )
+    {
+        this->p->getRotation( p );
+    }
+
+    //get spin
+    void dpgui_readlock::getSpin( dpxyzw *p )
+    {
+        this->p->getSpin( p );
+    }
+
+    //returns true if grows when mouse hovers over
+    bool dpgui_readlock::doesGrow( void )
+    {
+        return this->p->doesGrow();
+    }
+
 }
 
 

@@ -1867,7 +1867,7 @@
 1459704015 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_filter_face/dpfont_filter_face.h
 	"../dpfont_filter/dpfont_filter.h"
 
-1461499340 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui.cpp
+1461523671 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui.cpp
 	"dpgui.h"
 	"dpgui_ref.h"
 	"dpgui_readlock.h"
@@ -1878,26 +1878,27 @@
 	"../../dprender/dpinput/dpinput_writelock.h"
 	<iostream>
 
-1461507313 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui.h
+1461522507 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui.h
 	"../dpgui_list/dpgui_list.h"
 	"../dpbitmap/dpbitmap/dpbitmap.h"
 	"../dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
+	"../dpvertex/dpvertex.h"
 	<string>
 
 1459765860 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_ref.h
 	"../dpgui_list/dpgui_list_ref.h"
 
-1460513942 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_readlock.h
+1461522667 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_readlock.h
 	"../dpgui_list/dpgui_list_readlock.h"
 
-1461497934 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_writelock.h
+1461522568 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_writelock.h
 	"../dpgui_list/dpgui_list_writelock.h"
 
 1460027625 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_factory.cpp
 	"dpgui.h"
 	"dpgui_factory.h"
 
-1460513967 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_readlock.cpp
+1461522733 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_readlock.cpp
 	"dpgui_readlock.h"
 	"dpgui.h"
 
@@ -1905,7 +1906,7 @@
 	"dpgui_ref.h"
 	"dpgui.h"
 
-1461497956 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_writelock.cpp
+1461522611 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_writelock.cpp
 	"dpgui_writelock.h"
 	"dpgui.h"
 
@@ -1940,7 +1941,7 @@
 	"dpgui_list_writelock.h"
 	"../dpgui/dpgui.h"
 
-1461512537 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui.cpp
+1461523569 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui.cpp
 	"dprender_gui.h"
 	"dprender_gui_ref.h"
 	"dprender_gui_readlock.h"
@@ -2008,7 +2009,7 @@
 1459815710 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_ref.h
 	"../../../dpcore/dpshared/dpshared_ref.h"
 
-1461514510 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui.h
+1461522754 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui.h
 	"../dprender_gui_list/dprender_gui_list.h"
 	"../../../dpgfx/dpbitmap/dpbitmap/dpbitmap.h"
 	"../../../dpgfx/dpmatrix/dpmatrix.h"

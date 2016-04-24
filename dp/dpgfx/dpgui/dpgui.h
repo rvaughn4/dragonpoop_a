@@ -8,6 +8,8 @@
 #include "../dpgui_list/dpgui_list.h"
 #include "../dpbitmap/dpbitmap/dpbitmap.h"
 #include "../dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
+#include "../dpvertex/dpvertex.h"
+
 #include <string>
 
 namespace dp
@@ -32,8 +34,8 @@ namespace dp
         std::string stxt;
         uint64_t t_input;
         dpinput *inp;
-
-        bool bIsCentered, bIsFloating, bFollowCursor;
+        dpxyzw rot, spin;
+        bool bIsCentered, bIsFloating, bFollowCursor, bGrows;
 
         //run input
         void runInput( void );
@@ -114,6 +116,30 @@ namespace dp
         virtual void onKeyUp( dpinput_event_keypress *e );
         //override to handle text input
         virtual void onText( dpinput_event_text *e );
+        //return true if centered
+        bool isCentered( void );
+        //set centered mode
+        void setCentered( bool b );
+        //return true if floating
+        bool isFloating( void );
+        //set floating mode
+        void setFloating( bool b );
+        //return true if follows cursor
+        bool isFollowingCursor( void );
+        //set cursor following mode
+        void setFollowingCursor( bool b );
+        //get rotation
+        void getRotation( dpxyzw *p );
+        //set rotation
+        void setRotation( dpxyzw *p );
+        //get spin
+        void getSpin( dpxyzw *p );
+        //set spin
+        void setSpin( dpxyzw *p );
+        //returns true if grows when mouse hovers over
+        bool doesGrow( void );
+        //set mouse hover mode
+        void setGrow( bool b );
 
     public:
 
