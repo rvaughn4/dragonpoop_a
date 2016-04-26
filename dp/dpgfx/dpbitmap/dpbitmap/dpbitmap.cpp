@@ -540,6 +540,136 @@ namespace dp
         }
     }
 
+    //create button effect
+    void dpbitmap::buttonize( unsigned int border_width, float depth, bool bInvert )
+    {
+        dpbitmap_rectangle rc;
+
+        rc.x = rc.y = 0;
+        rc.w = this->getWidth();
+        rc.h = this->getHeight();
+
+        this->buttonize( border_width, depth, bInvert, &rc );
+    }
+
+    //create button effect
+    void dpbitmap::buttonize( unsigned int border_width, float depth, bool bInvert, dpbitmap_rectangle *rc )
+    {
+        int x, xm, y, ym, xh, yh, dx, dy, xs, ys;
+        dpbitmap_color c;
+        float r, invdepth, gloss, xgloss, ygloss, e;
+
+        if( depth > 1.0f )
+            depth = 1.0f;
+        invdepth = 1.0f - depth;
+
+        xm = rc->x + rc->w;
+        ym = rc->y + rc->h;
+        xh = rc->x + rc->w / 2;
+        yh = rc->y + rc->h / 2;
+        xs = rc->x;
+        ys = rc->y;
+
+        for( y = rc->y; y < ym; y++ )
+        {
+            for( x = rc->x; x < xm; x++ )
+            {
+                this->getPixel( x, y, &c );
+
+                if( x < xh )
+                    dx = x - xs;
+                else
+                    dx = xm - x;
+                if( y < yh )
+                    dy = y - ys;
+                else
+                    dy = ym - y;
+                if( dx > (int)border_width )
+                    dx = border_width;
+                if( dy > (int)border_width )
+                    dy = border_width;
+
+
+                if( dy < dx )
+                    r = dy;
+                else
+                    r = dx;
+                r = r / (float)border_width;
+                r = r * depth + invdepth;
+
+                ygloss = xgloss = 0;
+                if( x < xs + (int)border_width && ym - y > x - xs )
+                {
+                    if( ym - y > (int)border_width )
+                        xgloss = ( (float)x - (float)xs ) / (float)border_width;
+                    else
+                    {
+                        if( ym != y )
+                            xgloss = ( (float)x - (float)xs ) / ( (float)ym - (float)y );
+                        else
+                            xgloss = 1;
+                    }
+                    xgloss = ( 1.0f - xgloss ) * ( 1.0f - r );
+                }
+                if( y < ys + (int)border_width && xm - x > y - ys )
+                {
+                    if( xm - x > (int)border_width )
+                        ygloss = ( (float)y - (float)ys ) / (float)border_width;
+                    else
+                    {
+                        if( xm != x )
+                            ygloss = ( (float)y - (float)ys ) / ( (float)xm - (float)x );
+                        else
+                            ygloss = 1;
+                    }
+                    ygloss = ( 1.0f - ygloss ) * ( 1.0f - r );
+                }
+
+                gloss = xgloss;
+                if( ygloss > gloss )
+                    gloss = ygloss;
+
+                e = 1.0f - this->getEdgeDetectValue( x, y );
+                gloss = gloss * 0.5f + ( gloss * 0.5f * e );
+                r = ( 1.0f - r );
+                r = r * 0.5f + (r * 0.5f * e );
+                r = ( 1.0f - r );
+
+                c.r = c.r * r + gloss;
+                c.g = c.g * r + gloss;
+                c.b = c.b * r + gloss;
+
+                this->setPixel( x, y, &c );
+            }
+        }
+
+    }
+
+    //get edge detection value at pixel
+    float dpbitmap::getEdgeDetectValue( int x, int y )
+    {
+        int xa, ya;
+        dpbitmap_color ca, c;
+        float r;
+
+        xa = x + 1;
+        ya = y + 1;
+
+        this->getPixel( xa, ya, &ca );
+        this->getPixel( x, y, &c );
+
+        r = c.r - ca.r;
+        r += c.g - ca.g;
+        r += c.b - ca.b;
+
+        if( r > 1.0f )
+            r = 1.0f;
+        if( r < 0.0f )
+            r = 0.0f;
+
+        return r;
+    }
+
 };
 
 

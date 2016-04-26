@@ -128,6 +128,12 @@ namespace dp
         virtual void texturize( float sz, float intensity );
         //alter rect with texture, pass in fineness in pixels
         virtual void texturize( float sz, float intensity, dpbitmap_rectangle *rc );
+        //create button effect
+        virtual void buttonize( unsigned int border_width, float depth, bool bInvert );
+        //create button effect
+        virtual void buttonize( unsigned int border_width, float depth, bool bInvert, dpbitmap_rectangle *rc );
+        //get edge detection value at pixel
+        virtual float getEdgeDetectValue( int x, int y );
 
     };
 };

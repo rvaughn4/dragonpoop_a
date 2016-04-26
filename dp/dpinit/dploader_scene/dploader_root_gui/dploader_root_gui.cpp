@@ -31,6 +31,7 @@ namespace dp
 
         lbm->texturize( 1, 0.2f );
         bm->copy( lbm );
+        bm->buttonize( 100, 1.0f, 0 );
 
         delete lbm;
     }
