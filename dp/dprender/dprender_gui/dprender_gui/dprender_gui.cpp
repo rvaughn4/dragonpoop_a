@@ -50,6 +50,7 @@ namespace dp
         this->min_pos.x = 0;
         this->min_pos.y = 0;
         this->bIsDrag = 0;
+        this->bFocus = 0;
 
         this->inp = 0;
     }
@@ -233,8 +234,18 @@ namespace dp
 
         if( !this->bMin && this->bIsFloating )
         {
-            if( this->dprender_gui_list::processEvent( l, e ) )
-                return 1;
+            switch( e->h.etype )
+            {
+                case dpinput_event_type_mouse:
+                case dpinput_event_type_leftclick:
+                case dpinput_event_type_rightclick:
+                    if( this->dprender_gui_list::processEvent( l, e ) )
+                        return 1;
+                    break;
+                default:
+                    if( !this->bFocus && this->dprender_gui_list::processEvent( l, e ) )
+                        return 1;
+            }
         }
 
         switch( e->h.etype )
@@ -260,8 +271,9 @@ namespace dp
                         return 0;
                 }
                 this->bIsMouseOver = 1;
+                this->bFocus = 1;
 
-                if( !this->bIsDrag && e->mse.isDown && !e->mse.isRight )
+                if( !this->bIsDrag && e->mse.isDown && !e->mse.isRight && this->bIsFloating )
                 {
                     this->bIsDrag = 1;
                     this->drag_start.x = e->mse.sx;
@@ -272,16 +284,30 @@ namespace dp
                     this->bIsDrag = 0;
                     if( this->bMin )
                     {
-                        this->min_pos.x += this->drag_off.x;
-                        this->min_pos.y += this->drag_off.y;
-                        if( this->min_pos.x < 0 )
-                            this->min_pos.x = 0;
-                        if( this->min_pos.x > e->mse.sw - 50 )
-                            this->min_pos.x = e->mse.sw - 50;
-                        if( this->min_pos.y < 0 )
-                            this->min_pos.y = 0;
-                        if( this->min_pos.y > e->mse.sh - 50 )
-                            this->min_pos.y = e->mse.sh - 50;
+                        if( abs( this->drag_off.x ) + abs( this->drag_off.y ) < 0.1f )
+                        {
+                            this->bMin = 0;
+                            gl = (dpgui_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->pgui, 100 );
+                            if( gl )
+                            {
+                                gl->setMinimized( 0 );
+                                gl->update();
+                            }
+                            g.release( gl );
+                        }
+                        else
+                        {
+                            this->min_pos.x += this->drag_off.x;
+                            this->min_pos.y += this->drag_off.y;
+                            if( this->min_pos.x < 0 )
+                                this->min_pos.x = 0;
+                            if( this->min_pos.x > e->mse.sw - 50 )
+                                this->min_pos.x = e->mse.sw - 50;
+                            if( this->min_pos.y < 0 )
+                                this->min_pos.y = 0;
+                            if( this->min_pos.y > e->mse.sh - 50 )
+                                this->min_pos.y = e->mse.sh - 50;
+                        }
                     }
                     else
                     {
@@ -651,6 +677,14 @@ namespace dp
         ib.write( &i );
 
         this->ib_fg = ctx->makeIndexBuffer( &ib );
+    }
+
+    //compare gui
+    bool dprender_gui::compare( dpgui *g )
+    {
+        if( !this->pgui )
+            return 0;
+        return this->pgui->isParent( g );
     }
 
 }

@@ -46,8 +46,8 @@ namespace dp
             return 0;
 
         this->getDimensions( &w, &h );
-    //    t = new dpgui_window_title( 0, -25, w, 30, this->stitle.c_str() );
-      //  this->addGui( &t, 1 );
+        t = new dpgui_window_title( 0, -25, w, 30, this->stitle.c_str() );
+        this->addGui( &t, 1 );
 
         return 1;
     }

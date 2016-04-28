@@ -17,6 +17,7 @@ namespace dp
     class dpapi_commandlist_writelock;
     struct dpinput_event;
     struct dpbitmap_rectangle;
+    class dpgui;
 
     #define dprender_gui_list_max_gui 512
 
@@ -33,6 +34,8 @@ namespace dp
         void zeroList( dprender_gui **l, unsigned int cnt );
         //delete list
         void deleteList( dprender_gui **l, unsigned int cnt );
+        //find gui
+        dprender_gui *findGui( dpgui *g );
 
     protected:
 

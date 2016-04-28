@@ -172,6 +172,24 @@ namespace dp
         return j;
     }
 
+    //find gui
+    dprender_gui *dprender_gui_list::findGui( dpgui *g )
+    {
+        unsigned int i;
+        dprender_gui *p;
+
+        for( i = 0; i < dprender_gui_list_max_gui; i++ )
+        {
+            p = this->glist[ i ];
+            if( !p )
+                continue;
+            if( p->compare( g ) )
+                return p;
+        }
+
+        return 0;
+    }
+
     //override to handle sync copy, be sure to call base class first!
     void dprender_gui_list::onSync( dpshared_readlock *psync )
     {
@@ -194,6 +212,10 @@ namespace dp
         {
             g = glist[ i ];
             if( !g )
+                continue;
+
+            ng = this->findGui( g );
+            if( ng )
                 continue;
 
             ng = new dprender_gui( g );

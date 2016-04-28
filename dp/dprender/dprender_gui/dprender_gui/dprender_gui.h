@@ -49,7 +49,7 @@ namespace dp
         float fhover, fMin;
         dpxyzw rot, spin;
         uint64_t t_spin;
-        bool bIsCentered, bIsFloating, bFollowCursor, bIsMouseOver, bIsMouseDown, bGrows, bMin, bIsDrag;
+        bool bIsCentered, bIsFloating, bFollowCursor, bIsMouseOver, bIsMouseDown, bGrows, bMin, bIsDrag, bFocus;
 
         //create vertex buffer
         bool makeVB( dpapi_context_writelock *ctx, dpgui_readlock *g );
@@ -105,6 +105,8 @@ namespace dp
         virtual unsigned int getZ( void );
         //set z
         virtual void setZ( unsigned int z );
+        //compare gui
+        bool compare( dpgui *g );
 
         friend class dprender_gui_writelock;
         friend class dprender_gui_readlock;
