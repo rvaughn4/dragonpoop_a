@@ -45,11 +45,11 @@ namespace dp
         struct
         {
             float x, y;
-        } mousepos;
-        float fhover;
+        } mousepos, min_pos, drag_start, drag_off;
+        float fhover, fMin;
         dpxyzw rot, spin;
         uint64_t t_spin;
-        bool bIsCentered, bIsFloating, bFollowCursor, bIsMouseOver, bIsMouseDown, bGrows;
+        bool bIsCentered, bIsFloating, bFollowCursor, bIsMouseOver, bIsMouseDown, bGrows, bMin, bIsDrag;
 
         //create vertex buffer
         bool makeVB( dpapi_context_writelock *ctx, dpgui_readlock *g );

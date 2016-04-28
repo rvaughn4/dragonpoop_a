@@ -77,6 +77,10 @@ namespace dp
         bool doesGrow( void );
         //set mouse hover mode
         void setGrow( bool b );
+        //returns true if minimized
+        bool isMinimized( void );
+        //set minimized
+        void setMinimized( bool b );
 
     };
 

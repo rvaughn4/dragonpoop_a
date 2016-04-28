@@ -158,6 +158,18 @@ namespace dp
         this->p->setGrow( b );
     }
 
+    //returns true if minimized
+    bool dpgui_writelock::isMinimized( void )
+    {
+        return this->p->isMinimized();
+    }
+
+    //set minimized
+    void dpgui_writelock::setMinimized( bool b )
+    {
+        this->p->setMinimized( b );
+    }
+
 }
 
 

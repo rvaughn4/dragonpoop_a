@@ -35,7 +35,7 @@ namespace dp
         uint64_t t_input;
         dpinput *inp;
         dpxyzw rot, spin;
-        bool bIsCentered, bIsFloating, bFollowCursor, bGrows;
+        bool bIsCentered, bIsFloating, bFollowCursor, bGrows, bMin;
 
         //run input
         void runInput( void );
@@ -140,11 +140,15 @@ namespace dp
         bool doesGrow( void );
         //set mouse hover mode
         void setGrow( bool b );
+        //returns true if minimized
+        bool isMinimized( void );
+        //set minimized
+        void setMinimized( bool b );
 
     public:
 
         //ctor
-        dpgui( int x, int y, unsigned w, unsigned h, const char *ctxt );
+        dpgui( int x, int y, unsigned int w, unsigned int h, const char *ctxt );
         //dtor
         virtual ~dpgui( void );
         //return z

@@ -21,11 +21,13 @@ namespace dp
 
         //override to handle left clicks
         virtual void onLeftClick( dpinput_event_mouse *e );
+        //render first pass background image
+        virtual void renderBackgroundPass1( dpbitmap *bm );
 
     public:
 
         //ctor
-        dpgui_button( int x, int y, unsigned w, unsigned h, const char *ctxt );
+        dpgui_button( int x, int y, unsigned int w, unsigned int h, const char *ctxt );
         //dtor
         virtual ~dpgui_button( void );
         //returns true if clicked

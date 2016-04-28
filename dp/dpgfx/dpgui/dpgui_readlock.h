@@ -58,6 +58,8 @@ namespace dp
         void getSpin( dpxyzw *p );
         //returns true if grows when mouse hovers over
         bool doesGrow( void );
+        //returns true if minimized
+        bool isMinimized( void );
 
     };
 

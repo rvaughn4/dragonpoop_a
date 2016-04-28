@@ -44,6 +44,12 @@ namespace dp
         this->z = pg->getZ();
         this->bIsMouseOver = 0;
         this->t_spin = this->getTicks();
+        this->bMin = 0;
+        this->fMin = 0;
+
+        this->min_pos.x = 0;
+        this->min_pos.y = 0;
+        this->bIsDrag = 0;
 
         this->inp = 0;
     }
@@ -146,6 +152,7 @@ namespace dp
         this->bIsFloating = gr->isFloating();
         this->bFollowCursor = gr->isFollowingCursor();
         this->bGrows = gr->doesGrow();
+        this->bMin = gr->isMinimized();
 
         gr->getRotation( &this->rot );
         gr->getSpin( &this->rot );
@@ -221,8 +228,14 @@ namespace dp
     //process input event
     bool dprender_gui::processEvent( dprender_gui_list_writelock *l, dpinput_event *e )
     {
-        if( this->dprender_gui_list::processEvent( l, e ) )
-            return 1;
+        dpgui_writelock *gl;
+        dpshared_guard g;
+
+        if( !this->bMin && this->bIsFloating )
+        {
+            if( this->dprender_gui_list::processEvent( l, e ) )
+                return 1;
+        }
 
         switch( e->h.etype )
         {
@@ -239,11 +252,64 @@ namespace dp
 
                 this->bIsMouseOver = 0;
                 this->bIsMouseDown = e->mse.isDown;
-                if( e->mse.x < 0 || e->mse.y < 0 )
-                    return 0;
-                if( e->mse.x > this->rc.w || e->mse.y > this->rc.h )
-                    return 0;
+                if( !this->bIsDrag )
+                {
+                    if( e->mse.x < 0 || e->mse.y < 0 )
+                        return 0;
+                    if( e->mse.x > this->rc.w || e->mse.y > this->rc.h )
+                        return 0;
+                }
                 this->bIsMouseOver = 1;
+
+                if( !this->bIsDrag && e->mse.isDown && !e->mse.isRight )
+                {
+                    this->bIsDrag = 1;
+                    this->drag_start.x = e->mse.sx;
+                    this->drag_start.y = e->mse.sy;
+                }
+                if( this->bIsDrag && !e->mse.isDown )
+                {
+                    this->bIsDrag = 0;
+                    if( this->bMin )
+                    {
+                        this->min_pos.x += this->drag_off.x;
+                        this->min_pos.y += this->drag_off.y;
+                        if( this->min_pos.x < 0 )
+                            this->min_pos.x = 0;
+                        if( this->min_pos.x > e->mse.sw - 50 )
+                            this->min_pos.x = e->mse.sw - 50;
+                        if( this->min_pos.y < 0 )
+                            this->min_pos.y = 0;
+                        if( this->min_pos.y > e->mse.sh - 50 )
+                            this->min_pos.y = e->mse.sh - 50;
+                    }
+                    else
+                    {
+                        this->rc.x += this->drag_off.x;
+                        this->rc.y += this->drag_off.y;
+                        if( this->rc.x < 0 )
+                            this->rc.x = 0;
+                        if( this->rc.x > e->mse.sw - this->rc.w )
+                            this->rc.x = e->mse.sw - this->rc.w;
+                        if( this->rc.y < 0 )
+                            this->rc.y = 0;
+                        if( this->rc.y > e->mse.sh - this->rc.h )
+                            this->rc.y = e->mse.sh - this->rc.h;
+
+                        gl = (dpgui_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->pgui, 100 );
+                        if( gl )
+                        {
+                            gl->setPosition( this->rc.x, this->rc.y );
+                            gl->update();
+                        }
+                        g.release( gl );
+                    }
+                }
+                if( this->bIsDrag )
+                {
+                    this->drag_off.x = e->mse.sx - this->drag_start.x;
+                    this->drag_off.y = e->mse.sy - this->drag_start.y;
+                }
 
                 break;
         }
@@ -272,7 +338,7 @@ namespace dp
     //make matrix
     void dprender_gui::calcMatrix( dpmatrix *m_world, dpbitmap_rectangle *rc_world, dpmatrix *m_parent, dpbitmap_rectangle *rc_parent )
     {
-        dpxyzw pos, sz, rot, sc;
+        dpxyzw pos, sz, rot, sc, msc;
         dpmatrix m;
         uint64_t t;
         float ft;
@@ -291,15 +357,41 @@ namespace dp
         else
             this->fhover += (0.0f - this->fhover) * 0.3f;
 
+        if( this->bMin )
+            this->fMin += ( 1.0f - this->fMin ) * 0.2f;
+        else
+            this->fMin += ( 0.0f - this->fMin ) * 0.2f;
+
         if( this->bIsFloating || this->bFollowCursor )
         {
             m_parent = m_world;
             rc_parent = rc_world;
         }
+
         if( this->bFollowCursor )
         {
             pos.x = this->mousepos.x;
             pos.y = this->mousepos.y;
+        }
+        if( this->bIsCentered && !this->bFollowCursor )
+        {
+            pos.x = ( rc_parent->w - sz.x ) * 0.5f;
+            pos.y = ( rc_parent->h - sz.y ) * 0.5f;
+        }
+
+        if( this->bIsFloating && this->fMin > 0.01f )
+        {
+            pos.x = pos.x * ( 1.0f - this->fMin ) + this->min_pos.x * this->fMin;
+            pos.y = pos.y * ( 1.0f - this->fMin ) + this->min_pos.y * this->fMin;
+            msc.x = ( sz.x * ( 1.0f - this->fMin ) + 50.0f * this->fMin ) / sz.x;
+            msc.y = ( sz.y * ( 1.0f - this->fMin ) + 50.0f * this->fMin ) / sz.y;
+            msc.z = 1.0f;
+        }
+
+        if( this->bIsDrag )
+        {
+            pos.x += this->drag_off.x;
+            pos.y += this->drag_off.y;
         }
 
         pos.x -= this->fhover;
@@ -318,12 +410,6 @@ namespace dp
             this->mat.copy( m_parent );
         else
             this->mat.setIdentity();
-
-        if( this->bIsCentered && !this->bFollowCursor )
-        {
-            pos.x = ( rc_parent->w - sz.x ) * 0.5f;
-            pos.y = ( rc_parent->h - sz.y ) * 0.5f;
-        }
 
         t = this->getTicks();
         t -= this->t_spin;
@@ -360,6 +446,12 @@ namespace dp
         else
             this->mat_bg.copy( &this->mat );
 
+        if( this->bIsFloating && this->fMin > 0.01f )
+        {
+            this->mat.scale( msc.x, msc.y, msc.z );
+            this->mat_bg.scale( msc.x, msc.y, msc.z );
+        }
+
         this->undo_mat.inverse( &this->mat );
     }
 
@@ -371,10 +463,13 @@ namespace dp
         if( this->t_bg && g->getBgTime() == this->bg_time )
             return 0;
 
+        bm = g->getBg();
+        if( !bm )
+            return 0;
+
         if( this->t_bg )
             delete this->t_bg;
 
-        bm = g->getBg();
         this->t_bg = ctx->makeTexture( bm );
         this->bg_time = g->getBgTime();
         return 1;
@@ -388,10 +483,13 @@ namespace dp
         if( this->t_fg && g->getFgTime() == this->fg_time )
             return 0;
 
+        bm = g->getFg();
+        if( !bm )
+            return 0;
+
         if( this->t_fg )
             delete this->t_fg;
 
-        bm = g->getFg();
         this->t_fg = ctx->makeTexture( bm );
         this->fg_time = g->getFgTime();
         return 1;

@@ -17,7 +17,7 @@ namespace dp
 {
 
     //ctor
-    dpgui::dpgui( int x, int y, unsigned w, unsigned h, const char *ctxt ) : dpgui_list()
+    dpgui::dpgui( int x, int y, unsigned int w, unsigned int h, const char *ctxt ) : dpgui_list()
     {
         this->bBgDrawn = 0;
         this->bFgDrawn = 0;
@@ -206,6 +206,12 @@ namespace dp
     {
         dpfont fnt;
         dpbitmap_color c;
+        dpbitmap_rectangle rc;
+
+        rc.x = 10;
+        rc.y = 10;
+        rc.w = this->rc.w - 10;
+        rc.h = this->rc.h - 10;
 
         c.r = 0;
         c.g = 0;
@@ -213,10 +219,10 @@ namespace dp
         c.a = 1;
 
         fnt.setColor( &c );
-        fnt.setSize( 100 );
+        fnt.setSize( 20 );
         fnt.openFont( "sans" );
 
-        fnt.drawString( &this->stxt, 0, 0, bm );
+        fnt.drawString( &this->stxt, &rc, 0, bm );
     }
 
     //override to handle gui ran
@@ -484,6 +490,18 @@ namespace dp
     void dpgui::setGrow( bool b )
     {
         this->bGrows = b;
+    }
+
+    //returns true if minimized
+    bool dpgui::isMinimized( void )
+    {
+        return this->bMin;
+    }
+
+    //set minimized
+    void dpgui::setMinimized( bool b )
+    {
+        this->bMin = b;
     }
 
 }

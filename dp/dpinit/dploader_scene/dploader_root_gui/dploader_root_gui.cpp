@@ -9,9 +9,9 @@ namespace dp
 {
 
     //ctor
-    dploader_root_gui::dploader_root_gui( void ) : dpgui( 0, 0, 1000, 300, "[align center][size 100]\r\nDragon Poop" )
+    dploader_root_gui::dploader_root_gui( void ) : dpgui_window( 0, 0, 1000, 300, "Dragon Poop", "[align center][size 100]\r\nDragon Poop" )
     {
-
+        //this->setCentered( 1 );
     }
 
     //dtor
@@ -20,39 +20,12 @@ namespace dp
 
     }
 
-    //render first pass background image
-    void dploader_root_gui::renderBackgroundPass0( dpbitmap *bm )
+    //override to handle left clicks
+    void dploader_root_gui::onKeyUp( dpinput_event_keypress *e )
     {
-        dpbitmap_loader ldr;
-        dpbitmap *lbm = ldr.load( "picture.png" );
-
-        if( !lbm )
-            return;
-
-        lbm->texturize( 1, 0.2f );
-        bm->copy( lbm );
-        bm->buttonize( 100, 1.0f, 0 );
-        bm->sharpen( 0.7f );
-
-        delete lbm;
-    }
-
-    //override to handle gui ran
-    bool dploader_root_gui::onGuiRun( dpgui_writelock *tl )
-    {
-        return this->dpgui::onGuiRun( tl );
-    }
-
-    //override to handle gui start
-    bool dploader_root_gui::onGuiStart( dpgui_writelock *tl )
-    {
-        return this->dpgui::onGuiStart( tl );
-    }
-
-    //override to handle gui stop
-    bool dploader_root_gui::onGuiStop( dpgui_writelock *tl )
-    {
-        return this->dpgui::onGuiStop( tl );
+        this->dpgui_window::onKeyUp( e );
+        this->setMinimized( !this->isMinimized() );
+        this->update();
     }
 
 }

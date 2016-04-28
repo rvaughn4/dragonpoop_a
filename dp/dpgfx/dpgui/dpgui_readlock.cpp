@@ -104,6 +104,12 @@ namespace dp
         return this->p->doesGrow();
     }
 
+    //returns true if minimized
+    bool dpgui_readlock::isMinimized( void )
+    {
+        return this->p->isMinimized();
+    }
+
 }
 
 

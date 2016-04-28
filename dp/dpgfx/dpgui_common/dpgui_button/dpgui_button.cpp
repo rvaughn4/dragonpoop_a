@@ -8,9 +8,10 @@ namespace dp
 {
 
     //ctor
-    dpgui_button::dpgui_button( int x, int y, unsigned w, unsigned h, const char *ctxt ) : dpgui( x, y, w, h, ctxt )
+    dpgui_button::dpgui_button( int x, int y, unsigned int w, unsigned int h, const char *ctxt ) : dpgui( x, y, w, h, ctxt )
     {
         this->bWasClicked = 0;
+        this->setGrow( 1 );
     }
 
     //dtor
@@ -34,6 +35,12 @@ namespace dp
     void dpgui_button::onLeftClick( dpinput_event_mouse *e )
     {
         this->bWasClicked = 1;
+    }
+
+    //render first pass background image
+    void dpgui_button::renderBackgroundPass1( dpbitmap *bm )
+    {
+        bm->buttonize( 10, 0.5f, 0 );
     }
 
 }
