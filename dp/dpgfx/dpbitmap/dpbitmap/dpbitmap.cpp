@@ -625,24 +625,38 @@ namespace dp
                     ygloss = ( 1.0f - ygloss ) * ( 1.0f - r );
                 }
 
-                gloss = xgloss;
+                gloss = ( xgloss + ygloss ) / 1.5f;
+                if( xgloss > gloss )
+                    gloss = xgloss;
                 if( ygloss > gloss )
                     gloss = ygloss;
 
                 e = 1.0f - this->getEdgeDetectValue( x, y );
                 gloss = gloss * 0.5f + ( gloss * 0.5f * e );
                 r = ( 1.0f - r );
-                r = r * 0.5f + (r * 0.5f * e );
+                r = r * 0.5f + ( r * 0.5f * e );
                 r = ( 1.0f - r );
 
                 c.r = c.r * r + gloss;
                 c.g = c.g * r + gloss;
                 c.b = c.b * r + gloss;
 
+                if( c.r > 1.0f )
+                    c.r = 1.0f;
+                if( c.g > 1.0f )
+                    c.g = 1.0f;
+                if( c.b > 1.0f )
+                    c.b = 1.0f;
+                if( c.r < 0.0f )
+                    c.r = 0.0f;
+                if( c.g < 0.0f )
+                    c.g = 0.0f;
+                if( c.b < 0.0f )
+                    c.b = 0.0f;
+
                 this->setPixel( x, y, &c );
             }
         }
-
     }
 
     //get edge detection value at pixel
@@ -668,6 +682,121 @@ namespace dp
             r = 0.0f;
 
         return r;
+    }
+
+    //create edge detect effect
+    void dpbitmap::edgeDetect( float ratio, bool bInvert )
+    {
+        dpbitmap_rectangle rc;
+
+        rc.x = rc.y = 0;
+        rc.w = this->getWidth();
+        rc.h = this->getHeight();
+
+        this->edgeDetect( ratio, bInvert, &rc );
+    }
+
+    //create edge detect effect
+    void dpbitmap::edgeDetect( float ratio, bool bInvert, dpbitmap_rectangle *rc )
+    {
+        int x, xm, y, ym;
+        dpbitmap_color c, ca;
+        float f, r, ir;
+
+        r = ratio;
+        ir = 1.0f - r;
+
+        xm = rc->x + rc->w;
+        ym = rc->y + rc->h;
+
+        for( y = rc->y; y < ym; y++ )
+        {
+            for( x = rc->x; x < xm; x++ )
+            {
+                this->getPixel( x, y, &c );
+                this->getPixel( x + 1, y + 1, &ca );
+
+                f = c.r - ca.r;
+                f += c.g - ca.g;
+                f += c.b - ca.b;
+                f += c.a - ca.a;
+                if( f > 1.0f )
+                    f = 1.0f;
+                if( f < -1.0f )
+                    f = -1.0f;
+                if( bInvert )
+                    f = ( 2.0f - ( f + 1.0f ) ) - 1.0f;
+
+                c.r = f * r + c.r * ir;
+                c.g = f * r + c.g * ir;
+                c.b = f * r + c.b * ir;
+
+                if( c.r > 1.0f )
+                    c.r = 1.0f;
+                if( c.g > 1.0f )
+                    c.g = 1.0f;
+                if( c.b > 1.0f )
+                    c.b = 1.0f;
+                if( c.r < 0.0f )
+                    c.r = 0.0f;
+                if( c.g < 0.0f )
+                    c.g = 0.0f;
+                if( c.b < 0.0f )
+                    c.b = 0.0f;
+
+                this->setPixel( x, y, &c );
+            }
+        }
+    }
+
+    //sharpen or blur image
+    void dpbitmap::sharpen( float mult )
+    {
+        dpbitmap_rectangle rc;
+
+        rc.x = rc.y = 0;
+        rc.w = this->getWidth();
+        rc.h = this->getHeight();
+
+        this->sharpen( mult, &rc );
+    }
+
+    //sharpen or blur image
+    void dpbitmap::sharpen( float mult, dpbitmap_rectangle *rc )
+    {
+        int x, xm, y, ym;
+        dpbitmap_color c, ca;
+
+        xm = rc->x + rc->w;
+        ym = rc->y + rc->h;
+
+        for( y = rc->y; y < ym; y++ )
+        {
+            for( x = rc->x; x < xm; x++ )
+            {
+                this->getPixel( x, y, &c );
+                this->getPixel( x + 1, y + 1, &ca );
+
+                c.r += ( c.r - ca.r ) * mult;
+                c.g += ( c.g - ca.g ) * mult;
+                c.b += ( c.b - ca.b ) * mult;
+
+                if( c.r > 1.0f )
+                    c.r = 1.0f;
+                if( c.g > 1.0f )
+                    c.g = 1.0f;
+                if( c.b > 1.0f )
+                    c.b = 1.0f;
+                if( c.r < 0.0f )
+                    c.r = 0.0f;
+                if( c.g < 0.0f )
+                    c.g = 0.0f;
+                if( c.b < 0.0f )
+                    c.b = 0.0f;
+
+                this->setPixel( x, y, &c );
+            }
+        }
     }
 
 };

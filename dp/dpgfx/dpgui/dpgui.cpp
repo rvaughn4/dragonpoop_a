@@ -37,9 +37,9 @@ namespace dp
         this->inp = new dpinput();
 
         this->bFollowCursor = 0;
-        this->bIsCentered = 1;
+        this->bIsCentered = 0;
         this->bIsFloating = 0;
-        this->bGrows = 1;
+        this->bGrows = 0;
 
         this->rot.x = this->rot.y = this->rot.z = 0;
         this->spin = this->rot;

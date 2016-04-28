@@ -134,6 +134,14 @@ namespace dp
         virtual void buttonize( unsigned int border_width, float depth, bool bInvert, dpbitmap_rectangle *rc );
         //get edge detection value at pixel
         virtual float getEdgeDetectValue( int x, int y );
+        //create edge detect effect
+        virtual void edgeDetect( float ratio, bool bInvert );
+        //create edge detect effect
+        virtual void edgeDetect( float ratio, bool bInvert, dpbitmap_rectangle *rc );
+        //sharpen or blur image
+        virtual void sharpen( float mult );
+        //sharpen or blur image
+        virtual void sharpen( float mult, dpbitmap_rectangle *rc );
 
     };
 };
