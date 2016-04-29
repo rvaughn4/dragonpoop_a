@@ -10,6 +10,7 @@
 #include "../dprender_gui/dprender_gui_writelock.h"
 #include "../../../dpgfx/dpgui_list/dpgui_list_readlock.h"
 #include "../../../dpgfx/dpgui/dpgui.h"
+#include "../../dpinput/dpinput.h"
 
 namespace dp
 {
@@ -121,37 +122,42 @@ namespace dp
     //get list of gui sorted by z order, returns count, second arg is size of static list passed in arg 1
     unsigned int dprender_gui_list::getGuisZSorted( dprender_gui **glist, unsigned int max_cnt, unsigned int *p_max_z, bool bInverted )
     {
-        unsigned int i, j, h, z;
+        unsigned int i, j, h, z, ih;
         dprender_gui *p;
 
         if( !glist )
             return 0;
 
-        j = h = z = 0;
-
         this->max_z = 0;
-        this->min_z = 0 - 1;
         for( i = 0; i < dprender_gui_list_max_gui; i++ )
         {
             p = this->glist[ i ];
-
             if( !p )
                 continue;
             z = p->getZ();
-
-            if( this->max_z < z );
+            if( z > this->max_z )
                 this->max_z = z;
-            if( this->min_z > z );
+        }
+
+        this->min_z = this->max_z;
+        for( i = 0; i < dprender_gui_list_max_gui; i++ )
+        {
+            p = this->glist[ i ];
+            if( !p )
+                continue;
+            z = p->getZ();
+            if( z < this->min_z )
                 this->min_z = z;
         }
 
         if( p_max_z )
             *p_max_z = this->max_z;
 
-        for( h = this->min_z; h <= this->max_z; h++ )
+        j = 0;
+        for( h = this->min_z, ih = this->max_z; h <= this->max_z; h++, ih-- )
         {
-            if( !bInverted )
-                z = this->max_z - h + this->min_z;
+            if( bInverted )
+                z = ih;
             else
                 z = h;
 
@@ -278,7 +284,7 @@ namespace dp
         dprender_gui_writelock *pl;
         dpshared_guard g;
 
-        j = this->getGuisZSorted( plist, dprender_gui_list_max_gui, 0, 0 );
+        j = this->getGuisZSorted( plist, dprender_gui_list_max_gui, 0, 1 );
 
         for( i = 0; i < j; i++ )
         {
@@ -303,7 +309,7 @@ namespace dp
         dprender_gui_writelock *pl;
         dpshared_guard g;
 
-        j = this->getGuisZSorted( plist, dprender_gui_list_max_gui, 0, 1 );
+        j = this->getGuisZSorted( plist, dprender_gui_list_max_gui, 0, 0 );
 
         for( i = 0; i < j; i++ )
         {

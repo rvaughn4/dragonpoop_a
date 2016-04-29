@@ -38,6 +38,14 @@ namespace dp
     }
 
     //render first pass background image
+    void dpgui_button::renderBackgroundPass0( dpbitmap *bm )
+    {
+        dpbitmap_color c;
+        c.r = c.g = c.b = c.a = 1;
+        bm->fill( &c );
+    }
+
+    //render first pass background image
     void dpgui_button::renderBackgroundPass1( dpbitmap *bm )
     {
         bm->buttonize( 10, 0.5f, 0 );

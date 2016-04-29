@@ -14,12 +14,9 @@ namespace dp
     //ctor
     dpgui_list::dpgui_list( void ) : dptask( "gui", 500 )
     {
-        uint64_t i;
         this->zeroList( this->glist, dpgui_list_max_gui );
-
-        i = (uint64_t)this;
-        this->max_z = i;
-        this->min_z = i;
+        this->max_z = 1;
+        this->min_z = 1;
     }
 
     //dtor

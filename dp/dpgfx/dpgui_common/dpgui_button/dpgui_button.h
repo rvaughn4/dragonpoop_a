@@ -22,6 +22,8 @@ namespace dp
         //override to handle left clicks
         virtual void onLeftClick( dpinput_event_mouse *e );
         //render first pass background image
+        virtual void renderBackgroundPass0( dpbitmap *bm );
+        //render first pass background image
         virtual void renderBackgroundPass1( dpbitmap *bm );
 
     public:

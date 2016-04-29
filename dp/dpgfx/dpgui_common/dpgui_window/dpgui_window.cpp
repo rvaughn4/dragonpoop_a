@@ -4,6 +4,7 @@
 
 #include "dpgui_window.h"
 #include "dpgui_window_title.h"
+#include "dpgui_window_minimize_button.h"
 
 namespace dp
 {
@@ -12,6 +13,7 @@ namespace dp
     dpgui_window::dpgui_window( int x, int y, unsigned int w, unsigned int h, const char *ctitle, const char *ctxt ) : dpgui( x, y, w, h, ctxt )
     {
         this->setFloating( 1 );
+        this->setCentered( 1 );
         this->stitle.assign( ctitle );
     }
 
@@ -46,7 +48,7 @@ namespace dp
             return 0;
 
         this->getDimensions( &w, &h );
-        t = new dpgui_window_title( 0, -25, w, 30, this->stitle.c_str() );
+        t = new dpgui_window_title( 0, -25, w, 30, this->stitle.c_str(), this );
         this->addGui( &t, 1 );
 
         return 1;

@@ -231,20 +231,23 @@ namespace dp
     {
         dpgui_writelock *gl;
         dpshared_guard g;
+        dpinput_event ce;
 
-        if( !this->bMin && this->bIsFloating )
+        if( !this->bMin || !this->bIsFloating )
         {
             switch( e->h.etype )
             {
                 case dpinput_event_type_mouse:
                 case dpinput_event_type_leftclick:
                 case dpinput_event_type_rightclick:
-                    if( this->dprender_gui_list::processEvent( l, e ) )
+                    ce = *e;
+                    if( this->dprender_gui_list::processEvent( l, &ce ) )
                         return 1;
                     break;
                 default:
                     if( !this->bFocus && this->dprender_gui_list::processEvent( l, e ) )
                         return 1;
+
             }
         }
 
@@ -263,11 +266,9 @@ namespace dp
 
                 this->bIsMouseOver = 0;
                 this->bIsMouseDown = e->mse.isDown;
-                if( !this->bIsDrag )
+                if( !this->bIsDrag || !this->bIsFloating )
                 {
-                    if( e->mse.x < 0 || e->mse.y < 0 )
-                        return 0;
-                    if( e->mse.x > this->rc.w || e->mse.y > this->rc.h )
+                    if( e->mse.x < 0 || e->mse.y < 0 || e->mse.x > this->rc.w || e->mse.y > this->rc.h )
                         return 0;
                 }
                 this->bIsMouseOver = 1;
@@ -337,6 +338,11 @@ namespace dp
                     this->drag_off.y = e->mse.sy - this->drag_start.y;
                 }
 
+                break;
+            case dpinput_event_type_keypress:
+            case dpinput_event_type_text:
+                if( this->bMin )
+                    return 0;
                 break;
         }
 

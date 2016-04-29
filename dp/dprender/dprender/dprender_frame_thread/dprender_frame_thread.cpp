@@ -30,7 +30,7 @@ namespace dp
 {
 
     //ctor
-    dprender_frame_thread::dprender_frame_thread( dpapi_context *ctx, dpapi_primary_commandlist *cl_a, dpapi_primary_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b ) : dptask( "Renderer Frame", 3 )
+    dprender_frame_thread::dprender_frame_thread( dpapi_context *ctx, dpapi_primary_commandlist *cl_a, dpapi_primary_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b ) : dptask( "Renderer Frame", 10 )
     {
         this->ctx = ctx;
         this->cl_a = cl_a;
