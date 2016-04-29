@@ -60,6 +60,8 @@ namespace dp
         bool doesGrow( void );
         //returns true if minimized
         bool isMinimized( void );
+        //get alignment
+        unsigned int getAlignment( void );
 
     };
 

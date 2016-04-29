@@ -22,6 +22,10 @@ namespace dp
     struct dpinput_event_keypress;
     struct dpinput_event_text;
 
+    #define dpgui_alignment_left 0
+    #define dpgui_alignment_center 1
+    #define dpgui_alignment_right 2
+
     class dpgui : public dpgui_list
     {
 
@@ -30,7 +34,7 @@ namespace dp
         dpbitmap_rectangle rc;
         dpbitmap_32bit_uncompressed *bm_bg, *bm_fg;
         bool bBgDrawn, bFgDrawn;
-        unsigned int z, bg_time, fg_time, sz_time;
+        unsigned int z, bg_time, fg_time, sz_time, align;
         std::string stxt;
         uint64_t t_input;
         dpinput *inp;
@@ -144,6 +148,10 @@ namespace dp
         bool isMinimized( void );
         //set minimized
         void setMinimized( bool b );
+        //set alignment
+        void setAlignment( unsigned int a );
+        //get alignment
+        unsigned int getAlignment( void );
 
     public:
 

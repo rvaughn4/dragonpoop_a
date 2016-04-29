@@ -81,6 +81,10 @@ namespace dp
         bool isMinimized( void );
         //set minimized
         void setMinimized( bool b );
+        //set alignment
+        void setAlignment( unsigned int a );
+        //get alignment
+        unsigned int getAlignment( void );
 
     };
 

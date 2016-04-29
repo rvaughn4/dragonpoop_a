@@ -4,6 +4,7 @@
 
 #include "dpgui_window_title.h"
 #include "dpgui_window_minimize_button.h"
+#include "dpgui_window_close_button.h"
 
 namespace dp
 {
@@ -43,7 +44,9 @@ namespace dp
         if( !this->dpgui::onGuiStart( tl ) )
             return 0;
 
-        t = new dpgui_window_minimize_button( -100, 0, 50, 50, this->pgui );
+        t = new dpgui_window_minimize_button( 32, 0, 30, 30, this->pgui );
+        this->addGui( &t, 1 );
+        t = new dpgui_window_close_button( 0, 0, 30, 30, this->pgui );
         this->addGui( &t, 1 );
 
         return 1;

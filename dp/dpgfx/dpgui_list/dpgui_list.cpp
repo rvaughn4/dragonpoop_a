@@ -6,6 +6,7 @@
 #include "dpgui_list_ref.h"
 #include "dpgui_list_readlock.h"
 #include "dpgui_list_writelock.h"
+#include "../dpgui/dpgui_readlock.h"
 #include "../dpgui/dpgui.h"
 
 namespace dp
@@ -43,9 +44,40 @@ namespace dp
         return new dpgui_list_ref( this, k, t_sync );
     }
 
+    //delete old
+    void dpgui_list::deleteOld( void )
+    {
+        unsigned int i;
+        dpgui *p;
+        dpgui_readlock *l;
+        dpshared_guard g;
+        bool r;
+
+        for( i = 0; i < dpgui_list_max_gui; i++ )
+        {
+            p = this->glist[ i ];
+            if( p )
+                continue;
+
+            l = (dpgui_readlock *)dpshared_guard_tryReadLock_timeout( g, p, 10 );
+            if( !l )
+                continue;
+
+            r = l->isRun();
+            g.release( l );
+
+            if( r )
+                continue;
+
+            delete p;
+            this->glist[ i ] = 0;
+        }
+    }
+
     //override to do task execution
     bool dpgui_list::onTaskRun( dptask_writelock *tl )
     {
+        this->deleteOld();
         return this->dptask::onTaskRun( tl );
     }
 

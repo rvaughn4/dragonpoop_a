@@ -170,6 +170,18 @@ namespace dp
         this->p->setMinimized( b );
     }
 
+    //set alignment
+    void dpgui_writelock::setAlignment( unsigned int a )
+    {
+        this->p->setAlignment( a );
+    }
+
+    //get alignment
+    unsigned int dpgui_writelock::getAlignment( void )
+    {
+        return this->p->getAlignment();
+    }
+
 }
 
 

@@ -27,6 +27,8 @@ namespace dp
         void zeroList( dpgui **l, unsigned int cnt );
         //delete list
         void deleteList( dpgui **l, unsigned int cnt );
+        //delete old
+        void deleteOld( void );
 
     protected:
 

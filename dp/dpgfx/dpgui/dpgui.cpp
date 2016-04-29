@@ -504,6 +504,18 @@ namespace dp
         this->bMin = b;
     }
 
+    //set alignment
+    void dpgui::setAlignment( unsigned int a )
+    {
+        this->align = a;
+    }
+
+    //get alignment
+    unsigned int dpgui::getAlignment( void )
+    {
+        return this->align;
+    }
+
 }
 
 

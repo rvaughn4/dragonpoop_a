@@ -110,6 +110,12 @@ namespace dp
         return this->p->isMinimized();
     }
 
+    //get alignment
+    unsigned int dpgui_readlock::getAlignment( void )
+    {
+        return this->p->getAlignment();
+    }
+
 }
 
 

@@ -33,7 +33,7 @@ namespace dp
 
         dpshared_guard g;
         dpbitmap_rectangle rc;
-        unsigned int z, bg_time, fg_time, sz_time;
+        unsigned int z, bg_time, fg_time, sz_time, align;
         dpapi_context_writelock *ctx;
         dpapi_texture *t_bg, *t_fg;
         dpapi_vertexbuffer *vb;
@@ -107,6 +107,8 @@ namespace dp
         virtual void setZ( unsigned int z );
         //compare gui
         bool compare( dpgui *g );
+        //returns true if linked
+        bool isGuiLinked( void );
 
         friend class dprender_gui_writelock;
         friend class dprender_gui_readlock;

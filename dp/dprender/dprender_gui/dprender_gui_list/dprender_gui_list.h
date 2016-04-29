@@ -29,6 +29,7 @@ namespace dp
         dprender_gui *glist[ dprender_gui_list_max_gui ];
         unsigned int max_z, min_z;
         dpapi_context_writelock *ctx;
+        uint64_t t_link_test;
 
         //zero list
         void zeroList( dprender_gui **l, unsigned int cnt );

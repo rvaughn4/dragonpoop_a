@@ -8,6 +8,7 @@
 #include "dprender_gui_list_writelock.h"
 #include "../dprender_gui/dprender_gui.h"
 #include "../dprender_gui/dprender_gui_writelock.h"
+#include "../dprender_gui/dprender_gui_readlock.h"
 #include "../../../dpgfx/dpgui_list/dpgui_list_readlock.h"
 #include "../../../dpgfx/dpgui/dpgui.h"
 #include "../../dpinput/dpinput.h"
@@ -250,14 +251,33 @@ namespace dp
         dprender_gui *p;
         dprender_gui_writelock *pl;
         dpshared_guard g;
+        uint64_t t;
+        bool dlt;
 
         this->dpshared::onRun( wl );
+        t = this->getTicks();
+
+        if( t - this->t_link_test > 600 )
+        {
+            dlt = 1;
+            this->t_link_test = t;
+        }
+        else
+            dlt = 0;
 
         for( i = 0; i < dprender_gui_list_max_gui; i++ )
         {
             p = this->glist[ i ];
+
             if( !p )
                 continue;
+
+            if( dlt && !p->isGuiLinked() )
+            {
+                delete p;
+                this->glist[ i ] = 0;
+                continue;
+            }
 
             pl = (dprender_gui_writelock *)dpshared_guard_tryWriteLock_timeout( g, p, 30 );
             if( !pl )

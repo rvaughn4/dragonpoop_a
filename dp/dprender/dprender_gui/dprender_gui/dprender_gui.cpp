@@ -154,6 +154,7 @@ namespace dp
         this->bFollowCursor = gr->isFollowingCursor();
         this->bGrows = gr->doesGrow();
         this->bMin = gr->isMinimized();
+        this->align = gr->getAlignment();
 
         gr->getRotation( &this->rot );
         gr->getSpin( &this->rot );
@@ -240,8 +241,7 @@ namespace dp
                 case dpinput_event_type_mouse:
                 case dpinput_event_type_leftclick:
                 case dpinput_event_type_rightclick:
-                    ce = *e;
-                    if( this->dprender_gui_list::processEvent( l, &ce ) )
+                    if( this->dprender_gui_list::processEvent( l, e ) )
                         return 1;
                     break;
                 default:
@@ -256,6 +256,9 @@ namespace dp
             case dpinput_event_type_mouse:
             case dpinput_event_type_leftclick:
             case dpinput_event_type_rightclick:
+
+                ce = *e;
+                e = &ce;
 
                 e->mse.x = ( e->mse.x / e->mse.w ) * 2.0f - 1.0f;
                 e->mse.y = -( ( e->mse.y / e->mse.h ) * 2.0f - 1.0f );
@@ -375,8 +378,29 @@ namespace dp
         uint64_t t;
         float ft;
 
-        pos.x = this->rc.x;
-        pos.y = this->rc.y;
+        if( !rc_parent )
+            rc_parent = rc_world;
+
+        switch( this->align )
+        {
+            case dpgui_alignment_right:
+                pos.x = rc_parent->w - this->rc.x - this->rc.w;
+                pos.y = this->rc.y;
+                break;
+
+            case dpgui_alignment_center:
+                pos.x = ( rc_parent->w - this->rc.w ) / 2 + this->rc.x;
+                pos.y = ( rc_parent->h - this->rc.h ) / 2 + this->rc.y;
+                break;
+
+            case dpgui_alignment_left:
+
+            default:
+                pos.x = this->rc.x;
+                pos.y = this->rc.y;
+                break;
+        }
+
         pos.z = 16.0f + (float)this->z / -8.0f;
         if( pos.z < 0.01f )
             pos.z = 0.01f;
@@ -691,6 +715,24 @@ namespace dp
         if( !this->pgui )
             return 0;
         return this->pgui->isParent( g );
+    }
+
+    //returns true if linked
+    bool dprender_gui::isGuiLinked( void )
+    {
+        dpgui_readlock *l;
+        dpshared_guard g;
+
+        if( !this->pgui )
+            return 0;
+        if( !this->pgui->isLinked() )
+            return 0;
+
+        l = (dpgui_readlock *)dpshared_guard_tryReadLock_timeout( g, this->pgui, 10 );
+        if( !l )
+            return 1;
+
+        return l->isRun();
     }
 
 }

@@ -13,6 +13,7 @@ namespace dp
     dpgui_window_minimize_button::dpgui_window_minimize_button( int x, int y, unsigned int w, unsigned int h, dpgui_ref *pgui ) : dpgui_button( x, y, w, h, "-" )
     {
         this->pgui = (dpgui_ref *)this->g.getRef( pgui );
+        this->setAlignment( dpgui_alignment_right );
     }
 
     //dtor
