@@ -212,9 +212,23 @@ namespace dp
             if( !p )
                 continue;
 
+            if( !p->isLinked() )
+            {
+                this->scenes[ i ] = 0;
+                this->g.release( p );
+                continue;
+            }
+
             pl = (dprender_scene_readlock *)dpshared_guard_tryReadLock_timeout( g, p, 10 );
             if( !pl )
                 continue;
+
+            if( !pl->isRun() )
+            {
+                this->scenes[ i ] = 0;
+                this->g.release( p );
+                continue;
+            }
 
             if( !pl->isReady() )
                 return 0;

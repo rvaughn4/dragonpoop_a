@@ -24,6 +24,8 @@
 #include "../../dpinput/dpinput.h"
 #include "../../dpinput/dpinput_writelock.h"
 #include "../../../dpgfx/dpbitmap/dpbitmap/dpbitmap.h"
+#include "../../../dpgfx/dpgui/dpgui.h"
+#include "../../../dpgfx/dpgui/dpgui_readlock.h"
 
 #include <math.h>
 
@@ -91,6 +93,7 @@ namespace dp
         dpscene_readlock *l;
         dpshared_guard g;
         dpgui *pg;
+        dpgui_readlock *gl;
 
         if( this->root_gui )
             return;
@@ -102,6 +105,13 @@ namespace dp
         pg = l->getGui();
         if( !pg )
             return;
+        gl = (dpgui_readlock *)dpshared_guard_tryReadLock_timeout( g, pg, 100 );
+        if( !gl )
+            return;
+
+        if( !gl->isRun() )
+            return;
+        g.release( gl );
 
         this->root_gui = new dprender_gui( pg );
     }
@@ -115,9 +125,16 @@ namespace dp
         if( !this->root_gui )
             return;
 
+        if( !this->root_gui->isGuiLinked() )
+        {
+            delete this->root_gui;
+            this->root_gui = 0;
+        }
+
         l = (dprender_gui_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->root_gui, 30 );
         if( !l )
             return;
+
         l->passContext( ctx );
         l->run();
     }

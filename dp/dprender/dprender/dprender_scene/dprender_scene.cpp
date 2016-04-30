@@ -22,6 +22,7 @@
 #include "../dprender_hello_triangle_scene_thread/dprender_hello_triangle_scene_thread.h"
 #include "../../../dpgfx/dpscene/dpscene.h"
 #include "../../../dpgfx/dpscene/dpscene_ref.h"
+#include "../../../dpgfx/dpscene/dpscene_readlock.h"
 
 #include <string.h>
 
@@ -29,7 +30,7 @@ namespace dp
 {
 
     //ctor
-    dprender_scene::dprender_scene( dpscene *scn, dpapi *api, dprender *r ) : dptask( "Render Scene", 1000 )
+    dprender_scene::dprender_scene( dpscene *scn, dpapi *api, dprender *r ) : dptask( "Render Scene", 500 )
     {
         this->apir = (dpapi_ref *)this->g.getRef( api );
         this->rr = (dprender_ref *)this->g.getRef( r );
@@ -66,6 +67,19 @@ namespace dp
     //override to do task execution
     bool dprender_scene::onTaskRun( dptask_writelock *tl )
     {
+        dpscene_readlock *l;
+        dpshared_guard g;
+
+        if( !this->dptask::onTaskRun( tl ) )
+            return 0;
+
+        l = (dpscene_readlock *)dpshared_guard_tryReadLock_timeout( g, this->scn, 10 );
+        if( !l )
+            return 1;
+
+        if( !l->isRun() )
+            this->stop();
+
         return 1;
     }
 
@@ -74,6 +88,9 @@ namespace dp
     {
         dpapi_writelock *apil;
         dpshared_guard g;
+
+        if( !this->dptask::onTaskStart( tl ) )
+            return 0;
 
         apil = (dpapi_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->apir, 1000 );
         if( !apil )
@@ -93,7 +110,12 @@ namespace dp
     {
         if( !this->stopTasks() )
             return 0;
+
         this->deleteTasksAndContexts();
+
+        if( !this->dptask::onTaskStop( tl ) )
+            return 0;
+
         return 1;
     }
 

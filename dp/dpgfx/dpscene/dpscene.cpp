@@ -8,6 +8,7 @@
 #include "dpscene_writelock.h"
 #include "../dpgui/dpgui.h"
 #include "../dpgui/dpgui_writelock.h"
+#include "../dpgui/dpgui_readlock.h"
 #include <string>
 
 namespace dp
@@ -49,6 +50,20 @@ namespace dp
     //override to do task execution
     bool dpscene::onTaskRun( dptask_writelock *tl )
     {
+        dpgui_readlock *l;
+        dpshared_guard g;
+
+        if( !this->root_gui )
+            return 0;
+
+        l = (dpgui_readlock *)dpshared_guard_tryReadLock_timeout( g, this->root_gui, 10 );
+        if( l )
+        {
+            if( !l->isRun() )
+                this->stop();
+            g.release( l );
+        }
+
         return this->onSceneRun( (dpscene_writelock *)tl );
     }
 

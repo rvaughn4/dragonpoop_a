@@ -9,6 +9,7 @@ gpgfx manages models and gui elements and scenes
 #include "dpgfx_writelock.h"
 #include "../dpscene/dpscene.h"
 #include "../dpscene/dpscene_writelock.h"
+#include "../dpscene/dpscene_readlock.h"
 #include "../../dprender/dprender/dprender/dprender.h"
 #include "../../dprender/dprender/dprender/dprender_writelock.h"
 #include "../../dprender/dprender/dprender/dprender_readlock.h"
@@ -74,6 +75,8 @@ namespace dp
             else
                 this->bd = 1;
         }
+
+        this->deleteOldScenes();
 
         return 1;
     }
@@ -157,6 +160,42 @@ namespace dp
             delete p;
             this->scenes[ i ] = 0;
         }
+    }
+
+    //delete old scenes, stops task is all scenes are closed out
+    void dpgfx::deleteOldScenes( void )
+    {
+        unsigned int i, sc, ac;
+        dpscene *p;
+        dpscene_readlock *l;
+        dpshared_guard g;
+        bool r;
+
+        for( sc = ac = i = 0; i < dpgfx_max_scenes; i++ )
+        {
+            p = this->scenes[ i ];
+            if( !p )
+                continue;
+
+            l = (dpscene_readlock *)dpshared_guard_tryReadLock_timeout( g, p, 10 );
+            if( !l )
+                continue;
+
+            r = l->isRun();
+            g.release( l );
+
+            sc++;
+            if( r )
+                ac++;
+            else
+            {
+                delete p;
+                this->scenes[ i ] = 0;
+            }
+        }
+
+        if( ac == 0 && sc > 0 )
+            this->stop();
     }
 
     //add scene

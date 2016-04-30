@@ -38,6 +38,8 @@ namespace dp
         this->runthread = 0;
         this->runmgr = 0;
         this->thread_no = 0;
+        this->bStarted = 0;
+        this->bStopped = 0;
     }
 
     //dtor
@@ -166,6 +168,8 @@ namespace dp
     //returns true if running
     bool dptask::isRun( void )
     {
+        if( !this->bStarted )
+            return this->bDoRun;
         return this->bIsRun;
     }
 

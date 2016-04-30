@@ -32,8 +32,7 @@ namespace dp
         if( !l )
             return;
 
-        //l->stop();
-        this->stop();
+        l->stop();
     }
 
 }

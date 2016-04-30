@@ -32,6 +32,8 @@ namespace dp
         void stopScenes( void );
         //load a renderer
         void initAnyRenderer( void );
+        //delete old scenes, stops task is all scenes are closed out
+        void deleteOldScenes( void );
 
     protected:
 
