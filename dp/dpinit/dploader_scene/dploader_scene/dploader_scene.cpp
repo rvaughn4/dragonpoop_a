@@ -9,20 +9,27 @@ namespace dp
 {
 
     //ctor
-    dploader_scene::dploader_scene( void )
+    dploader_scene::dploader_scene( dpscene **s )
     {
-
+        this->next_scene = 0;
+        if( s )
+        {
+            this->next_scene = *s;
+            *s = 0;
+        }
     }
 
     //dtor
     dploader_scene::~dploader_scene( void )
     {
-
+        if( this->next_scene )
+            delete this->next_scene;
     }
 
     //override to handle scene start
     bool dploader_scene::onSceneStart( dpscene_writelock *sl )
     {
+        this->t = this->getTicks();
         return this->dpscene::onSceneStart( sl );
     }
 
@@ -35,6 +42,18 @@ namespace dp
     //override to handle scene run
     bool dploader_scene::onSceneRun( dpscene_writelock *sl )
     {
+        uint64_t t;
+
+        t = this->getTicks();
+
+        if( t - this->t > 10000 )
+        {
+            if( this->next_scene )
+                this->addScene( &this->next_scene );
+            this->next_scene = 0;
+            this->stop();
+        }
+
         return this->dpscene::onSceneRun( sl );
     }
 

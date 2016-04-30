@@ -23,11 +23,14 @@ namespace dp
     {
         this->tskmgr = 0;
         this->gfx = 0;
+        this->s = 0;
     }
 
     //dtor
     dpinit::~dpinit( void )
     {
+        if( this->s )
+            delete this->s;
         this->stop();
     }
 
@@ -61,7 +64,7 @@ namespace dp
         if( !gl )
             return 0;
 
-        ns = new dploader_scene();
+        ns = new dploader_scene( &this->s );
         if( !gl->addScene( &ns ) )
             return 0;
         g.release( gl );
@@ -82,9 +85,14 @@ namespace dp
     }
 
     //set first scene
-    void dpinit::setFirstScene( void )
+    void dpinit::setFirstScene( dpscene **s )
     {
-
+        if( !s )
+            return;
+        if( this->s )
+            delete this->s;
+        this->s = *s;
+        *s = 0;
     }
 
     //block until engine dies

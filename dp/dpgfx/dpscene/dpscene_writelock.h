@@ -11,6 +11,7 @@ namespace dp
 
     class dpscene;
     class dpgui;
+    class dpgfx;
 
     class dpscene_writelock : public dptask_writelock
     {
@@ -30,6 +31,8 @@ namespace dp
         dpscene_writelock( dpscene *p, dpmutex_writelock *ml );
         //return root gui
         dpgui *getGui( void );
+        //attach scene
+        void attach( dpgfx *g );
 
     };
 

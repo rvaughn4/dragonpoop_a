@@ -25,6 +25,12 @@ namespace dp
         return this->p->getGui();
     }
 
+    //attach scene
+    void dpscene_writelock::attach( dpgfx *g )
+    {
+        this->p->attach( g );
+    }
+
 }
 
 

@@ -278,7 +278,7 @@ namespace dp
         {
             tr = t->tsk;
 
-    #if defined dpthread_debug || defined dptask_debug
+    #if defined dpthread_debug
             std::string s;
             tr->getName( &s );
             std::cout << "Unable to lock task " << s << "\r\n";

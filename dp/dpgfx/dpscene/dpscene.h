@@ -11,6 +11,8 @@ namespace dp
 {
     class dpscene_writelock;
     class dpgui;
+    class dpgfx;
+    class dpgfx_ref;
 
     class dpscene : public dptask
     {
@@ -18,6 +20,8 @@ namespace dp
     private:
 
         dpgui *root_gui;
+        dpgfx_ref *pgfx;
+        dpshared_guard g;
 
     protected:
 
@@ -47,6 +51,10 @@ namespace dp
         dpgui *getGui( void );
         //generate root gui
         virtual dpgui *genRootGui( dpscene_writelock *sl );
+        //attach scene
+        void attach( dpgfx *g );
+        //add scene
+        bool addScene( dpscene **s );
 
     public:
 

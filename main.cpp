@@ -1,10 +1,10 @@
 
 
-#include "dp/dpinit/dpinit/dpinit.h"
+#include "dp/dummy_game/dummy_game_client/dummy_game_client/dummy_game_client.h"
 
 int main()
 {
-    dp::dpinit d;
+    dp::dummy_game_client d;
 
     d.start();
     d.blockUntilDead();

@@ -19,6 +19,7 @@ namespace dp
 
             dptaskmgr *tskmgr;
             dpgfx *gfx;
+            dpscene *s;
 
     protected:
 
@@ -33,7 +34,7 @@ namespace dp
         //stop dp
         void stop( void );
         //set first scene
-        void setFirstScene( void );
+        void setFirstScene( dpscene **s );
         //block until engine dies
         void blockUntilDead( void );
         //returns true if engine is running

@@ -139,7 +139,7 @@ namespace dp
         if( !this->bDoRun || !this->onTaskRun( tl ) )
             this->state = &dptask::stopstate;
 
-#if defined dptask_debug
+#if defined dptask_debug_run
         std::cout << "Task " << this->cname << " has ran.(" << this->thread_no << ")\r\n";
 #endif
     }

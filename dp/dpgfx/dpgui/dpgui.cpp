@@ -121,6 +121,8 @@ namespace dp
     //override to do task execution
     bool dpgui::onTaskRun( dptask_writelock *tl )
     {
+        dpbitmap_color c;
+
         if( !this->onGuiRun( (dpgui_writelock *)tl ) )
             return 0;
 
@@ -132,7 +134,8 @@ namespace dp
                 delete this->bm_bg;
             this->bm_bg = new dpbitmap_32bit_uncompressed( this->rc.w, this->rc.h );
 
-            this->bm_bg->clear();
+            c.a = 1;
+            this->bm_bg->fill( &c );
 
             this->renderBackgroundPass0( this->bm_bg );
             this->renderBackgroundPass1( this->bm_bg );

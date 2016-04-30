@@ -374,7 +374,6 @@ namespace dp
         dprender_scene *p;
         dprender_scene_writelock *pl;
         dpshared_guard g;
-//        dprender_frame_thread_writelock *tl;
 
         for( i = 0; i < dprender_max_scenes; i++ )
         {
@@ -390,16 +389,9 @@ namespace dp
                 continue;
             }
             g.release( pl );
-/*
-            tl = (dprender_frame_thread_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->frametask, 10 );
-            if( !tl )
-                continue;
-            tl->removeScene( p );
-            g.release( tl );
 
             delete p;
             this->scenes[ i ] = 0;
-            */
         }
     }
 

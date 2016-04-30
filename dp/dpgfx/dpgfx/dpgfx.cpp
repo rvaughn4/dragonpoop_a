@@ -170,6 +170,7 @@ namespace dp
         dpscene_readlock *l;
         dpshared_guard g;
         bool r;
+        uint64_t t;
 
         for( sc = ac = i = 0; i < dpgfx_max_scenes; i++ )
         {
@@ -194,8 +195,11 @@ namespace dp
             }
         }
 
-        if( ac == 0 && sc > 0 )
+        t = this->getTicks();
+        if( ac == 0 && sc > 0 && t - this->t_countdown > 3000 )
             this->stop();
+        else
+            this->t_countdown = t;
     }
 
     //add scene
@@ -203,6 +207,8 @@ namespace dp
     {
         unsigned int i;
         dpscene *p;
+        dpscene_writelock *pl;
+        dpshared_guard g;
 
         if( !s || !*s )
             return 0;
@@ -215,6 +221,12 @@ namespace dp
 
             p = *s;
             this->scenes[ i ] = p;
+
+            pl = (dpscene_writelock *)dpshared_guard_tryWriteLock_timeout( g, p, 2000 );
+            if( pl )
+                pl->attach( this );
+            g.release( pl );
+
             this->addDynamicTask( p );
             *s = 0;
             return 1;

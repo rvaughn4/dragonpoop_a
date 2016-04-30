@@ -15,6 +15,9 @@ namespace dp
 
     private:
 
+        dpscene *next_scene;
+        uint64_t t;
+
     protected:
 
         //override to handle scene start
@@ -29,7 +32,7 @@ namespace dp
     public:
 
         //ctor
-        dploader_scene( void );
+        dploader_scene( dpscene **s );
         //dtor
         virtual ~dploader_scene( void );
 

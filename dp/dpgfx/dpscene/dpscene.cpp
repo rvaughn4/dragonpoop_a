@@ -9,6 +9,9 @@
 #include "../dpgui/dpgui.h"
 #include "../dpgui/dpgui_writelock.h"
 #include "../dpgui/dpgui_readlock.h"
+#include "../dpgfx/dpgfx.h"
+#include "../dpgfx/dpgfx_ref.h"
+#include "../dpgfx/dpgfx_writelock.h"
 #include <string>
 
 namespace dp
@@ -18,6 +21,7 @@ namespace dp
     dpscene::dpscene( void ) : dptask( "scene", 500 )
     {
         this->root_gui = 0;
+        this->pgfx = 0;
     }
 
     //dtor
@@ -138,6 +142,39 @@ namespace dp
     dpgui *dpscene::genRootGui( dpscene_writelock *sl )
     {
         return new dpgui( 0, 0, 100, 100, "place holder" );
+    }
+
+    //attach scene
+    void dpscene::attach( dpgfx *g )
+    {
+        this->pgfx = (dpgfx_ref *)this->g.getRef( g );
+    }
+
+    //add scene
+    bool dpscene::addScene( dpscene **s )
+    {
+        dpgfx_writelock *l;
+        dpshared_guard g;
+
+        if( !s || !*s )
+            return 0;
+
+        if( !this->pgfx )
+        {
+            delete *s;
+            *s = 0;
+            return 0;
+        }
+
+        l = (dpgfx_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->pgfx, 2000 );
+        if( !l )
+        {
+            delete *s;
+            *s = 0;
+            return 0;
+        }
+
+        return l->addScene( s );
     }
 
 };
