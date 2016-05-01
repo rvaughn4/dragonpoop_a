@@ -55,11 +55,12 @@ namespace dp
     typedef void (* opengl1o5_lib_functions_glViewport )( opengl1o5_lib_GLint x, opengl1o5_lib_GLint y, opengl1o5_lib_GLsizei w, opengl1o5_lib_GLsizei h );
 
     #define opengl1o5_lib_LIGHTING				0x0B50
-    #define opengl1o5_lib_DEPTH_TEST				0x0B71
-    #define opengl1o5_lib_BLEND				0x0BE2
+    #define opengl1o5_lib_DEPTH_TEST			0x0B71
+    #define opengl1o5_lib_BLEND				    0x0BE2
     #define opengl1o5_lib_SRC_ALPHA				0x0302
-    #define opengl1o5_lib_ONE_MINUS_SRC_ALPHA			0x0303
+    #define opengl1o5_lib_ONE_MINUS_SRC_ALPHA	0x0303
     #define opengl1o5_lib_CULL_FACE				0x0B44
+    #define opengl1o5_lib_SCISSOR_TEST          0x0C11
 
     typedef void (* opengl1o5_lib_functions_glDisable )( opengl1o5_lib_GLenum cap );
     typedef void (* opengl1o5_lib_functions_glEnable )( opengl1o5_lib_GLenum cap );
@@ -71,6 +72,7 @@ namespace dp
     typedef void (* opengl1o5_lib_functions_glLightfv )( opengl1o5_lib_GLenum light, opengl1o5_lib_GLenum pname, const opengl1o5_lib_GLfloat *params );
     typedef void (* opengl1o5_lib_functions_glDepthFunc )( opengl1o5_lib_GLenum func );
     typedef void (* opengl1o5_lib_functions_glBlendFunc )( opengl1o5_lib_GLenum sfactor, opengl1o5_lib_GLenum dfactor );
+    typedef void (* opengl1o5_lib_functions_glScissor )( opengl1o5_lib_GLint x, opengl1o5_lib_GLint y, opengl1o5_lib_GLsizei w, opengl1o5_lib_GLsizei h );
 
     #define opengl1o5_lib_TRIANGLES				0x0004
     #define opengl1o5_lib_UNSIGNED_SHORT			0x1403
@@ -124,6 +126,7 @@ namespace dp
         opengl1o5_lib_functions_glMultMatrixf glMultMatrixf;
         opengl1o5_lib_functions_glColor4f glColor4f;
         opengl1o5_lib_functions_glLightfv glLightfv;
+        opengl1o5_lib_functions_glScissor glScissor;
         opengl1o5_lib_functions_glDepthFunc glDepthFunc;
         opengl1o5_lib_functions_glBlendFunc glBlendFunc;
         opengl1o5_lib_functions_glGenBuffers glGenBuffers;

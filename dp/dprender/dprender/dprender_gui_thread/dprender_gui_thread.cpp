@@ -215,8 +215,8 @@ namespace dp
             return;
         this->calcMatrix();
 
-        rc.x = this->mw;
-        rc.y = this->mh;
+        rc.x = 0;
+        rc.y = 0;
         rc.w = this->lw - this->mw - this->mw;
         rc.h = this->lh - this->mh - this->mh;
 

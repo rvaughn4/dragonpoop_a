@@ -39,7 +39,10 @@ namespace dp
         uint64_t t_input;
         dpinput *inp;
         dpxyzw rot, spin;
-        bool bIsCentered, bIsFloating, bFollowCursor, bGrows, bMin;
+        bool bIsCentered, bIsFloating, bFollowCursor, bGrows, bMin, bBorderInvert, bRedrawOnResize, bFillHoriz;
+        dpbitmap_color bg_clr, fnt_clr;
+        unsigned int fnt_sz, border_sz;
+        float zoom;
 
         //run input
         void runInput( void );
@@ -152,6 +155,28 @@ namespace dp
         void setAlignment( unsigned int a );
         //get alignment
         unsigned int getAlignment( void );
+        //set background color
+        void setBgColor( dpbitmap_color *c );
+        //set font color
+        void setFontColor( dpbitmap_color *c );
+        //set border width
+        void setBorderWidth( unsigned int w );
+        //set font size
+        void setFontSize( unsigned int s );
+        //set border inverted
+        void setBorderInverted( bool b );
+        //set zoom
+        void setZoom( float z );
+        //get zoom
+        float getZoom( void );
+        //zoom in
+        void zoomIn( void );
+        //zoom out
+        void zoomOut( void );
+        //set horizontal auto-fill/stretch
+        void setHorizFill( bool b );
+        //returns true if horiz fill enabled
+        bool isHorizFill( void );
 
     public:
 

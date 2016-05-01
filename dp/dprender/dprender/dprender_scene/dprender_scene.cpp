@@ -19,7 +19,6 @@
 #include "../dprender/dprender.h"
 #include "../dprender_scene_thread/dprender_scene_thread.h"
 #include "../dprender_gui_thread/dprender_gui_thread.h"
-#include "../dprender_hello_triangle_scene_thread/dprender_hello_triangle_scene_thread.h"
 #include "../../../dpgfx/dpscene/dpscene.h"
 #include "../../../dpgfx/dpscene/dpscene_ref.h"
 #include "../../../dpgfx/dpscene/dpscene_readlock.h"

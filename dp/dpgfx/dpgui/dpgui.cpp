@@ -21,6 +21,7 @@ namespace dp
     {
         this->bBgDrawn = 0;
         this->bFgDrawn = 0;
+        this->bRedrawOnResize = 0;
 
         this->rc.x = x;
         this->rc.y = y;
@@ -40,9 +41,25 @@ namespace dp
         this->bIsCentered = 0;
         this->bIsFloating = 0;
         this->bGrows = 0;
+        this->zoom = 1.0f;
+        this->bFillHoriz = 0;
 
         this->rot.x = this->rot.y = this->rot.z = 0;
         this->spin = this->rot;
+
+        this->bBorderInvert = 0;
+        this->border_sz = 2;
+        this->fnt_sz = h * 3 / 5;
+
+        this->bg_clr.r = 1.0f;
+        this->bg_clr.g = 1.0f;
+        this->bg_clr.b = 1.0f;
+        this->bg_clr.a = 0.75f;
+
+        this->fnt_clr.r = 0.0f;
+        this->fnt_clr.g = 0.0f;
+        this->fnt_clr.b = 0.0f;
+        this->fnt_clr.a = 1.0f;
     }
 
     //dtor
@@ -121,8 +138,6 @@ namespace dp
     //override to do task execution
     bool dpgui::onTaskRun( dptask_writelock *tl )
     {
-        dpbitmap_color c;
-
         if( !this->onGuiRun( (dpgui_writelock *)tl ) )
             return 0;
 
@@ -134,8 +149,7 @@ namespace dp
                 delete this->bm_bg;
             this->bm_bg = new dpbitmap_32bit_uncompressed( this->rc.w, this->rc.h );
 
-            c.a = 1;
-            this->bm_bg->fill( &c );
+            this->bm_bg->clear();
 
             this->renderBackgroundPass0( this->bm_bg );
             this->renderBackgroundPass1( this->bm_bg );
@@ -183,13 +197,13 @@ namespace dp
     //render first pass background image
     void dpgui::renderBackgroundPass0( dpbitmap *bm )
     {
-
+        bm->fill( &this->bg_clr );
     }
 
     //render second pass of background image
     void dpgui::renderBackgroundPass1( dpbitmap *bm )
     {
-
+        bm->buttonize( this->border_sz, 0.7f, this->bBorderInvert );
     }
 
     //render first pass of foreground image
@@ -208,7 +222,6 @@ namespace dp
     void dpgui::renderText( dpbitmap *bm )
     {
         dpfont fnt;
-        dpbitmap_color c;
         dpbitmap_rectangle rc;
 
         rc.x = 10;
@@ -216,14 +229,12 @@ namespace dp
         rc.w = this->rc.w - 10;
         rc.h = this->rc.h - 10;
 
-        c.r = 0;
-        c.g = 0;
-        c.b = 0;
-        c.a = 1;
-
-        fnt.setColor( &c );
-        fnt.setSize( 20 );
+        fnt.setColor( &this->fnt_clr );
+        fnt.setSize( 12 );
         fnt.openFont( "sans" );
+
+        if( !fnt.setSize( this->fnt_sz ) )
+            fnt.setSize( 12 );
 
         fnt.drawString( &this->stxt, &rc, 0, bm );
     }
@@ -251,8 +262,12 @@ namespace dp
     {
         this->rc.w = w;
         this->rc.h = h;
+        if( this->bRedrawOnResize )
+        {
+            this->bBgDrawn = 0;
+            this->bFgDrawn = 0;
+        }
         this->sz_time++;
-        this->update();
     }
 
     //set position
@@ -260,7 +275,6 @@ namespace dp
     {
         this->rc.x = x;
         this->rc.y = y;
-        this->update();
     }
 
     //get dimensions
@@ -517,6 +531,74 @@ namespace dp
     unsigned int dpgui::getAlignment( void )
     {
         return this->align;
+    }
+
+    //set background color
+    void dpgui::setBgColor( dpbitmap_color *c )
+    {
+        this->bg_clr = *c;
+    }
+
+    //set font color
+    void dpgui::setFontColor( dpbitmap_color *c )
+    {
+        this->fnt_clr = *c;
+    }
+
+    //set border width
+    void dpgui::setBorderWidth( unsigned int w )
+    {
+        this->border_sz = w;
+    }
+
+    //set font size
+    void dpgui::setFontSize( unsigned int s )
+    {
+        this->fnt_sz = s;
+    }
+
+    //set border inverted
+    void dpgui::setBorderInverted( bool b )
+    {
+        this->bBorderInvert = b;
+    }
+
+    //set zoom
+    void dpgui::setZoom( float z )
+    {
+        if( z < 0.3f )
+            z = 0.3f;
+        this->zoom = z;
+    }
+
+    //get zoom
+    float dpgui::getZoom( void )
+    {
+        return this->zoom;
+    }
+
+    //zoom in
+    void dpgui::zoomIn( void )
+    {
+        this->setZoom( this->zoom * 1.1f );
+    }
+
+    //zoom out
+    void dpgui::zoomOut( void )
+    {
+        this->setZoom( this->zoom * 0.9f );
+    }
+
+    //set horizontal auto-fill/stretch
+    void dpgui::setHorizFill( bool b )
+    {
+        this->bFillHoriz = b;
+    }
+
+    //returns true if horiz fill enabled
+    bool dpgui::isHorizFill( void )
+    {
+        return this->bFillHoriz;
     }
 
 }

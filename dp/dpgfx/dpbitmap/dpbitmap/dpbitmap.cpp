@@ -555,7 +555,7 @@ namespace dp
     //create button effect
     void dpbitmap::buttonize( unsigned int border_width, float depth, bool bInvert, dpbitmap_rectangle *rc )
     {
-        int x, xm, y, ym, xh, yh, dx, dy, xs, ys;
+        int x, xm, y, ym, xh, yh, dx, dy, xs, ys, sx, sy;
         dpbitmap_color c;
         float r, invdepth, gloss, xgloss, ygloss, e;
 
@@ -570,11 +570,15 @@ namespace dp
         xs = rc->x;
         ys = rc->y;
 
-        for( y = rc->y; y < ym; y++ )
+        for( sy = rc->y; sy < ym; sy++ )
         {
-            for( x = rc->x; x < xm; x++ )
+            y = sy;
+
+            for( sx = rc->x; sx < xm; sx++ )
             {
-                this->getPixel( x, y, &c );
+                x = sx;
+
+                this->getPixel( sx, sy, &c );
 
                 if( x < xh )
                     dx = x - xs;
@@ -589,6 +593,11 @@ namespace dp
                 if( dy > (int)border_width )
                     dy = border_width;
 
+                if( bInvert )
+                {
+                    x = ( xm - rc->x ) - ( sx - rc->x ) + rc->x;
+                    y = ( ym - rc->y ) - ( sy - rc->y ) + rc->y;
+                }
 
                 if( dy < dx )
                     r = dy;
@@ -631,7 +640,7 @@ namespace dp
                 if( ygloss > gloss )
                     gloss = ygloss;
 
-                e = 1.0f - this->getEdgeDetectValue( x, y );
+                e = 1.0f - this->getEdgeDetectValue( sx, sy );
                 gloss = gloss * 0.5f + ( gloss * 0.5f * e );
                 r = ( 1.0f - r );
                 r = r * 0.5f + ( r * 0.5f * e );
@@ -654,7 +663,7 @@ namespace dp
                 if( c.b < 0.0f )
                     c.b = 0.0f;
 
-                this->setPixel( x, y, &c );
+                this->setPixel( sx, sy, &c );
             }
         }
     }

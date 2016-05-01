@@ -188,6 +188,10 @@
 		<Unit filename="dp/dpgfx/dpgui_common/dpgui_window/dpgui_window_minimize_button.h" />
 		<Unit filename="dp/dpgfx/dpgui_common/dpgui_window/dpgui_window_title.cpp" />
 		<Unit filename="dp/dpgfx/dpgui_common/dpgui_window/dpgui_window_title.h" />
+		<Unit filename="dp/dpgfx/dpgui_common/dpgui_window/dpgui_window_zoom_in_button.cpp" />
+		<Unit filename="dp/dpgfx/dpgui_common/dpgui_window/dpgui_window_zoom_in_button.h" />
+		<Unit filename="dp/dpgfx/dpgui_common/dpgui_window/dpgui_window_zoom_out_button.cpp" />
+		<Unit filename="dp/dpgfx/dpgui_common/dpgui_window/dpgui_window_zoom_out_button.h" />
 		<Unit filename="dp/dpgfx/dpgui_list/dpgui_list.cpp" />
 		<Unit filename="dp/dpgfx/dpgui_list/dpgui_list.h" />
 		<Unit filename="dp/dpgfx/dpgui_list/dpgui_list_readlock.cpp" />
@@ -341,6 +345,8 @@
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_writelock.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_bundle/dpapi_opengl1o5_bundle.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_bundle/dpapi_opengl1o5_bundle.h" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_commandlist/dpapi_opengl1o5_commandlist.cpp" />
+		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_commandlist/dpapi_opengl1o5_commandlist.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context.cpp" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context.h" />
 		<Unit filename="dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context_readlock.cpp" />
@@ -485,6 +491,8 @@
 		<Unit filename="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_ref.h" />
 		<Unit filename="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_writelock.cpp" />
 		<Unit filename="dp/dprender/dpwindow/dpwindow_x11/dpwindow_x11_writelock.h" />
+		<Unit filename="dp/dummy_game/dummy_game_client/dummy_game_client/dummy_game_client.cpp" />
+		<Unit filename="dp/dummy_game/dummy_game_client/dummy_game_client/dummy_game_client.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="zlib/adler32.c">
 			<Option compilerVar="CC" />

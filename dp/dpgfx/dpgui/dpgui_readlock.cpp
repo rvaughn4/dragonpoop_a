@@ -116,6 +116,18 @@ namespace dp
         return this->p->getAlignment();
     }
 
+    //get zoom
+    float dpgui_readlock::getZoom( void )
+    {
+        return this->p->getZoom();
+    }
+
+    //returns true if horiz fill enabled
+    bool dpgui_readlock::isHorizFill( void )
+    {
+        return this->p->isHorizFill();
+    }
+
 }
 
 

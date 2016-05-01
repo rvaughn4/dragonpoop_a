@@ -81,6 +81,7 @@ namespace dp
         r &= ( this->gl.glMultMatrixf = (opengl1o5_lib_functions_glMultMatrixf)this->loadFunction( wl, al, "glMultMatrixf" ) ) != 0;
         r &= ( this->gl.glColor4f = (opengl1o5_lib_functions_glColor4f)this->loadFunction( wl, al, "glColor4f" ) ) != 0;
         r &= ( this->gl.glLightfv = (opengl1o5_lib_functions_glLightfv)this->loadFunction( wl, al, "glLightfv" ) ) != 0;
+        r &= ( this->gl.glScissor = (opengl1o5_lib_functions_glScissor)this->loadFunction( wl, al, "glScissor" ) ) != 0;
         r &= ( this->gl.glDepthFunc = (opengl1o5_lib_functions_glDepthFunc)this->loadFunction( wl, al, "glDepthFunc" ) ) != 0;
         r &= ( this->gl.glBlendFunc = (opengl1o5_lib_functions_glBlendFunc)this->loadFunction( wl, al, "glBlendFunc" ) ) != 0;
         r &= ( this->gl.glFlush = (opengl1o5_lib_functions_glFlush)this->loadFunction( wl, al, "glFlush" ) ) != 0;

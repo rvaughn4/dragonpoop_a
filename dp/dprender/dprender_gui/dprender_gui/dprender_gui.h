@@ -32,24 +32,24 @@ namespace dp
     private:
 
         dpshared_guard g;
-        dpbitmap_rectangle rc;
+        dpbitmap_rectangle rc, rc_exact;
         unsigned int z, bg_time, fg_time, sz_time, align;
         dpapi_context_writelock *ctx;
         dpapi_texture *t_bg, *t_fg;
         dpapi_vertexbuffer *vb;
         dpapi_indexbuffer *ib_fg, *ib_bg;
         dpapi_bundle *bdle_bg, *bdle_fg;
-        dpmatrix mat, mat_bg, undo_mat;
+        dpmatrix mat, undo_mat, sz_mat;
         dpinput *inp;
         dpgui_ref *pgui;
         struct
         {
             float x, y;
         } mousepos, min_pos, drag_start, drag_off;
-        float fhover, fMin;
-        dpxyzw rot, spin;
-        uint64_t t_spin;
-        bool bIsCentered, bIsFloating, bFollowCursor, bIsMouseOver, bIsMouseDown, bGrows, bMin, bIsDrag, bFocus;
+        float fhover, fMin, zoom;
+        dpxyzw rot, spin, scroll;
+        uint64_t t_spin, t_last_ftime;
+        bool bIsCentered, bIsFloating, bFollowCursor, bIsMouseOver, bIsMouseDown, bGrows, bMin, bIsDrag, bFocus, bIsSize, bHorizFill, bHide;
 
         //create vertex buffer
         bool makeVB( dpapi_context_writelock *ctx, dpgui_readlock *g );

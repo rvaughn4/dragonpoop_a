@@ -33,7 +33,9 @@ namespace dp
     //execute command
     bool dpapi_opengl1o5_primary_commandlist_command_viewport::execute( dpapi_primary_commandlist_writelock *p, dpapi_context_writelock *ctxl )
     {
+        this->gl->glEnable( opengl1o5_lib_SCISSOR_TEST );
         this->gl->glViewport( this->x, this->y, this->w, this->h );
+        this->gl->glScissor( this->x, this->y, this->w, this->h );
         return 1;
     }
 

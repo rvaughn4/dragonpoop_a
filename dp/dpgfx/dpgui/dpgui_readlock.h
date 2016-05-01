@@ -62,6 +62,10 @@ namespace dp
         bool isMinimized( void );
         //get alignment
         unsigned int getAlignment( void );
+        //get zoom
+        float getZoom( void );
+        //returns true if horiz fill enabled
+        bool isHorizFill( void );
 
     };
 

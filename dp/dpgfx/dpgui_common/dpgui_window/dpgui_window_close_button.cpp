@@ -10,10 +10,19 @@ namespace dp
 {
 
     //ctor
-    dpgui_window_close_button::dpgui_window_close_button( int x, int y, unsigned int w, unsigned int h, dpgui_ref *pgui ) : dpgui_button( x, y, w, h, "X" )
+    dpgui_window_close_button::dpgui_window_close_button( int x, int y, unsigned int w, unsigned int h, dpgui_ref *pgui ) : dpgui_button( x, y, w, h, ".X" )
     {
+        dpbitmap_color c;
+
         this->pgui = (dpgui_ref *)this->g.getRef( pgui );
         this->setAlignment( dpgui_alignment_right );
+        this->setFontSize( 25 );
+
+        c.r = 1.0f;
+        c.g = 0.0f;
+        c.b = 0.0f;
+        c.a = 0.5f;
+        this->setBgColor( &c );
     }
 
     //dtor

@@ -10,10 +10,20 @@ namespace dp
 {
 
     //ctor
-    dpgui_window_minimize_button::dpgui_window_minimize_button( int x, int y, unsigned int w, unsigned int h, dpgui_ref *pgui ) : dpgui_button( x, y, w, h, "-" )
+    dpgui_window_minimize_button::dpgui_window_minimize_button( int x, int y, unsigned int w, unsigned int h, dpgui_ref *pgui ) : dpgui_button( x, y, w, h, "___" )
     {
+        dpbitmap_color c;
+
         this->pgui = (dpgui_ref *)this->g.getRef( pgui );
         this->setAlignment( dpgui_alignment_right );
+
+        this->setFontSize( 15 );
+
+        c.r = 0.75f;
+        c.g = 0.75f;
+        c.b = 0.75f;
+        c.a = 0.5f;
+        this->setBgColor( &c );
     }
 
     //dtor
@@ -34,6 +44,8 @@ namespace dp
 
         l->setMinimized( 1 );
         l->update();
+
+        this->dpgui_button::onLeftClick( e );
     }
 
 }

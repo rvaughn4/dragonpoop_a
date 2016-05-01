@@ -13,7 +13,7 @@ namespace dp
 {
 
     //ctor
-    dpgui_list::dpgui_list( void ) : dptask( "gui", 500 )
+    dpgui_list::dpgui_list( void ) : dptask( "gui", 200 )
     {
         this->zeroList( this->glist, dpgui_list_max_gui );
         this->max_z = 1;

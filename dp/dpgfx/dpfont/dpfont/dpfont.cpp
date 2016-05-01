@@ -168,7 +168,7 @@ namespace dp
     //draw line, return count of characters in line including line breaks and filters, 0 is failure
     unsigned int dpfont::drawLine( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap *dest_bmp, unsigned int *lw, unsigned int *lh )
     {
-        unsigned int i, len_rem, r, last_sp, last_sp_w;
+        unsigned int i, len_rem, r, last_sp, last_sp_w, tab_loc;
         dpbitmap_position ip;
         char *c;
         dpbitmap_rectangle ir;
@@ -179,6 +179,7 @@ namespace dp
         ip = rect_in->p;
         last_sp = 0;
         last_sp_w = 0;
+        tab_loc = 100;
         for( i = 0; i < len; i++ )
         {
             c = &b[ i ];
@@ -190,6 +191,14 @@ namespace dp
             if( r )
             {
                 i += r;
+                continue;
+            }
+            if( c[ 0 ] == *"\t" )
+            {
+                last_sp = i;
+                last_sp_w = ip.x;
+                ip.x += tab_loc;
+                tab_loc += 100;
                 continue;
             }
             if( c[ 0 ] == 32 )
@@ -205,6 +214,7 @@ namespace dp
             if( c[ 0 ] == *"\r" )
             {
                 ip.x = 0;
+                tab_loc = 100;
                 continue;
             }
             if( c[ 0 ] == *"\n" )

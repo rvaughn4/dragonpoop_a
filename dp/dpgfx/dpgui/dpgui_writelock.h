@@ -85,6 +85,18 @@ namespace dp
         void setAlignment( unsigned int a );
         //get alignment
         unsigned int getAlignment( void );
+        //set zoom
+        void setZoom( float z );
+        //get zoom
+        float getZoom( void );
+        //zoom in
+        void zoomIn( void );
+        //zoom out
+        void zoomOut( void );
+        //set horizontal auto-fill/stretch
+        void setHorizFill( bool b );
+        //returns true if horiz fill enabled
+        bool isHorizFill( void );
 
     };
 

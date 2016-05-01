@@ -17,8 +17,8 @@ namespace dp
 
     protected:
 
-        //override to handle left clicks
-        virtual void onKeyUp( dpinput_event_keypress *e );
+        //render first pass of foreground image
+        virtual void renderForegroundPass0( dpbitmap *bm );
 
     public:
 

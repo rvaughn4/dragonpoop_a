@@ -36,23 +36,20 @@ namespace dp
     //override to handle scene stop
     bool dploader_scene::onSceneStop( dpscene_writelock *sl )
     {
+        if( this->next_scene )
+            this->addScene( &this->next_scene );
+        this->next_scene = 0;
         return this->dpscene::onSceneStop( sl );
     }
 
     //override to handle scene run
     bool dploader_scene::onSceneRun( dpscene_writelock *sl )
     {
-        uint64_t t;
+        //uint64_t t;
 
-        t = this->getTicks();
-
-        if( t - this->t > 10000 )
-        {
-            if( this->next_scene )
-                this->addScene( &this->next_scene );
-            this->next_scene = 0;
-            this->stop();
-        }
+        //t = this->getTicks();
+        //if( t - this->t > 10000 )
+          //  this->stop();
 
         return this->dpscene::onSceneRun( sl );
     }

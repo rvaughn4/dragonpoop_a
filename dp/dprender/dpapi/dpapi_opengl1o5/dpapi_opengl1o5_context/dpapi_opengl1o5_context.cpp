@@ -8,6 +8,7 @@
 #include "dpapi_opengl1o5_context_readlock.h"
 #include "dpapi_opengl1o5_context_writelock.h"
 #include "../dpapi_opengl1o5_primary_commandlist/dpapi_opengl1o5_primary_commandlist.h"
+#include "../dpapi_opengl1o5_commandlist/dpapi_opengl1o5_commandlist.h"
 #include "../dpapi_opengl1o5_vertexbuffer/dpapi_opengl1o5_vertexbuffer.h"
 #include "../dpapi_opengl1o5_indexbuffer/dpapi_opengl1o5_indexbuffer.h"
 #include "../dpapi_opengl1o5_bundle/dpapi_opengl1o5_bundle.h"
@@ -55,7 +56,13 @@ namespace dp
     //generate primary commandlist
     dpapi_primary_commandlist *dpapi_opengl1o5_context::makePrimaryCommandList( dpapi_context_writelock *l )
     {
-        return new dpapi_opengl1o5_primary_commandlist( l, this->gl );
+        return new dpapi_opengl1o5_primary_commandlist( (dpapi_opengl1o5_context_writelock *)l, this->gl );
+    }
+
+    //generate secondary commandlist
+    dpapi_commandlist *dpapi_opengl1o5_context::makeCommandList( dpapi_context_writelock *l )
+    {
+        return new dpapi_opengl1o5_commandlist( (dpapi_opengl1o5_context_writelock *)l, this->gl );
     }
 
     //generate vertex buffer

@@ -18,13 +18,10 @@ namespace dp
 
         dpgui_ref *pgui;
         dpshared_guard g;
+        unsigned int h;
 
     protected:
 
-        //render first pass background image
-        virtual void renderBackgroundPass0( dpbitmap *bm );
-        //render first pass background image
-        virtual void renderBackgroundPass1( dpbitmap *bm );
         //override to handle gui start
         virtual bool onGuiStart( dpgui_writelock *tl );
 

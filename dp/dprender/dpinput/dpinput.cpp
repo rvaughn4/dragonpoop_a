@@ -155,12 +155,12 @@ namespace dp
 
         this->addEvent( &e );
 
-        if( !bIsRight && bIsDown && !this->lb )
+        if( !bIsRight && !bIsDown && this->lb )
         {
             e.mse.hdr.etype = dpinput_event_type_leftclick;
             this->addEvent( &e );
         }
-        if( bIsRight && bIsDown && !this->rb )
+        if( bIsRight && !bIsDown && this->rb )
         {
             e.mse.hdr.etype = dpinput_event_type_rightclick;
             this->addEvent( &e );

@@ -15,16 +15,14 @@ namespace dp
 
     private:
 
-        bool bWasClicked;
+        bool bWasClicked, bDown;
 
     protected:
 
         //override to handle left clicks
         virtual void onLeftClick( dpinput_event_mouse *e );
-        //render first pass background image
-        virtual void renderBackgroundPass0( dpbitmap *bm );
-        //render first pass background image
-        virtual void renderBackgroundPass1( dpbitmap *bm );
+        //override to handle mouse movement
+        virtual void onMouseMove( dpinput_event_mouse *e );
 
     public:
 

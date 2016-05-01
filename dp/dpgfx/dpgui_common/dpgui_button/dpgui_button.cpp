@@ -3,6 +3,7 @@
 */
 
 #include "dpgui_button.h"
+#include "../../../dprender/dpinput/dpinput.h"
 
 namespace dp
 {
@@ -10,8 +11,20 @@ namespace dp
     //ctor
     dpgui_button::dpgui_button( int x, int y, unsigned int w, unsigned int h, const char *ctxt ) : dpgui( x, y, w, h, ctxt )
     {
+        float bw;
+
         this->bWasClicked = 0;
         this->setGrow( 1 );
+        this->bDown = 0;
+
+        bw = 10.0f * 2.0f;
+        if( bw > w )
+            bw = w;
+        if( bw > h )
+            bw = h;
+        bw = bw / 2.0f;
+
+        this->setBorderWidth( bw );
     }
 
     //dtor
@@ -35,20 +48,28 @@ namespace dp
     void dpgui_button::onLeftClick( dpinput_event_mouse *e )
     {
         this->bWasClicked = 1;
+        this->dpgui::onLeftClick( e );
     }
 
-    //render first pass background image
-    void dpgui_button::renderBackgroundPass0( dpbitmap *bm )
+    //override to handle mouse movement
+    void dpgui_button::onMouseMove( dpinput_event_mouse *e )
     {
-        dpbitmap_color c;
-        c.r = c.g = c.b = c.a = 1;
-        bm->fill( &c );
-    }
 
-    //render first pass background image
-    void dpgui_button::renderBackgroundPass1( dpbitmap *bm )
-    {
-        bm->buttonize( 10, 0.5f, 0 );
+        if( !this->bDown && !e->isRight && e->isDown )
+        {
+            this->setBorderInverted( 1 );
+            this->redrawBg();
+            this->bDown = 1;
+        }
+
+        if( this->bDown && !e->isRight && !e->isDown )
+        {
+            this->setBorderInverted( 0 );
+            this->redrawBg();
+            this->bDown = 0;
+        }
+
+        this->dpgui::onMouseMove( e );
     }
 
 }

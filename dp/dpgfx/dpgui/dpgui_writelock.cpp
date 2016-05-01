@@ -182,6 +182,42 @@ namespace dp
         return this->p->getAlignment();
     }
 
+    //set zoom
+    void dpgui_writelock::setZoom( float z )
+    {
+        this->p->setZoom( z );
+    }
+
+    //get zoom
+    float dpgui_writelock::getZoom( void )
+    {
+        return this->p->getZoom();
+    }
+
+    //zoom in
+    void dpgui_writelock::zoomIn( void )
+    {
+        this->p->zoomIn();
+    }
+
+    //zoom out
+    void dpgui_writelock::zoomOut( void )
+    {
+        this->p->zoomOut();
+    }
+
+    //set horizontal auto-fill/stretch
+    void dpgui_writelock::setHorizFill( bool b )
+    {
+        this->p->setHorizFill( b );
+    }
+
+    //returns true if horiz fill enabled
+    bool dpgui_writelock::isHorizFill( void )
+    {
+        return this->p->isHorizFill();
+    }
+
 }
 
 

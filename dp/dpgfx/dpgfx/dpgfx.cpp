@@ -84,6 +84,7 @@ namespace dp
     //override to do task startup
     bool dpgfx::onTaskStart( dptask_writelock *tl )
     {
+        this->t_countdown = this->getTicks();
         return 1;
     }
 
@@ -178,7 +179,7 @@ namespace dp
             if( !p )
                 continue;
 
-            l = (dpscene_readlock *)dpshared_guard_tryReadLock_timeout( g, p, 10 );
+            l = (dpscene_readlock *)dpshared_guard_tryReadLock_timeout( g, p, 100 );
             if( !l )
                 continue;
 
@@ -196,7 +197,7 @@ namespace dp
         }
 
         t = this->getTicks();
-        if( ac == 0 && sc > 0 && t - this->t_countdown > 3000 )
+        if( ac == 0 && sc > 0 && t - this->t_countdown > 6000 )
             this->stop();
         else
             this->t_countdown = t;

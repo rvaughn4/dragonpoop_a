@@ -33,6 +33,8 @@ namespace dp
         virtual dpapi_renderpass *makeRenderpass( dpapi_opengl1o5_context_writelock *l );
         //generate primary commandlist
         virtual dpapi_primary_commandlist *makePrimaryCommandList( dpapi_context_writelock *l );
+        //generate secondary commandlist
+        virtual dpapi_commandlist *makeCommandList( dpapi_context_writelock *l );
         //generate vertex buffer
         virtual dpapi_vertexbuffer *makeVertexBuffer( dpapi_context_writelock *l, dpvertexbuffer *vb );
         //make this context active in this thread
