@@ -30,7 +30,7 @@ namespace dp
         FT_Library  lb;
         FT_Face fc;
         bool lb_loaded, fc_loaded;
-        unsigned int sz;
+        unsigned int sz, cursor, select_start, select_end;
         dpbitmap_color clr;
         dpfont_filter *filters[ dpfont_max_filters ];
         int alignment;
@@ -43,7 +43,7 @@ namespace dp
         //run filters
         unsigned int runFilters( char *b, unsigned int len, dpbitmap_position *pos_in, dpbitmap *dest_bmp );
         //draw line, return count of characters in line including line breaks and filters, 0 is failure
-        unsigned int drawLine( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap *dest_bmp, unsigned int *p_width, unsigned int *p_height );
+        unsigned int drawLine( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap *dest_bmp, unsigned int *p_width, unsigned int *p_height, dpbitmap_rectangle *char_locs, unsigned int max_locs, unsigned int offset );
 
     protected:
 
@@ -56,11 +56,11 @@ namespace dp
         //load font file, retains previous font if fails
         bool openFont( const char *fname );
         //draw a letter
-        bool drawCharacter( unsigned char b, dpbitmap_position *pos_in, dpbitmap_rectangle *rect_sz_out, dpbitmap *dest_bmp );
+        bool drawCharacter( unsigned char b, dpbitmap_position *pos_in, dpbitmap_rectangle *rect_sz_out, dpbitmap *dest_bmp, unsigned int offset );
         //draw a string
-        bool drawString( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap_rectangle *rect_sz_out, dpbitmap *dest_bmp );
+        bool drawString( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap_rectangle *rect_sz_out, dpbitmap *dest_bmp, dpbitmap_rectangle *char_locs, unsigned int max_locs );
         //draw a string
-        bool drawString( std::string *str, dpbitmap_rectangle *rect_in, dpbitmap_rectangle *rect_sz_out, dpbitmap *dest_bmp );
+        bool drawString( std::string *str, dpbitmap_rectangle *rect_in, dpbitmap_rectangle *rect_sz_out, dpbitmap *dest_bmp, dpbitmap_rectangle *char_locs, unsigned int max_locs );
         //set font color
         void setColor( dpbitmap_color *c );
         //set font size
@@ -77,6 +77,10 @@ namespace dp
         void getName( std::string *s );
         //add filter
         void addFilter( dpfont_filter *f );
+        //set cursor
+        void setCursor( unsigned int c );
+        //set selection
+        void setSelection( unsigned int ss, unsigned int se );
 
     };
 

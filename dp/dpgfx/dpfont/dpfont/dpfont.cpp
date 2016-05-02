@@ -10,6 +10,7 @@ freetype 2 font
 #include "../dpfont_filter_size/dpfont_filter_size.h"
 #include "../dpfont_filter_face/dpfont_filter_face.h"
 #include "../dpfont_filter_align/dpfont_filter_align.h"
+#include "../../dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
 
 namespace dp
 {
@@ -23,6 +24,8 @@ namespace dp
         this->clr.r = this->clr.g = this->clr.b = 0;
         this->clr.a = 1;
         this->alignment = dpfont_align_left;
+        this->cursor = 2;
+        this->select_end = this->select_start = 0;
 
         this->zeroFilters();
 
@@ -120,12 +123,13 @@ namespace dp
     }
 
     //draw a letter
-    bool dpfont::drawCharacter( unsigned char b, dpbitmap_position *pos_in, dpbitmap_rectangle *rect_sz_out, dpbitmap *dest_bmp )
+    bool dpfont::drawCharacter( unsigned char b, dpbitmap_position *pos_in, dpbitmap_rectangle *rect_sz_out, dpbitmap *dest_bmp, unsigned int offset )
     {
         dpbitmap *bm;
         dpbitmap_position dp;
         dpbitmap_color clr;
         int tm;
+        unsigned int c;
 
         if( !this->lb_loaded || !this->fc_loaded )
             return 0;
@@ -152,6 +156,20 @@ namespace dp
             dest_bmp->copyNoStretch( bm, pos_in );
             dest_bmp->setColorMask( &clr );
             dest_bmp->setTransparencyMode( tm );
+
+            if( offset == this->cursor || ( offset >= this->select_start && offset < this->select_end ) )
+            {
+                c = offset;
+                if( this->cursor > c )
+                    c = this->cursor;
+                if( this->select_end > c )
+                    c = this->select_end;
+                if( this->select_start > c )
+                    c = this->select_start;
+                c++;
+                this->drawCharacter( (unsigned char)*"_", pos_in, 0, dest_bmp, c );
+            }
+
         }
 
         if( rect_sz_out )
@@ -166,7 +184,7 @@ namespace dp
     }
 
     //draw line, return count of characters in line including line breaks and filters, 0 is failure
-    unsigned int dpfont::drawLine( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap *dest_bmp, unsigned int *lw, unsigned int *lh )
+    unsigned int dpfont::drawLine( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap *dest_bmp, unsigned int *lw, unsigned int *lh, dpbitmap_rectangle *char_locs, unsigned int max_locs, unsigned int offset )
     {
         unsigned int i, len_rem, r, last_sp, last_sp_w, tab_loc;
         dpbitmap_position ip;
@@ -220,7 +238,7 @@ namespace dp
             if( c[ 0 ] == *"\n" )
                 return i + 1;
 
-            if( !this->drawCharacter( (unsigned char)*c, &ip, &ir, 0 ) )
+            if( !this->drawCharacter( (unsigned char)*c, &ip, &ir, 0, i + offset ) )
                 return 0;
             if( ir.w + ir.x > rect_in->w + rect_in->x )
             {
@@ -234,10 +252,12 @@ namespace dp
                 return i;
             }
 
-            if( !this->drawCharacter( (unsigned char)*c, &ip, &ir, dest_bmp ) )
+            if( !this->drawCharacter( (unsigned char)*c, &ip, &ir, dest_bmp, i + offset ) )
                 return 0;
             if( lh && ir.h > *lh )
                 *lh = ir.h;
+            if( char_locs && i < max_locs )
+                char_locs[ i ] = ir;
 
             ip.x += ir.w + 1 + this->sz / 30;
         }
@@ -246,7 +266,7 @@ namespace dp
     }
 
     //draw a string
-    bool dpfont::drawString( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap_rectangle *rect_sz_out, dpbitmap *dest_bmp )
+    bool dpfont::drawString( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap_rectangle *rect_sz_out, dpbitmap *dest_bmp, dpbitmap_rectangle *char_locs, unsigned int max_locs )
     {
         unsigned int i, r, len_rem, lw, lh, o_sz;
         char *c;
@@ -277,7 +297,10 @@ namespace dp
             o_clr = this->clr;
             o_align = this->alignment;
 
-            r = this->drawLine( c, len_rem, &ir, 0, &lw, &lh );
+            if( char_locs && i < max_locs )
+                r = this->drawLine( c, len_rem, &ir, 0, &lw, &lh, &char_locs[ i ], max_locs - i, i );
+            else
+                r = this->drawLine( c, len_rem, &ir, 0, &lw, &lh, 0, 0, i );
             if( !r )
                 return 0;
 
@@ -301,7 +324,10 @@ namespace dp
             this->alignment = o_align;
 
         //do centering
-            r = this->drawLine( c, r, &ir, dest_bmp, &lw, &lh );
+            if( char_locs && i < max_locs )
+                r = this->drawLine( c, r, &ir, dest_bmp, &lw, &lh, &char_locs[ i ], max_locs - i, i );
+            else
+                r = this->drawLine( c, r, &ir, dest_bmp, &lw, &lh, 0, 0, i );
             if( !r )
                 return 0;
 
@@ -331,9 +357,9 @@ namespace dp
     }
 
     //draw a string
-    bool dpfont::drawString( std::string *str, dpbitmap_rectangle *rect_in, dpbitmap_rectangle *rect_sz_out, dpbitmap *dest_bmp )
+    bool dpfont::drawString( std::string *str, dpbitmap_rectangle *rect_in, dpbitmap_rectangle *rect_sz_out, dpbitmap *dest_bmp, dpbitmap_rectangle *char_locs, unsigned int max_locs )
     {
-        return this->drawString( (char *)str->c_str(), str->length(), rect_in, rect_sz_out, dest_bmp );
+        return this->drawString( (char *)str->c_str(), str->length(), rect_in, rect_sz_out, dest_bmp, char_locs, max_locs );
     }
 
     //set font color
@@ -458,6 +484,19 @@ namespace dp
         }
 
         delete f;
+    }
+
+    //set cursor
+    void dpfont::setCursor( unsigned int c )
+    {
+        this->cursor = c;
+    }
+
+    //set selection
+    void dpfont::setSelection( unsigned int ss, unsigned int se )
+    {
+        this->select_start = ss;
+        this->select_end = se;
     }
 
 };

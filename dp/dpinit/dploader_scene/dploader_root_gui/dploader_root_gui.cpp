@@ -23,13 +23,13 @@ namespace dp
     }
 
     //render first pass of foreground image
-    void dploader_root_gui::renderForegroundPass0( dpbitmap *bm )
+    void dploader_root_gui::renderBackgroundPass1( dpbitmap *bm )
     {
         dpbitmap_loader bl;
         dpbitmap *b;
         dpbitmap_rectangle rc;
 
-        this->dpgui_window::renderForegroundPass0( bm );
+        this->dpgui_window::renderBackgroundPass1( bm );
 
         b = bl.load( "dp.png" );
         if( !b )

@@ -7,6 +7,7 @@
 #include "dpinput_ref.h"
 #include "dpinput_readlock.h"
 #include "dpinput_writelock.h"
+#include <string.h>
 
 namespace dp
 {
@@ -180,6 +181,7 @@ namespace dp
         e.keyp.h.etype = dpinput_event_type_keypress;
         e.keyp.h.t = this->getTicks();
         e.keyp.bIsDown = bIsDown;
+        memset( e.keyp.keyName, 0, dpinput_event_keypress_name_max );
         sname->copy( e.keyp.keyName, dpinput_event_keypress_name_max );
 
         this->addEvent( &e );
@@ -192,6 +194,7 @@ namespace dp
 
         e.txt.h.etype = dpinput_event_type_text;
         e.txt.h.t = this->getTicks();
+        memset( e.keyp.keyName, 0, dpinput_event_keypress_name_max );
         stxt->copy( e.txt.txt, dpinput_event_text_txt_max );
 
         this->addEvent( &e );

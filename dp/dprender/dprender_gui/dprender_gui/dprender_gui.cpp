@@ -418,9 +418,6 @@ namespace dp
         this->t_last_ftime = t;
         anim_s = (float)d / 30.0f;
 
-        if( this->bIsFloating )
-            this->scroll.x += 3.0f;
-
         if( this->bHorizFill )
         {
             this->rc.x = 0;

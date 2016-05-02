@@ -60,6 +60,10 @@ namespace dp
         this->fnt_clr.g = 0.0f;
         this->fnt_clr.b = 0.0f;
         this->fnt_clr.a = 1.0f;
+
+        this->cursor = 0;
+        this->select_start = 3;
+        this->select_end = 10;
     }
 
     //dtor
@@ -236,7 +240,10 @@ namespace dp
         if( !fnt.setSize( this->fnt_sz ) )
             fnt.setSize( 12 );
 
-        fnt.drawString( &this->stxt, &rc, 0, bm );
+        fnt.setCursor( this->cursor );
+        fnt.setSelection( this->select_start, this->select_end );
+
+        fnt.drawString( &this->stxt, &rc, 0, bm, this->char_locs, dpgui_max_locs );
     }
 
     //override to handle gui ran
@@ -404,7 +411,8 @@ namespace dp
     //override to handle left clicks
     void dpgui::onLeftClick( dpinput_event_mouse *e )
     {
-
+        this->setCursor( this->findLoc( e->x, e->y ) );
+        this->redrawFg();
     }
 
     //override to handle right clicks
@@ -428,7 +436,20 @@ namespace dp
     //override to handle key press up
     void dpgui::onKeyUp( dpinput_event_keypress *e )
     {
+        std::string s;
 
+        s.assign( e->keyName );
+
+        if( s.compare( "Left" ) == 0 )
+        {
+            this->moveCursorLeft();
+            this->redrawFg();
+        }
+        if( s.compare( "Right" ) == 0 )
+        {
+            this->moveCursorRight();
+            this->redrawFg();
+        }
     }
 
     //override to handle text input
@@ -599,6 +620,74 @@ namespace dp
     bool dpgui::isHorizFill( void )
     {
         return this->bFillHoriz;
+    }
+
+    //find location in text
+    unsigned int dpgui::findLoc( int x, int y )
+    {
+        unsigned int i, r;
+        dpbitmap_rectangle *p;
+
+        r = this->stxt.length();
+        for( i = 0; i < dpgui_max_locs; i++ )
+        {
+            p = &this->char_locs[ i ];
+
+            if( x < p->x || y < p->y )
+                continue;
+            if( x > p->x + (int)p->w + (int)p->w || y > p->y + (int)p->h + (int)p->h )
+                continue;
+            r = i;
+        }
+
+        return r;
+    }
+
+    //set cursor
+    void dpgui::setCursor( unsigned int c )
+    {
+        unsigned int m;
+
+        m = this->stxt.length();
+        if( c >= m )
+            c = m;
+
+        this->cursor = c;
+    }
+
+    //move cursor left
+    void dpgui::moveCursorLeft( void )
+    {
+        unsigned int c;
+
+        c = this->cursor;
+        if( c > 0 )
+            c--;
+
+        this->setCursor( c );
+    }
+
+    //move cursor right
+    void dpgui::moveCursorRight( void )
+    {
+        unsigned int c;
+
+        c = this->cursor;
+        c++;
+
+        this->setCursor( c );
+    }
+
+    //move cursor down
+    void dpgui::moveCursorDown( void )
+    {
+
+    }
+
+    //move cursor up
+    void dpgui::moveCursorUp( void )
+    {
+
     }
 
 }

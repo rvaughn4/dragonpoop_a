@@ -26,6 +26,8 @@ namespace dp
     #define dpgui_alignment_center 1
     #define dpgui_alignment_right 2
 
+    #define dpgui_max_locs 512
+
     class dpgui : public dpgui_list
     {
 
@@ -41,8 +43,10 @@ namespace dp
         dpxyzw rot, spin;
         bool bIsCentered, bIsFloating, bFollowCursor, bGrows, bMin, bBorderInvert, bRedrawOnResize, bFillHoriz;
         dpbitmap_color bg_clr, fnt_clr;
-        unsigned int fnt_sz, border_sz;
+        unsigned int fnt_sz, border_sz, cursor, select_start, select_end;
         float zoom;
+
+        dpbitmap_rectangle char_locs[ dpgui_max_locs ];
 
         //run input
         void runInput( void );
@@ -177,6 +181,18 @@ namespace dp
         void setHorizFill( bool b );
         //returns true if horiz fill enabled
         bool isHorizFill( void );
+        //find location in text
+        unsigned int findLoc( int x, int y );
+        //set cursor
+        void setCursor( unsigned int c );
+        //move cursor left
+        void moveCursorLeft( void );
+        //move cursor right
+        void moveCursorRight( void );
+        //move cursor down
+        void moveCursorDown( void );
+        //move cursor up
+        void moveCursorUp( void );
 
     public:
 

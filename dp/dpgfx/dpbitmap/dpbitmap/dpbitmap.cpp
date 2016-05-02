@@ -808,6 +808,43 @@ namespace dp
         }
     }
 
+    //invert colors
+    void dpbitmap::invert( void )
+    {
+        dpbitmap_rectangle rc;
+
+        rc.x = rc.y = 0;
+        rc.w = this->getWidth();
+        rc.h = this->getHeight();
+
+        this->invert( &rc );
+    }
+
+    //invert colors
+    void dpbitmap::invert( dpbitmap_rectangle *rc )
+    {
+        int x, xm, y, ym;
+        dpbitmap_color c;
+
+        xm = rc->x + rc->w;
+        ym = rc->y + rc->h;
+
+        for( y = rc->y; y < ym; y++ )
+        {
+            for( x = rc->x; x < xm; x++ )
+            {
+                this->getPixel( x, y, &c );
+
+                c.r = 1.0f - c.r;
+                c.g = 1.0f - c.g;
+                c.b = 1.0f - c.b;
+                c.a = 1.0f - c.a;
+
+                this->setPixel( x, y, &c );
+            }
+        }
+    }
+
 };
 
 

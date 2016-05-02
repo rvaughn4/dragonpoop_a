@@ -142,6 +142,10 @@ namespace dp
         virtual void sharpen( float mult );
         //sharpen or blur image
         virtual void sharpen( float mult, dpbitmap_rectangle *rc );
+        //invert colors
+        virtual void invert( void );
+        //invert colors
+        virtual void invert( dpbitmap_rectangle *rc );
 
     };
 };
