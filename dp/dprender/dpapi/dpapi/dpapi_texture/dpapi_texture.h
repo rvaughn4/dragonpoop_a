@@ -13,7 +13,7 @@ namespace dp
 
     class dpapi_texture_writelock;
     class dpapi_context_writelock;
-    class dpbitmap;
+    class dpbitmap_32bit_uncompressed;
 
     class dpapi_texture : public dpshared
     {
@@ -33,7 +33,7 @@ namespace dp
     public:
 
         //ctor
-        dpapi_texture( dpapi_context_writelock *ctx, dpbitmap *bm );
+        dpapi_texture( dpapi_context_writelock *ctx, dpbitmap_32bit_uncompressed *bm );
         //dtor
         virtual ~dpapi_texture( void );
 

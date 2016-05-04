@@ -35,7 +35,7 @@ namespace dp
         dpbitmap_rectangle rc, rc_exact;
         unsigned int z, bg_time, fg_time, sz_time, align;
         dpapi_context_writelock *ctx;
-        dpapi_texture *t_bg, *t_fg;
+        dpapi_texture *t_bg, *t_fg, *t_bg_old, *t_fg_old;
         dpapi_vertexbuffer *vb;
         dpapi_indexbuffer *ib_fg, *ib_bg;
         dpapi_bundle *bdle_bg, *bdle_fg;

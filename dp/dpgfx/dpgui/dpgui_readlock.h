@@ -11,7 +11,7 @@ namespace dp
 {
 
     class dpgui;
-    class dpbitmap;
+    class dpbitmap_32bit_uncompressed;
     struct dpxyzw;
 
     class dpgui_readlock : public dpgui_list_readlock
@@ -37,9 +37,9 @@ namespace dp
         //return z
         unsigned int getZ( void );
         //returns bg bitmap
-        dpbitmap *getBg( void );
+        dpbitmap_32bit_uncompressed *getBg( void );
         //returns fg bitmap
-        dpbitmap *getFg( void );
+        dpbitmap_32bit_uncompressed *getFg( void );
         //return bg time
         unsigned int getBgTime( void );
         //return fg time

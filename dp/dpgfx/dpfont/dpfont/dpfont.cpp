@@ -131,6 +131,22 @@ namespace dp
         int tm;
         unsigned int c;
 
+        if( dest_bmp )
+        {
+            if( offset == this->cursor || ( offset >= this->select_start && offset < this->select_end ) )
+            {
+                c = offset;
+                if( this->cursor > c )
+                    c = this->cursor;
+                if( this->select_end > c )
+                    c = this->select_end;
+                if( this->select_start > c )
+                    c = this->select_start;
+                c++;
+                this->drawCharacter( (unsigned char)*"_", pos_in, 0, dest_bmp, c );
+            }
+        }
+
         if( !this->lb_loaded || !this->fc_loaded )
             return 0;
 
@@ -156,20 +172,6 @@ namespace dp
             dest_bmp->copyNoStretch( bm, pos_in );
             dest_bmp->setColorMask( &clr );
             dest_bmp->setTransparencyMode( tm );
-
-            if( offset == this->cursor || ( offset >= this->select_start && offset < this->select_end ) )
-            {
-                c = offset;
-                if( this->cursor > c )
-                    c = this->cursor;
-                if( this->select_end > c )
-                    c = this->select_end;
-                if( this->select_start > c )
-                    c = this->select_start;
-                c++;
-                this->drawCharacter( (unsigned char)*"_", pos_in, 0, dest_bmp, c );
-            }
-
         }
 
         if( rect_sz_out )

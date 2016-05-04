@@ -18,7 +18,7 @@ namespace dp
     protected:
 
         //render first pass of foreground image
-        virtual void renderBackgroundPass1( dpbitmap *bm );
+        virtual void renderBackgroundPass1( dpbitmap_32bit_uncompressed *bm );
 
     public:
 

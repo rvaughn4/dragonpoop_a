@@ -96,7 +96,7 @@ namespace dp
     }
 
     //generate texture
-    dpapi_texture *dpapi_opengl1o5_context::makeTexture( dpapi_context_writelock *l, dpbitmap *bm )
+    dpapi_texture *dpapi_opengl1o5_context::makeTexture( dpapi_context_writelock *l, dpbitmap_32bit_uncompressed *bm )
     {
         return new dpapi_opengl1o5_texture( (dpapi_opengl1o5_context_writelock *)l, bm, this->gl );
     }

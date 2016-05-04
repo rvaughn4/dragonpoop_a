@@ -27,7 +27,7 @@ namespace dp
     class dpapi_indexbuffer;
     class dpindexbuffer;
     class dpapi_texture;
-    class dpbitmap;
+    class dpbitmap_32bit_uncompressed;
     class dpmatrix;
 
     class dpapi_context : public dpshared
@@ -60,7 +60,7 @@ namespace dp
         //generate index buffer
         virtual dpapi_indexbuffer *makeIndexBuffer( dpapi_context_writelock *l, dpindexbuffer *ib );
         //generate texture
-        virtual dpapi_texture *makeTexture( dpapi_context_writelock *l, dpbitmap *bm );
+        virtual dpapi_texture *makeTexture( dpapi_context_writelock *l, dpbitmap_32bit_uncompressed *bm );
         //return screen width
         virtual unsigned int getWidth( void );
         //return screen height

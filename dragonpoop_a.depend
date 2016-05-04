@@ -469,7 +469,7 @@
 1460976455 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi/dpapi_writelock.h
 	"../../../../dpcore/dpshared/dpshared_writelock.h"
 
-1460516184 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context.cpp
+1462335287 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context.cpp
 	"dpapi_context.h"
 	"dpapi_context_ref.h"
 	"dpapi_context_readlock.h"
@@ -483,7 +483,7 @@
 	"../dpapi_texture/dpapi_texture.h"
 	"../dpapi/dpapi_writelock.h"
 
-1460516173 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context.h
+1462335308 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context.h
 	"../../../../dpcore/dpshared/dpshared.h"
 
 1457007010 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_ref.h
@@ -492,7 +492,7 @@
 1460506345 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_readlock.h
 	"../../../../dpcore/dpshared/dpshared_readlock.h"
 
-1460516197 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_writelock.h
+1462335314 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_writelock.h
 	"../../../../dpcore/dpshared/dpshared_writelock.h"
 
 1460506623 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_readlock.cpp
@@ -503,7 +503,7 @@
 	"dpapi_context_ref.h"
 	"dpapi_context.h"
 
-1460516209 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_writelock.cpp
+1462335299 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_context/dpapi_context_writelock.cpp
 	"dpapi_context_writelock.h"
 	"dpapi_context.h"
 
@@ -566,7 +566,7 @@
 1457175053 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5/dpapi_opengl1o5_writelock.h
 	"../../dpapi/dpapi/dpapi_writelock.h"
 
-1462104163 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context.cpp
+1462335383 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context.cpp
 	"dpapi_opengl1o5_context.h"
 	"dpapi_opengl1o5_context_ref.h"
 	"dpapi_opengl1o5_context_readlock.h"
@@ -707,7 +707,7 @@
 	"dpapi_primary_commandlist_writelock.h"
 	"dpapi_primary_commandlist.h"
 
-1462104087 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context.h
+1462335342 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_context/dpapi_opengl1o5_context.h
 	"../../dpapi/dpapi_context/dpapi_context.h"
 	"../dpapi_opengl1o5/dpapi_opengl1o5_functions.h"
 
@@ -1146,7 +1146,7 @@
 	"dpapi_shader_writelock.h"
 	"dpapi_shader.h"
 
-1459416860 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture.cpp
+1462335330 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture.cpp
 	"dpapi_texture.h"
 	"dpapi_texture_ref.h"
 	"dpapi_texture_readlock.h"
@@ -1236,7 +1236,7 @@
 1457947593 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_shader/dpapi_shader_writelock.h
 	"../../../../dpcore/dpshared/dpshared_writelock.h"
 
-1459416854 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture.h
+1462335324 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture.h
 	"../../../../dpcore/dpshared/dpshared.h"
 
 1457947949 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi/dpapi_texture/dpapi_texture_ref.h
@@ -1786,7 +1786,7 @@
 1459418415 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_readlock.h
 	"../../dpapi/dpapi_texture/dpapi_texture_readlock.h"
 
-1459423205 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture.h
+1462335353 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture.h
 	"../../dpapi/dpapi_texture/dpapi_texture.h"
 	"../dpapi_opengl1o5/dpapi_opengl1o5_functions.h"
 	"../../../../dpcore/dpshared/dpshared_guard.h"
@@ -1805,7 +1805,7 @@
 1459423237 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture_writelock.h
 	"../../dpapi/dpapi_texture/dpapi_texture_writelock.h"
 
-1459423782 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture.cpp
+1462335372 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dpapi/dpapi_opengl1o5/dpapi_opengl1o5_texture/dpapi_opengl1o5_texture.cpp
 	"dpapi_opengl1o5_texture.h"
 	"dpapi_opengl1o5_texture_ref.h"
 	"dpapi_opengl1o5_texture_readlock.h"
@@ -1817,7 +1817,7 @@
 1459641726 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_bitmap/dpfont_bitmap.cpp
 	"dpfont_bitmap.h"
 
-1462152839 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont/dpfont.cpp
+1462334426 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont/dpfont.cpp
 	"dpfont.h"
 	"../dpfont_filter/dpfont_filter.h"
 	"../dpfont_bitmap/dpfont_bitmap.h"
@@ -1872,7 +1872,7 @@
 1459704015 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_filter_face/dpfont_filter_face.h
 	"../dpfont_filter/dpfont_filter.h"
 
-1462153305 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui.cpp
+1462335970 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui.cpp
 	"dpgui.h"
 	"dpgui_ref.h"
 	"dpgui_readlock.h"
@@ -1883,7 +1883,7 @@
 	"../../dprender/dpinput/dpinput_writelock.h"
 	<iostream>
 
-1462153083 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui.h
+1462335040 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui.h
 	"../dpgui_list/dpgui_list.h"
 	"../dpbitmap/dpbitmap/dpbitmap.h"
 	"../dpbitmap/dpbitmap_32bit_uncompressed/dpbitmap_32bit_uncompressed.h"
@@ -1893,17 +1893,17 @@
 1459765860 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_ref.h
 	"../dpgui_list/dpgui_list_ref.h"
 
-1462129041 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_readlock.h
+1462335084 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_readlock.h
 	"../dpgui_list/dpgui_list_readlock.h"
 
-1462128923 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_writelock.h
+1462335058 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_writelock.h
 	"../dpgui_list/dpgui_list_writelock.h"
 
 1460027625 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_factory.cpp
 	"dpgui.h"
 	"dpgui_factory.h"
 
-1462129058 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_readlock.cpp
+1462335093 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_readlock.cpp
 	"dpgui_readlock.h"
 	"dpgui.h"
 
@@ -1911,7 +1911,7 @@
 	"dpgui_ref.h"
 	"dpgui.h"
 
-1462128968 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_writelock.cpp
+1462335071 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui/dpgui_writelock.cpp
 	"dpgui_writelock.h"
 	"dpgui.h"
 
@@ -1947,7 +1947,7 @@
 	"../dpgui/dpgui_readlock.h"
 	"../dpgui/dpgui.h"
 
-1462150351 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui.cpp
+1462335410 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui.cpp
 	"dprender_gui.h"
 	"dprender_gui_ref.h"
 	"dprender_gui_readlock.h"
@@ -2017,7 +2017,7 @@
 1459815710 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_ref.h
 	"../../../dpcore/dpshared/dpshared_ref.h"
 
-1462130745 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui.h
+1462334671 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui.h
 	"../dprender_gui_list/dprender_gui_list.h"
 	"../../../dpgfx/dpbitmap/dpbitmap/dpbitmap.h"
 	"../../../dpgfx/dpmatrix/dpmatrix.h"
@@ -2115,7 +2115,7 @@
 
 1462014154 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpinit/dpinit/dpinit.h
 
-1462152267 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpinit/dploader_scene/dploader_root_gui/dploader_root_gui.cpp
+1462335251 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpinit/dploader_scene/dploader_root_gui/dploader_root_gui.cpp
 	"dploader_root_gui.h"
 	"../../../dpgfx/dpbitmap/dpbitmap_loader/dpbitmap_loader.h"
 
@@ -2126,7 +2126,7 @@
 1462016175 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpinit/dploader_scene/dploader_scene/dploader_scene.h
 	"../../../dpgfx/dpscene/dpscene.h"
 
-1462152249 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpinit/dploader_scene/dploader_root_gui/dploader_root_gui.h
+1462335248 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpinit/dploader_scene/dploader_root_gui/dploader_root_gui.h
 	"../../../dpgfx/dpgui_common/dpgui_window/dpgui_window.h"
 
 1460949857 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpfont/dpfont_filter_align/dpfont_filter_align.cpp

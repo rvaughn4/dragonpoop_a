@@ -149,9 +149,11 @@ namespace dp
 
         if( !this->bBgDrawn )
         {
-            if( this->bm_bg )
+            if( !this->bm_bg || this->bm_bg->getWidth() != (int)this->rc.w || this->bm_bg->getHeight() != (int)this->rc.h )
+            {
                 delete this->bm_bg;
-            this->bm_bg = new dpbitmap_32bit_uncompressed( this->rc.w, this->rc.h );
+                this->bm_bg = new dpbitmap_32bit_uncompressed( this->rc.w, this->rc.h );
+            }
 
             this->bm_bg->clear();
 
@@ -165,9 +167,11 @@ namespace dp
 
         if( !this->bFgDrawn )
         {
-            if( this->bm_fg )
+            if( !this->bm_fg || this->bm_fg->getWidth() != (int)this->rc.w || this->bm_fg->getHeight() != (int)this->rc.h )
+            {
                 delete this->bm_fg;
-            this->bm_fg = new dpbitmap_32bit_uncompressed( this->rc.w, this->rc.h );
+                this->bm_fg = new dpbitmap_32bit_uncompressed( this->rc.w, this->rc.h );
+            }
 
             this->bm_fg->clear();
 
@@ -199,31 +203,31 @@ namespace dp
     }
 
     //render first pass background image
-    void dpgui::renderBackgroundPass0( dpbitmap *bm )
+    void dpgui::renderBackgroundPass0( dpbitmap_32bit_uncompressed *bm )
     {
         bm->fill( &this->bg_clr );
     }
 
     //render second pass of background image
-    void dpgui::renderBackgroundPass1( dpbitmap *bm )
+    void dpgui::renderBackgroundPass1( dpbitmap_32bit_uncompressed *bm )
     {
         bm->buttonize( this->border_sz, 0.7f, this->bBorderInvert );
     }
 
     //render first pass of foreground image
-    void dpgui::renderForegroundPass0( dpbitmap *bm )
+    void dpgui::renderForegroundPass0( dpbitmap_32bit_uncompressed *bm )
     {
 
     }
 
     //render second pass of foreground image
-    void dpgui::renderForegroundPass1( dpbitmap *bm )
+    void dpgui::renderForegroundPass1( dpbitmap_32bit_uncompressed *bm )
     {
         this->renderText( bm );
     }
 
     //render text
-    void dpgui::renderText( dpbitmap *bm )
+    void dpgui::renderText( dpbitmap_32bit_uncompressed *bm )
     {
         dpfont fnt;
         dpbitmap_rectangle rc;
@@ -340,13 +344,13 @@ namespace dp
     }
 
     //returns bg bitmap
-    dpbitmap *dpgui::getBg( void )
+    dpbitmap_32bit_uncompressed *dpgui::getBg( void )
     {
         return this->bm_bg;
     }
 
     //returns fg bitmap
-    dpbitmap *dpgui::getFg( void )
+    dpbitmap_32bit_uncompressed *dpgui::getFg( void )
     {
         return this->bm_fg;
     }

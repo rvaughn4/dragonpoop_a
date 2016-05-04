@@ -11,7 +11,7 @@ namespace dp
 {
 
     class dpgui;
-    class dpbitmap;
+    class dpbitmap_32bit_uncompressed;
     class dpinput;
     struct dpxyzw;
 
@@ -48,9 +48,9 @@ namespace dp
         //set z
         void setZ( unsigned int z );
         //returns bg bitmap
-        dpbitmap *getBg( void );
+        dpbitmap_32bit_uncompressed *getBg( void );
         //returns fg bitmap
-        dpbitmap *getFg( void );
+        dpbitmap_32bit_uncompressed *getFg( void );
         //attach renderer input
         void attachInput( dpinput *i );
         //return true if centered

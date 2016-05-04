@@ -65,7 +65,7 @@ namespace dp
     }
 
     //generate texture
-    dpapi_texture *dpapi_context_writelock::makeTexture( dpbitmap *bm )
+    dpapi_texture *dpapi_context_writelock::makeTexture( dpbitmap_32bit_uncompressed *bm )
     {
         return this->p->makeTexture( this, bm );
     }

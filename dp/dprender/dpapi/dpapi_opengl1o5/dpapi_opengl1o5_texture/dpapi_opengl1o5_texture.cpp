@@ -15,9 +15,8 @@ namespace dp
 {
 
     //ctor
-    dpapi_opengl1o5_texture::dpapi_opengl1o5_texture( dpapi_opengl1o5_context_writelock *ctx, dpbitmap *bm, opengl1o5_lib_functions *gl ) : dpapi_texture( ctx, bm )
+    dpapi_opengl1o5_texture::dpapi_opengl1o5_texture( dpapi_opengl1o5_context_writelock *ctx, dpbitmap_32bit_uncompressed *bm, opengl1o5_lib_functions *gl ) : dpapi_texture( ctx, bm )
     {
-        dpbitmap_32bit_uncompressed b( bm->getWidth(), bm->getHeight() );
         dpbuffer_static bs;
 
         this->gltex = 0;
@@ -25,9 +24,8 @@ namespace dp
 
         this->ctx = (dpapi_opengl1o5_context_ref *)this->g.getRef( ctx );
         ctx->makeActive();
-        b.copy( bm );
 
-        if( !b.getPixelData( &bs ) )
+        if( !bm->getPixelData( &bs ) )
             return;
 
         this->gl->glGenTextures( 1, &this->gltex );
@@ -39,7 +37,7 @@ namespace dp
         this->gl->glTexParameteri( opengl1o5_lib_TEXTURE_2D, opengl1o5_lib_TEXTURE_MIN_FILTER, opengl1o5_lib_LINEAR );
         this->gl->glTexParameteri( opengl1o5_lib_TEXTURE_2D, opengl1o5_lib_TEXTURE_MAG_FILTER, opengl1o5_lib_LINEAR );
 
-        this->gl->glTexImage2D( opengl1o5_lib_TEXTURE_2D, 0, opengl1o5_lib_RGBA, b.getWidth(), b.getHeight(), 0, opengl1o5_lib_BGRA, opengl1o5_lib_UNSIGNED_BYTE, bs.getBuffer() );
+        this->gl->glTexImage2D( opengl1o5_lib_TEXTURE_2D, 0, opengl1o5_lib_RGBA, bm->getWidth(), bm->getHeight(), 0, opengl1o5_lib_BGRA, opengl1o5_lib_UNSIGNED_BYTE, bs.getBuffer() );
     }
 
     //dtor

@@ -66,15 +66,15 @@ namespace dp
         //override to do task shutdown
         virtual bool onTaskStop( dptask_writelock *tl );
         //render first pass background image
-        virtual void renderBackgroundPass0( dpbitmap *bm );
+        virtual void renderBackgroundPass0( dpbitmap_32bit_uncompressed *bm );
         //render second pass of background image
-        virtual void renderBackgroundPass1( dpbitmap *bm );
+        virtual void renderBackgroundPass1( dpbitmap_32bit_uncompressed *bm );
         //render first pass of foreground image
-        virtual void renderForegroundPass0( dpbitmap *bm );
+        virtual void renderForegroundPass0( dpbitmap_32bit_uncompressed *bm );
         //render second pass of foreground image
-        virtual void renderForegroundPass1( dpbitmap *bm );
+        virtual void renderForegroundPass1( dpbitmap_32bit_uncompressed *bm );
         //render text
-        virtual void renderText( dpbitmap *bm );
+        virtual void renderText( dpbitmap_32bit_uncompressed *bm );
         //override to handle gui ran
         virtual bool onGuiRun( dpgui_writelock *tl );
         //override to handle gui start
@@ -98,9 +98,9 @@ namespace dp
         //override to test type for safe syncing, be sure to call base class first!
         virtual bool isSyncType( const char *ctypename );
         //returns bg bitmap
-        virtual dpbitmap *getBg( void );
+        virtual dpbitmap_32bit_uncompressed *getBg( void );
         //returns fg bitmap
-        virtual dpbitmap *getFg( void );
+        virtual dpbitmap_32bit_uncompressed *getFg( void );
         //set text
         virtual void setText( const char *ctxt );
         //get text

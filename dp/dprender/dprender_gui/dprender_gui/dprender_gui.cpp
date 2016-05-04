@@ -36,7 +36,7 @@ namespace dp
         this->setSync( pg );
         this->pgui = (dpgui_ref *)this->g.getRef( pg );
 
-        this->t_bg = this->t_fg = 0;
+        this->t_bg = this->t_fg = this->t_fg_old = this->t_bg_old = 0;
         this->vb = 0;
         this->ib_bg = this->ib_fg = 0;
         this->bdle_bg = 0;
@@ -69,10 +69,16 @@ namespace dp
             delete this->ib_fg;
         if( this->vb )
             delete this->vb;
+
         if( this->t_bg )
             delete this->t_bg;
         if( this->t_fg )
             delete this->t_fg;
+        if( this->t_bg_old )
+            delete this->t_bg_old;
+        if( this->t_fg_old )
+            delete this->t_fg_old;
+
         if( this->inp )
             delete this->inp;
     }
@@ -249,9 +255,10 @@ namespace dp
         {
             switch( e->h.etype )
             {
-                case dpinput_event_type_mouse:
                 case dpinput_event_type_leftclick:
                 case dpinput_event_type_rightclick:
+                    this->bFocus = 0;
+                case dpinput_event_type_mouse:
                     if( this->dprender_gui_list::processEvent( l, e ) )
                         return 1;
                     break;
@@ -264,9 +271,11 @@ namespace dp
 
         switch( e->h.etype )
         {
-            case dpinput_event_type_mouse:
             case dpinput_event_type_leftclick:
             case dpinput_event_type_rightclick:
+                this->bFocus = 0;
+
+            case dpinput_event_type_mouse:
 
                 ce = *e;
                 e = &ce;
@@ -286,7 +295,14 @@ namespace dp
                         return 0;
                 }
                 this->bIsMouseOver = 1;
-                this->bFocus = 1;
+
+                switch( e->h.etype )
+                {
+                    case dpinput_event_type_leftclick:
+                    case dpinput_event_type_rightclick:
+                        this->bFocus = 1;
+                        break;
+                }
 
                 if( !this->bIsDrag && e->mse.isDown && !e->mse.isRight && this->bIsFloating )
                 {
@@ -554,7 +570,7 @@ namespace dp
     //make bg texture, return false if not remade/up-to-date
     bool dprender_gui::makeBgTex( dpapi_context_writelock *ctx, dpgui_readlock *g )
     {
-        dpbitmap *bm;
+        dpbitmap_32bit_uncompressed *bm;
 
         if( this->t_bg && g->getBgTime() == this->bg_time )
             return 0;
@@ -563,8 +579,9 @@ namespace dp
         if( !bm )
             return 0;
 
-        if( this->t_bg )
-            delete this->t_bg;
+        if( this->t_bg_old )
+            delete this->t_bg_old;
+        this->t_bg_old = this->t_bg;
 
         this->t_bg = ctx->makeTexture( bm );
         this->bg_time = g->getBgTime();
@@ -574,7 +591,7 @@ namespace dp
     //make bg texture, return false if not remade/up-to-date
     bool dprender_gui::makeFgTex( dpapi_context_writelock *ctx, dpgui_readlock *g )
     {
-        dpbitmap *bm;
+        dpbitmap_32bit_uncompressed *bm;
 
         if( this->t_fg && g->getFgTime() == this->fg_time )
             return 0;
@@ -583,8 +600,9 @@ namespace dp
         if( !bm )
             return 0;
 
-        if( this->t_fg )
-            delete this->t_fg;
+        if( this->t_fg_old )
+            delete this->t_fg_old;
+        this->t_fg_old = this->t_fg;
 
         this->t_fg = ctx->makeTexture( bm );
         this->fg_time = g->getFgTime();

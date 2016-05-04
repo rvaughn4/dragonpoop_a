@@ -69,13 +69,13 @@ namespace dp
     }
 
     //returns bg bitmap
-    dpbitmap *dpgui_writelock::getBg( void )
+    dpbitmap_32bit_uncompressed *dpgui_writelock::getBg( void )
     {
         return this->p->getBg();
     }
 
     //returns fg bitmap
-    dpbitmap *dpgui_writelock::getFg( void )
+    dpbitmap_32bit_uncompressed *dpgui_writelock::getFg( void )
     {
         return this->p->getFg();
     }

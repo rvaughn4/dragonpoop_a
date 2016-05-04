@@ -27,7 +27,7 @@ namespace dp
     class dpapi_indexbuffer;
     class dpindexbuffer;
     class dpapi_texture;
-    class dpbitmap;
+    class dpbitmap_32bit_uncompressed;
     class dpmatrix;
 
     class dpapi_context_writelock : public dpshared_writelock
@@ -61,7 +61,7 @@ namespace dp
         //generate index buffer
         dpapi_indexbuffer *makeIndexBuffer( dpindexbuffer *ib );
         //generate texture
-        dpapi_texture *makeTexture( dpbitmap *bm );
+        dpapi_texture *makeTexture( dpbitmap_32bit_uncompressed *bm );
         //return screen width
         unsigned int getWidth( void );
         //return screen height

@@ -46,7 +46,7 @@ namespace dp
         //generate bundle
         virtual dpapi_bundle *makeBundle( dpapi_context_writelock *ctx, dpmatrix *mx, dpapi_bundle *bdle );
         //generate texture
-        virtual dpapi_texture *makeTexture( dpapi_context_writelock *l, dpbitmap *bm );
+        virtual dpapi_texture *makeTexture( dpapi_context_writelock *l, dpbitmap_32bit_uncompressed *bm );
 
     public:
 

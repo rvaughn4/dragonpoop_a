@@ -41,7 +41,7 @@ namespace dp
     public:
 
         //ctor
-        dpapi_opengl1o5_texture( dpapi_opengl1o5_context_writelock *ctx, dpbitmap *bm, opengl1o5_lib_functions *gl );
+        dpapi_opengl1o5_texture( dpapi_opengl1o5_context_writelock *ctx, dpbitmap_32bit_uncompressed *bm, opengl1o5_lib_functions *gl );
         //dtor
         virtual ~dpapi_opengl1o5_texture( void );
 
