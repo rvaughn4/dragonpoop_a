@@ -14,6 +14,8 @@ namespace dp
         this->setFontSize( 40 );
         this->setCentered( 1 );
         this->setText( "\n[size 120][face mediaeval]\t\tDragon Poop\n[align center][size 30][face sans]\n\tA very serious gaming SDK. It's as smooth as silk and runs like warm milk.[size 15]\n[code 178]2016 RAV. If you steal this we will beat you up!" );
+
+        this->setInputMode( 1 );
     }
 
     //dtor
@@ -31,6 +33,7 @@ namespace dp
 
         this->dpgui_window::renderBackgroundPass1( bm );
 
+        bm->setTransparencyMode( dpbitmap_transparency_mode_blend );
         b = bl.load( "dp.png" );
         if( !b )
             return;

@@ -595,7 +595,7 @@ namespace dp
             return;
 
         this->addKeyPressEvent( isDown, &s );
-        if( isDown )
+        if( isDown && s.size() == 1 )
             this->addTextEvent( &s );
         this->update();
     }

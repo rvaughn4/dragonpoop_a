@@ -164,6 +164,8 @@ namespace dp
         this->align = gr->getAlignment();
         this->zoom = gr->getZoom();
         this->bHorizFill = gr->isHorizFill();
+        this->bIsInput = gr->isInput();
+        this->bIsSelect = gr->isSelect();
 
         gr->getRotation( &this->rot );
         gr->getSpin( &this->rot );
@@ -395,7 +397,7 @@ namespace dp
                 break;
             case dpinput_event_type_keypress:
             case dpinput_event_type_text:
-                if( this->bMin )
+                if( this->bMin || ( !this->bIsInput && !this->bIsSelect ) )
                     return 0;
                 break;
         }

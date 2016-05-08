@@ -22,6 +22,8 @@ namespace dp
         this->bBgDrawn = 0;
         this->bFgDrawn = 0;
         this->bRedrawOnResize = 0;
+        this->bIsInput = 0;
+        this->bIsSelectable = 0;
 
         this->rc.x = x;
         this->rc.y = y;
@@ -103,6 +105,7 @@ namespace dp
         dpshared_guard g;
         dpinput_event *elist[ 100 ], *p;
         unsigned int i, j;
+        uint64_t ts, te, t;
 
         iwl = (dpinput_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->inp, 30 );
         if( !iwl )
@@ -114,13 +117,21 @@ namespace dp
         if( !irl )
             return;
 
-        j = irl->getEvents( elist, 100, this->t_input );
-        this->t_input = this->getTicks();
+        ts = this->t_input;
+        te = this->getTicks();
+        j = irl->getEvents( elist, 100, ts );
+        this->t_input = te;
 
-        for( i = 0; i < j; i++ )
+        for( t = ts; t <= te; t++ )
         {
-            p = elist[ i ];
-            this->onInput( p );
+            for( i = 0; i < j; i++ )
+            {
+                p = elist[ i ];
+                if( !p )
+                    continue;
+                if( p->h.t == t )
+                    this->onInput( p );
+            }
         }
 
         g.release( irl );
@@ -142,14 +153,27 @@ namespace dp
     //override to do task execution
     bool dpgui::onTaskRun( dptask_writelock *tl )
     {
+        uint64_t t;
+
         if( !this->onGuiRun( (dpgui_writelock *)tl ) )
             return 0;
 
         this->runInput();
 
+        if( this->bIsInput || this->bIsSelectable )
+        {
+            t = this->getTicks();
+            if( t - this->t_flash > 1000 )
+            {
+                this->t_flash = t;
+                this->bCurFlash = !this->bCurFlash;
+                this->redrawFg();
+            }
+        }
+
         if( !this->bBgDrawn )
         {
-            if( !this->bm_bg || this->bm_bg->getWidth() != (int)this->rc.w || this->bm_bg->getHeight() != (int)this->rc.h )
+            if( !this->bm_bg || ( this->bRedrawOnResize && ( this->bm_bg->getWidth() != (int)this->rc.w || this->bm_bg->getHeight() != (int)this->rc.h ) ) )
             {
                 delete this->bm_bg;
                 this->bm_bg = new dpbitmap_32bit_uncompressed( this->rc.w, this->rc.h );
@@ -167,7 +191,7 @@ namespace dp
 
         if( !this->bFgDrawn )
         {
-            if( !this->bm_fg || this->bm_fg->getWidth() != (int)this->rc.w || this->bm_fg->getHeight() != (int)this->rc.h )
+            if( !this->bm_fg || ( this->bRedrawOnResize && ( this->bm_fg->getWidth() != (int)this->rc.w || this->bm_fg->getHeight() != (int)this->rc.h ) ) )
             {
                 delete this->bm_fg;
                 this->bm_fg = new dpbitmap_32bit_uncompressed( this->rc.w, this->rc.h );
@@ -244,8 +268,16 @@ namespace dp
         if( !fnt.setSize( this->fnt_sz ) )
             fnt.setSize( 12 );
 
-        fnt.setCursor( this->cursor );
-        fnt.setSelection( this->select_start, this->select_end );
+        if( this->bCurFlash && ( this->bIsInput || this->bIsSelectable ) )
+        {
+            fnt.setCursor( this->cursor );
+            fnt.setSelection( this->select_start, this->select_end );
+        }
+        else
+        {
+            fnt.setCursor( this->sz );
+            fnt.setSelection( this->select_start, this->select_end );
+        }
 
         fnt.drawString( this->ctxt, dpgui_max_locs, &rc, 0, bm, this->char_locs, dpgui_max_locs );
     }
@@ -442,6 +474,9 @@ namespace dp
     {
         std::string s;
 
+        if( !this->bIsInput && !this->bIsSelectable )
+            return;
+
         s.assign( e->keyName );
 
         if( s.compare( "Shift" ) == 0 )
@@ -452,6 +487,9 @@ namespace dp
     void dpgui::onKeyUp( dpinput_event_keypress *e )
     {
         std::string s;
+
+        if( !this->bIsInput && !this->bIsSelectable )
+            return;
 
         s.assign( e->keyName );
 
@@ -477,12 +515,12 @@ namespace dp
             this->moveCursorDown();
             this->redrawFg();
         }
-        if( s.compare( "Delete" ) == 0 )
+        if( this->bIsInput && s.compare( "Delete" ) == 0 )
         {
             this->deleteAtCursor();
             this->redrawFg();
         }
-        if( s.compare( "Backspace" ) == 0 )
+        if( this->bIsInput && s.compare( "Backspace" ) == 0 )
         {
             this->backspace();
             this->redrawFg();
@@ -492,7 +530,11 @@ namespace dp
     //override to handle text input
     void dpgui::onText( dpinput_event_text *e )
     {
+        if( !this->bIsInput )
+            return;
 
+        this->insertText( e->txt );
+        this->redrawFg();
     }
 
     //return true if centered
@@ -738,10 +780,11 @@ namespace dp
         m = this->sz;
         if( m >= dpgui_max_locs )
             m = dpgui_max_locs - 1;
+
+        c = this->cursor + 1;
         if( c > m )
             c = m;
 
-        c = this->cursor + 1;
         j = c + 50;
         if( j > m )
             j = m;
@@ -839,6 +882,30 @@ namespace dp
         if( this->select_start >= this->select_end && this->cursor > 0 )
             this->cursor -= 1;
         this->deleteAtCursor();
+    }
+
+    //set input mode
+    void dpgui::setInputMode( bool b )
+    {
+        this->bIsInput = b;
+    }
+
+    //returns true if accepts input
+    bool dpgui::isInput( void )
+    {
+        return this->bIsInput;
+    }
+
+    //set select mode
+    void dpgui::setSelectMode( bool b )
+    {
+        this->bIsSelectable = b;
+    }
+
+    //returns true if can have text selected and has cursor
+    bool dpgui::isSelect( void )
+    {
+        return this->bIsSelectable;
     }
 
 }

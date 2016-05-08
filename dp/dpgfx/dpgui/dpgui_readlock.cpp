@@ -128,6 +128,18 @@ namespace dp
         return this->p->isHorizFill();
     }
 
+    //returns true if accepts input
+    bool dpgui_readlock::isInput( void )
+    {
+        return this->p->isInput();
+    }
+
+    //returns true if can have text selected and has cursor
+    bool dpgui_readlock::isSelect( void )
+    {
+        return this->p->isSelect();
+    }
+
 }
 
 

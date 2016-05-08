@@ -97,6 +97,14 @@ namespace dp
         void setHorizFill( bool b );
         //returns true if horiz fill enabled
         bool isHorizFill( void );
+        //set input mode
+        void setInputMode( bool b );
+        //returns true if accepts input
+        bool isInput( void );
+        //set select mode
+        void setSelectMode( bool b );
+        //returns true if can have text selected and has cursor
+        bool isSelect( void );
 
     };
 

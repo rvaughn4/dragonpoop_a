@@ -49,7 +49,7 @@ namespace dp
         float fhover, fMin, zoom;
         dpxyzw rot, spin, scroll;
         uint64_t t_spin, t_last_ftime;
-        bool bIsCentered, bIsFloating, bFollowCursor, bIsMouseOver, bIsMouseDown, bGrows, bMin, bIsDrag, bFocus, bIsSize, bHorizFill, bHide;
+        bool bIsCentered, bIsFloating, bFollowCursor, bIsMouseOver, bIsMouseDown, bGrows, bMin, bIsDrag, bFocus, bIsSize, bHorizFill, bHide, bIsInput, bIsSelect;
 
         //create vertex buffer
         bool makeVB( dpapi_context_writelock *ctx, dpgui_readlock *g );

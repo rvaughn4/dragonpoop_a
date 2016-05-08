@@ -218,6 +218,30 @@ namespace dp
         return this->p->isHorizFill();
     }
 
+    //set input mode
+    void dpgui_writelock::setInputMode( bool b )
+    {
+        this->p->setInputMode( b );
+    }
+
+    //returns true if accepts input
+    bool dpgui_writelock::isInput( void )
+    {
+        return this->p->isInput();
+    }
+
+    //set select mode
+    void dpgui_writelock::setSelectMode( bool b )
+    {
+        this->p->setSelectMode( b );
+    }
+
+    //returns true if can have text selected and has cursor
+    bool dpgui_writelock::isSelect( void )
+    {
+        return this->p->isSelect();
+    }
+
 }
 
 

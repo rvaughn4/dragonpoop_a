@@ -35,12 +35,12 @@ namespace dp
 
         dpbitmap_rectangle rc;
         dpbitmap_32bit_uncompressed *bm_bg, *bm_fg;
-        bool bBgDrawn, bFgDrawn;
+        bool bBgDrawn, bFgDrawn, bIsInput, bIsSelectable;
         unsigned int z, bg_time, fg_time, sz_time, align, sz;
-        uint64_t t_input;
+        uint64_t t_input, t_flash;
         dpinput *inp;
         dpxyzw rot, spin;
-        bool bIsCentered, bIsFloating, bFollowCursor, bGrows, bMin, bBorderInvert, bRedrawOnResize, bFillHoriz, bShiftDown;
+        bool bIsCentered, bIsFloating, bFollowCursor, bGrows, bMin, bBorderInvert, bRedrawOnResize, bFillHoriz, bShiftDown, bCurFlash;
         dpbitmap_color bg_clr, fnt_clr;
         unsigned int fnt_sz, border_sz, cursor, select_start, select_end;
         float zoom;
@@ -199,6 +199,14 @@ namespace dp
         void insertText( const char *c );
         //backspace, implemented as move cursor left one then call delete
         void backspace( void );
+        //set input mode
+        void setInputMode( bool b );
+        //returns true if accepts input
+        bool isInput( void );
+        //set select mode
+        void setSelectMode( bool b );
+        //returns true if can have text selected and has cursor
+        bool isSelect( void );
 
     public:
 

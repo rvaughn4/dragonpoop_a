@@ -66,6 +66,10 @@ namespace dp
         float getZoom( void );
         //returns true if horiz fill enabled
         bool isHorizFill( void );
+        //returns true if accepts input
+        bool isInput( void );
+        //returns true if can have text selected and has cursor
+        bool isSelect( void );
 
     };
 
