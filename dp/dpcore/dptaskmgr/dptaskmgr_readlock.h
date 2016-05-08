@@ -8,6 +8,7 @@ deleting this object releases the readlock on the dptaskmgr
 #define dptaskmgr_readlock_h
 
 #include "../dptask/dptask_readlock.h"
+#include <string>
 
 namespace dp
 {
@@ -32,6 +33,8 @@ namespace dp
 
         //ctor
         dptaskmgr_readlock( dptaskmgr *p, dpmutex_readlock *ml );
+        //get task manager summary text listing all threads and tasks
+        void getSummary( std::string *s );
 
     };
 

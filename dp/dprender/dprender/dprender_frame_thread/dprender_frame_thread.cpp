@@ -101,7 +101,7 @@ namespace dp
 #endif // defined
 
         cll->viewport( ctxl, 0, 0, ctxl->getWidth(), ctxl->getHeight() );
-        cll->clearColor( ctxl, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX );
+        cll->clearColor( ctxl, 0.2f, 0.5f, 1.0f, 1.0f );
         cll->clearDepth( ctxl, 1 );
 
         this->drawScenes( ctxl, cll );

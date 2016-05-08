@@ -13,6 +13,8 @@ manages threads and tasks
 #include "../../dprender/dpwindow/dpwindow/dpwindow_factory.h"
 #include "../../dprender/dpwindow/dpwindow_task/dpwindow_task.h"
 
+#include <string>
+
 namespace dp
 {
 
@@ -91,6 +93,8 @@ namespace dp
         bool addDynamicTask( dptask_readlock *t );
         //add dynamic task
         bool addDynamicTask( dptask_writelock *t );
+        //get task manager summary text listing all threads and tasks
+        void getSummary( std::string *s );
 
     public:
 

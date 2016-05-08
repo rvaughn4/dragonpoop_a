@@ -28,6 +28,7 @@ namespace dp
         bw = bw / 2.0f;
         a.border_size = bw;
         a.bIsFloat = 1;
+        a.fnt_size = 12;
 
         a.bg_clr.r = 1.0f;
         a.bg_clr.g = 1.0f;

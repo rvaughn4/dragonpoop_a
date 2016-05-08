@@ -28,7 +28,7 @@
 1454887443 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutexdefines.h
 	"../dpdefines.h"
 
-1462742167 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpdefines.h
+1462751032 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpdefines.h
 
 1454888119 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpmutex/dpmutex_readlock.cpp
 	"dpmutex_readlock.h"
@@ -219,7 +219,7 @@
 	"../../dpdefines.h"
 	"../dpshared/dpshareddefines.h"
 
-1460325511 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask.h
+1462749835 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask.h
 	"dptask_defines.h"
 	"../dpshared/dpshared.h"
 	"../dpshared/dpshared_guard.h"
@@ -242,7 +242,7 @@
 	"dptask_defines.h"
 	"../dpshared/dpshared_writelock.h"
 
-1462017698 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask.cpp
+1462749894 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptask/dptask.cpp
 	"dptask.h"
 	"dptask_ref.h"
 	"dptask_readlock.h"
@@ -259,7 +259,7 @@
 	<string>
 	<iostream>
 
-1457607138 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr.cpp
+1462750250 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr.cpp
 	"dptaskmgr.h"
 	"dptaskmgr_ref.h"
 	"dptaskmgr_readlock.h"
@@ -268,24 +268,27 @@
 	"../dpthread/dpthread_writelock.h"
 	"../dpthread/dpthread_readlock.h"
 	<iostream>
+	<sstream>
 	<list>
 
-1457607089 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr.h
+1462750011 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr.h
 	"../dptask/dptask.h"
 	"../dpshared/dpshared_guard.h"
 	"../../dprender/dpwindow/dpwindow/dpwindow_factory.h"
 	"../../dprender/dpwindow/dpwindow_task/dpwindow_task.h"
+	<string>
 
 1456615119 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr_ref.h
 	"../dptask/dptask_ref.h"
 
-1456615101 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr_readlock.h
+1462750281 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr_readlock.h
 	"../dptask/dptask_readlock.h"
+	<string>
 
 1456623157 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr_writelock.h
 	"../dptask/dptask_writelock.h"
 
-1456614420 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr_readlock.cpp
+1462750301 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpcore/dptaskmgr/dptaskmgr_readlock.cpp
 	"dptaskmgr_readlock.h"
 	"dptaskmgr.h"
 
@@ -801,7 +804,7 @@
 1460332940 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender/dprender_writelock.h
 	"../../../dpcore/dptask/dptask_writelock.h"
 
-1462737090 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.cpp
+1462749419 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender/dprender_frame_thread/dprender_frame_thread.cpp
 	"dprender_frame_thread.h"
 	"dprender_frame_thread_ref.h"
 	"dprender_frame_thread_readlock.h"
@@ -1947,7 +1950,7 @@
 	"../dpgui/dpgui_readlock.h"
 	"../dpgui/dpgui.h"
 
-1462748299 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui.cpp
+1462751020 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui/dprender_gui.cpp
 	"dprender_gui.h"
 	"dprender_gui_ref.h"
 	"dprender_gui_readlock.h"
@@ -1983,7 +1986,7 @@
 	"dprender_gui_writelock.h"
 	"dprender_gui.h"
 
-1461930625 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list.cpp
+1462750905 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list.cpp
 	"dprender_gui_list.h"
 	"dprender_gui_list_ref.h"
 	"dprender_gui_list_readlock.h"
@@ -1993,6 +1996,7 @@
 	"../dprender_gui/dprender_gui_readlock.h"
 	"../../../dpgfx/dpgui_list/dpgui_list_readlock.h"
 	"../../../dpgfx/dpgui/dpgui.h"
+	"../../../dpgfx/dpgui/dpgui_readlock.h"
 	"../../dpinput/dpinput.h"
 
 1460932666 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dprender/dprender_gui/dprender_gui_list/dprender_gui_list_readlock.cpp
@@ -2117,7 +2121,7 @@
 
 1462014154 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpinit/dpinit/dpinit.h
 
-1462748432 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpinit/dploader_scene/dploader_root_gui/dploader_root_gui.cpp
+1462749206 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpinit/dploader_scene/dploader_root_gui/dploader_root_gui.cpp
 	"dploader_root_gui.h"
 	"../../../dpgfx/dpbitmap/dpbitmap_loader/dpbitmap_loader.h"
 	"../../../dpgfx/dpgui_common/dpgui_taskman/dpgui_taskman.h"
@@ -2179,7 +2183,7 @@
 1462114492 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui_common/dpgui_button/dpgui_button.h
 	"../../dpgui/dpgui.h"
 
-1462748663 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui_common/dpgui_window/dpgui_window.cpp
+1462750541 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui_common/dpgui_window/dpgui_window.cpp
 	"dpgui_window.h"
 	"dpgui_window_title.h"
 	"dpgui_window_minimize_button.h"
@@ -2262,9 +2266,10 @@
 1462124223 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui_common/dpgui_window/dpgui_window_zoom_out_button.h
 	"../dpgui_button/dpgui_button.h"
 
-1462742049 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui_common/dpgui_taskman/dpgui_taskman.cpp
+1462750494 source:/home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui_common/dpgui_taskman/dpgui_taskman.cpp
 	"dpgui_taskman.h"
+	"../../../dpcore/dptaskmgr/dptaskmgr_readlock.h"
 
-1462741829 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui_common/dpgui_taskman/dpgui_taskman.h
+1462750394 /home/richard/projects/dragonpoop_a/dragonpoop_a/dp/dpgfx/dpgui_common/dpgui_taskman/dpgui_taskman.h
 	"../dpgui_window/dpgui_window.h"
 

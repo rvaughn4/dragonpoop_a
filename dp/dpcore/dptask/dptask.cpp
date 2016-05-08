@@ -402,6 +402,12 @@ namespace dp
         s->assign( this->cname );
     }
 
+    //get task mananger
+    dptaskmgr_readlock *dptask::getTaskMgr( dpshared_guard *g, unsigned int to_ms )
+    {
+        return (dptaskmgr_readlock *)dpshared_guard_tryReadLock_timeout( (*g), this->runmgr, to_ms );
+    }
+
 }
 
 

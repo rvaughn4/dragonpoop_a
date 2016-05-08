@@ -15,13 +15,14 @@ namespace dp
 
     private:
 
+        uint64_t t;
 
     protected:
 
         //override to handle gui start
-       // virtual bool onGuiStart( dpgui_writelock *tl );
+        virtual bool onGuiStart( dpgui_writelock *tl );
         //override to handle gui ran
-        //virtual bool onGuiRun( dpgui_writelock *tl );
+        virtual bool onGuiRun( dpgui_writelock *tl );
 
     public:
 

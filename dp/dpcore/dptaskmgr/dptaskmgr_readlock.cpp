@@ -22,6 +22,12 @@ namespace dp
 
     }
 
+    //get task manager summary text listing all threads and tasks
+    void dptaskmgr_readlock::getSummary( std::string *s )
+    {
+        this->p->getSummary( s );
+    }
+
 }
 
 

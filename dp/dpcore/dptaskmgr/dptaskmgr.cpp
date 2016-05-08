@@ -13,6 +13,7 @@ manages threads and tasks
 #include "../dpthread/dpthread_readlock.h"
 
 #include <iostream>
+#include <sstream>
 #include <list>
 
 namespace dp
@@ -32,10 +33,7 @@ namespace dp
             thread_cnt--;
         }
 
-       // this->wtsk = new dpwindow_task( new dpwindow_factory() );
-
         this->addStaticTask( this, 1 );
-        //this->addStaticTask( this->wtsk, 1 );
     }
 
     //dtor
@@ -43,7 +41,6 @@ namespace dp
     {
         this->_deleteThreads( &this->threads );
         this->waitForStop();
-       // delete this->wtsk;
     }
 
     //generate readlock
@@ -261,6 +258,25 @@ namespace dp
         return r;
     }
 
+    //get task manager summary text listing all threads and tasks
+    void dptaskmgr::getSummary( std::string *s )
+    {
+        dptaskmgr_dpthread *p;
+        unsigned int i;
+
+        for( i = 0; i < dptaskmgr_max_threads; i++ )
+        {
+            p = &this->threads.threads[ i ];
+
+            if( !p->thd )
+                continue;
+
+            std::stringstream ss;
+
+            ss << "Thread #" << i << " " << p->percent_used << "%\r\n";
+            s->append( ss.str() );
+        }
+    }
 
 }
 

@@ -30,8 +30,7 @@
 #include <string.h>
 
 #if defined dprender_gui_input_debug
-//#include <iostream>
-#undef dprender_gui_input_debug
+#include <iostream>
 #endif // defined
 
 namespace dp

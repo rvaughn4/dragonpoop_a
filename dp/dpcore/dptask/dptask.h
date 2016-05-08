@@ -26,6 +26,7 @@ namespace dp
     class dptaskmgr_ref;
     class dpthread_writelock;
     class dptaskmgr_writelock;
+    class dptaskmgr_readlock;
     class dptask_ref;
     class dptask_writelock;
     class dptask_readlock;
@@ -121,6 +122,8 @@ namespace dp
         bool addDynamicTask( dptask_readlock *t );
         //add a dynamic task to task list
         bool addDynamicTask( dptask_writelock *t );
+        //get task mananger
+        dptaskmgr_readlock *getTaskMgr( dpshared_guard *g, unsigned int to_ms );
 
     public:
 

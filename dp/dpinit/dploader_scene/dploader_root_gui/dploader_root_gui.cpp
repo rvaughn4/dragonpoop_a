@@ -62,8 +62,8 @@ namespace dp
         if( !this->dpgui_window::onGuiStart( tl ) )
             return 0;
 
-        //g = new dpgui_taskman();
-      //  this->addGui( &g, 1 );
+        g = new dpgui_taskman();
+        this->addGui( &g, 1 );
 
         return 1;
     }

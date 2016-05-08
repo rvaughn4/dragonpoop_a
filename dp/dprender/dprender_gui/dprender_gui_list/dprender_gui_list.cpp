@@ -11,6 +11,7 @@
 #include "../dprender_gui/dprender_gui_readlock.h"
 #include "../../../dpgfx/dpgui_list/dpgui_list_readlock.h"
 #include "../../../dpgfx/dpgui/dpgui.h"
+#include "../../../dpgfx/dpgui/dpgui_readlock.h"
 #include "../../dpinput/dpinput.h"
 
 namespace dp
@@ -203,7 +204,9 @@ namespace dp
         dpgui_list_readlock *ll;
         dpgui *g, *glist[ dprender_gui_list_max_gui ];
         unsigned int i, m;
-        dprender_gui * ng;
+        dprender_gui *ng;
+        dpgui_readlock *gl;
+        dpshared_guard o;
 
         this->dpshared::onSync( psync );
 
@@ -224,6 +227,16 @@ namespace dp
             ng = this->findGui( g );
             if( ng )
                 continue;
+
+            gl = (dpgui_readlock *)dpshared_guard_tryReadLock_timeout( o, g, 10 );
+            if( !gl )
+                continue;
+            if( !gl->isRun() )
+            {
+                o.release( gl );
+                continue;
+            }
+            o.release( gl );
 
             ng = new dprender_gui( g );
             if( !ng )

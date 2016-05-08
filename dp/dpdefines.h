@@ -15,6 +15,6 @@
 //#define dptask_debug_run
 //#define dpthread_debug
 //#define dprender_debug
-#define dprender_gui_input_debug
+//#define dprender_gui_input_debug
 
 #endif // dpdefines_h
