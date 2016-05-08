@@ -129,23 +129,6 @@ namespace dp
         dpbitmap_position dp;
         dpbitmap_color clr;
         int tm;
-        unsigned int c;
-
-        if( dest_bmp )
-        {
-            if( offset == this->cursor || ( offset >= this->select_start && offset < this->select_end ) )
-            {
-                c = offset;
-                if( this->cursor > c )
-                    c = this->cursor;
-                if( this->select_end > c )
-                    c = this->select_end;
-                if( this->select_start > c )
-                    c = this->select_start;
-                c++;
-                this->drawCharacter( (unsigned char)*"_", pos_in, 0, dest_bmp, c );
-            }
-        }
 
         if( !this->lb_loaded || !this->fc_loaded )
             return 0;
@@ -176,9 +159,10 @@ namespace dp
 
         if( rect_sz_out )
         {
+            rect_sz_out->x = pos_in->x;
+            rect_sz_out->y = pos_in->y;
             rect_sz_out->w = bm->getWidth();
-            rect_sz_out->h = bm->getHeight();
-            rect_sz_out->p = *pos_in;
+            rect_sz_out->h = this->sz;
         }
 
         delete bm;
@@ -188,13 +172,17 @@ namespace dp
     //draw line, return count of characters in line including line breaks and filters, 0 is failure
     unsigned int dpfont::drawLine( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap *dest_bmp, unsigned int *lw, unsigned int *lh, dpbitmap_rectangle *char_locs, unsigned int max_locs, unsigned int offset )
     {
-        unsigned int i, len_rem, r, last_sp, last_sp_w, tab_loc;
+        unsigned int i, len_rem, r, last_sp, last_sp_w, tab_loc, io;
         dpbitmap_position ip;
         char *c;
-        dpbitmap_rectangle ir;
+        dpbitmap_rectangle ir, sqrc;
+        dpbitmap_color sqclr;
 
         if( !rect_in )
             return 0;
+
+        sqclr = this->clr;
+        sqclr.a *= 0.4f;
 
         ip = rect_in->p;
         last_sp = 0;
@@ -206,15 +194,32 @@ namespace dp
             len_rem = len - i;
             if( lw )
                 *lw = ir.x;
+            io = i + offset;
+
+            if( c[ 0 ] == 0 )
+                return len;
 
             r = this->runFilters( c, len_rem, &ip, dest_bmp );
             if( r )
             {
+                io = i;
                 i += r;
+                ir.w = ir.h = 0;
+                for( ; io < i && io < len_rem; io++ )
+                    char_locs[ io ] = ir;
                 continue;
             }
             if( c[ 0 ] == *"\t" )
             {
+                sqrc.x = ip.x;
+                sqrc.y = ip.y;
+                sqrc.w = tab_loc - ip.x;
+                sqrc.h = this->sz;
+
+                if( dest_bmp && ( io == this->cursor || ( io >= this->select_start && io < this->select_end ) ) )
+                    dest_bmp->fill( &sqclr, &sqrc );
+
+                char_locs[ i ] = sqrc;
                 last_sp = i;
                 last_sp_w = ip.x;
                 ip.x += tab_loc;
@@ -223,24 +228,38 @@ namespace dp
             }
             if( c[ 0 ] == 32 )
             {
+                sqrc.x = ip.x;
+                sqrc.y = ip.y;
+                sqrc.w = this->sz / 4;
+                sqrc.h = this->sz;
+
+                if( dest_bmp && ( io == this->cursor || ( io >= this->select_start && io < this->select_end ) ) )
+                    dest_bmp->fill( &sqclr, &sqrc );
+
+                char_locs[ i ] = sqrc;
                 if( i > 0 )
                 {
                     last_sp = i;
                     last_sp_w = ip.x;
                     ip.x += this->sz / 4;
                 }
+
                 continue;
             }
             if( c[ 0 ] == *"\r" )
             {
                 ip.x = 0;
                 tab_loc = 100;
+                char_locs[ i ] = ir;
                 continue;
             }
             if( c[ 0 ] == *"\n" )
+            {
+                char_locs[ i ] = ir;
                 return i + 1;
+            }
 
-            if( !this->drawCharacter( (unsigned char)*c, &ip, &ir, 0, i + offset ) )
+            if( !this->drawCharacter( (unsigned char)*c, &ip, &ir, 0, io ) )
                 return 0;
             if( ir.w + ir.x > rect_in->w + rect_in->x )
             {
@@ -254,7 +273,16 @@ namespace dp
                 return i;
             }
 
-            if( !this->drawCharacter( (unsigned char)*c, &ip, &ir, dest_bmp, i + offset ) )
+            if( dest_bmp && ( io == this->cursor || ( io >= this->select_start && io < this->select_end ) ) )
+            {
+                sqrc.x = ip.x;
+                sqrc.y = ip.y;
+                sqrc.w = ir.w;
+                sqrc.h = ir.h;
+                dest_bmp->fill( &sqclr, &sqrc );
+            }
+
+            if( !this->drawCharacter( (unsigned char)*c, &ip, &ir, dest_bmp, io ) )
                 return 0;
             if( lh && ir.h > *lh )
                 *lh = ir.h;

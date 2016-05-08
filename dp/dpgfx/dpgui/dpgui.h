@@ -26,7 +26,7 @@ namespace dp
     #define dpgui_alignment_center 1
     #define dpgui_alignment_right 2
 
-    #define dpgui_max_locs 512
+    #define dpgui_max_locs 4096
 
     class dpgui : public dpgui_list
     {
@@ -36,17 +36,17 @@ namespace dp
         dpbitmap_rectangle rc;
         dpbitmap_32bit_uncompressed *bm_bg, *bm_fg;
         bool bBgDrawn, bFgDrawn;
-        unsigned int z, bg_time, fg_time, sz_time, align;
-        std::string stxt;
+        unsigned int z, bg_time, fg_time, sz_time, align, sz;
         uint64_t t_input;
         dpinput *inp;
         dpxyzw rot, spin;
-        bool bIsCentered, bIsFloating, bFollowCursor, bGrows, bMin, bBorderInvert, bRedrawOnResize, bFillHoriz;
+        bool bIsCentered, bIsFloating, bFollowCursor, bGrows, bMin, bBorderInvert, bRedrawOnResize, bFillHoriz, bShiftDown;
         dpbitmap_color bg_clr, fnt_clr;
         unsigned int fnt_sz, border_sz, cursor, select_start, select_end;
         float zoom;
 
         dpbitmap_rectangle char_locs[ dpgui_max_locs ];
+        char ctxt[ dpgui_max_locs ];
 
         //run input
         void runInput( void );
@@ -193,6 +193,12 @@ namespace dp
         void moveCursorDown( void );
         //move cursor up
         void moveCursorUp( void );
+        //delete text at cursor or selection, implemented as insert empty string
+        void deleteAtCursor( void );
+        //insert text at cursor or selection, clears selection and puts cursor at end
+        void insertText( const char *c );
+        //backspace, implemented as move cursor left one then call delete
+        void backspace( void );
 
     public:
 

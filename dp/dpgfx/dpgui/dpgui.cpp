@@ -62,8 +62,8 @@ namespace dp
         this->fnt_clr.a = 1.0f;
 
         this->cursor = 0;
-        this->select_start = 3;
-        this->select_end = 10;
+        this->select_start = 0;
+        this->select_end = 0;
     }
 
     //dtor
@@ -247,7 +247,7 @@ namespace dp
         fnt.setCursor( this->cursor );
         fnt.setSelection( this->select_start, this->select_end );
 
-        fnt.drawString( &this->stxt, &rc, 0, bm, this->char_locs, dpgui_max_locs );
+        fnt.drawString( this->ctxt, dpgui_max_locs, &rc, 0, bm, this->char_locs, dpgui_max_locs );
     }
 
     //override to handle gui ran
@@ -358,14 +358,20 @@ namespace dp
     //set text
     void dpgui::setText( const char *ctxt )
     {
-        this->stxt.assign( ctxt );
+        std::string s;
+
+        s.assign( ctxt );
+        memset( this->ctxt, 0, dpgui_max_locs );
+        s.copy( this->ctxt, dpgui_max_locs );
+        this->sz = s.length();
+
         this->redrawFg();
     }
 
     //get text
     void dpgui::getText( std::string *s )
     {
-        s->assign( this->stxt );
+        s->assign( this->ctxt );
     }
 
     //return bg time
@@ -434,7 +440,12 @@ namespace dp
     //override to handle key press down
     void dpgui::onKeyDown( dpinput_event_keypress *e )
     {
+        std::string s;
 
+        s.assign( e->keyName );
+
+        if( s.compare( "Shift" ) == 0 )
+            this->bShiftDown = 1;
     }
 
     //override to handle key press up
@@ -444,6 +455,8 @@ namespace dp
 
         s.assign( e->keyName );
 
+        if( s.compare( "Shift" ) == 0 )
+            this->bShiftDown = 0;
         if( s.compare( "Left" ) == 0 )
         {
             this->moveCursorLeft();
@@ -452,6 +465,26 @@ namespace dp
         if( s.compare( "Right" ) == 0 )
         {
             this->moveCursorRight();
+            this->redrawFg();
+        }
+        if( s.compare( "Up" ) == 0 )
+        {
+            this->moveCursorUp();
+            this->redrawFg();
+        }
+        if( s.compare( "Down" ) == 0 )
+        {
+            this->moveCursorDown();
+            this->redrawFg();
+        }
+        if( s.compare( "Delete" ) == 0 )
+        {
+            this->deleteAtCursor();
+            this->redrawFg();
+        }
+        if( s.compare( "Backspace" ) == 0 )
+        {
+            this->backspace();
             this->redrawFg();
         }
     }
@@ -632,7 +665,7 @@ namespace dp
         unsigned int i, r;
         dpbitmap_rectangle *p;
 
-        r = this->stxt.length();
+        r = dpgui_max_locs;
         for( i = 0; i < dpgui_max_locs; i++ )
         {
             p = &this->char_locs[ i ];
@@ -650,13 +683,38 @@ namespace dp
     //set cursor
     void dpgui::setCursor( unsigned int c )
     {
-        unsigned int m;
+        unsigned int m, i, j;
+        dpbitmap_rectangle *r;
 
-        m = this->stxt.length();
+        m = this->sz;
+        if( m >= dpgui_max_locs )
+            m = dpgui_max_locs - 1;
         if( c >= m )
             c = m;
 
-        this->cursor = c;
+        j = i = 0;
+        if( c > 50 )
+            i = c - 50;
+
+        for( ; i <= c; i++ )
+        {
+            r = &this->char_locs[ i ];
+            if( r->w == 0 )
+                continue;
+            j = i;
+        }
+
+        this->cursor = j;
+
+        if( !this->bShiftDown )
+            this->select_start = this->select_end = this->cursor;
+        else
+        {
+            if( this->cursor < this->select_start )
+                this->select_start = this->cursor;
+            if( this->cursor > this->select_end )
+                this->select_end = this->cursor;
+        }
     }
 
     //move cursor left
@@ -674,24 +732,113 @@ namespace dp
     //move cursor right
     void dpgui::moveCursorRight( void )
     {
-        unsigned int c;
+        unsigned int m, i, j, c;
+        dpbitmap_rectangle *r;
 
-        c = this->cursor;
-        c++;
+        m = this->sz;
+        if( m >= dpgui_max_locs )
+            m = dpgui_max_locs - 1;
+        if( c > m )
+            c = m;
 
-        this->setCursor( c );
+        c = this->cursor + 1;
+        j = c + 50;
+        if( j > m )
+            j = m;
+        if( j >= dpgui_max_locs )
+            j = dpgui_max_locs - 1;
+
+        for( i = j; i >= c; i-- )
+        {
+            r = &this->char_locs[ i ];
+            if( r->w == 0 )
+                continue;
+            m = i;
+        }
+
+        this->setCursor( m );
     }
 
     //move cursor down
     void dpgui::moveCursorDown( void )
     {
+        int x, y;
+        dpbitmap_rectangle *p;
 
+        if( this->cursor >= dpgui_max_locs )
+            return;
+
+        p = &this->char_locs[ this->cursor ];
+        x = p->x;
+        y = p->y + p->h + 3;
+
+        this->setCursor( this->findLoc( x, y ) );
     }
 
     //move cursor up
     void dpgui::moveCursorUp( void )
     {
+        int x, y;
+        dpbitmap_rectangle *p;
 
+        if( this->cursor >= dpgui_max_locs )
+            return;
+
+        p = &this->char_locs[ this->cursor ];
+        x = p->x;
+        y = p->y - p->h + 3;
+
+        this->setCursor( this->findLoc( x, y ) );
+    }
+
+    //delete text at cursor or selection, implemented as insert empty string
+    void dpgui::deleteAtCursor( void )
+    {
+        if( this->select_start >= this->select_end )
+        {
+            this->select_start = this->cursor;
+            this->select_end = this->cursor + 1;
+        }
+
+        this->insertText( "" );
+    }
+
+    //insert text at cursor or selection, clears selection and puts cursor at end
+    void dpgui::insertText( const char *c )
+    {
+        std::string so, sc;
+
+        so.assign( this->ctxt );
+        sc.assign( c );
+
+        if( (int)this->cursor >= (int)so.length() )
+            this->cursor = so.length();
+
+        if( (int)this->select_end > (int)so.length() )
+            this->select_end = so.length();
+        if( this->select_start > this->select_end )
+            this->select_start = this->select_end;
+
+        if( this->select_start < this->select_end )
+        {
+            so.erase( this->select_start, this->select_end - this->select_start );
+            this->cursor = this->select_end = this->select_start;
+            if( (int)this->cursor >= (int)so.length() )
+                this->cursor = so.length();
+        }
+
+        so.insert( this->cursor, sc );
+        this->cursor += sc.length();
+
+        this->setText( so.c_str() );
+    }
+
+    //backspace, implemented as move cursor left one then call delete
+    void dpgui::backspace( void )
+    {
+        if( this->select_start >= this->select_end && this->cursor > 0 )
+            this->cursor -= 1;
+        this->deleteAtCursor();
     }
 
 }
