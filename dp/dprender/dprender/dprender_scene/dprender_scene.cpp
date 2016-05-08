@@ -29,7 +29,7 @@ namespace dp
 {
 
     //ctor
-    dprender_scene::dprender_scene( dpscene *scn, dpapi *api, dprender *r ) : dptask( "Render Scene", 500 )
+    dprender_scene::dprender_scene( dpscene *scn, dpapi *api, dprender *r ) : dptask( "Render Scene", dp_rendertask_sleeptime )
     {
         this->apir = (dpapi_ref *)this->g.getRef( api );
         this->rr = (dprender_ref *)this->g.getRef( r );

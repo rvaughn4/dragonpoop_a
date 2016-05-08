@@ -27,6 +27,13 @@
 #include "../../dpinput/dpinput.h"
 #include "../../dpinput/dpinput_writelock.h"
 
+#include <string.h>
+
+#if defined dprender_gui_input_debug
+//#include <iostream>
+#undef dprender_gui_input_debug
+#endif // defined
+
 namespace dp
 {
 
@@ -41,17 +48,9 @@ namespace dp
         this->ib_bg = this->ib_fg = 0;
         this->bdle_bg = 0;
         this->bdle_fg = 0;
-        this->z = pg->getZ();
-        this->bIsMouseOver = 0;
-        this->t_spin = this->getTicks();
-        this->bMin = 0;
-        this->fMin = 0;
 
-        this->min_pos.x = 0;
-        this->min_pos.y = 0;
-        this->bIsDrag = 0;
-        this->bFocus = 0;
-        this->bHide = 0;
+        memset( &this->attr, 0, sizeof( this->attr ) );
+        this->t_spin = this->getTicks();
 
         this->inp = 0;
     }
@@ -101,44 +100,10 @@ namespace dp
         return new dprender_gui_ref( this, k, t_sync );
     }
 
-    //set dimensions
-    void dprender_gui::setDimensions( unsigned int w, unsigned int h )
-    {
-        this->rc.w = w;
-        this->rc.h = h;
-    }
-
-    //set position
-    void dprender_gui::setPosition( int x, int y )
-    {
-        this->rc.x = x;
-        this->rc.y = y;
-    }
-
-    //get dimensions
-    void dprender_gui::getDimensions( unsigned int *w, unsigned int *h )
-    {
-        *w = this->rc.w;
-        *h = this->rc.h;
-    }
-
-    //get position
-    void dprender_gui::getPosition( int *x, int *y )
-    {
-        *x = this->rc.x;
-        *y = this->rc.y;
-    }
-
     //return z
     unsigned int dprender_gui::getZ( void )
     {
-        return this->z;
-    }
-
-    //set z
-    void dprender_gui::setZ( unsigned int z )
-    {
-        this->z = z;
+        return this->attr.g.z;
     }
 
     //override to handle sync copy, be sure to call base class first!
@@ -151,26 +116,7 @@ namespace dp
         if( !psync->isSyncType( "dpgui" ) )
             return;
         gr = (dpgui_readlock *)psync;
-
-        gr->getDimensions( &this->rc.w, &this->rc.h );
-        gr->getPosition( &this->rc.x, &this->rc.y );
-        this->z = gr->getZ();
-
-        this->bIsCentered = gr->isCentered();
-        this->bIsFloating = gr->isFloating();
-        this->bFollowCursor = gr->isFollowingCursor();
-        this->bGrows = gr->doesGrow();
-        this->bMin = gr->isMinimized();
-        this->align = gr->getAlignment();
-        this->zoom = gr->getZoom();
-        this->bHorizFill = gr->isHorizFill();
-        this->bIsInput = gr->isInput();
-        this->bIsSelect = gr->isSelect();
-
-        gr->getRotation( &this->rot );
-        gr->getSpin( &this->rot );
-        this->scroll.x = 0;
-        this->scroll.y = 0;
+        gr->getAttributes( &this->attr.g );
 
         this->makeVB( this->ctx, gr );
         this->makeBgIB( this->ctx );
@@ -234,13 +180,13 @@ namespace dp
             return;
         this->calcMatrix( m_world, rc_world, m_parent, rc_parent );
 
-        if( this->bHide )
+        if( this->attr.bHide )
             return;
 
         cll->addBundle( ctx, &this->sz_mat, this->bdle_bg );
         cll->addBundle( ctx, &this->sz_mat, this->bdle_fg );
 
-        this->dprender_gui_list::render( wl, m_world, rc_world, &this->mat, &this->rc_exact, ctx, cll );
+        this->dprender_gui_list::render( wl, m_world, rc_world, &this->mat, &this->attr.rc_exact, ctx, cll );
     }
 
     //process input event
@@ -249,25 +195,52 @@ namespace dp
         dpgui_writelock *gl;
         dpshared_guard g;
         dpinput_event ce;
+        dpgui_attribs a;
 
-        if( this->bHide )
+        if( this->attr.bHide )
             return 0;
 
-        if( !this->bMin || !this->bIsFloating )
+        if( !this->attr.g.bIsMin || !this->attr.g.bIsFloat )
         {
             switch( e->h.etype )
             {
                 case dpinput_event_type_leftclick:
+                    this->attr.bIsFocus = 0;
+                    if( this->dprender_gui_list::processEvent( l, e ) )
+                    {
+                        #if defined dprender_gui_input_debug
+                        std::cout << "passed on left click to child " << e->mse.x << " " << e->mse.y << "\r\n";
+                        #endif // defined
+                        return 1;
+                    }
+                    break;
                 case dpinput_event_type_rightclick:
-                    this->bFocus = 0;
+                    this->attr.bIsFocus = 0;
+                    if( this->dprender_gui_list::processEvent( l, e ) )
+                    {
+                        #if defined dprender_gui_input_debug
+                        std::cout << "passed on right click to child " << e->mse.x << " " << e->mse.y << "\r\n";
+                        #endif // defined
+                        return 1;
+                    }
+                    break;
                 case dpinput_event_type_mouse:
                     if( this->dprender_gui_list::processEvent( l, e ) )
+                    {
+                        #if defined dprender_gui_input_debug
+                        std::cout << "passed on mouse move to child " << e->mse.x << " " << e->mse.y << "\r\n";
+                        #endif // defined
                         return 1;
+                    }
                     break;
                 default:
-                    if( !this->bFocus && this->dprender_gui_list::processEvent( l, e ) )
+                    if( !this->attr.bIsFocus && this->dprender_gui_list::processEvent( l, e ) )
+                    {
+                        #if defined dprender_gui_input_debug
+                        std::cout << "passed on other event to child\r\n";
+                        #endif // defined
                         return 1;
-
+                    }
             }
         }
 
@@ -275,7 +248,7 @@ namespace dp
         {
             case dpinput_event_type_leftclick:
             case dpinput_event_type_rightclick:
-                this->bFocus = 0;
+                this->attr.bIsFocus = 0;
 
             case dpinput_event_type_mouse:
 
@@ -284,121 +257,128 @@ namespace dp
 
                 e->mse.x = ( e->mse.x / e->mse.w ) * 2.0f - 1.0f;
                 e->mse.y = -( ( e->mse.y / e->mse.h ) * 2.0f - 1.0f );
-                this->mousepos.x = e->mse.sx;
-                this->mousepos.y = e->mse.sy;
+                this->attr.mousepos.x = e->mse.sx;
+                this->attr.mousepos.y = e->mse.sy;
 
                 this->undo_mat.transform( &e->mse.x, &e->mse.y, 0, 0 );
 
-                this->bIsMouseOver = 0;
-                this->bIsMouseDown = e->mse.isDown;
-                if( !this->bIsDrag || !this->bIsFloating )
+                this->attr.bIsMouseOver = 0;
+                this->attr.bIsMouseDown = e->mse.isDown;
+                if( !this->attr.bIsDrag || !this->attr.g.bIsFloat )
                 {
-                    if( e->mse.x < 0 || e->mse.y < 0 || e->mse.x > this->rc.w || e->mse.y > this->rc.h )
+                    if( e->mse.x < 0 || e->mse.y < 0 || e->mse.x > this->attr.g.rc.w || e->mse.y > this->attr.g.rc.h )
                         return 0;
                 }
-                this->bIsMouseOver = 1;
+                this->attr.bIsMouseOver = 1;
+                #if defined dprender_gui_input_debug
+                std::cout << "caught mouse " << e->mse.x << " " << e->mse.y << "\r\n";
+                #endif // defined
 
                 switch( e->h.etype )
                 {
                     case dpinput_event_type_leftclick:
                     case dpinput_event_type_rightclick:
-                        this->bFocus = 1;
+                        this->attr.bIsFocus = 1;
                         break;
                 }
 
-                if( !this->bIsDrag && e->mse.isDown && !e->mse.isRight && this->bIsFloating )
+                if( !this->attr.bIsDrag && e->mse.isDown && !e->mse.isRight && this->attr.g.bIsFloat )
                 {
-                    this->bIsDrag = 1;
-                    this->drag_start.x = e->mse.sx;
-                    this->drag_start.y = e->mse.sy;
-                    this->bIsSize = 0;
+                    this->attr.bIsDrag = 1;
+                    this->attr.drag_start.x = e->mse.sx;
+                    this->attr.drag_start.y = e->mse.sy;
+                    this->attr.bIsSize = 0;
 
-                    if( !this->bMin )
+                    if( !this->attr.g.bIsMin )
                     {
-                        if( e->mse.x > this->rc_exact.w - 50 )
-                            this->bIsSize = 1;
-                        if( e->mse.y > this->rc_exact.h - 50 )
-                            this->bIsSize = 1;
+                        if( e->mse.x > this->attr.rc_exact.w - 50 )
+                            this->attr.bIsSize = 1;
+                        if( e->mse.y > this->attr.rc_exact.h - 50 )
+                            this->attr.bIsSize = 1;
                     }
                 }
-                if( this->bIsDrag && !e->mse.isDown )
+                if( this->attr.bIsDrag && !e->mse.isDown )
                 {
-                    this->bIsDrag = 0;
-                    if( this->bMin )
+                    this->attr.bIsDrag = 0;
+                    if( this->attr.g.bIsMin )
                     {
-                        if( abs( this->drag_off.x ) + abs( this->drag_off.y ) < 0.1f )
+                        if( abs( this->attr.drag_off.x ) + abs( this->attr.drag_off.y ) < 0.1f )
                         {
-                            this->bMin = 0;
+                            this->attr.g.bIsMin = 0;
                             gl = (dpgui_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->pgui, 100 );
                             if( gl )
                             {
-                                gl->setMinimized( 0 );
+                                gl->getAttributes( &a );
+                                a.bIsMin = 0;
+                                gl->setAttributes( &a );
                                 gl->update();
                             }
                             g.release( gl );
                         }
                         else
                         {
-                            this->min_pos.x += this->drag_off.x;
-                            this->min_pos.y += this->drag_off.y;
-                            if( this->min_pos.x < 0 )
-                                this->min_pos.x = 0;
-                            if( this->min_pos.x > e->mse.sw - 50 )
-                                this->min_pos.x = e->mse.sw - 50;
-                            if( this->min_pos.y < 0 )
-                                this->min_pos.y = 0;
-                            if( this->min_pos.y > e->mse.sh - 50 )
-                                this->min_pos.y = e->mse.sh - 50;
+                            this->attr.min_pos.x += this->attr.drag_off.x;
+                            this->attr.min_pos.y += this->attr.drag_off.y;
+                            if( this->attr.min_pos.x < 0 )
+                                this->attr.min_pos.x = 0;
+                            if( this->attr.min_pos.x > e->mse.sw - 50 )
+                                this->attr.min_pos.x = e->mse.sw - 50;
+                            if( this->attr.min_pos.y < 0 )
+                                this->attr.min_pos.y = 0;
+                            if( this->attr.min_pos.y > e->mse.sh - 50 )
+                                this->attr.min_pos.y = e->mse.sh - 50;
                         }
                     }
                     else
                     {
-                        if( this->bIsSize )
+                        if( this->attr.bIsSize )
                         {
-                            this->rc.w += this->drag_off.x;
-                            this->rc.h += this->drag_off.y;
-                            if( this->rc.w < 50 )
-                                this->rc.w = 50;
-                            if( this->rc.h < 50 )
-                                this->rc.h = 50;
+                            this->attr.g.rc.w += this->attr.drag_off.x;
+                            this->attr.g.rc.h += this->attr.drag_off.y;
+                            if( this->attr.g.rc.w < 50 )
+                                this->attr.g.rc.w = 50;
+                            if( this->attr.g.rc.h < 50 )
+                                this->attr.g.rc.h = 50;
                         }
                         else
                         {
-                            this->rc.x += this->drag_off.x;
-                            this->rc.y += this->drag_off.y;
-                            if( this->rc.x < 0 )
-                                this->rc.x = 0;
-                            if( this->rc.x > e->mse.sw - this->rc.w )
-                                this->rc.x = e->mse.sw - this->rc.w;
-                            if( this->rc.y < 0 )
-                                this->rc.y = 0;
-                            if( this->rc.y > e->mse.sh - this->rc.h )
-                                this->rc.y = e->mse.sh - this->rc.h;
+                            this->attr.g.rc.x += this->attr.drag_off.x;
+                            this->attr.g.rc.y += this->attr.drag_off.y;
+                            if( this->attr.g.rc.x < 0 )
+                                this->attr.g.rc.x = 0;
+                            if( this->attr.g.rc.x > e->mse.sw - this->attr.g.rc.w )
+                                this->attr.g.rc.x = e->mse.sw - this->attr.g.rc.w;
+                            if( this->attr.g.rc.y < 0 )
+                                this->attr.g.rc.y = 0;
+                            if( this->attr.g.rc.y > e->mse.sh - this->attr.g.rc.h )
+                                this->attr.g.rc.y = e->mse.sh - this->attr.g.rc.h;
                         }
 
                         gl = (dpgui_writelock *)dpshared_guard_tryWriteLock_timeout( g, this->pgui, 100 );
                         if( gl )
                         {
-                            if( this->bIsSize )
-                                gl->setDimensions( this->rc.w, this->rc.h );
-                            else
-                                gl->setPosition( this->rc.x, this->rc.y );
+                            gl->getAttributes( &a );
+                            a.rc = this->attr.g.rc;
+                            gl->setAttributes( &a );
                             gl->update();
                         }
                         g.release( gl );
                     }
                 }
-                if( this->bIsDrag )
+                if( this->attr.bIsDrag )
                 {
-                    this->drag_off.x = e->mse.sx - this->drag_start.x;
-                    this->drag_off.y = e->mse.sy - this->drag_start.y;
+                    this->attr.drag_off.x = e->mse.sx - this->attr.drag_start.x;
+                    this->attr.drag_off.y = e->mse.sy - this->attr.drag_start.y;
                 }
 
                 break;
             case dpinput_event_type_keypress:
             case dpinput_event_type_text:
-                if( this->bMin || ( !this->bIsInput && !this->bIsSelect ) )
+                if( this->attr.g.bIsMin || ( !this->attr.g.bIsInput && !this->attr.g.bIsSelect ) )
                     return 0;
+                #if defined dprender_gui_input_debug
+                std::cout << "caught other event\r\n";
+                #endif // defined
                 break;
         }
 
@@ -436,43 +416,45 @@ namespace dp
         this->t_last_ftime = t;
         anim_s = (float)d / 30.0f;
 
-        if( this->bHorizFill )
+        if( this->attr.g.bFillHor )
         {
-            this->rc.x = 0;
-            this->rc.w = rc_parent->w;
-            this->align = dpgui_alignment_left;
+            this->attr.g.rc.x = 0;
+            this->attr.g.rc.w = rc_parent->w;
+            this->attr.g.align = dpgui_alignment_left;
         }
 
-        switch( this->align )
+        switch( this->attr.g.align )
         {
             case dpgui_alignment_right:
-                pos.x = rc_parent->w - this->rc.x - this->rc.w;
-                pos.y = this->rc.y;
+                pos.x = rc_parent->w - this->attr.g.rc.x - this->attr.g.rc.w;
+                pos.y = this->attr.g.rc.y;
                 break;
 
             case dpgui_alignment_center:
-                pos.x = ( rc_parent->w - this->rc.w ) / 2 + this->rc.x;
-                pos.y = ( rc_parent->h - this->rc.h ) / 2 + this->rc.y;
+                pos.x = ( rc_parent->w - this->attr.g.rc.w ) / 2 + this->attr.g.rc.x;
+                pos.y = ( rc_parent->h - this->attr.g.rc.h ) / 2 + this->attr.g.rc.y;
                 break;
 
             case dpgui_alignment_left:
 
             default:
-                pos.x = this->rc.x;
-                pos.y = this->rc.y;
+                pos.x = this->attr.g.rc.x;
+                pos.y = this->attr.g.rc.y;
                 break;
         }
 
         pos.x += rc_parent->x;
         pos.y += rc_parent->y;
-        pos.z = 16.0f + (float)this->z / -8.0f;
+        pos.z = 16.0f + (float)this->attr.g.z / -8.0f;
         if( pos.z < 0.01f )
             pos.z = 0.01f;
-        sz.x = this->rc.w * this->zoom;
-        sz.y = this->rc.h * this->zoom;
+
+        this->attr.zoom += ( this->attr.g.zoom - this->attr.zoom ) * 0.5f * anim_s;
+        sz.x = this->attr.g.rc.w * this->attr.zoom;
+        sz.y = this->attr.g.rc.h * this->attr.zoom;
         sz.z = 0;
 
-        if( this->bIsMouseOver && !this->bIsMouseDown && this->bGrows )
+        if( this->attr.bIsMouseOver && !this->attr.bIsMouseDown && this->attr.g.bGrows )
         {
             ft = 30.0f * 10.0f;
             if( sz.x < ft )
@@ -480,66 +462,66 @@ namespace dp
             if( sz.y < ft )
                 ft = sz.y;
             ft = ft / 10.0f;
-            this->fhover += ( ft - this->fhover ) * 0.4f * anim_s;
+            this->attr.fhover += ( ft - this->attr.fhover ) * 0.4f * anim_s;
         }
         else
-            this->fhover += ( 0.0f - this->fhover ) * 0.4f * anim_s;
+            this->attr.fhover += ( 0.0f - this->attr.fhover ) * 0.4f * anim_s;
 
-        if( this->bMin )
-            this->fMin += ( 1.0f - this->fMin ) * 0.4f * anim_s;
+        if( this->attr.g.bIsMin )
+            this->attr.fMin += ( 1.0f - this->attr.fMin ) * 0.4f * anim_s;
         else
-            this->fMin += ( 0.0f - this->fMin ) * 0.4f * anim_s;
+            this->attr.fMin += ( 0.0f - this->attr.fMin ) * 0.4f * anim_s;
 
-        if( this->bIsFloating || this->bFollowCursor )
+        if( this->attr.g.bIsFloat || this->attr.g.bIsFollow )
         {
             m_parent = m_world;
             rc_parent = rc_world;
         }
 
-        if( this->bFollowCursor )
+        if( this->attr.g.bIsFollow )
         {
-            pos.x = this->mousepos.x;
-            pos.y = this->mousepos.y;
+            pos.x = this->attr.mousepos.x;
+            pos.y = this->attr.mousepos.y;
         }
-        if( this->bIsCentered && !this->bFollowCursor )
+        if( this->attr.g.bIsCenter && !this->attr.g.bIsFollow )
         {
             pos.x = ( rc_parent->w - sz.x ) * 0.5f;
             pos.y = ( rc_parent->h - sz.y ) * 0.5f;
         }
 
-        this->bHide = 0;
+        this->attr.bHide = 0;
         if( pos.x > rc_parent->w || pos.y > rc_parent->h )
-            this->bHide = 1;
+            this->attr.bHide = 1;
 
-        pos.x = pos.x * ( 1.0f - this->fMin ) + this->min_pos.x * this->fMin;
-        pos.y = pos.y * ( 1.0f - this->fMin ) + this->min_pos.y * this->fMin;
-        msc.x = ( sz.x * ( 1.0f - this->fMin ) + 50.0f * this->fMin ) / sz.x;
-        msc.y = ( sz.y * ( 1.0f - this->fMin ) + 50.0f * this->fMin ) / sz.y;
+        pos.x = pos.x * ( 1.0f - this->attr.fMin ) + this->attr.min_pos.x * this->attr.fMin;
+        pos.y = pos.y * ( 1.0f - this->attr.fMin ) + this->attr.min_pos.y * this->attr.fMin;
+        msc.x = ( sz.x * ( 1.0f - this->attr.fMin ) + 50.0f * this->attr.fMin ) / sz.x;
+        msc.y = ( sz.y * ( 1.0f - this->attr.fMin ) + 50.0f * this->attr.fMin ) / sz.y;
         msc.z = 1.0f;
 
-        if( this->bIsDrag )
+        if( this->attr.bIsDrag )
         {
-            if( this->bIsSize )
+            if( this->attr.bIsSize )
             {
-                sz.x += this->drag_off.x;
-                sz.y += this->drag_off.y;
+                sz.x += this->attr.drag_off.x;
+                sz.y += this->attr.drag_off.y;
             }
             else
             {
-                pos.x += this->drag_off.x;
-                pos.y += this->drag_off.y;
+                pos.x += this->attr.drag_off.x;
+                pos.y += this->attr.drag_off.y;
             }
         }
 
-        pos.x -= this->fhover;
-        pos.y -= this->fhover;
-        sz.x += this->fhover + this->fhover;
-        sz.y += this->fhover + this->fhover;
+        pos.x -= this->attr.fhover;
+        pos.y -= this->attr.fhover;
+        sz.x += this->attr.fhover + this->attr.fhover;
+        sz.y += this->attr.fhover + this->attr.fhover;
 
-        this->rc_exact.x = this->scroll.x;
-        this->rc_exact.y = this->scroll.y;
-        this->rc_exact.w = sz.x;
-        this->rc_exact.h = sz.y;
+        this->attr.rc_exact.x = this->attr.g.scroll.x;
+        this->attr.rc_exact.y = this->attr.g.scroll.y;
+        this->attr.rc_exact.w = sz.x;
+        this->attr.rc_exact.h = sz.y;
 
         if( m_parent )
             this->mat.copy( m_parent );
@@ -549,10 +531,10 @@ namespace dp
         t -= this->t_spin;
         ft = (float)t / 1000.0f;
 
-        rot = this->rot;
-        rot.x += this->spin.x * ft;
-        rot.y += this->spin.y * ft;
-        rot.z += this->spin.z * ft;
+        rot = this->attr.g.rot;
+        rot.x += this->attr.g.spin.x * ft;
+        rot.y += this->attr.g.spin.y * ft;
+        rot.z += this->attr.g.spin.z * ft;
 
         this->mat.translate( pos.x, pos.y, pos.z );
 
@@ -573,8 +555,10 @@ namespace dp
     bool dprender_gui::makeBgTex( dpapi_context_writelock *ctx, dpgui_readlock *g )
     {
         dpbitmap_32bit_uncompressed *bm;
+        dpgui_attribs a;
 
-        if( this->t_bg && g->getBgTime() == this->bg_time )
+        g->getAttributes( &a );
+        if( this->t_bg && a.bg_time == this->attr.bg_time )
             return 0;
 
         bm = g->getBg();
@@ -586,7 +570,7 @@ namespace dp
         this->t_bg_old = this->t_bg;
 
         this->t_bg = ctx->makeTexture( bm );
-        this->bg_time = g->getBgTime();
+        this->attr.bg_time = a.bg_time;
         return 1;
     }
 
@@ -594,8 +578,10 @@ namespace dp
     bool dprender_gui::makeFgTex( dpapi_context_writelock *ctx, dpgui_readlock *g )
     {
         dpbitmap_32bit_uncompressed *bm;
+        dpgui_attribs a;
 
-        if( this->t_fg && g->getFgTime() == this->fg_time )
+        g->getAttributes( &a );
+        if( this->t_fg && a.fg_time == this->attr.fg_time )
             return 0;
 
         bm = g->getFg();
@@ -607,7 +593,7 @@ namespace dp
         this->t_fg_old = this->t_fg;
 
         this->t_fg = ctx->makeTexture( bm );
-        this->fg_time = g->getFgTime();
+        this->attr.fg_time = a.fg_time;
         return 1;
     }
 
@@ -616,16 +602,9 @@ namespace dp
     {
         dpvertexbuffer vb;
         dpvertex v;
-        float w, h;
-
-        if( this->vb )//&& g->getSzTime() == this->sz_time )
-            return 0;
 
         if( this->vb )
-            delete this->vb;
-
-        w = 1.0f;//(float)this->rc.w;
-        h = 1.0f;//(float)this->rc.h;
+            return 0;
 
         v.vert.z = 0;
         v.norm.x = 0;
@@ -641,7 +620,7 @@ namespace dp
         vb.write( &v );
 
         //tr
-        v.vert.x = w;
+        v.vert.x = 1;
         v.vert.y = 0;
         v.texcoord[ 0 ].s = 1;
         v.texcoord[ 0 ].t = 1;
@@ -650,22 +629,21 @@ namespace dp
 
         //bl
         v.vert.x = 0;
-        v.vert.y = h;
+        v.vert.y = 1;
         v.texcoord[ 0 ].s = 0;
         v.texcoord[ 0 ].t = 0;
         v.texcoord[ 1 ] = v.texcoord[ 0 ];
         vb.write( &v );
 
         //br
-        v.vert.x = w;
-        v.vert.y = h;
+        v.vert.x = 1;
+        v.vert.y = 1;
         v.texcoord[ 0 ].s = 1;
         v.texcoord[ 0 ].t = 0;
         v.texcoord[ 1 ] = v.texcoord[ 0 ];
         vb.write( &v );
 
         this->vb = ctx->makeVertexBuffer( &vb );
-        this->sz_time = g->getSzTime();
 
         return 1;
     }

@@ -20,18 +20,6 @@ namespace dp
 
     }
 
-    //get dimensions
-    void dprender_gui_readlock::getDimensions( unsigned int *w, unsigned int *h )
-    {
-        this->p->getDimensions( w, h );
-    }
-
-    //get position
-    void dprender_gui_readlock::getPosition( int *x, int *y )
-    {
-        this->p->getPosition( x, y );
-    }
-
     //return z
     unsigned int dprender_gui_readlock::getZ( void )
     {

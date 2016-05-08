@@ -26,7 +26,7 @@ namespace dp
 {
 
     //ctor
-    dprender_scene_thread::dprender_scene_thread( dpapi_ref *api, dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b ) : dptask( "Renderer scene", 3 )
+    dprender_scene_thread::dprender_scene_thread( dpapi_ref *api, dpapi_context *ctx, dpapi_commandlist *cl_a, dpapi_commandlist *cl_b, std::atomic<bool> *flag_a, std::atomic<bool> *flag_b ) : dptask( "Renderer scene", dp_rendertask_sleeptime )
     {
         this->ctx = ctx;
         this->cl_a = cl_a;

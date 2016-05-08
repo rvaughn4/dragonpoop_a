@@ -33,18 +33,8 @@ namespace dp
 
         //ctor
         dprender_gui_writelock( dprender_gui *p, dpmutex_writelock *ml );
-        //set dimensions
-        void setDimensions( unsigned int w, unsigned int h );
-        //set position
-        void setPosition( int x, int y );
-        //get dimensions
-        void getDimensions( unsigned int *w, unsigned int *h );
-        //get position
-        void getPosition( int *x, int *y );
         //return z
         unsigned int getZ( void );
-        //set z
-        void setZ( unsigned int z );
         //pass in context
         void passContext( dpapi_context_writelock *ctx );
         //render

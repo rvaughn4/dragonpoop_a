@@ -169,6 +169,11 @@ namespace dp
         return 1;
     }
 
+    void dpfont__drawLine__a( dpbitmap_rectangle *r, dpbitmap *bm, dpbitmap_color *c )
+    {
+        bm->fill( c, r );
+    }
+
     //draw line, return count of characters in line including line breaks and filters, 0 is failure
     unsigned int dpfont::drawLine( char *b, unsigned int len, dpbitmap_rectangle *rect_in, dpbitmap *dest_bmp, unsigned int *lw, unsigned int *lh, dpbitmap_rectangle *char_locs, unsigned int max_locs, unsigned int offset )
     {
@@ -213,11 +218,11 @@ namespace dp
             {
                 sqrc.x = ip.x;
                 sqrc.y = ip.y;
-                sqrc.w = tab_loc - ip.x;
+                sqrc.w = ( tab_loc - ip.x );
                 sqrc.h = this->sz;
 
                 if( dest_bmp && ( io == this->cursor || ( io >= this->select_start && io < this->select_end ) ) )
-                    dest_bmp->fill( &sqclr, &sqrc );
+                    dpfont__drawLine__a( &sqrc, dest_bmp, &sqclr );
 
                 char_locs[ i ] = sqrc;
                 last_sp = i;
@@ -230,11 +235,11 @@ namespace dp
             {
                 sqrc.x = ip.x;
                 sqrc.y = ip.y;
-                sqrc.w = this->sz / 4;
+                sqrc.w = ( this->sz / 4 );
                 sqrc.h = this->sz;
 
                 if( dest_bmp && ( io == this->cursor || ( io >= this->select_start && io < this->select_end ) ) )
-                    dest_bmp->fill( &sqclr, &sqrc );
+                    dpfont__drawLine__a( &sqrc, dest_bmp, &sqclr );
 
                 char_locs[ i ] = sqrc;
                 if( i > 0 )
@@ -279,7 +284,7 @@ namespace dp
                 sqrc.y = ip.y;
                 sqrc.w = ir.w;
                 sqrc.h = ir.h;
-                dest_bmp->fill( &sqclr, &sqrc );
+                dpfont__drawLine__a( &sqrc, dest_bmp, &sqclr );
             }
 
             if( !this->drawCharacter( (unsigned char)*c, &ip, &ir, dest_bmp, io ) )
@@ -409,7 +414,6 @@ namespace dp
 
         if( FT_Set_Pixel_Sizes( this->fc, s, 0 ) )
             return 0;
-        this->sz = this->fc->size->metrics.height / 108;
 
         this->sz = s;
         return 1;

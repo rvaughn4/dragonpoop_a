@@ -180,6 +180,8 @@
 		<Unit filename="dp/dpgfx/dpgui/dpgui_writelock.h" />
 		<Unit filename="dp/dpgfx/dpgui_common/dpgui_button/dpgui_button.cpp" />
 		<Unit filename="dp/dpgfx/dpgui_common/dpgui_button/dpgui_button.h" />
+		<Unit filename="dp/dpgfx/dpgui_common/dpgui_taskman/dpgui_taskman.cpp" />
+		<Unit filename="dp/dpgfx/dpgui_common/dpgui_taskman/dpgui_taskman.h" />
 		<Unit filename="dp/dpgfx/dpgui_common/dpgui_window/dpgui_window.cpp" />
 		<Unit filename="dp/dpgfx/dpgui_common/dpgui_window/dpgui_window.h" />
 		<Unit filename="dp/dpgfx/dpgui_common/dpgui_window/dpgui_window_close_button.cpp" />

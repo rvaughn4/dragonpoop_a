@@ -15,6 +15,7 @@ namespace dp
     dpbitmap::dpbitmap( void ) : dpbuffer_wrapper()
     {
         this->setWrapped( &this->int_b );
+        this->mul = 1;
 
         this->transparency_mode = dpbitmap_transparency_mode_none;
 
@@ -34,6 +35,7 @@ namespace dp
     {
         this->int_b.copy( b );
         this->setWrapped( &this->int_b );
+        this->mul = 1;
 
         this->transparency_mode = dpbitmap_transparency_mode_none;
 
@@ -100,8 +102,8 @@ namespace dp
         dpbitmap_rectangle rc;
 
         rc.x = rc.y = 0;
-        rc.w = b->getWidth();
-        rc.h = b->getHeight();
+        rc.w = b->getWidth() * b->getMultiplier();
+        rc.h = b->getHeight() * b->getMultiplier();
 
         if( r_pos_in )
         {
@@ -318,8 +320,10 @@ namespace dp
         int x, y, dx, dy, sx, sy;
         float fx, fy, rx, ry;
 
-        ry = (float)p_src->h / (float)p_dest->h;
-        rx = (float)p_src->w / (float)p_dest->w;
+        ry = (float)p_src->h;
+        rx = (float)p_src->w;
+        ry = ry / (float)p_dest->h;
+        rx = rx / (float)p_dest->w;
 
         for( y = 0; y < (int)p_dest->h; y++ )
         {
@@ -409,8 +413,8 @@ namespace dp
         dpbitmap_rectangle rc;
 
         rc.x = rc.y = 0;
-        rc.w = this->getWidth();
-        rc.h = this->getHeight();
+        rc.w = this->getWidth() * this->getMultiplier();
+        rc.h = this->getHeight() * this->getMultiplier();
 
         this->fill( c, &rc );
     }
@@ -450,8 +454,8 @@ namespace dp
         dpbitmap_rectangle rc;
 
         rc.x = rc.y = 0;
-        rc.w = this->getWidth();
-        rc.h = this->getHeight();
+        rc.w = this->getWidth() * this->getMultiplier();
+        rc.h = this->getHeight() * this->getMultiplier();
 
         this->noise( &rc );
     }
@@ -484,8 +488,8 @@ namespace dp
         dpbitmap_rectangle rc;
 
         rc.x = rc.y = 0;
-        rc.w = this->getWidth();
-        rc.h = this->getHeight();
+        rc.w = this->getWidth() * this->getMultiplier();
+        rc.h = this->getHeight() * this->getMultiplier();
 
         this->texturize( sz, intensity, &rc );
     }
@@ -546,8 +550,8 @@ namespace dp
         dpbitmap_rectangle rc;
 
         rc.x = rc.y = 0;
-        rc.w = this->getWidth();
-        rc.h = this->getHeight();
+        rc.w = this->getWidth() * this->getMultiplier();
+        rc.h = this->getHeight() * this->getMultiplier();
 
         this->buttonize( border_width, depth, bInvert, &rc );
     }
@@ -699,8 +703,8 @@ namespace dp
         dpbitmap_rectangle rc;
 
         rc.x = rc.y = 0;
-        rc.w = this->getWidth();
-        rc.h = this->getHeight();
+        rc.w = this->getWidth() * this->getMultiplier();
+        rc.h = this->getHeight() * this->getMultiplier();
 
         this->edgeDetect( ratio, bInvert, &rc );
     }
@@ -764,8 +768,8 @@ namespace dp
         dpbitmap_rectangle rc;
 
         rc.x = rc.y = 0;
-        rc.w = this->getWidth();
-        rc.h = this->getHeight();
+        rc.w = this->getWidth() * this->getMultiplier();
+        rc.h = this->getHeight() * this->getMultiplier();
 
         this->sharpen( mult, &rc );
     }
@@ -814,8 +818,8 @@ namespace dp
         dpbitmap_rectangle rc;
 
         rc.x = rc.y = 0;
-        rc.w = this->getWidth();
-        rc.h = this->getHeight();
+        rc.w = this->getWidth() * this->getMultiplier();
+        rc.h = this->getHeight() * this->getMultiplier();
 
         this->invert( &rc );
     }
@@ -843,6 +847,34 @@ namespace dp
                 this->setPixel( x, y, &c );
             }
         }
+    }
+
+    //set size multiplier
+    void dpbitmap::setMultiplier( unsigned int m )
+    {
+        if( m < 1 )
+            m = 1;
+        this->mul = m;
+    }
+
+    //get size multiplier
+    unsigned int dpbitmap::getMultiplier( void )
+    {
+        return this->mul;
+    }
+
+    //convert percent sizes into actual sizes
+    void dpbitmap::convertFromPercents( dpbitmap_rectangle *rc )
+    {
+        unsigned int w, h;
+
+        w = this->getWidth() * this->getMultiplier();
+        h = this->getHeight() * this->getMultiplier();
+
+        rc->x = rc->x * w / 100;
+        rc->y = rc->y * h / 100;
+        rc->w = rc->w * w / 100;
+        rc->h = rc->h * h / 100;
     }
 
 };

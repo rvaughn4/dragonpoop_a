@@ -6,15 +6,14 @@
 #define dprender_gui_h
 
 #include "../dprender_gui_list/dprender_gui_list.h"
-#include "../../../dpgfx/dpbitmap/dpbitmap/dpbitmap.h"
 #include "../../../dpgfx/dpmatrix/dpmatrix.h"
 #include "../../../dpcore/dpshared/dpshared_guard.h"
+#include "../../../dpgfx/dpgui/dpgui.h"
 
 namespace dp
 {
 
     class dprender_gui_writelock;
-    class dpgui;
     class dpgui_ref;
     class dpapi_context_writelock;
     class dpapi_texture;
@@ -26,14 +25,22 @@ namespace dp
     struct dpinput_event;
     class dpinput;
 
+    struct dprender_gui_attribs
+    {
+        dpgui_attribs g;
+        dpbitmap_rectangle rc_exact;
+        unsigned int bg_time, fg_time;
+        dpxyzw mousepos, min_pos, drag_start, drag_off;
+        float fhover, fMin, zoom;
+        bool bIsFocus, bIsDrag, bIsMouseOver, bIsMouseDown, bHide, bIsSize;
+    };
+
     class dprender_gui : public dprender_gui_list
     {
 
     private:
 
         dpshared_guard g;
-        dpbitmap_rectangle rc, rc_exact;
-        unsigned int z, bg_time, fg_time, sz_time, align;
         dpapi_context_writelock *ctx;
         dpapi_texture *t_bg, *t_fg, *t_bg_old, *t_fg_old;
         dpapi_vertexbuffer *vb;
@@ -42,14 +49,8 @@ namespace dp
         dpmatrix mat, undo_mat, sz_mat;
         dpinput *inp;
         dpgui_ref *pgui;
-        struct
-        {
-            float x, y;
-        } mousepos, min_pos, drag_start, drag_off;
-        float fhover, fMin, zoom;
-        dpxyzw rot, spin, scroll;
         uint64_t t_spin, t_last_ftime;
-        bool bIsCentered, bIsFloating, bFollowCursor, bIsMouseOver, bIsMouseDown, bGrows, bMin, bIsDrag, bFocus, bIsSize, bHorizFill, bHide, bIsInput, bIsSelect;
+        dprender_gui_attribs attr;
 
         //create vertex buffer
         bool makeVB( dpapi_context_writelock *ctx, dpgui_readlock *g );
@@ -72,14 +73,6 @@ namespace dp
         virtual dpshared_writelock *genWriteLock( dpmutex_writelock *ml );
         //generate ref
         virtual dpshared_ref *genRef( std::shared_ptr<dpshared_ref_kernel> *k, std::shared_ptr< std::atomic<uint64_t> > *t_sync );
-        //set dimensions
-        virtual void setDimensions( unsigned int w, unsigned int h );
-        //set position
-        virtual void setPosition( int x, int y );
-        //get dimensions
-        virtual void getDimensions( unsigned int *w, unsigned int *h );
-        //get position
-        virtual void getPosition( int *x, int *y );
         //override to handle sync copy, be sure to call base class first!
         virtual void onSync( dpshared_readlock *psync );
         //override to test type for safe syncing, be sure to call base class first!
@@ -103,8 +96,6 @@ namespace dp
         virtual ~dprender_gui( void );
         //return z
         virtual unsigned int getZ( void );
-        //set z
-        virtual void setZ( unsigned int z );
         //compare gui
         bool compare( dpgui *g );
         //returns true if linked

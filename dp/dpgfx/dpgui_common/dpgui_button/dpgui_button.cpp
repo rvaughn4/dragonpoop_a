@@ -12,9 +12,9 @@ namespace dp
     dpgui_button::dpgui_button( int x, int y, unsigned int w, unsigned int h, const char *ctxt ) : dpgui( x, y, w, h, ctxt )
     {
         float bw;
+        dpgui_attribs a;
 
         this->bWasClicked = 0;
-        this->setGrow( 1 );
         this->bDown = 0;
 
         bw = 10.0f * 2.0f;
@@ -24,7 +24,10 @@ namespace dp
             bw = h;
         bw = bw / 2.0f;
 
-        this->setBorderWidth( bw );
+        this->getAttributes( &a );
+        a.bGrows = 1;
+        a.border_size = bw;
+        this->setAttributes( &a );
     }
 
     //dtor
@@ -54,17 +57,22 @@ namespace dp
     //override to handle mouse movement
     void dpgui_button::onMouseMove( dpinput_event_mouse *e )
     {
+        dpgui_attribs a;
 
         if( !this->bDown && !e->isRight && e->isDown )
         {
-            this->setBorderInverted( 1 );
+            this->getAttributes( &a );
+            a.bBorderInvert = 1;
+            this->setAttributes( &a );
             this->redrawBg();
             this->bDown = 1;
         }
 
         if( this->bDown && !e->isRight && !e->isDown )
         {
-            this->setBorderInverted( 0 );
+            this->getAttributes( &a );
+            a.bBorderInvert = 0;
+            this->setAttributes( &a );
             this->redrawBg();
             this->bDown = 0;
         }

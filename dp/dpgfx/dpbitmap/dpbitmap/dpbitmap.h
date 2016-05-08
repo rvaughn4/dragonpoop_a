@@ -48,6 +48,7 @@ namespace dp
         dpbuffer_dynamic int_b;
         dpbitmap_color clr_mask, clr_clamp;
         int transparency_mode;
+        unsigned int mul;
 
     protected:
 
@@ -146,6 +147,12 @@ namespace dp
         virtual void invert( void );
         //invert colors
         virtual void invert( dpbitmap_rectangle *rc );
+        //set size multiplier
+        virtual void setMultiplier( unsigned int m );
+        //get size multiplier
+        virtual unsigned int getMultiplier( void );
+        //convert percent sizes into actual sizes
+        void convertFromPercents( dpbitmap_rectangle *rc );
 
     };
 };

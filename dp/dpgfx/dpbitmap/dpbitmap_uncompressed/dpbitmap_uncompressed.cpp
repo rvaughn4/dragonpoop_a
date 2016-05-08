@@ -71,6 +71,9 @@ namespace dp
         uint32_t v, rm, gm, bm, am;
         dpbitmap_uncompressed_winv3NT2_header *hdr;
 
+        x /= this->getMultiplier();
+        y /= this->getMultiplier();
+
         scn = this->getScanSize();
         bpp = this->getBits() / 8;
         w = this->getWidth();
@@ -150,6 +153,9 @@ namespace dp
         unsigned int scn, i, bpp, h, w;
         uint32_t v, rm, gm, bm, am;
         dpbitmap_uncompressed_winv3NT2_header *hdr;
+
+        x /= this->getMultiplier();
+        y /= this->getMultiplier();
 
         scn = this->getScanSize();
         bpp = this->getBits() / 8;

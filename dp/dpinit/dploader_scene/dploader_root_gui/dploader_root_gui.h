@@ -19,6 +19,8 @@ namespace dp
 
         //render first pass of foreground image
         virtual void renderBackgroundPass1( dpbitmap_32bit_uncompressed *bm );
+        //override to handle gui start
+        virtual bool onGuiStart( dpgui_writelock *tl );
 
     public:
 

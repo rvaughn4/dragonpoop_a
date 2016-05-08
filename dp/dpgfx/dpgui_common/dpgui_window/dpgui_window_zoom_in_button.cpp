@@ -12,18 +12,21 @@ namespace dp
     //ctor
     dpgui_window_zoom_in_button::dpgui_window_zoom_in_button( int x, int y, unsigned int w, unsigned int h, dpgui_ref *pgui ) : dpgui_button( x, y, w, h, "+" )
     {
-        dpbitmap_color c;
+        dpgui_attribs a;
 
         this->pgui = (dpgui_ref *)this->g.getRef( pgui );
-        this->setAlignment( dpgui_alignment_right );
 
-        this->setFontSize( 15 );
+        this->getAttributes( &a );
 
-        c.r = 0.75f;
-        c.g = 0.75f;
-        c.b = 0.75f;
-        c.a = 0.5f;
-        this->setBgColor( &c );
+        a.align = dpgui_alignment_right;
+        a.fnt_size = 15;
+
+        a.bg_clr.r = 0.7f;
+        a.bg_clr.g = 0.7f;
+        a.bg_clr.b = 0.7f;
+        a.bg_clr.a = 0.5f;
+
+        this->setAttributes( &a );
     }
 
     //dtor

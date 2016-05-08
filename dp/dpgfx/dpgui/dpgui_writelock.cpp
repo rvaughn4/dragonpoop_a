@@ -20,30 +20,6 @@ namespace dp
 
     }
 
-    //set dimensions
-    void dpgui_writelock::setDimensions( unsigned int w, unsigned int h )
-    {
-        this->p->setDimensions( w, h );
-    }
-
-    //set position
-    void dpgui_writelock::setPosition( int x, int y )
-    {
-        this->p->setPosition( x, y );
-    }
-
-    //get dimensions
-    void dpgui_writelock::getDimensions( unsigned int *w, unsigned int *h )
-    {
-        this->p->getDimensions( w, h );
-    }
-
-    //get position
-    void dpgui_writelock::getPosition( int *x, int *y )
-    {
-        this->p->getPosition( x, y );
-    }
-
     //force bg to be redrawn
     void dpgui_writelock::redrawBg( void )
     {
@@ -56,17 +32,6 @@ namespace dp
         this->p->redrawFg();
     }
 
-    //return z
-    unsigned int dpgui_writelock::getZ( void )
-    {
-        return this->p->getZ();
-    }
-
-    //set z
-    void dpgui_writelock::setZ( unsigned int z )
-    {
-        this->p->setZ( z );
-    }
 
     //returns bg bitmap
     dpbitmap_32bit_uncompressed *dpgui_writelock::getBg( void )
@@ -86,114 +51,6 @@ namespace dp
         this->p->attachInput( i );
     }
 
-    //return true if centered
-    bool dpgui_writelock::isCentered( void )
-    {
-        return this->p->isCentered();
-    }
-
-    //set centered mode
-    void dpgui_writelock::setCentered( bool b )
-    {
-        this->p->setCentered( b );
-    }
-
-    //return true if floating
-    bool dpgui_writelock::isFloating( void )
-    {
-        return this->p->isFloating();
-    }
-
-    //set floating mode
-    void dpgui_writelock::setFloating( bool b )
-    {
-        this->p->setFloating( b );
-    }
-
-    //return true if follows cursor
-    bool dpgui_writelock::isFollowingCursor( void )
-    {
-        return this->p->isFollowingCursor();
-    }
-
-    //set cursor following mode
-    void dpgui_writelock::setFollowingCursor( bool b )
-    {
-        this->p->setFollowingCursor( b );
-    }
-
-    //get rotation
-    void dpgui_writelock::getRotation( dpxyzw *p )
-    {
-        this->p->getRotation( p );
-    }
-
-    //set rotation
-    void dpgui_writelock::setRotation( dpxyzw *p )
-    {
-        this->p->setRotation( p );
-    }
-
-    //get spin
-    void dpgui_writelock::getSpin( dpxyzw *p )
-    {
-        this->p->getSpin( p );
-    }
-
-    //set spin
-    void dpgui_writelock::setSpin( dpxyzw *p )
-    {
-        this->p->setSpin( p );
-    }
-
-    //returns true if grows when mouse hovers over
-    bool dpgui_writelock::doesGrow( void )
-    {
-        return this->p->doesGrow();
-    }
-
-    //set mouse hover mode
-    void dpgui_writelock::setGrow( bool b )
-    {
-        this->p->setGrow( b );
-    }
-
-    //returns true if minimized
-    bool dpgui_writelock::isMinimized( void )
-    {
-        return this->p->isMinimized();
-    }
-
-    //set minimized
-    void dpgui_writelock::setMinimized( bool b )
-    {
-        this->p->setMinimized( b );
-    }
-
-    //set alignment
-    void dpgui_writelock::setAlignment( unsigned int a )
-    {
-        this->p->setAlignment( a );
-    }
-
-    //get alignment
-    unsigned int dpgui_writelock::getAlignment( void )
-    {
-        return this->p->getAlignment();
-    }
-
-    //set zoom
-    void dpgui_writelock::setZoom( float z )
-    {
-        this->p->setZoom( z );
-    }
-
-    //get zoom
-    float dpgui_writelock::getZoom( void )
-    {
-        return this->p->getZoom();
-    }
-
     //zoom in
     void dpgui_writelock::zoomIn( void )
     {
@@ -206,40 +63,16 @@ namespace dp
         this->p->zoomOut();
     }
 
-    //set horizontal auto-fill/stretch
-    void dpgui_writelock::setHorizFill( bool b )
+    //get attributes
+    void dpgui_writelock::getAttributes( dpgui_attribs *a )
     {
-        this->p->setHorizFill( b );
+        this->p->getAttributes( a );
     }
 
-    //returns true if horiz fill enabled
-    bool dpgui_writelock::isHorizFill( void )
+    //set attributes
+    void dpgui_writelock::setAttributes( dpgui_attribs *a )
     {
-        return this->p->isHorizFill();
-    }
-
-    //set input mode
-    void dpgui_writelock::setInputMode( bool b )
-    {
-        this->p->setInputMode( b );
-    }
-
-    //returns true if accepts input
-    bool dpgui_writelock::isInput( void )
-    {
-        return this->p->isInput();
-    }
-
-    //set select mode
-    void dpgui_writelock::setSelectMode( bool b )
-    {
-        this->p->setSelectMode( b );
-    }
-
-    //returns true if can have text selected and has cursor
-    bool dpgui_writelock::isSelect( void )
-    {
-        return this->p->isSelect();
+        this->p->setAttributes( a );
     }
 
 }

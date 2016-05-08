@@ -14,13 +14,16 @@ namespace dp
     //ctor
     dpgui_window_title::dpgui_window_title( int x, int y, unsigned int w, unsigned int h, const char *ctxt, dpgui *pgui ) : dpgui( x, y, w, h, ctxt )
     {
+
         float bw;
-        dpbitmap_color c;
+        dpgui_attribs a;
 
         this->pgui = (dpgui_ref *)this->g.getRef( pgui );
         if( h < 4 )
             h = 4;
         this->h = h;
+
+        this->getAttributes( &a );
 
         bw = 5.0f * 2.0f;
         if( bw > w )
@@ -28,22 +31,20 @@ namespace dp
         if( bw > h )
             bw = h;
         bw = bw / 2.0f;
+        a.border_size = bw;
+        a.bFillHor = 1;
 
-        this->setBorderWidth( bw );
+        a.bg_clr.r = 0.7f;
+        a.bg_clr.g = 0.7f;
+        a.bg_clr.b = 0.7f;
+        a.bg_clr.a = 0.5f;
 
-        c.r = 0.75f;
-        c.g = 0.75f;
-        c.b = 0.75f;
-        c.a = 0.5f;
-        this->setBgColor( &c );
+        a.fnt_clr.r = 0.0f;
+        a.fnt_clr.g = 0.0f;
+        a.fnt_clr.b = 0.0f;
+        a.fnt_clr.a = 1.0f;
 
-        c.r = 0.0f;
-        c.g = 0.0f;
-        c.b = 0.0f;
-        c.a = 1.0f;
-        this->setFontColor( &c );
-
-        this->setHorizFill( 1 );
+        this->setAttributes( &a );
     }
 
     //dtor

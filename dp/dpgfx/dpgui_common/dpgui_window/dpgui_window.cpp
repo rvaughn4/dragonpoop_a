@@ -12,12 +12,13 @@ namespace dp
     //ctor
     dpgui_window::dpgui_window( int x, int y, unsigned int w, unsigned int h, const char *ctitle, const char *ctxt, unsigned int title_size ) : dpgui( x, y, w, h, ctxt )
     {
-        dpbitmap_color c;
         float bw;
+        dpgui_attribs a;
 
-        this->setFloating( 1 );
         this->stitle.assign( ctitle );
         this->title_sz = title_size;
+
+        this->getAttributes( &a );
 
         bw = 5.0f * 2.0f;
         if( bw > w )
@@ -25,20 +26,20 @@ namespace dp
         if( bw > h )
             bw = h;
         bw = bw / 2.0f;
+        a.border_size = bw;
+        a.bIsFloat = 1;
 
-        this->setBorderWidth( bw );
+        a.bg_clr.r = 1.0f;
+        a.bg_clr.g = 1.0f;
+        a.bg_clr.b = 1.0f;
+        a.bg_clr.a = 0.5f;
 
-        c.r = 1.0f;
-        c.g = 1.0f;
-        c.b = 1.0f;
-        c.a = 0.5f;
-        this->setBgColor( &c );
+        a.fnt_clr.r = 0.0f;
+        a.fnt_clr.g = 0.0f;
+        a.fnt_clr.b = 0.0f;
+        a.fnt_clr.a = 1.0f;
 
-        c.r = 0.0f;
-        c.g = 0.0f;
-        c.b = 0.0f;
-        c.a = 1.0f;
-        this->setFontColor( &c );
+        this->setAttributes( &a );
     }
 
     //dtor
@@ -51,13 +52,13 @@ namespace dp
     bool dpgui_window::onGuiStart( dpgui_writelock *tl )
     {
         dpgui *t;
-        unsigned int w, h;
+        dpgui_attribs a;
 
         if( !this->dpgui::onGuiStart( tl ) )
             return 0;
 
-        this->getDimensions( &w, &h );
-        t = new dpgui_window_title( 0, -this->title_sz + 3, w, this->title_sz, this->stitle.c_str(), this );
+        this->getAttributes( &a );
+        t = new dpgui_window_title( 0, -this->title_sz + 3, a.rc.w, this->title_sz, this->stitle.c_str(), this );
         this->addGui( &t, 1 );
 
         return 1;

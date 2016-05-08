@@ -28,22 +28,31 @@ namespace dp
 
     #define dpgui_max_locs 4096
 
+    struct dpgui_attribs
+    {
+        dpbitmap_rectangle rc;
+        bool bIsInput, bIsSelect, bIsCenter, bIsFloat;
+        bool bIsFollow, bGrows, bIsMin, bFillHor;
+        bool bBorderInvert, bRedrawOnResize;
+        float zoom;
+        unsigned int fnt_size, border_size, size_mul, align, z, bg_time, fg_time;
+        dpbitmap_color bg_clr, fnt_clr;
+        dpxyzw rot, spin, scroll;
+    };
+
     class dpgui : public dpgui_list
     {
 
     private:
 
-        dpbitmap_rectangle rc;
         dpbitmap_32bit_uncompressed *bm_bg, *bm_fg;
-        bool bBgDrawn, bFgDrawn, bIsInput, bIsSelectable;
-        unsigned int z, bg_time, fg_time, sz_time, align, sz;
+        bool bBgDrawn, bFgDrawn;
+        unsigned int sz;
         uint64_t t_input, t_flash;
         dpinput *inp;
-        dpxyzw rot, spin;
-        bool bIsCentered, bIsFloating, bFollowCursor, bGrows, bMin, bBorderInvert, bRedrawOnResize, bFillHoriz, bShiftDown, bCurFlash;
-        dpbitmap_color bg_clr, fnt_clr;
-        unsigned int fnt_sz, border_sz, cursor, select_start, select_end;
-        float zoom;
+        bool bShiftDown, bCurFlash;
+        unsigned int cursor, select_start, select_end;
+        dpgui_attribs attr;
 
         dpbitmap_rectangle char_locs[ dpgui_max_locs ];
         char ctxt[ dpgui_max_locs ];
@@ -81,14 +90,6 @@ namespace dp
         virtual bool onGuiStart( dpgui_writelock *tl );
         //override to handle gui stop
         virtual bool onGuiStop( dpgui_writelock *tl );
-        //set dimensions
-        virtual void setDimensions( unsigned int w, unsigned int h );
-        //set position
-        virtual void setPosition( int x, int y );
-        //get dimensions
-        virtual void getDimensions( unsigned int *w, unsigned int *h );
-        //get position
-        virtual void getPosition( int *x, int *y );
         //force bg to be redrawn
         virtual void redrawBg( void );
         //force fg to be redrawn
@@ -127,60 +128,10 @@ namespace dp
         virtual void onKeyUp( dpinput_event_keypress *e );
         //override to handle text input
         virtual void onText( dpinput_event_text *e );
-        //return true if centered
-        bool isCentered( void );
-        //set centered mode
-        void setCentered( bool b );
-        //return true if floating
-        bool isFloating( void );
-        //set floating mode
-        void setFloating( bool b );
-        //return true if follows cursor
-        bool isFollowingCursor( void );
-        //set cursor following mode
-        void setFollowingCursor( bool b );
-        //get rotation
-        void getRotation( dpxyzw *p );
-        //set rotation
-        void setRotation( dpxyzw *p );
-        //get spin
-        void getSpin( dpxyzw *p );
-        //set spin
-        void setSpin( dpxyzw *p );
-        //returns true if grows when mouse hovers over
-        bool doesGrow( void );
-        //set mouse hover mode
-        void setGrow( bool b );
-        //returns true if minimized
-        bool isMinimized( void );
-        //set minimized
-        void setMinimized( bool b );
-        //set alignment
-        void setAlignment( unsigned int a );
-        //get alignment
-        unsigned int getAlignment( void );
-        //set background color
-        void setBgColor( dpbitmap_color *c );
-        //set font color
-        void setFontColor( dpbitmap_color *c );
-        //set border width
-        void setBorderWidth( unsigned int w );
-        //set font size
-        void setFontSize( unsigned int s );
-        //set border inverted
-        void setBorderInverted( bool b );
-        //set zoom
-        void setZoom( float z );
-        //get zoom
-        float getZoom( void );
         //zoom in
         void zoomIn( void );
         //zoom out
         void zoomOut( void );
-        //set horizontal auto-fill/stretch
-        void setHorizFill( bool b );
-        //returns true if horiz fill enabled
-        bool isHorizFill( void );
         //find location in text
         unsigned int findLoc( int x, int y );
         //set cursor
@@ -199,14 +150,10 @@ namespace dp
         void insertText( const char *c );
         //backspace, implemented as move cursor left one then call delete
         void backspace( void );
-        //set input mode
-        void setInputMode( bool b );
-        //returns true if accepts input
-        bool isInput( void );
-        //set select mode
-        void setSelectMode( bool b );
-        //returns true if can have text selected and has cursor
-        bool isSelect( void );
+        //get attributes
+        void getAttributes( dpgui_attribs *a );
+        //set attributes
+        void setAttributes( dpgui_attribs *a );
 
     public:
 

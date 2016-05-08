@@ -34,7 +34,7 @@ namespace dp
 {
 
     //ctor
-    dprender::dprender( dpgfx *gfx, dpapi_factory *wf ) : dptask( "Renderer Main", 3 )
+    dprender::dprender( dpgfx *gfx, dpapi_factory *wf ) : dptask( "Renderer Main", dp_rendertask_sleeptime )
     {
         this->gfx = gfx;
         this->apifactory = wf;

@@ -28,10 +28,6 @@ namespace dp
 
         //ctor
         dprender_gui_readlock( dprender_gui *p, dpmutex_readlock *ml );
-        //get dimensions
-        void getDimensions( unsigned int *w, unsigned int *h );
-        //get position
-        void getPosition( int *x, int *y );
         //return z
         unsigned int getZ( void );
 

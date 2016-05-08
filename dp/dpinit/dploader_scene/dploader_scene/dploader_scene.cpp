@@ -4,6 +4,8 @@
 
 #include "dploader_scene.h"
 #include "../dploader_root_gui/dploader_root_gui.h"
+#include "../../../dpgfx/dpgui_common/dpgui_taskman/dpgui_taskman.h"
+
 
 namespace dp
 {

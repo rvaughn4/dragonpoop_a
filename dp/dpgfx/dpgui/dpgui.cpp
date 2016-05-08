@@ -19,49 +19,32 @@ namespace dp
     //ctor
     dpgui::dpgui( int x, int y, unsigned int w, unsigned int h, const char *ctxt ) : dpgui_list()
     {
-        this->bBgDrawn = 0;
-        this->bFgDrawn = 0;
-        this->bRedrawOnResize = 0;
-        this->bIsInput = 0;
-        this->bIsSelectable = 0;
+        memset( &this->attr, 0, sizeof( this->attr ) );
 
-        this->rc.x = x;
-        this->rc.y = y;
-        this->rc.w = w;
-        this->rc.h = h;
-
-        this->bm_bg = 0;
-        this->bm_fg = 0;
-        this->sz_time = this->bg_time = this->fg_time = 0;
+        this->attr.rc.x = x;
+        this->attr.rc.y = y;
+        this->attr.rc.w = w;
+        this->attr.rc.h = h;
+        this->attr.size_mul = 1;
 
         this->setText( ctxt );
 
         this->t_input = 0;
         this->inp = new dpinput();
 
-        this->bFollowCursor = 0;
-        this->bIsCentered = 0;
-        this->bIsFloating = 0;
-        this->bGrows = 0;
-        this->zoom = 1.0f;
-        this->bFillHoriz = 0;
+        this->attr.border_size = 2;
+        this->attr.fnt_size = h * 3 / 5;
+        this->attr.zoom = 1.0f;
 
-        this->rot.x = this->rot.y = this->rot.z = 0;
-        this->spin = this->rot;
+        this->attr.bg_clr.r = 1.0f;
+        this->attr.bg_clr.g = 1.0f;
+        this->attr.bg_clr.b = 1.0f;
+        this->attr.bg_clr.a = 0.75f;
 
-        this->bBorderInvert = 0;
-        this->border_sz = 2;
-        this->fnt_sz = h * 3 / 5;
-
-        this->bg_clr.r = 1.0f;
-        this->bg_clr.g = 1.0f;
-        this->bg_clr.b = 1.0f;
-        this->bg_clr.a = 0.75f;
-
-        this->fnt_clr.r = 0.0f;
-        this->fnt_clr.g = 0.0f;
-        this->fnt_clr.b = 0.0f;
-        this->fnt_clr.a = 1.0f;
+        this->attr.fnt_clr.r = 0.0f;
+        this->attr.fnt_clr.g = 0.0f;
+        this->attr.fnt_clr.b = 0.0f;
+        this->attr.fnt_clr.a = 1.0f;
 
         this->cursor = 0;
         this->select_start = 0;
@@ -160,7 +143,7 @@ namespace dp
 
         this->runInput();
 
-        if( this->bIsInput || this->bIsSelectable )
+        if( this->attr.bIsInput || this->attr.bIsSelect )
         {
             t = this->getTicks();
             if( t - this->t_flash > 1000 )
@@ -171,40 +154,55 @@ namespace dp
             }
         }
 
+        if( this->attr.size_mul < 1 )
+            this->attr.size_mul = 1;
+
         if( !this->bBgDrawn )
         {
-            if( !this->bm_bg || ( this->bRedrawOnResize && ( this->bm_bg->getWidth() != (int)this->rc.w || this->bm_bg->getHeight() != (int)this->rc.h ) ) )
+            if( !this->bm_bg || ( this->attr.bRedrawOnResize && ( this->bm_bg->getWidth() != (int)this->attr.rc.w / (int)this->attr.size_mul || this->bm_bg->getHeight() != (int)this->attr.rc.h / (int)this->attr.size_mul ) ) )
             {
                 delete this->bm_bg;
-                this->bm_bg = new dpbitmap_32bit_uncompressed( this->rc.w, this->rc.h );
+                this->bm_bg = new dpbitmap_32bit_uncompressed( this->attr.rc.w / this->attr.size_mul, this->attr.rc.h / this->attr.size_mul );
+
+                if( this->bm_bg )
+                    this->bm_bg->setMultiplier( this->attr.size_mul );
             }
 
-            this->bm_bg->clear();
+            if( this->bm_bg )
+            {
+                this->bm_bg->clear();
 
-            this->renderBackgroundPass0( this->bm_bg );
-            this->renderBackgroundPass1( this->bm_bg );
+                this->renderBackgroundPass0( this->bm_bg );
+                this->renderBackgroundPass1( this->bm_bg );
 
-            this->bg_time++;
-            this->bBgDrawn = 1;
-            this->update();
+                this->attr.bg_time++;
+                this->bBgDrawn = 1;
+                this->update();
+            }
         }
 
         if( !this->bFgDrawn )
         {
-            if( !this->bm_fg || ( this->bRedrawOnResize && ( this->bm_fg->getWidth() != (int)this->rc.w || this->bm_fg->getHeight() != (int)this->rc.h ) ) )
+            if( !this->bm_fg || ( this->attr.bRedrawOnResize && ( this->bm_fg->getWidth() != (int)this->attr.rc.w / (int)this->attr.size_mul || this->bm_fg->getHeight() != (int)this->attr.rc.h / (int)this->attr.size_mul ) ) )
             {
                 delete this->bm_fg;
-                this->bm_fg = new dpbitmap_32bit_uncompressed( this->rc.w, this->rc.h );
+                this->bm_fg = new dpbitmap_32bit_uncompressed( this->attr.rc.w / this->attr.size_mul, this->attr.rc.h / this->attr.size_mul );
+
+                if( this->bm_fg )
+                    this->bm_fg->setMultiplier( this->attr.size_mul );
             }
 
-            this->bm_fg->clear();
+            if( this->bm_fg )
+            {
+                this->bm_fg->clear();
 
-            this->renderForegroundPass0( this->bm_fg );
-            this->renderForegroundPass1( this->bm_fg );
+                this->renderForegroundPass0( this->bm_fg );
+                this->renderForegroundPass1( this->bm_fg );
 
-            this->fg_time++;
-            this->bFgDrawn = 1;
-            this->update();
+                this->attr.fg_time++;
+                this->bFgDrawn = 1;
+                this->update();
+            }
         }
 
         return this->dpgui_list::onTaskRun( tl );
@@ -229,13 +227,13 @@ namespace dp
     //render first pass background image
     void dpgui::renderBackgroundPass0( dpbitmap_32bit_uncompressed *bm )
     {
-        bm->fill( &this->bg_clr );
+        bm->fill( &this->attr.bg_clr );
     }
 
     //render second pass of background image
     void dpgui::renderBackgroundPass1( dpbitmap_32bit_uncompressed *bm )
     {
-        bm->buttonize( this->border_sz, 0.7f, this->bBorderInvert );
+        bm->buttonize( this->attr.border_size, 0.7f, this->attr.bBorderInvert );
     }
 
     //render first pass of foreground image
@@ -258,17 +256,16 @@ namespace dp
 
         rc.x = 10;
         rc.y = 10;
-        rc.w = this->rc.w - 10;
-        rc.h = this->rc.h - 10;
+        rc.w = bm->getWidth() * this->attr.size_mul - 10;
+        rc.h = bm->getHeight() * this->attr.size_mul - 10;
 
-        fnt.setColor( &this->fnt_clr );
-        fnt.setSize( 12 );
+        fnt.setColor( &this->attr.fnt_clr );
         fnt.openFont( "sans" );
 
-        if( !fnt.setSize( this->fnt_sz ) )
+        if( !fnt.setSize( this->attr.fnt_size ) )
             fnt.setSize( 12 );
 
-        if( this->bCurFlash && ( this->bIsInput || this->bIsSelectable ) )
+        if( this->bCurFlash && ( this->attr.bIsInput || this->attr.bIsSelect ) )
         {
             fnt.setCursor( this->cursor );
             fnt.setSelection( this->select_start, this->select_end );
@@ -300,40 +297,6 @@ namespace dp
         return 1;
     }
 
-    //set dimensions
-    void dpgui::setDimensions( unsigned int w, unsigned int h )
-    {
-        this->rc.w = w;
-        this->rc.h = h;
-        if( this->bRedrawOnResize )
-        {
-            this->bBgDrawn = 0;
-            this->bFgDrawn = 0;
-        }
-        this->sz_time++;
-    }
-
-    //set position
-    void dpgui::setPosition( int x, int y )
-    {
-        this->rc.x = x;
-        this->rc.y = y;
-    }
-
-    //get dimensions
-    void dpgui::getDimensions( unsigned int *w, unsigned int *h )
-    {
-        *w = this->rc.w;
-        *h = this->rc.h;
-    }
-
-    //get position
-    void dpgui::getPosition( int *x, int *y )
-    {
-        *x = this->rc.x;
-        *y = this->rc.y;
-    }
-
     //force bg to be redrawn
     void dpgui::redrawBg( void )
     {
@@ -346,16 +309,61 @@ namespace dp
         this->bFgDrawn = 0;
     }
 
+    //zoom in
+    void dpgui::zoomIn( void )
+    {
+        dpgui_attribs a;
+
+        this->getAttributes( &a );
+        a.zoom *= 1.1f;
+
+        this->setAttributes( &a );
+    }
+
+    //zoom out
+    void dpgui::zoomOut( void )
+    {
+        dpgui_attribs a;
+
+        this->getAttributes( &a );
+        a.zoom *= 0.9f;
+
+        this->setAttributes( &a );
+    }
+
+    //get attributes
+    void dpgui::getAttributes( dpgui_attribs *a )
+    {
+        *a = this->attr;
+    }
+
+    //set attributes
+    void dpgui::setAttributes( dpgui_attribs *a )
+    {
+        if( this->attr.bRedrawOnResize && ( a->rc.w != this->attr.rc.w || a->rc.h != this->attr.rc.h ) )
+        {
+            this->redrawBg();
+            this->redrawFg();
+        }
+
+        if( a->zoom < 0.3f )
+            a->zoom = 0.3f;
+        if( a->zoom > 2.0f )
+            a->zoom = 2.0f;
+
+        this->attr = *a;
+    }
+
     //return z
     unsigned int dpgui::getZ( void )
     {
-        return this->z;
+        return this->attr.z;
     }
 
     //set z
     void dpgui::setZ( unsigned int z )
     {
-        this->z = z;
+        this->attr.z = z;
     }
 
     //override to handle sync copy, be sure to call base class first!
@@ -404,24 +412,6 @@ namespace dp
     void dpgui::getText( std::string *s )
     {
         s->assign( this->ctxt );
-    }
-
-    //return bg time
-    unsigned int dpgui::getBgTime( void )
-    {
-        return this->bg_time;
-    }
-
-    //return fg time
-    unsigned int dpgui::getFgTime( void )
-    {
-        return this->fg_time;
-    }
-
-    //return size time
-    unsigned int dpgui::getSzTime( void )
-    {
-        return this->sz_time;
     }
 
     //override to handle input events
@@ -474,7 +464,7 @@ namespace dp
     {
         std::string s;
 
-        if( !this->bIsInput && !this->bIsSelectable )
+        if( !this->attr.bIsInput && !this->attr.bIsSelect )
             return;
 
         s.assign( e->keyName );
@@ -488,7 +478,7 @@ namespace dp
     {
         std::string s;
 
-        if( !this->bIsInput && !this->bIsSelectable )
+        if( !this->attr.bIsInput && !this->attr.bIsSelect )
             return;
 
         s.assign( e->keyName );
@@ -515,12 +505,12 @@ namespace dp
             this->moveCursorDown();
             this->redrawFg();
         }
-        if( this->bIsInput && s.compare( "Delete" ) == 0 )
+        if( this->attr.bIsInput && s.compare( "Delete" ) == 0 )
         {
             this->deleteAtCursor();
             this->redrawFg();
         }
-        if( this->bIsInput && s.compare( "Backspace" ) == 0 )
+        if( this->attr.bIsInput && s.compare( "Backspace" ) == 0 )
         {
             this->backspace();
             this->redrawFg();
@@ -530,175 +520,11 @@ namespace dp
     //override to handle text input
     void dpgui::onText( dpinput_event_text *e )
     {
-        if( !this->bIsInput )
+        if( !this->attr.bIsInput )
             return;
 
         this->insertText( e->txt );
         this->redrawFg();
-    }
-
-    //return true if centered
-    bool dpgui::isCentered( void )
-    {
-        return this->bIsCentered;
-    }
-
-    //set centered mode
-    void dpgui::setCentered( bool b )
-    {
-        this->bIsCentered = b;
-    }
-
-    //return true if floating
-    bool dpgui::isFloating( void )
-    {
-        return this->bIsFloating;
-    }
-
-    //set floating mode
-    void dpgui::setFloating( bool b )
-    {
-        this->bIsFloating = b;
-    }
-
-    //return true if follows cursor
-    bool dpgui::isFollowingCursor( void )
-    {
-        return this->bFollowCursor;
-    }
-
-    //set cursor following mode
-    void dpgui::setFollowingCursor( bool b )
-    {
-        this->bFollowCursor = b;
-    }
-
-    //get rotation
-    void dpgui::getRotation( dpxyzw *p )
-    {
-        *p = this->rot;
-    }
-
-    //set rotation
-    void dpgui::setRotation( dpxyzw *p )
-    {
-        this->rot = *p;
-    }
-
-    //get spin
-    void dpgui::getSpin( dpxyzw *p )
-    {
-        *p = this->spin;
-    }
-
-    //set spin
-    void dpgui::setSpin( dpxyzw *p )
-    {
-        this->spin = *p;
-    }
-
-    //returns true if grows when mouse hovers over
-    bool dpgui::doesGrow( void )
-    {
-        return this->bGrows;
-    }
-
-    //set mouse hover mode
-    void dpgui::setGrow( bool b )
-    {
-        this->bGrows = b;
-    }
-
-    //returns true if minimized
-    bool dpgui::isMinimized( void )
-    {
-        return this->bMin;
-    }
-
-    //set minimized
-    void dpgui::setMinimized( bool b )
-    {
-        this->bMin = b;
-    }
-
-    //set alignment
-    void dpgui::setAlignment( unsigned int a )
-    {
-        this->align = a;
-    }
-
-    //get alignment
-    unsigned int dpgui::getAlignment( void )
-    {
-        return this->align;
-    }
-
-    //set background color
-    void dpgui::setBgColor( dpbitmap_color *c )
-    {
-        this->bg_clr = *c;
-    }
-
-    //set font color
-    void dpgui::setFontColor( dpbitmap_color *c )
-    {
-        this->fnt_clr = *c;
-    }
-
-    //set border width
-    void dpgui::setBorderWidth( unsigned int w )
-    {
-        this->border_sz = w;
-    }
-
-    //set font size
-    void dpgui::setFontSize( unsigned int s )
-    {
-        this->fnt_sz = s;
-    }
-
-    //set border inverted
-    void dpgui::setBorderInverted( bool b )
-    {
-        this->bBorderInvert = b;
-    }
-
-    //set zoom
-    void dpgui::setZoom( float z )
-    {
-        if( z < 0.3f )
-            z = 0.3f;
-        this->zoom = z;
-    }
-
-    //get zoom
-    float dpgui::getZoom( void )
-    {
-        return this->zoom;
-    }
-
-    //zoom in
-    void dpgui::zoomIn( void )
-    {
-        this->setZoom( this->zoom * 1.1f );
-    }
-
-    //zoom out
-    void dpgui::zoomOut( void )
-    {
-        this->setZoom( this->zoom * 0.9f );
-    }
-
-    //set horizontal auto-fill/stretch
-    void dpgui::setHorizFill( bool b )
-    {
-        this->bFillHoriz = b;
-    }
-
-    //returns true if horiz fill enabled
-    bool dpgui::isHorizFill( void )
-    {
-        return this->bFillHoriz;
     }
 
     //find location in text
@@ -882,30 +708,6 @@ namespace dp
         if( this->select_start >= this->select_end && this->cursor > 0 )
             this->cursor -= 1;
         this->deleteAtCursor();
-    }
-
-    //set input mode
-    void dpgui::setInputMode( bool b )
-    {
-        this->bIsInput = b;
-    }
-
-    //returns true if accepts input
-    bool dpgui::isInput( void )
-    {
-        return this->bIsInput;
-    }
-
-    //set select mode
-    void dpgui::setSelectMode( bool b )
-    {
-        this->bIsSelectable = b;
-    }
-
-    //returns true if can have text selected and has cursor
-    bool dpgui::isSelect( void )
-    {
-        return this->bIsSelectable;
     }
 
 }
