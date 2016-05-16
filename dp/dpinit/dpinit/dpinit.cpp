@@ -98,7 +98,7 @@ namespace dp
     //block until engine dies
     void dpinit::blockUntilDead( void )
     {
-        while( this->isAlive() )
+        while( 1 )//this->isAlive() )
             std::this_thread::sleep_for( std::chrono::milliseconds( 500 ) );
     }
 

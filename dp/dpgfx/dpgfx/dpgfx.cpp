@@ -30,10 +30,12 @@ namespace dp
     //dtor
     dpgfx::~dpgfx( void )
     {
-        if( this->renderer )
-            delete this->renderer;
         this->waitForStop();
         this->unlink();
+
+        if( this->renderer )
+            delete this->renderer;
+
         this->deleteScenes();
     }
 
@@ -197,8 +199,8 @@ namespace dp
         }
 
         t = this->getTicks();
-        if( ac == 0 && sc > 0 && t - this->t_countdown > 6000 )
-            this->stop();
+        if( ac == 0 && sc > 0 && t - this->t_countdown > 20000 )
+         ;//   this->stop();
         else
             this->t_countdown = t;
     }

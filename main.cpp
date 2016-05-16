@@ -1,10 +1,10 @@
 
 
-#include "dp/dummy_game/dummy_game_client/dummy_game_client/dummy_game_client.h"
+#include "dp/tictactoe/tictactoe_game/tictactoe_game/tictactoe_game.h"
 
 int main()
 {
-    dp::dummy_game_client d;
+    dp::tictactoe_game d;
 
     d.start();
     d.blockUntilDead();

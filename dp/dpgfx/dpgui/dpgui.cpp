@@ -20,6 +20,7 @@ namespace dp
     dpgui::dpgui( int x, int y, unsigned int w, unsigned int h, const char *ctxt ) : dpgui_list()
     {
         memset( &this->attr, 0, sizeof( this->attr ) );
+        this->bm_bg = this->bm_fg = 0;
 
         this->attr.rc.x = x;
         this->attr.rc.y = y;
@@ -54,6 +55,9 @@ namespace dp
     //dtor
     dpgui::~dpgui( void )
     {
+        this->waitForStop();
+        this->unlink();
+
         if( this->bm_bg )
             delete this->bm_bg;
         if( this->bm_fg )
