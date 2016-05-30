@@ -53,9 +53,9 @@ namespace dp
     }
 
     //generate bundle
-    dpapi_bundle *dpapi_context_writelock::makeBundle( dpmatrix *mx, dpapi_bundle *bdle )
+    dpapi_bundle *dpapi_context_writelock::makeBundle( dpmatrix *mx, dpapi_bundle *bdle, float opacity )
     {
-        return this->p->makeBundle( this, mx, bdle );
+        return this->p->makeBundle( this, mx, bdle, opacity );
     }
 
     //generate index buffer

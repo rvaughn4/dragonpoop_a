@@ -3,6 +3,7 @@
 */
 
 #include "tictactoe_menu.h"
+#include "tictactoe_menu_gui/tictactoe_menu_gui.h"
 
 namespace dp
 {
@@ -49,7 +50,7 @@ namespace dp
     //generate root gui
     dpgui *tictactoe_menu::genRootGui( dpscene_writelock *sl )
     {
-        return this->dpscene::genRootGui( sl );
+        return new tictactoe_menu_gui();
     }
 
 };

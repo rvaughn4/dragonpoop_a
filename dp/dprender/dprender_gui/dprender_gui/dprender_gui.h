@@ -31,7 +31,7 @@ namespace dp
         dpbitmap_rectangle rc_exact;
         unsigned int bg_time, fg_time;
         dpxyzw mousepos, min_pos, drag_start, drag_off;
-        float fhover, fMin, zoom;
+        float fhover, fMin, zoom, fade, fadeTo;
         bool bIsFocus, bIsDrag, bIsMouseOver, bIsMouseDown, bHide, bIsSize;
     };
 
@@ -87,6 +87,10 @@ namespace dp
         virtual bool processEvent( dprender_gui_list_writelock *l, dpinput_event *e );
         //handle event
         virtual void onEvent( dprender_gui_writelock *l, dpinput_event *e );
+        //retrun true if faded out
+        virtual bool isFadedOut( void );
+        //set fade out
+        virtual void setFadeOut( void );
 
     public:
 

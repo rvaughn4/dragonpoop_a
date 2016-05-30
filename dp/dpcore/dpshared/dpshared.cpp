@@ -542,8 +542,7 @@ namespace dp
         //called to run
         void dpshared::run( dpshared_writelock *wl )
         {
-            if( this->rsync )
-                this->sync();
+            this->sync();
             this->onRun( wl );
         }
 

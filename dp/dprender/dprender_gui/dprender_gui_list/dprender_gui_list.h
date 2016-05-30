@@ -64,6 +64,10 @@ namespace dp
         virtual void render( dprender_gui_list_writelock *wl, dpmatrix *m_world, dpbitmap_rectangle *rc_world, dpmatrix *m_parent, dpbitmap_rectangle *rc_parent, dpapi_context_writelock *ctx, dpapi_commandlist_writelock *cll );
         //process input event
         virtual bool processEvent( dprender_gui_list_writelock *l, dpinput_event *e );
+        //retrun true if faded out
+        virtual bool isFadedOut( void ) = 0;
+        //set fade out
+        virtual void setFadeOut( void ) = 0;
 
     public:
 

@@ -13,8 +13,8 @@ gpgfx manages models and gui elements and scenes
 #include "../../dprender/dprender/dprender/dprender.h"
 #include "../../dprender/dprender/dprender/dprender_writelock.h"
 #include "../../dprender/dprender/dprender/dprender_readlock.h"
-
 #include "../../dprender/dpapi/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5/dpapi_x11_opengl1o5_factory.h"
+#include <iostream>
 
 namespace dp
 {
@@ -25,6 +25,7 @@ namespace dp
         this->zeroScenes();
         this->renderer = 0;
         this->bd = 0;
+        this->t_start = 0;
     }
 
     //dtor
@@ -86,7 +87,8 @@ namespace dp
     //override to do task startup
     bool dpgfx::onTaskStart( dptask_writelock *tl )
     {
-        this->t_countdown = this->getTicks();
+        this->t_countdown = 0;
+        this->t_start = this->getTicks();
         return 1;
     }
 
@@ -199,10 +201,20 @@ namespace dp
         }
 
         t = this->getTicks();
-        if( ac == 0 && sc > 0 && t - this->t_countdown > 20000 )
-         ;//   this->stop();
+        if( ac == 0 && ( sc > 0 || t - this->t_start > 30000 ) )
+        {
+
+            if( !this->t_countdown )
+            {
+                std::cout << "No scenes open! Closing in 10 seconds.\r\n";
+                this->t_countdown = t;
+            }
+
+            if( t - this->t_countdown > 10000 )
+                this->stop();
+        }
         else
-            this->t_countdown = t;
+            this->t_countdown = 0;
     }
 
     //add scene

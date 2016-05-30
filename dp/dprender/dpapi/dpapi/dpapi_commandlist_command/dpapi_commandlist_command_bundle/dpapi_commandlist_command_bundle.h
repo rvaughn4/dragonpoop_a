@@ -29,7 +29,7 @@ namespace dp
     public:
 
         //ctor
-        dpapi_commandlist_command_bundle( dpapi_commandlist_writelock *p, dpapi_context_writelock *ctxl, dpmatrix *mx, dpapi_bundle *bdle );
+        dpapi_commandlist_command_bundle( dpapi_commandlist_writelock *p, dpapi_context_writelock *ctxl, dpmatrix *mx, dpapi_bundle *bdle, float opacity );
         //dtor
         virtual ~dpapi_commandlist_command_bundle( void );
         //compile command

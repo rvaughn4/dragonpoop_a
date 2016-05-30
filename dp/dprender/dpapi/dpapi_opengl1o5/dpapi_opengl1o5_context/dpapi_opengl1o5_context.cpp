@@ -90,9 +90,9 @@ namespace dp
     }
 
     //generate bundle
-    dpapi_bundle *dpapi_opengl1o5_context::makeBundle( dpapi_context_writelock *ctx, dpmatrix *mx, dpapi_bundle *bdle )
+    dpapi_bundle *dpapi_opengl1o5_context::makeBundle( dpapi_context_writelock *ctx, dpmatrix *mx, dpapi_bundle *bdle, float opacity )
     {
-        return new dpapi_opengl1o5_bundle( (dpapi_opengl1o5_context_writelock *)ctx, mx, (dpapi_opengl1o5_bundle *)bdle );
+        return new dpapi_opengl1o5_bundle( (dpapi_opengl1o5_context_writelock *)ctx, mx, (dpapi_opengl1o5_bundle *)bdle, opacity );
     }
 
     //generate texture

@@ -18,7 +18,7 @@ namespace dp
     }
 
     //ctor
-    dpapi_bundle::dpapi_bundle( dpapi_context_writelock *ctx, dpmatrix *mx, dpapi_bundle *bdle )
+    dpapi_bundle::dpapi_bundle( dpapi_context_writelock *ctx, dpmatrix *mx, dpapi_bundle *bdle, float opacity )
     {
 
     }

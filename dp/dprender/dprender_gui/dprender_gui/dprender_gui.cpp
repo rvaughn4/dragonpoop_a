@@ -49,6 +49,8 @@ namespace dp
         this->bdle_fg = 0;
 
         memset( &this->attr, 0, sizeof( this->attr ) );
+        this->attr.zoom = 0.5f;
+        this->attr.fadeTo = 1.0f;
         this->t_spin = this->getTicks();
 
         this->inp = 0;
@@ -182,8 +184,11 @@ namespace dp
         if( this->attr.bHide )
             return;
 
-        cll->addBundle( ctx, &this->sz_mat, this->bdle_bg );
-        cll->addBundle( ctx, &this->sz_mat, this->bdle_fg );
+        if( !this->bdle_bg || !this->bdle_fg )
+            return;
+
+        cll->addBundle( ctx, &this->sz_mat, this->bdle_bg, this->attr.fade );
+        cll->addBundle( ctx, &this->sz_mat, this->bdle_fg, this->attr.fade );
 
         this->dprender_gui_list::render( wl, m_world, rc_world, &this->mat, &this->attr.rc_exact, ctx, cll );
     }
@@ -413,7 +418,11 @@ namespace dp
         t = this->getTicks();
         d = t - this->t_last_ftime;
         this->t_last_ftime = t;
+        if( d > 60.0f )
+            d = 60.0f;
         anim_s = (float)d / 30.0f;
+
+        this->attr.fade += ( this->attr.fadeTo - this->attr.fade ) * 0.1f * anim_s;
 
         if( this->attr.g.bFillHor )
         {
@@ -770,6 +779,18 @@ namespace dp
             return 1;
 
         return l->isRun();
+    }
+
+    //retrun true if faded out
+    bool dprender_gui::isFadedOut( void )
+    {
+        return this->attr.fade < 0.05f;
+    }
+
+    //set fade out
+    void dprender_gui::setFadeOut( void )
+    {
+        this->attr.fadeTo = 0;
     }
 
 }

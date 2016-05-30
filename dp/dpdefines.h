@@ -2,7 +2,7 @@
 #ifndef dpdefines_h
 #define dpdefines_h
 
-#define dp_rendertask_sleeptime 10
+#define dp_rendertask_sleeptime 40
 
 //print out to console dpmutex debug info
 //#define dpmutex_debugout_all

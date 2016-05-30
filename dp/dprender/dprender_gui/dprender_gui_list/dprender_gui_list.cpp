@@ -261,7 +261,7 @@ namespace dp
     void dprender_gui_list::onRun( dpshared_writelock *wl )
     {
         unsigned int i;
-        dprender_gui *p;
+        dprender_gui_list *p;
         dprender_gui_writelock *pl;
         dpshared_guard g;
         uint64_t t;
@@ -285,10 +285,15 @@ namespace dp
             if( !p )
                 continue;
 
-            if( dlt && !p->isGuiLinked() )
+            if( dlt && !( (dprender_gui *)p )->isGuiLinked() )
             {
-                delete p;
-                this->glist[ i ] = 0;
+                if( p->isFadedOut() )
+                {
+                    delete p;
+                    this->glist[ i ] = 0;
+                }
+                else
+                    p->setFadeOut();
                 continue;
             }
 

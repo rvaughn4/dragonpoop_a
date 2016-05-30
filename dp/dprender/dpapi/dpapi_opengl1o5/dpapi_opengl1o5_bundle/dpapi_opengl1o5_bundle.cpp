@@ -30,6 +30,7 @@ namespace dp
         this->ibo = 0;
         this->t0 = 0;
         this->t1 = 0;
+        this->opacity = 1.0f;
         if( mx )
             this->m.copy( mx );
 
@@ -57,7 +58,7 @@ namespace dp
     }
 
     //ctor
-    dpapi_opengl1o5_bundle::dpapi_opengl1o5_bundle( dpapi_opengl1o5_context_writelock *ctx, dpmatrix *mx, dpapi_opengl1o5_bundle *bdle ) : dpapi_bundle( ctx, mx, bdle )
+    dpapi_opengl1o5_bundle::dpapi_opengl1o5_bundle( dpapi_opengl1o5_context_writelock *ctx, dpmatrix *mx, dpapi_opengl1o5_bundle *bdle, float opacity ) : dpapi_bundle( ctx, mx, bdle, opacity )
     {
         this->gl = bdle->gl;
         this->vb.copy( &bdle->vb );
@@ -67,6 +68,7 @@ namespace dp
         this->cnt = bdle->cnt;
         this->t0 = bdle->t0;
         this->t1 = bdle->t1;
+        this->opacity = opacity;
         if( mx )
             this->m.copy( mx );
         else
@@ -96,6 +98,9 @@ namespace dp
         v = (dpvertex *)this->vb.getBuffer();
         i = (dpindex *)this->ib.getBuffer();
 
+        if( !this->t0 )
+            return 0;
+
         c->makeActive();
 
         this->gl->glDisable( opengl1o5_lib_CULL_FACE );
@@ -112,6 +117,8 @@ namespace dp
         this->gl->glEnableClientState( opengl1o5_lib_TEXTURE_COORD_ARRAY );
         this->gl->glEnableClientState( opengl1o5_lib_VERTEX_ARRAY );
         this->gl->glEnable( opengl1o5_lib_TEXTURE_2D );
+
+        this->gl->glColor4f( 1.0f, 1.0f, 1.0f, this->opacity );
 
         this->gl->glBindTexture( opengl1o5_lib_TEXTURE_2D, this->t0 );
 

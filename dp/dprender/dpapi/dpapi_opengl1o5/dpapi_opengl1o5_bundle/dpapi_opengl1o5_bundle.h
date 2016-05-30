@@ -33,6 +33,7 @@ namespace dp
         opengl1o5_lib_functions *gl;
         unsigned int vbo, ibo, cnt, t1, t0;
         dpmatrix m;
+        float opacity;
 
     protected:
 
@@ -46,7 +47,7 @@ namespace dp
         //ctor
         dpapi_opengl1o5_bundle( dpapi_opengl1o5_context_writelock *ctx, dpmatrix *mx, dpapi_opengl1o5_vertexbuffer *vb, dpapi_opengl1o5_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1, opengl1o5_lib_functions *gl );
         //ctor
-        dpapi_opengl1o5_bundle( dpapi_opengl1o5_context_writelock *ctx, dpmatrix *mx, dpapi_opengl1o5_bundle *bdle );
+        dpapi_opengl1o5_bundle( dpapi_opengl1o5_context_writelock *ctx, dpmatrix *mx, dpapi_opengl1o5_bundle *bdle, float opacity );
         //dtor
         virtual ~dpapi_opengl1o5_bundle( void );
 

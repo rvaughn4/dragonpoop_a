@@ -57,7 +57,7 @@ namespace dp
         //generate bundle
         dpapi_bundle *makeBundle( dpmatrix *mx, dpapi_vertexbuffer *vb, dpapi_indexbuffer *ib, dpapi_material *m, dpapi_texture *t0, dpapi_texture *t1 );
         //generate bundle
-        dpapi_bundle *makeBundle( dpmatrix *mx, dpapi_bundle *bdle );
+        dpapi_bundle *makeBundle( dpmatrix *mx, dpapi_bundle *bdle, float opacity );
         //generate index buffer
         dpapi_indexbuffer *makeIndexBuffer( dpindexbuffer *ib );
         //generate texture

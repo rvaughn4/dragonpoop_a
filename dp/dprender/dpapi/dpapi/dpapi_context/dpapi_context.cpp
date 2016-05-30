@@ -81,9 +81,9 @@ namespace dp
     }
 
     //generate bundle
-    dpapi_bundle *dpapi_context::makeBundle( dpapi_context_writelock *ctx, dpmatrix *mx, dpapi_bundle *bdle )
+    dpapi_bundle *dpapi_context::makeBundle( dpapi_context_writelock *ctx, dpmatrix *mx, dpapi_bundle *bdle, float opacity )
     {
-        return new dpapi_bundle( ctx, mx, bdle );
+        return new dpapi_bundle( ctx, mx, bdle, opacity );
     }
 
     //generate index buffer
